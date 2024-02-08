@@ -123,6 +123,11 @@
       .select-wrapper select {
 	      width: 48%;
 	    }
+        #image_container img {
+            max-width: 100%;
+            max-height: 100%;
+        }
+    </style>
     </style>
 
     <!-- Custom styles for this template -->
@@ -267,7 +272,20 @@
 	    });
 	  });
 	</script>
-	
+    <script>
+        function setThumbnail(event) {
+            var reader = new FileReader();
+            reader.onload = function(event) {
+                var img = document.createElement("img");
+                img.setAttribute("src", event.target.result);
+                document.querySelector("div#image_container").appendChild(img);
+                var imgContainer = document.querySelector("div#image_container");
+                imgContainer.innerHTML = ''; // 기존에 있던 이미지를 제거합니다.
+                imgContainer.appendChild(img); // 새 이미지를 추가합니다.
+            };
+            reader.readAsDataURL(event.target.files[0]);
+        }
+    </script>
 </main>
 
 <footer class="footer mt-auto py-3 bg-body-tertiary">

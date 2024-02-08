@@ -16,6 +16,8 @@
 	    <link rel="stylesheet" href="https://cdn.jsdelivr.net/npm/@docsearch/css@3">
 		<link href="https://cdn.jsdelivr.net/npm/bootstrap@5.3.1/dist/css/bootstrap.min.css" rel="stylesheet">
 		<link rel="stylesheet" href="https://cdn.jsdelivr.net/simplemde/latest/simplemde.min.css">
+	    <link href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/5.15.3/css/all.min.css" rel="stylesheet">
+		
 
     <!-- Favicons -->
 <link rel="apple-touch-icon" href="/docs/5.3/assets/img/favicons/apple-touch-icon.png" sizes="180x180">
@@ -124,8 +126,17 @@
 	      width: 48%;
 	    }
 	    #info{
-	    width: 200px;
+		text-align: right;
+		margin-right: 50px;
 	    }
+		.heart {
+            cursor: pointer;
+            font-size: 24px;
+            color: #fff;
+        }
+        .heart.filled {
+            color: #ff0000;
+        }
     </style>
 
     <!-- Custom styles for this template -->
@@ -154,45 +165,61 @@
 <!-- Begin page content -->
 <main class="flex-shrink-0" style="padding-top: 100px">
   <div class="container">
-    <h1 class="mt-5">레슨 정보</h1>
-    <p class="lead">레슨 상세페이지입니다.</p>
+    <h1 class="mt-5">
+	  홍길동과 함께하는 즐거운 수영교실
+	</h1>
     <hr>
     
     <table style="width: 1296px">
-    	<tr><td rowspan="4">    
+    	<tr><td rowspan="4" style="width: 400px;">    
     	<div class="imagespace">
-		<div id="image_container"></div>
+		<div id="image_container" style="margin: 5px 15px;"></div>
 		</div>
 		</td>
 		<td>  
-	  	<label id="info">카테고리</label>
-    	</td><td></td></tr>
+	  	<div id="info">카테고리</div>
+    	</td><td style="width: 500px">수영</td></tr>
     	<tr><td>
- 		<label id="info">등록자</label>
-	</td><td></td></tr>
+ 		<div id="info">등록자</div>
+	</td><td>홍길동</td></tr>
     	<tr><td>
-		<label id="info">날짜</label>
-	</td><td></td></tr>
+		<div id="info">날짜</div>
+	</td><td><b>2024-01-01</b></td></tr>
     	<tr><td>
-   		<label id="info">가격</label>
-		</td><td></td></tr>
+   		<div id="info">가격</div>
+		</td><td><b>120,000원</b></td></tr>
     </table>
     
+    
+    <div id="lessonInfoButton" style="text-align: right;">
+	<button type="button" class="btn btn-primary btn-lg" onclick="">예약하기</button>
+	<button type="button" class="btn btn-primary btn-lg" onclick="">문의</button>
+	<button type="button" style="background-color: skyblue; border: 1px solid #fff;" class="btn btn-secondary btn-lg"onclick="toggleHeart(this)"><i class="fas fa-heart heart"></i></button>
+    </div>
+    
     <hr>
-	<div class="input-group mb-3">
-	  <span class="input-group-text" id="inputGroup-sizing-default">제목</span>
-	  <input type="text" name="subject" class="form-control" aria-label="Sizing example input" aria-describedby="inputGroup-sizing-default">
-	</div>
+<!-- 	<div class="input-group mb-3"> -->
+<!-- 	  <span class="input-group-text" id="inputGroup-sizing-default" >제목</span> -->
+<!-- 	  <input type="text" name="subject" value="홍길동과 함께하는 즐거운 수영교실" class="form-control" aria-label="Sizing example input" aria-describedby="inputGroup-sizing-default" disabled> -->
+<!-- 	</div> -->
 	
 	<div class="form-group">
-	<label for="text">상세 설명</label>
-	
+	<label for="text">상세내용</label>
+	<div style="border: 1px solid #ccc; width: 1298px; height: 1000px;">상세내용 칸</div>
+	<hr>
+	<label>리뷰</label>
+	<div style="border: 1px solid #ccc; width: 1298px; height: 100px; margin-bottom: 5px;">리뷰 칸1</div>
+	<div style="border: 1px solid #ccc; width: 1298px; height: 100px; margin-bottom: 5px;">리뷰 칸2</div>
+	<div style="border: 1px solid #ccc; width: 1298px; height: 100px;">리뷰 칸3</div>
     </div>	
     </div>
     
-    
-
-	
+    <script>
+        function toggleHeart(el) {
+            var heartIcon = el.querySelector('.heart');
+            heartIcon.classList.toggle('filled');
+        }
+    </script>
 </main>
 
 <footer class="footer mt-auto py-3 bg-body-tertiary">
