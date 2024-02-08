@@ -3,12 +3,12 @@ package com.itwillbs.domain;
 import java.sql.Timestamp;
 import java.time.LocalDate;
 
-import com.mysql.cj.jdbc.Blob;
+import org.springframework.web.multipart.MultipartFile;
 
 public class LessonDTO {
 	private String subject;
-	private Blob content;
-	private Blob preview;
+	private String content;
+	private MultipartFile preview;
 	private LocalDate date;
 	private int price;
 	private String location;
@@ -20,22 +20,24 @@ public class LessonDTO {
 		return subject + content + preview + date + price + location + update + subCategory;
 	}
 	
+	public LessonDTO() {}
+	
 	public String getSubject() {
 		return subject;
 	}
 	public void setSubject(String subject) {
 		this.subject = subject;
 	}
-	public Blob getContent() {
+	public String getContent() {
 		return content;
 	}
-	public void setContent(Blob content) {
+	public void setContent(String content) {
 		this.content = content;
 	}
-	public Blob getPreview() {
+	public MultipartFile getPreview() {
 		return preview;
 	}
-	public void setPreview(Blob preview) {
+	public void setPreview(MultipartFile preview) {
 		this.preview = preview;
 	}
 	public LocalDate getDate() {

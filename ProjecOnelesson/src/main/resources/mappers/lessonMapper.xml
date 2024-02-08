@@ -5,7 +5,7 @@
   
 <mapper namespace="com.itwillbs.mappers.lessonMapper">
     <insert id="insertLesson">
-		insert into lesson(LES_CONTENT, LES_SUBJECT, LES_PREVIEW, LES_UPDATE, LES_DATE, LES_PRICE, LES_CATEGORY) 
-		values(#{content}, #{subject}, #{preview}, #{update}, #{date}, #{price}, #{subCategory})
+		insert into lesson(LES_SUBJECT, LES_CONTENT, LES_PREVIEW, LES_UPDATE, LES_DATE, LES_PRICE, LES_CATEGORY) 
+		values(#{subject}, #{content}, #{preview}, #{update}, #{date}, #{price}, #{subCategory})
     </insert>
 </mapper>

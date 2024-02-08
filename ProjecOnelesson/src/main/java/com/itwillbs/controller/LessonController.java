@@ -5,7 +5,10 @@ import javax.inject.Inject;
 import org.springframework.stereotype.Controller;
 import org.springframework.web.bind.annotation.GetMapping;
 import org.springframework.web.bind.annotation.PostMapping;
+import org.springframework.web.bind.annotation.RequestBody;
 import org.springframework.web.bind.annotation.RequestMapping;
+import org.springframework.web.bind.annotation.RequestParam;
+import org.springframework.web.multipart.MultipartFile;
 
 import com.itwillbs.domain.LessonDTO;
 import com.itwillbs.service.LessonService;
@@ -43,9 +46,24 @@ public class LessonController {
 	@PostMapping("/lessonInsertPro")
 	public String lessonInsertPro(LessonDTO lessonDTO) {
 		System.out.println("LessonController lessonInsertPro()");
-		lessonService.insertLesson(lessonDTO);
+		System.out.println(lessonDTO);
 		
+//		lessonService.insertLesson(lessonDTO);
 		return "redirect:/lesson/lessonList";
+	}
+	
+	@GetMapping("/lessonInfo")
+	public String lessonInfo(LessonDTO lessonDTO) {
+		System.out.println("LessonController lessonInfo()");
+		
+		return "lesson/lessonInfo";
+	}
+	
+	@GetMapping("/payment")
+	public String payment(LessonDTO lessonDTO) {
+		System.out.println("LessonController payment()");
+		
+		return "lesson/payment";
 	}
 	
 }
