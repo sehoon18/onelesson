@@ -5,16 +5,17 @@ import javax.inject.Inject;
 import org.springframework.stereotype.Controller;
 import org.springframework.web.bind.annotation.GetMapping;
 import org.springframework.web.bind.annotation.PostMapping;
-import org.springframework.web.bind.annotation.RequestBody;
 import org.springframework.web.bind.annotation.RequestMapping;
-import org.springframework.web.bind.annotation.RequestParam;
 import org.springframework.web.multipart.MultipartFile;
 
 import com.itwillbs.domain.LessonDTO;
 import com.itwillbs.service.LessonService;
 
+import lombok.extern.log4j.Log4j;
+
 @Controller
 @RequestMapping("/lesson/*")
+@Log4j
 public class LessonController {
 	@Inject
 	private LessonService lessonService;
@@ -44,11 +45,11 @@ public class LessonController {
 	}
 	
 	@PostMapping("/lessonInsertPro")
-	public String lessonInsertPro(LessonDTO lessonDTO) {
+	public String lessonInsertPro(LessonDTO lessonDTO, MultipartFile[] multipart) {
 		System.out.println("LessonController lessonInsertPro()");
 		System.out.println(lessonDTO);
 		
-//		lessonService.insertLesson(lessonDTO);
+		lessonService.insertLesson(lessonDTO);
 		return "redirect:/lesson/lessonList";
 	}
 	

@@ -18,10 +18,8 @@ public class LessonService {
 	public void insertLesson(LessonDTO lessonDTO) {
 		System.out.println("LessonService insertLesson()");
 		lessonDTO.setUpdate(new Timestamp(System.currentTimeMillis()));
-		System.out.println(lessonDTO);
 		lessonDAO.insertLesson(lessonDTO);
 		System.out.println(lessonDTO);
-
 	}
 
 	public void insertWrite(LessonDTO lessonDTO) {

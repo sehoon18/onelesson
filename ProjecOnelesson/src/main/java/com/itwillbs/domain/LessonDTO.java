@@ -9,7 +9,7 @@ public class LessonDTO {
 	private String subject;
 	private String content;
 	private MultipartFile preview;
-	private LocalDate date;
+	private String date;
 	private int price;
 	private String location;
 	private Timestamp update;
@@ -40,10 +40,10 @@ public class LessonDTO {
 	public void setPreview(MultipartFile preview) {
 		this.preview = preview;
 	}
-	public LocalDate getDate() {
+	public String getDate() {
 		return date;
 	}
-	public void setDate(LocalDate date) {
+	public void setDate(String date) {
 		this.date = date;
 	}
 	public int getPrice() {

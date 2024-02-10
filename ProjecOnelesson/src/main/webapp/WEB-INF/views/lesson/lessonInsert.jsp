@@ -11,6 +11,8 @@
     <meta name="description" content="">
     <meta name="author" content="Mark Otto, Jacob Thornton, 그리고 Bootstrap 기여자들">
     <meta name="generator" content="Hugo 0.115.4">
+    <meta http-equiv="X-UA-Compatible" content="IE=edge">
+    <meta http-equiv="Content-Type" content="text.html; charset=UTF-8">
     <title>레슨 등록</title>
 	    <link rel="canonical" href="https://getbootstrap.kr/docs/5.3/examples/sticky-footer-navbar/">
 	    <link rel="stylesheet" href="https://cdn.jsdelivr.net/npm/@docsearch/css@3">
@@ -110,7 +112,7 @@
 	  }
 	.imagespace{
 	  float: left;
-	  padding-bottom: 20px;
+	  padding: 0px 50px 10px 10px;
   	}
 	  hr{
 	  clear: both;
@@ -160,12 +162,12 @@
     <p class="lead">레슨 등록 페이지입니다.</p>
     <hr>
 	<form action="${pageContext.request.contextPath}/lesson/lessonInsertPro" method="post" enctype="multipart/form-data">
+<div id="topinfo" style="display: inline; ">
     <div class="imagespace">
 	<div id="image_container"></div>
-	<input type="file" name="preview" id="image" accept="image/*"
-		onchange="setThumbnail(event);" />
+	<input type="file" name="preview" id="image" accept="image/*" onchange="setThumbnail(event);">
 	</div>
-
+  
   <div class="mb-3 row">
   <label class="col-sm-2 col-form-label">카테고리</label>
     <div class="select-wrapper" >
@@ -188,16 +190,18 @@
       		<input type="text" name="name" readonly class="form-control-plaintext" id="staticEmail" value="홍길동">
     	</div>
 	</div>
-	<div class="mb-3 row">
-    	<label for="inputPassword" class="col-sm-2 col-form-label">Password</label>
-    	<div class="col-sm-4">
-			<input type="password" name="pass" class="form-control" id="inputPassword">
-    	</div>
-	</div>
+
 	<div class="mb-3 row">
 		<label for="date" class="col-sm-2 col-form-label">날짜</label>
-    	<div class="col-sm-10">
-			<input type="date" id="date" name="date">
+    	<div class="col-sm-6">
+			<input type="date" id="date" name="date" class="form-control">
+		</div>
+	</div>
+	
+	<div class="mb-3 row">
+		<label for="text" class="col-sm-2 col-form-label">위치</label>
+    	<div class="col-sm-6">
+			<input type="text" id="location" name="location" class="form-control" readonly>
 		</div>
 	</div>
 	
@@ -205,10 +209,11 @@
    	<label class="col-sm-2 col-form-label">가격</label>
 	   	<div class="col-sm-4">
 			<div class="input-group mb-3">
-			  <input type="number" name="price" class="form-control" aria-label="Amount">
+			  <input type="number" name="price" class="form-control" min="0" step="100">
 			  <span class="input-group-text">원</span>
 			</div>
 		</div>
+	</div>
 	</div>
 	<hr>
 	<div class="input-group mb-3">
@@ -219,10 +224,19 @@
 	<div class="form-group">
 	<label for="text">상세 설명</label>
  	<textarea id="myEditor" name="content"></textarea>
- 	
     </div>	
 	<hr>
-	<input type="submit" class="btn btn-primary" value="등록">
+	<div class="mb-3 row">
+	  <div class="col-sm-1">
+	    <label for="inputPassword" class="col-form-label">비밀번호</label>
+	  </div>
+	  <div class="col-sm-2">
+	    <input type="password" name="pass" class="form-control" id="inputPassword">
+	  </div>
+	  <div class="col-sm-2 ml-auto">
+	    <input type="submit" class="btn btn-primary" value="등록">
+	  </div>
+	</div>
     </form>
     </div>
     <script>
@@ -286,6 +300,23 @@
             reader.readAsDataURL(event.target.files[0]);
         }
     </script>
+    
+<!--     카카오api -->
+	<script src="//t1.daumcdn.net/mapjsapi/bundle/postcode/prod/postcode.v2.js"></script>
+	<script>
+	window.onload = function(){
+	    document.getElementById("location").addEventListener("click", function(){ //주소입력칸을 클릭하면
+	        //카카오 지도 발생
+	        new daum.Postcode({
+	            oncomplete: function(data) { //선택시 입력값 세팅
+	                document.getElementById("location").value = data.address; // 주소 넣기
+	            }
+	        }).open();
+	    });
+	}
+	</script>
+<!--     카카오api -->
+    
 </main>
 
 <footer class="footer mt-auto py-3 bg-body-tertiary">

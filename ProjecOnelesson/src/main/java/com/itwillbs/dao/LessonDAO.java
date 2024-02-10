@@ -20,7 +20,6 @@ public class LessonDAO {
 
 		sqlSession.insert(namespace + ".insertLesson", lessonDTO);
 		System.out.println(lessonDTO);
-
 	}
 
 }

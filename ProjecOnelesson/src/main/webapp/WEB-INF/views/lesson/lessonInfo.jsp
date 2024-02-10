@@ -112,7 +112,6 @@
 	  }
 	.imagespace{
 	  float: left;
-	  padding-bottom: 20px;
   	}
 	  hr{
 	  clear: both;
@@ -126,7 +125,6 @@
 	      width: 48%;
 	    }
 	    #info{
-		text-align: right;
 		margin-right: 50px;
 	    }
 		.heart {
@@ -171,37 +169,34 @@
     <hr>
     
     <table style="width: 1296px">
-    	<tr><td rowspan="4" style="width: 400px;">    
+    	<tr><td rowspan="5" style="width:500px;">    
     	<div class="imagespace">
 		<div id="image_container" style="margin: 5px 15px;"></div>
 		</div>
 		</td>
 		<td>  
-	  	<div id="info">카테고리</div>
-    	</td><td style="width: 500px">수영</td></tr>
+	  	<div id="info" style="width: 100px">카테고리</div>
+    	</td><td style="width: 400px">수영</td>
+    	<td rowspan="5" style="width: 300px; vertical-align : bottom;">
+   			<button type="button" class="btn btn-primary btn-lg" onclick="">예약하기</button>
+			<button type="button" class="btn btn-primary btn-lg" onclick="">문의</button>
+			<button type="button" style="background-color: skyblue; border: 1px solid #fff;" class="btn btn-secondary btn-lg"onclick="toggleHeart(this)"><i class="fas fa-heart heart"></i></button>
+    	</td></tr>
     	<tr><td>
  		<div id="info">등록자</div>
 	</td><td>홍길동</td></tr>
+    	<tr><td>
+   		<div id="info">위치</div>
+		</td><td>부산광역시 부산진구 중앙대로123</td></tr>
     	<tr><td>
 		<div id="info">날짜</div>
 	</td><td><b>2024-01-01</b></td></tr>
     	<tr><td>
    		<div id="info">가격</div>
-		</td><td><b>120,000원</b></td></tr>
+		</td><td><b>50,000원</b></td></tr>
     </table>
     
-    
-    <div id="lessonInfoButton" style="text-align: right;">
-	<button type="button" class="btn btn-primary btn-lg" onclick="">예약하기</button>
-	<button type="button" class="btn btn-primary btn-lg" onclick="">문의</button>
-	<button type="button" style="background-color: skyblue; border: 1px solid #fff;" class="btn btn-secondary btn-lg"onclick="toggleHeart(this)"><i class="fas fa-heart heart"></i></button>
-    </div>
-    
     <hr>
-<!-- 	<div class="input-group mb-3"> -->
-<!-- 	  <span class="input-group-text" id="inputGroup-sizing-default" >제목</span> -->
-<!-- 	  <input type="text" name="subject" value="홍길동과 함께하는 즐거운 수영교실" class="form-control" aria-label="Sizing example input" aria-describedby="inputGroup-sizing-default" disabled> -->
-<!-- 	</div> -->
 	
 	<div class="form-group">
 	<label for="text">상세내용</label>
@@ -210,7 +205,7 @@
 	<label>리뷰</label>
 	<div style="border: 1px solid #ccc; width: 1298px; height: 100px; margin-bottom: 5px;">리뷰 칸1</div>
 	<div style="border: 1px solid #ccc; width: 1298px; height: 100px; margin-bottom: 5px;">리뷰 칸2</div>
-	<div style="border: 1px solid #ccc; width: 1298px; height: 100px;">리뷰 칸3</div>
+	<div style="border: 1px solid #ccc; width: 1298px; height: 100px; margin-bottom: 5px;">리뷰 칸3</div>
     </div>	
     </div>
     

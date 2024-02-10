@@ -123,6 +123,11 @@
       .select-wrapper select {
 	      width: 48%;
 	    }
+	    #pay_container{
+	    border: 1px solid #ccc;
+	    width: 1296px;
+	    height: 500px;
+	    }
     </style>
 
     <!-- Custom styles for this template -->
@@ -136,151 +141,39 @@
 <!-- Begin page content -->
 <main class="flex-shrink-0" style="padding-top: 100px">
   <div class="container">
-    <h1 class="mt-5">레슨 등록</h1>
-    <p class="lead">레슨 등록 페이지입니다.</p>
+    <h1 class="mt-5">결제</h1>
+    <p class="lead">강의명 : 홍길동과 함께하는 즐거운 수영교실</p>
     <hr>
-	<form action="${pageContext.request.contextPath}/lesson/lessonInsertPro" method="post" enctype="multipart/form-data" id="registerForm">
-    <div class="imagespace">
-	<div id="image_container"></div>
-	<input type="file" name="preview" id="image" accept="image/*"
-		onchange="setThumbnail(event);" />
-	</div>
-
-  <div class="mb-3 row">
-  <label class="col-sm-2 col-form-label">카테고리</label>
-    <div class="select-wrapper" >
-      <select class="form-control" id="category">
-        <option value="">-- 카테고리 선택 --</option>
-        <option value="요리">요리</option>
-        <option value="스포츠">스포츠</option>
-        <option value="공예">공예</option>
-        <option value="예술">예술</option>
-        <option value="기타">기타</option>
-      </select>
-      <select class="form-control" id="subCategory" name="subCategory">
-      </select>
-    </div>
-  </div>
+    <table style="width: 1296px">
+    	<tr><td rowspan="5" style="width:500px;">    
+    	<div class="imagespace">
+		<div id="image_container" style="margin: 5px 15px;"></div>
+		</div>
+		</td>
+		<td>  
+	  	<div id="info" style="width: 100px">카테고리</div>
+    	</td><td style="width: 500px">수영</td>
+    	<td rowspan="5" style="width: 200px; vertical-align : bottom;">
+   			<button type="button" class="btn btn-primary btn-lg" onclick="">결제하기</button>
+    	</td></tr>
+    	<tr><td>
+ 		<div id="info">강사명</div>
+	</td><td>홍길동</td></tr>
+    	<tr><td>
+   		<div id="info">위치</div>
+		</td><td>부산광역시 부산진구 중앙대로123</td></tr>
+    	<tr><td>
+		<div id="info">날짜</div>
+	</td><td><b>2024-01-01</b></td></tr>
+    	<tr><td>
+   		<div id="info">가격</div>
+		</td><td><b>50,000원</b></td></tr>
+    </table>
+    <hr>
+    <div id="pay_container"></div>
     
-	<div class="mb-3 row">
- 		<label for="staticEmail" class="col-sm-2 col-form-label">작성자</label>
-    	<div class="col-sm-10">
-      		<input type="text" name="name" readonly class="form-control-plaintext" id="staticEmail" value="홍길동">
-    	</div>
-	</div>
-	<div class="mb-3 row">
-    	<label for="inputPassword" class="col-sm-2 col-form-label">Password</label>
-    	<div class="col-sm-4">
-			<input type="password" name="pass" class="form-control" id="inputPassword">
-    	</div>
-	</div>
-	<div class="mb-3 row">
-		<label for="date" class="col-sm-2 col-form-label">날짜</label>
-    	<div class="col-sm-10">
-			<input type="date" id="date" name="date">
-		</div>
-	</div>
-	
-	<div class="mb-3 row">
-   	<label class="col-sm-2 col-form-label">가격</label>
-	   	<div class="col-sm-4">
-			<div class="input-group mb-3">
-			  <input type="number" name="price" class="form-control" aria-label="Amount">
-			  <span class="input-group-text">원</span>
-			</div>
-		</div>
-	</div>
-	<hr>
-	<div class="input-group mb-3">
-	  <span class="input-group-text" id="inputGroup-sizing-default">제목</span>
-	  <input type="text" name="subject" class="form-control" aria-label="Sizing example input" aria-describedby="inputGroup-sizing-default">
-	</div>
-	
-	<div class="form-group">
-	<label for="text">상세 설명</label>
- 	<textarea id="myEditor" name="content"></textarea>
- 	
-    </div>	
-	<hr>
-	<input type="submit" class="btn btn-primary" value="등록">
-    </form>
     </div>
-    <script>
-    var simplemde = new SimpleMDE({ element: document.getElementById("myEditor") });
-    </script>
-	<script>
-	  $(document).ready(function(){
-	    var subCategories = {
-	        "요리": ["베이킹", "쿠킹"],
-	        "스포츠": ["스키", "수영", "야구"],
-	        "공예": ["도자기", "목공예", "천공예"],
-	        "예술": ["그림", "음악", "무용"],
-	        "기타": ["기타"]
-	    };
-	    $('#category').change(function(){
-	      var selectedCategory = $(this).val();
-	      var subCategorySelect = $('#subCategory');
-	      subCategorySelect.empty();
-	      if (selectedCategory) {
-	        subCategories[selectedCategory].forEach(function(subCategory){
-	          var newOption = new Option(subCategory, subCategory, false, false);
-	          subCategorySelect.append(newOption);
-	        });
-	      }
-	    });
-	  });
-	</script>
-	<script>
-	  $(document).ready(function(){
-	    var subCategories = {
-	        "요리": ["베이킹", "쿠킹"],
-	        "스포츠": ["스키", "수영", "야구"],
-	        "공예": ["도자기", "목공예", "천공예"],
-	        "예술": ["그림", "음악", "무용"],
-	        "기타": ["기타"]
-	    };
-	    $('#category').change(function(){
-	      var selectedCategory = $(this).val();
-	      var subCategorySelect = $('#subCategory');
-	      subCategorySelect.empty();
-	      if (selectedCategory) {
-	        subCategories[selectedCategory].forEach(function(subCategory){
-	          var newOption = new Option(subCategory, subCategory, false, false);
-	          subCategorySelect.append(newOption);
-	        });
-	      }
-	    });
-	  });
-	</script>
-	
-    <script>
-    $(document).ready(function(){
-      $("#registerForm").on("submit", function(e){
-        e.preventDefault(); // 폼의 기본 submit 동작을 중지시킵니다.
 
-        var lectureInfo = /* 강의 정보를 여기에 입력하세요 */;
-        var popup = window.open("", "Popup", "width=300,height=200");
-        popup.document.write("<p>강의를 등록하시겠습니까?</p>");
-        popup.document.write("<button id='confirmBtn'>동의</button>");
-        popup.document.close();
-
-        popup.document.getElementById("confirmBtn").onclick = function(){
-          $.ajax({
-            url: "register.jsp",
-            type: "post",
-            data: { lectureInfo: lectureInfo },
-            success: function(data){
-              alert("강의가 등록되었습니다.");
-              popup.close();
-            },
-            error: function(){
-              alert("강의 등록에 실패하였습니다.");
-            }
-          });
-        };
-      });
-    });
-    </script>
 </main>
 
 <footer class="footer mt-auto py-3 bg-body-tertiary">
