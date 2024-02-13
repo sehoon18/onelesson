@@ -25,7 +25,7 @@
 </head>
 <body bgcolor="#e9e9e9">
 
-<h1>FAQ</h1>
+<h1>Q&A</h1>
 
 <hr>
 
