@@ -45,4 +45,16 @@ public class LessonService {
 		return lessonDAO.getLessonCount();
 	}
 
+	public List<LessonDTO> getSearch(PageDTO pageDTO) {
+		System.out.println("LessonService getLessonSearch()");
+		
+		int startRow = (pageDTO.getCurrentPage() - 1) * pageDTO.getPageSize() + 1;
+		int EndRow = startRow + pageDTO.getPageSize() - 1;
+		
+		pageDTO.setStartRow(startRow -1);
+		pageDTO.setEndRow(EndRow);
+		
+		return lessonDAO.getSearch(pageDTO);
+	}
+
 }

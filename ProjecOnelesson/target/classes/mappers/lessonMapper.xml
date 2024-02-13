@@ -20,4 +20,12 @@
     	select count(*) from lesson
     </select>
     
+    <select id="getSearch" resultType="com.itwillbs.domain.LessonDTO">
+    	select LES_SUBJECT "subject", LES_UPDATE "update"
+    	from lesson
+    	where subject like ('%',#{search},'%')
+<!--     	order by LES_NUM desc -->
+    	limit #{startRow}, #{pageSize}
+    </select>
+    
 </mapper>

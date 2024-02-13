@@ -113,4 +113,44 @@ public class LessonController {
 		return "lesson/payment";
 	}
 	
+	@GetMapping("/Search")
+	public String Search(HttpServletRequest request, PageDTO pageDTO, Model model, LessonDTO lessonDTO) {
+		System.out.println("LessonController Search()");
+		
+		int pageSize = 9;
+		String pageNum = request.getParameter("pageNum");
+		if(pageNum == null) {
+			pageNum="1";
+		}
+		
+		int currentPage = Integer.parseInt(pageNum);
+		
+		pageDTO.setPageSize(pageSize);
+		pageDTO.setPageNum(pageNum);
+		pageDTO.setCurrentPage(currentPage);
+		
+		List<LessonDTO> lessonList = lessonService.getSearch(pageDTO);
+		
+		int count =  lessonService.getLessonCount();
+		int pageBlock = 10;
+		int startPage = (currentPage - 1) / pageBlock * pageBlock + 1;
+		int endPage = startPage + pageBlock -1;
+		int pageCount = count / pageSize + (count % pageSize == 0 ? 0 : 1);
+		
+		if(endPage > pageCount) {
+			endPage = pageCount;
+		}
+		
+		pageDTO.setCount(pageCount);
+		pageDTO.setPageBlock(pageBlock);
+		pageDTO.setStartPage(startPage);
+		pageDTO.setEndPage(endPage);
+		pageDTO.setPageCount(pageCount);
+		
+		model.addAttribute("lessonList", lessonList);
+		model.addAttribute("pageDTO", pageDTO);
+		
+		return "lesson/Search";
+	}
+	
 }

@@ -34,4 +34,8 @@ public class LessonDAO {
 		return sqlSession.selectOne(namespace+".getLessonCount");
 	}
 
+	public List<LessonDTO> getSearch(PageDTO pageDTO) {
+		return sqlSession.selectList(namespace + ".getSearch", pageDTO);
+	}
+
 }
