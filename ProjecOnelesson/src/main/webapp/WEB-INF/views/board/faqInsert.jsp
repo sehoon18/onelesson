@@ -12,6 +12,8 @@
 </head>
 <body>
 
+<jsp:include page="../inc/header.jsp"/>
+
 <main class="flex-shrink-0" style="padding-top: 100px">
     <div class="container">
         <h1 class="mt-5">자주 묻는 질문 등록</h1>
@@ -74,5 +76,8 @@
         });
     });
 </script>
+
+<jsp:include page="../inc/footer.jsp"/>
+
 </body>
 </html>

@@ -12,6 +12,8 @@
 </head>
 <body>
 
+<jsp:include page="../inc/header.jsp"/>
+
 <main class="flex-shrink-0" style="padding-top: 100px">
     <div class="container">
         <h1 class="mt-5">공지/이벤트 등록</h1>
@@ -71,5 +73,8 @@
         });
     });
 </script>
+
+<jsp:include page="../inc/footer.jsp"/>
+
 </body>
 </html>

@@ -22,6 +22,9 @@
 
 </head>
 <body>
+
+<jsp:include page="../inc/header.jsp"/>
+
 <div class="container">
 	<div class="h4 pb-2 mb-4 text-danger border-bottom border-secondary">
 		<h4 class="text-center"><a href="#">공지사항/이벤트</a></h1>
@@ -65,13 +68,6 @@
                 <td><fmt:formatDate value="${boardDTO.date}" pattern="yyyy.MM.dd"/></td>
                 <td>${boardDTO.readcount}</td>
             </c:when>
-            <c:otherwise>
-                <td>${boardDTO.num}</td>
-                <td>${boardDTO.type}</td>
-                <td>${boardDTO.subject}</td>
-                <td><fmt:formatDate value="${boardDTO.date}" pattern="yyyy.MM.dd"/></td>
-                <td>${boardDTO.readcount}</td>
-            </c:otherwise>
         </c:choose>
     </tr>
 </c:forEach>
@@ -104,6 +100,7 @@
 </nav>
 </div>
 
+<jsp:include page="../inc/footer.jsp"/>
 
 <script src="https://cdn.jsdelivr.net/npm/bootstrap@5.3.1/dist/js/bootstrap.bundle.min.js" integrity="sha384-HwwvtgBNo3bZJJLYd8oVXjrBZt8cqVSpeBNS5n7C8IVInixGAoxmnlMuBnhbgrkm" crossorigin="anonymous"></script>
 </body>
