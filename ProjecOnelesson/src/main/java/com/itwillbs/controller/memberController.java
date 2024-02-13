@@ -77,4 +77,12 @@ public class memberController {
 	
 	
 
+//	메인페이지
+	@GetMapping("/main")
+	public String main() {
+		System.out.println("MemberController main()");
+		return "member/main";
+	}
+
+
 }

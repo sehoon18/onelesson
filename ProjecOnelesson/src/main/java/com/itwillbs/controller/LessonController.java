@@ -32,11 +32,7 @@ public class LessonController {
 		return "lesson/test1";
 	}
 	
-	@GetMapping("/main")
-	public String main() {
-		System.out.println("LessonController main()");
-		return "lesson/main";
-	}
+	
 	
 	@GetMapping("/lessonList")
 	public String lessonList(HttpServletRequest request, PageDTO pageDTO, Model model, LessonDTO lessonDTO) {
