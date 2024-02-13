@@ -8,4 +8,16 @@
 		insert into lesson(LES_SUBJECT, LES_CONTENT, LES_PREVIEW, LES_UPDATE, LES_DATE, LES_PRICE, LES_CATEGORY, LES_LOCATION) 
 		values(#{subject}, #{content}, #{preview}, #{update}, #{date}, #{price}, #{subCategory}, #{location})
     </insert>
+    
+    <select id="getLessonList" resultType="com.itwillbs.domain.LessonDTO">
+    	select LES_SUBJECT "subject", LES_UPDATE "update"
+    	from lesson
+<!--     	order by LES_NUM desc -->
+    	limit #{startRow}, #{pageSize}
+    </select>
+    
+    <select id="getLessonCount" resultType="java.lang.Integer">
+    	select count(*) from lesson
+    </select>
+    
 </mapper>

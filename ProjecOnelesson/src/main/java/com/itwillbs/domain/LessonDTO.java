@@ -1,7 +1,6 @@
 package com.itwillbs.domain;
 
 import java.sql.Timestamp;
-import java.time.LocalDate;
 
 import org.springframework.web.multipart.MultipartFile;
 
