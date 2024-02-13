@@ -97,12 +97,20 @@
 		.fas.fa-heart.heart.filled {
 		    color: red; /* 채워진 하트의 색상 */
 		}
+	  .catecolor {
+	  color:black;
+	  text-decoration:none;
+	  }
+	 .catecolor:hover {
+		color: red;
+		text-decoration:underline;
+	}
     </style>
 
     
   </head>
   <body>
-    <jsp:include page="includeSource/navigationBar.jsp"></jsp:include>
+<jsp:include page="../inc/header.jsp" />
 
 <main>
 <div style="background-size: cover; background-position: center; background-image: url('https://images.unsplash.com/photo-1608308594534-223d7579f3c9?q=80&w=2070&auto=format&fit=crop&ixlib=rb-4.0.3&ixid=M3wxMjA3fDB8MHxwaG90by1wYWdlfHx8fGVufDB8fHx8fA%3D%3D'); ">
@@ -118,8 +126,56 @@
   <div class="album py-5 bg-body-tertiary">
   
 	<div class="container">
- 	<jsp:include page="includeSource/category.jsp"></jsp:include>
-
+	
+<div class="container marketing">
+    <div class="row justify-content-center">
+        <div class="col-lg-4 col-md-3 col-sm-4">
+            <div class="text-center">
+            <!--            카테고리이미지1 -->
+            <a href="${pageContext.request.contextPath}/lesoon/lessonList"> 
+                <img src="${pageContext.request.contextPath}/resources/images/main/cooking.png" class="rounded-circle" alt="category Image" width="140" height="140">
+             </a>
+			 <h2 class="fw-normal"><a class="catecolor" href="${pageContext.request.contextPath}/lesoon/lessonList">요리</a></h2>
+            </div>
+        </div>
+        <div class="col-lg-4 col-md-3 col-sm-4">
+            <div class="text-center">
+            <!--            카테고리이미지2 -->
+            <a href="${pageContext.request.contextPath}/lesoon/lessonList"> 
+                <img src="${pageContext.request.contextPath}/resources/images/main/sports.png" class="rounded-circle" alt="Profile Image" width="140" height="140">
+                </a>
+                <h2 class="fw-normal"><a class="catecolor" href="${pageContext.request.contextPath}/lesoon/lessonList">스포츠</a></h2>
+            </div>
+        </div>
+        <div class="col-lg-4 col-md-3 col-sm-4">
+            <div class="text-center">
+            <!--            카테고리이미지3 -->
+            <a href="${pageContext.request.contextPath}/lesoon/lessonList"> 
+                <img src="${pageContext.request.contextPath}/resources/images/main/craft.png" class="rounded-circle" alt="Profile Image" width="140" height="140">
+                </a>
+                <h2 class="fw-normal"><a class="catecolor" href="${pageContext.request.contextPath}/lesoon/lessonList">공예</a></h2>
+            </div>
+        </div>
+        <div class="col-lg-4 col-md-3 col-sm-4">
+            <div class="text-center">
+            <!--            카테고리이미지4 -->
+            <a href="${pageContext.request.contextPath}/lesoon/lessonList">
+                <img src="${pageContext.request.contextPath}/resources/images/main/art.png" class="rounded-circle" alt="Profile Image" width="140" height="140">
+                </a>
+                <h2 class="fw-normal"><a class="catecolor" href="${pageContext.request.contextPath}/lesoon/lessonList">예술</a></h2>
+            </div>
+        </div>
+        <div class="col-lg-4 col-md-3 col-sm-4">
+            <div class="text-center">
+<!--           			    카테고리이미지5 -->
+			<a href="${pageContext.request.contextPath}/lesoon/lesoonlist"> 
+                <img src="${pageContext.request.contextPath}/resources/images/main/etc.png" class="rounded-circle" alt="Profile Image" width="140" height="140">
+                </a>
+                <h2 class="fw-normal"><a class="catecolor" href="${pageContext.request.contextPath}/lesoon/lessonList">기타</a></h2>
+            </div>
+        </div>
+    </div>
+    
       <div class="row row-cols-1 row-cols-sm-2 row-cols-md-3 g-3">
       <c:forEach var="lessonDTO" items="${lessonList }">
    		<div class="col">
@@ -167,15 +223,8 @@
   
 </main>
 
-<footer class="text-body-secondary py-5">
-  <div class="container">
-    <p class="float-end mb-1">
-      <a href="#">Back to top</a>
-    </p>
-    <p class="mb-1">Album example is &copy; Bootstrap, but please download and customize it for yourself!</p>
-    <p class="mb-0">New to Bootstrap? <a href="/">Visit the homepage</a> or read our <a href="../getting-started/introduction/">getting started guide</a>.</p>
-  </div>
-</footer>
+<jsp:include page="../inc/footer.jsp" />
+
 <script src="https://cdn.jsdelivr.net/npm/bootstrap@5.3.1/dist/js/bootstrap.bundle.min.js"></script>
 
     </body>

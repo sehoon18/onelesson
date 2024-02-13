@@ -72,12 +72,6 @@ public class LessonController {
 		return "lesson/lessonList";
 	}
 	
-	@GetMapping("/lessonSearch")
-	public String lessonSearch(PageDTO pageDTO, Model model, LessonDTO lessonDTO) {
-		System.out.println("LessonController lessonSearch()");
-		return "lesson/lessonSearch";
-	}
-	
 	@GetMapping("/lessonInsert")
 	public String lessonInsert() {
 		System.out.println("LessonController lessonInsert()");
@@ -107,9 +101,9 @@ public class LessonController {
 		return "lesson/payment";
 	}
 	
-	@GetMapping("/Search")
-	public String Search(HttpServletRequest request, PageDTO pageDTO, Model model, LessonDTO lessonDTO) {
-		System.out.println("LessonController Search()");
+	@GetMapping("/lessonSearch")
+	public String lessonSearch(HttpServletRequest request, PageDTO pageDTO, Model model, LessonDTO lessonDTO) {
+		System.out.println("LessonController lessonSearch()");
 		
 		int pageSize = 9;
 		String pageNum = request.getParameter("pageNum");
@@ -123,7 +117,7 @@ public class LessonController {
 		pageDTO.setPageNum(pageNum);
 		pageDTO.setCurrentPage(currentPage);
 		
-		List<LessonDTO> lessonList = lessonService.getSearch(pageDTO);
+		List<LessonDTO> lessonList = lessonService.getlessonSearch(pageDTO);
 		
 		int count =  lessonService.getLessonCount();
 		int pageBlock = 10;
@@ -135,7 +129,7 @@ public class LessonController {
 			endPage = pageCount;
 		}
 		
-		pageDTO.setCount(pageCount);
+		pageDTO.setCount(count);
 		pageDTO.setPageBlock(pageBlock);
 		pageDTO.setStartPage(startPage);
 		pageDTO.setEndPage(endPage);
@@ -144,7 +138,7 @@ public class LessonController {
 		model.addAttribute("lessonList", lessonList);
 		model.addAttribute("pageDTO", pageDTO);
 		
-		return "lesson/Search";
+		return "lesson/lessonSearch";
 	}
 	
 }

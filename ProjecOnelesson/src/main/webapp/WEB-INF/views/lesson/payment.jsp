@@ -136,7 +136,7 @@
   <body class="d-flex flex-column h-100">
 
   <!-- Fixed navbar -->
-	<jsp:include page="includeSource/navigationBar.jsp"/>
+<jsp:include page="../inc/header.jsp" />
 
 <!-- Begin page content -->
 <main class="flex-shrink-0" style="padding-top: 100px">
@@ -176,11 +176,7 @@
 
 </main>
 
-<footer class="footer mt-auto py-3 bg-body-tertiary">
-  <div class="container">
-    <span class="text-body-secondary">Place sticky footer content here.</span>
-  </div>
-</footer>
+<jsp:include page="../inc/footer.jsp" />
 <script src="https://cdn.jsdelivr.net/npm/bootstrap@5.3.1/dist/js/bootstrap.bundle.min.js"></script>
 <script src="https://cdn.jsdelivr.net/npm/marked/marked.min.js"></script>
     </body>

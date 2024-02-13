@@ -4,7 +4,8 @@
 <%@ taglib prefix="fmt" uri="http://java.sun.com/jsp/jstl/fmt" %>
 <!doctype html>
 <html lang="en" data-bs-theme="auto">
-  <head><script src="../assets/js/color-modes.js"></script>
+  <head>
+  <script src="../assets/js/color-modes.js"></script>
 
     <meta charset="utf-8">
     <meta name="description" content="">
@@ -102,15 +103,15 @@
     
   </head>
   <body>
-    <jsp:include page="includeSource/navigationBar.jsp"></jsp:include>
+	<jsp:include page="../inc/header.jsp" />
 
 <main>
 <div style="background-size: cover; background-position: center; background-image: url('https://images.unsplash.com/photo-1608308594534-223d7579f3c9?q=80&w=2070&auto=format&fit=crop&ixlib=rb-4.0.3&ixid=M3wxMjA3fDB8MHxwaG90by1wYWdlfHx8fGVufDB8fHx8fA%3D%3D'); ">
   <section class="py-5 text-center container" >
     <div class="row py-lg-5">
       <div class="col-lg-6 col-md-8 mx-auto">
-        <h1 class="fw-light" style="color: white;">새로 등록된 레슨</h1>
-        <p class="lead text-body-secondary"><b style="color: white;">"새로 업데이트된 레슨을 지금 바로 확인하고 예약하세요!"</b></p>
+<!--         <h1 class="fw-light" style="color: white;">새로 등록된 레슨</h1> -->
+<!--         <p class="lead text-body-secondary"><b style="color: white;">"새로 업데이트된 레슨을 지금 바로 확인하고 예약하세요!"</b></p> -->
       </div>
     </div>
   </section>
@@ -118,7 +119,7 @@
   <div class="album py-5 bg-body-tertiary">
   
 	<div class="container">
- 	<jsp:include page="includeSource/category.jsp"></jsp:include>
+<%--  	<jsp:include page="includeSource/category.jsp"></jsp:include> --%>
 
       <div class="row row-cols-1 row-cols-sm-2 row-cols-md-3 g-3">
       <c:forEach var="lessonDTO" items="${lessonList }">
@@ -166,15 +167,8 @@
   
 </main>
 
-<footer class="text-body-secondary py-5">
-  <div class="container">
-    <p class="float-end mb-1">
-      <a href="#">Back to top</a>
-    </p>
-    <p class="mb-1">Album example is &copy; Bootstrap, but please download and customize it for yourself!</p>
-    <p class="mb-0">New to Bootstrap? <a href="/">Visit the homepage</a> or read our <a href="../getting-started/introduction/">getting started guide</a>.</p>
-  </div>
-</footer>
+<jsp:include page="../inc/footer.jsp" />
+
 <script src="https://cdn.jsdelivr.net/npm/bootstrap@5.3.1/dist/js/bootstrap.bundle.min.js"></script>
 
     </body>

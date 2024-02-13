@@ -29,8 +29,8 @@
                 <a class="nav-link active" aria-current="page" href="${pageContext.request.contextPath}/board/reviewList" style="color: black;">리뷰</a>
               </li>
             </ul>
-            <form class="d-flex me-auto">
-              <input class="form-control me-2" type="search" placeholder="검색어를 입력하세요" aria-label="Search" style="width: 300px;"> <!-- 여기서 width 값을 조정하여 길이 조절 -->
+            <form class="d-flex me-auto" action="${pageContext.request.contextPath}/lesson/lessonSearch" method="get">
+              <input class="form-control me-2" type="text" name="search" placeholder="검색어를 입력하세요" aria-label="Search" style="width: 300px;"> <!-- 여기서 width 값을 조정하여 길이 조절 -->
               <button class="btn btn-outline-success" type="submit">검색</button>
           </form>
           

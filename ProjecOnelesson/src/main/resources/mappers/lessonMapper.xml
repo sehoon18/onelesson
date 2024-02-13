@@ -12,7 +12,7 @@
     <select id="getLessonList" resultType="com.itwillbs.domain.LessonDTO">
     	select LES_SUBJECT "subject", LES_UPDATE "update"
     	from lesson
-<!--     	order by LES_NUM desc -->
+    	order by LES_NUM desc
     	limit #{startRow}, #{pageSize}
     </select>
     
@@ -20,11 +20,11 @@
     	select count(*) from lesson
     </select>
     
-    <select id="getSearch" resultType="com.itwillbs.domain.LessonDTO">
-    	select LES_SUBJECT "subject", LES_UPDATE "update"
+    <select id="getlessonSearch" resultType="com.itwillbs.domain.LessonDTO">
+    	select LES_SUBJECT as "subject", LES_UPDATE as "update"
     	from lesson
-    	where subject like ('%',#{search},'%')
-<!--     	order by LES_NUM desc -->
+    	where LES_SUBJECT like CONCAT('%',#{search},'%')
+    	order by LES_NUM desc
     	limit #{startRow}, #{pageSize}
     </select>
     
