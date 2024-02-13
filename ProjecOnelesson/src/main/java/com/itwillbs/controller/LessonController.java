@@ -32,8 +32,6 @@ public class LessonController {
 		return "lesson/test1";
 	}
 	
-	
-	
 	@GetMapping("/lessonList")
 	public String lessonList(HttpServletRequest request, PageDTO pageDTO, Model model, LessonDTO lessonDTO) {
 		System.out.println("LessonController lessonList()");
