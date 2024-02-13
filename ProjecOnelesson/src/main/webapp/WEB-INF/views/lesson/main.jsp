@@ -188,8 +188,8 @@
               <button class="btn btn-outline-success" type="submit">Search</button>
             </form>
             
-            <button type="button" class="btn btn-outline-primary">로그인</button>
-            <button type="button" class="btn btn-outline-primary">회원가입</button>          
+            <button type="button" class="btn btn-outline-primary" onclick="location.href='${pageContext.request.contextPath}/member/memberLogin'">로그인</button>
+            <button type="button" class="btn btn-outline-primary" onclick="location.href='${pageContext.request.contextPath}/member/memberSelectPage'">회원가입</button>          
           </div>
         </div>
       </nav>
@@ -334,14 +334,7 @@
 
 
   <!-- FOOTER -->
-  <footer class="container">
-    <p class="float-end"><a href="#">Back to top</a></p>
-    <p><a>회사주소 - 부산광역시 연제구</a> &middot; 
-      <a>회사번호 010-0000-0000</a> &middot;  
-      <a>회사 이메일</a> &middot;  
-      <a>회사 대표자(사업자 등록번호)</a> 
-      &middot;<a href="#">고객센터</a> &middot; 
-  </footer>
+<jsp:include page="../inc/footer.jsp" />
 </main>
 <script src="https://cdn.jsdelivr.net/npm/bootstrap@5.3.1/dist/js/bootstrap.bundle.min.js"></script>
 
