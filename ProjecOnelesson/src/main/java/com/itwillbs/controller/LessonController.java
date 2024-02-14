@@ -109,4 +109,11 @@ public class LessonController {
 		return "lesson/payment";
 	}
 	
+	@GetMapping("/main")
+	public String main() {
+		System.out.println("LessonController main()");
+		
+		return "lesson/main";
+	}
+	
 }

@@ -121,4 +121,6 @@ public class BoardController {
 		
 		return "board/faqContent";
 	}
+	
+	
 }

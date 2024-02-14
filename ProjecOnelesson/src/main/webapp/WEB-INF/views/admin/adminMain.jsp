@@ -1,3 +1,7 @@
+<%@ page language="java" contentType="text/html; charset=UTF-8"
+    pageEncoding="UTF-8"%>
+<%@ taglib prefix="c" uri="http://java.sun.com/jsp/jstl/core" %>    
+
 <!DOCTYPE html>
 <html lang="ko">
     <head>
@@ -14,7 +18,7 @@
     <body class="sb-nav-fixed">
         <nav class="sb-topnav navbar navbar-expand navbar-dark bg-dark">
             <!-- Navbar Brand-->
-            <a class="navbar-brand ps-3" href="index.html">One Lesson</a>
+            <a class="navbar-brand ps-3" href="${pageContext.request.contextPath}/lesson/main">One Lesson</a>
             <!-- Sidebar Toggle-->
             <button class="btn btn-link btn-sm order-1 order-lg-0 me-4 me-lg-0" id="sidebarToggle" href="#!"><i class="fas fa-bars"></i></button>
             <!-- Navbar Search-->
@@ -43,9 +47,9 @@
                     <div class="sb-sidenav-menu">
                         <div class="nav">
                             <div class="sb-sidenav-menu-heading">Core</div>
-                            <a class="nav-link" href="index.html">
+                            <a class="nav-link" href="${pageContext.request.contextPath}/admin/adminMain">
                                 <div class="sb-nav-link-icon"><i class="fas fa-tachometer-alt"></i></div>
-                                Dashboard
+                                관리자 메인페이지
                             </a>
                             <div class="sb-sidenav-menu-heading">Interface</div>
                             <a class="nav-link collapsed" href="#" data-bs-toggle="collapse" data-bs-target="#collapseLayouts" aria-expanded="false" aria-controls="collapseLayouts">
@@ -91,28 +95,48 @@
                                 </nav>
                             </div>
                             <div class="sb-sidenav-menu-heading">Addons</div>
-                            <a class="nav-link" href="charts.html">
-                                <div class="sb-nav-link-icon"><i class="fas fa-chart-area"></i></div>
-                                Charts
+                            <a class="nav-link collapsed" href="#" data-bs-toggle="collapse" data-bs-target="#collapseSiteStatus" aria-expanded="false" aria-controls="collapseSiteStatus">
+                                <div class="sb-nav-link-icon"><i class="fas fa-columns"></i></div>
+                                사이트 현황 조회
+                                <div class="sb-sidenav-collapse-arrow"><i class="fas fa-angle-down"></i></div>
                             </a>
-                            <a class="nav-link" href="tables.html">
-                                <div class="sb-nav-link-icon"><i class="fas fa-table"></i></div>
-                                Tables
+                            <div class="collapse" id="collapseSiteStatus" aria-labelledby="headingOne" data-bs-parent="#sidenavAccordion">
+                                <nav class="sb-sidenav-menu-nested nav">
+                                    <a class="nav-link" href="${pageContext.request.contextPath}/admin/memberAdmin">회원 관리</a>
+                                    <a class="nav-link" href="${pageContext.request.contextPath}/admin/lessonAdmin">레슨 관리</a>
+                                </nav>
+                            </div>
+                            
+                            <a class="nav-link collapsed" href="#" data-bs-toggle="collapse" data-bs-target="#collapseBoardManagement" aria-expanded="false" aria-controls="collapseBoardManagement">
+                                <div class="sb-nav-link-icon"><i class="fas fa-columns"></i></div>
+                                게시판 관리
+                                <div class="sb-sidenav-collapse-arrow"><i class="fas fa-angle-down"></i></div>
+                            </a>
+                            <div class="collapse" id="collapseBoardManagement" aria-labelledby="headingOne" data-bs-parent="#sidenavAccordion">
+                                <nav class="sb-sidenav-menu-nested nav">
+                                    <a class="nav-link" href="${pageContext.request.contextPath}/board/noticeList">공지/이벤트 게시판</a>
+                                    <a class="nav-link" href="${pageContext.request.contextPath}/board/faqList">FAQ 게시판</a>
+                                    <a class="nav-link" href="${pageContext.request.contextPath}/board/q&aList">Q&A 게시판</a>
+                                </nav>
+                            </div>
+                            
+                            <a class="nav-link" href="${pageContext.request.contextPath}/admin/paymentAdmin">
+                                <div class="sb-nav-link-icon"><i class="fas fa-calculator"></i></div>
+                                정산 관리
                             </a>
                         </div>
                     </div>
                     <div class="sb-sidenav-footer">
-                        <div class="small">Logged in as:</div>
-                        Start Bootstrap
+                        <div class="small">관리자 ${sessionScope.id}님</div>
                     </div>
                 </nav>
             </div>
             <div id="layoutSidenav_content">
                 <main>
                     <div class="container-fluid px-4">
-                        <h1 class="mt-4">Dashboard</h1>
+                        <h1 class="mt-4">관리자 페이지</h1>
                         <ol class="breadcrumb mb-4">
-                            <li class="breadcrumb-item active">Dashboard</li>
+                            <li class="breadcrumb-item active">관리자 페이지입니다.</li>
                         </ol>
                         <div class="row">
                             <div class="col-xl-3 col-md-6">

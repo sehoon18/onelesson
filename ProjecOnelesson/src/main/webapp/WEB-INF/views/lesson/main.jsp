@@ -174,13 +174,13 @@
           <div class="collapse navbar-collapse" id="navbarCollapse">
             <ul class="navbar-nav me-auto mb-2 mb-md-0">
               <li class="nav-item">
-                <a class="nav-link active" aria-current="page" href="#">공지사항/이벤트</a>
+                <a class="nav-link active" aria-current="page" href="${pageContext.request.contextPath}/board/noticeList">공지사항/이벤트</a>
               </li>
               <li class="nav-item">
                 <a class="nav-link active" aria-current="page" href="${pageContext.request.contextPath}/lesson/lessonList">레슨</a>
               </li>
               <li class="nav-item">
-                <a class="nav-link active" aria-current="page" href="#">자주묻는질문</a>
+                <a class="nav-link active" aria-current="page" href="${pageContext.request.contextPath}/board/faqList">자주묻는질문</a>
               </li>                 
             </ul>
             <form class="d-flex mx-auto" role="search">

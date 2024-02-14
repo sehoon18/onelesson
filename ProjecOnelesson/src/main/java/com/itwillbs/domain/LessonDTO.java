@@ -13,13 +13,15 @@ public class LessonDTO {
 	private String location;
 	private Timestamp update;
 	private String subCategory;
+	private int status;
 	
+		
 	@Override
 	public String toString() {
-		return subject + content + preview + date + price + location + update + subCategory;
+		return "LessonDTO [subject=" + subject + ", content=" + content + ", preview=" + preview + ", date=" + date
+				+ ", price=" + price + ", location=" + location + ", update=" + update + ", subCategory=" + subCategory
+				+ ", status=" + status + "]";
 	}
-	
-	public LessonDTO() {}
 	
 	public String getSubject() {
 		return subject;
