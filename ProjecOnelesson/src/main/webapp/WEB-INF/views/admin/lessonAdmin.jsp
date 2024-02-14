@@ -18,7 +18,7 @@
 <body class="sb-nav-fixed">
     <nav class="sb-topnav navbar navbar-expand navbar-dark bg-dark">
         <!-- Navbar Brand-->
-        <a class="navbar-brand ps-3" href="${pageContext.request.contextPath}/lesson/main">One Lesson</a>
+        <a class="navbar-brand ps-3" href="${pageContext.request.contextPath}/member/main">One Lesson</a>
         <!-- Sidebar Toggle-->
         <button class="btn btn-link btn-sm order-1 order-lg-0 me-4 me-lg-0" id="sidebarToggle" href="#!"><i class="fas fa-bars"></i></button>
         <!-- Navbar Search-->
@@ -144,6 +144,35 @@
                             <i class="fas fa-table me-1"></i>
                             레슨 목록
                         </div>
+                        
+                        	<div class="datatable-top">
+   								<div class="d-flex justify-content-end">
+        							<div class="me-3" style="width: 150px;">
+            							<select class="form-select form-select-sm">
+                							<option value="all">전체</option>
+                							<option value="cooking">요리</option>
+                							<option value="sports">스포츠</option>
+                							<option value="diy">공예</option>
+                							<option value="art">예술</option>
+                							<option value="etc">기타</option>
+            							</select>
+        							</div>
+        							<div style="width: 150px;">
+            							<select class="form-select form-select-sm">
+                							<option value="id">아이디</option>
+                							<option value="name">이름</option>
+                							<option value="nick">닉네임</option>
+            							</select>
+        							</div>
+        							<div class="input-group ms-3">
+            							<input class="form-control form-control-sm" type="text" placeholder="검색어를 입력하세요" />
+            							<button class="btn btn-primary btn-sm" type="button"><i class="fas fa-search"></i></button>
+        							</div>
+    							</div>
+							</div>
+                        
+                        
+                        
                         <div class="card-body">
                             <table id="lessonTable" class="table table-bordered">
                                 <thead>
