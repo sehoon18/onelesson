@@ -11,7 +11,7 @@
     <meta name="description" content="">
     <meta name="author" content="Mark Otto, Jacob Thornton, and Bootstrap contributors">
     <meta name="generator" content="Hugo 0.115.4">
-    <title>레슨 검색</title>
+    <title>레슨 목록</title>
 
     <link rel="canonical" href="https://getbootstrap.com/docs/5.3/examples/album/">
 	<link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/5.15.4/css/all.min.css">
@@ -106,8 +106,8 @@
 	<jsp:include page="../inc/header.jsp" />
 
 <main>
-<div style="background-size: cover; background-position: center; background-image: url('https://images.unsplash.com/photo-1608308594534-223d7579f3c9?q=80&w=2070&auto=format&fit=crop&ixlib=rb-4.0.3&ixid=M3wxMjA3fDB8MHxwaG90by1wYWdlfHx8fGVufDB8fHx8fA%3D%3D'); ">
-  <section class="py-5 text-center container" >
+<div id="dynamic-background" style="background-size: cover; background-position: center;">
+  <section class="py-5 text-center container" style="height: 300px;">
     <div class="row py-lg-5">
       <div class="col-lg-6 col-md-8 mx-auto">
 <!--         <h1 class="fw-light" style="color: white;">새로 등록된 레슨</h1> -->
@@ -166,7 +166,25 @@
   </div>
   
 </main>
-
+	<script>
+	  // get 값으로 받아온 정보
+	  var getParam = "${pageDTO.search}"; 
+	  // URI를 저장하는 객체
+	  var uriMap = {
+	    "요리": "https://images.unsplash.com/photo-1608308594534-223d7579f3c9?q=80&w=2070&auto=format&fit=crop&ixlib=rb-4.0.3&ixid=M3wxMjA3fDB8MHxwaG90by1wYWdlfHx8fGVufDB8fHx8fA%3D%3D",
+	    "예술": "https://images.pexels.com/photos/4039155/pexels-photo-4039155.jpeg?auto=compress&cs=tinysrgb&w=1260&h=750&dpr=1",
+	    "스포츠": "https://images.pexels.com/photos/848612/pexels-photo-848612.jpeg?auto=compress&cs=tinysrgb&w=1260&h=750&dpr=1",
+	    "공예": "https://images.pexels.com/photos/1297938/pexels-photo-1297938.jpeg?auto=compress&cs=tinysrgb&w=1260&h=750&dpr=1",
+	    "기타": "https://images.pexels.com/photos/4778611/pexels-photo-4778611.jpeg?auto=compress&cs=tinysrgb&w=1260&h=750&dpr=1"
+	  };
+	
+	  // get 값에 해당하는 URI 가져오기
+	  var backgroundImageURI = uriMap[getParam];
+	
+	  // 동적으로 배경 이미지 설정
+	  var dynamicBackground = document.getElementById("dynamic-background");
+	  dynamicBackground.style.backgroundImage = "url('" + backgroundImageURI + "')";
+	</script>
 <jsp:include page="../inc/footer.jsp" />
 
 <script src="https://cdn.jsdelivr.net/npm/bootstrap@5.3.1/dist/js/bootstrap.bundle.min.js"></script>

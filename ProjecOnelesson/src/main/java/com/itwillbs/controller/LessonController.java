@@ -88,8 +88,12 @@ public class LessonController {
 	}
 	
 	@GetMapping("/lessonInfo")
-	public String lessonInfo(LessonDTO lessonDTO) {
+	public String lessonInfo(LessonDTO lessonDTO, Model model) {
 		System.out.println("LessonController lessonInfo()");
+		
+		lessonDTO = lessonService.getLesson(lessonDTO);
+		
+		model.addAttribute("lessonDTO", lessonDTO);
 		
 		return "lesson/lessonInfo";
 	}
@@ -118,7 +122,7 @@ public class LessonController {
 		pageDTO.setCurrentPage(currentPage);
 		
 		List<LessonDTO> lessonList = lessonService.getlessonSearch(pageDTO);
-		
+
 		int count =  lessonService.getLessonCount();
 		int pageBlock = 10;
 		int startPage = (currentPage - 1) / pageBlock * pageBlock + 1;
@@ -139,6 +143,46 @@ public class LessonController {
 		model.addAttribute("pageDTO", pageDTO);
 		
 		return "lesson/lessonSearch";
+	}
+	
+	@GetMapping("/categorySearch")
+	public String categorySearch(HttpServletRequest request, PageDTO pageDTO, Model model, LessonDTO lessonDTO) {
+		System.out.println("LessonController categorySearch()");
+		
+		int pageSize = 9;
+		String pageNum = request.getParameter("pageNum");
+		if(pageNum == null) {
+			pageNum="1";
+		}
+		
+		int currentPage = Integer.parseInt(pageNum);
+		
+		pageDTO.setPageSize(pageSize);
+		pageDTO.setPageNum(pageNum);
+		pageDTO.setCurrentPage(currentPage);
+		
+		List<LessonDTO> lessonList = lessonService.getcategorySearch(pageDTO);
+
+		int count =  lessonService.getLessonCount();
+		int pageBlock = 10;
+		int startPage = (currentPage - 1) / pageBlock * pageBlock + 1;
+		int endPage = startPage + pageBlock -1;
+		int pageCount = count / pageSize + (count % pageSize == 0 ? 0 : 1);
+		
+		if(endPage > pageCount) {
+			endPage = pageCount;
+		}
+		
+		pageDTO.setCount(count);
+		pageDTO.setPageBlock(pageBlock);
+		pageDTO.setStartPage(startPage);
+		pageDTO.setEndPage(endPage);
+		pageDTO.setPageCount(pageCount);
+		
+		model.addAttribute("lessonList", lessonList);
+		model.addAttribute("pageDTO", pageDTO);
+		
+		return "lesson/categorySearch";
 	}
 	
 }

@@ -10,7 +10,7 @@
     <meta name="description" content="">
     <meta name="author" content="Mark Otto, Jacob Thornton, and Bootstrap contributors">
     <meta name="generator" content="Hugo 0.115.4">
-    <title>Album example · Bootstrap v5.3</title>
+    <title>레슨 목록</title>
 
     <link rel="canonical" href="https://getbootstrap.com/docs/5.3/examples/album/">
 	<link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/5.15.4/css/all.min.css">
@@ -132,52 +132,53 @@
         <div class="col-lg-4 col-md-3 col-sm-4">
             <div class="text-center">
             <!--            카테고리이미지1 -->
-            <a href="${pageContext.request.contextPath}/lesoon/lessonList"> 
+            <a href="${pageContext.request.contextPath}/lesson/categorySearch?search=요리"> 
                 <img src="${pageContext.request.contextPath}/resources/images/main/cooking.png" class="rounded-circle" alt="category Image" width="140" height="140">
              </a>
-			 <h2 class="fw-normal"><a class="catecolor" href="${pageContext.request.contextPath}/lesoon/lessonList">요리</a></h2>
+			 <h2 class="fw-normal"><a class="catecolor" href="${pageContext.request.contextPath}/lesson/categorySearch?search=요리">요리</a></h2>
             </div>
         </div>
         <div class="col-lg-4 col-md-3 col-sm-4">
             <div class="text-center">
             <!--            카테고리이미지2 -->
-            <a href="${pageContext.request.contextPath}/lesoon/lessonList"> 
+            <a href="${pageContext.request.contextPath}/lesson/categorySearch?search=스포츠"> 
                 <img src="${pageContext.request.contextPath}/resources/images/main/sports.png" class="rounded-circle" alt="Profile Image" width="140" height="140">
                 </a>
-                <h2 class="fw-normal"><a class="catecolor" href="${pageContext.request.contextPath}/lesoon/lessonList">스포츠</a></h2>
+                <h2 class="fw-normal"><a class="catecolor" href="${pageContext.request.contextPath}/lesson/categorySearch?search=스포츠">스포츠</a></h2>
             </div>
         </div>
         <div class="col-lg-4 col-md-3 col-sm-4">
             <div class="text-center">
             <!--            카테고리이미지3 -->
-            <a href="${pageContext.request.contextPath}/lesoon/lessonList"> 
+            <a href="${pageContext.request.contextPath}/lesson/categorySearch?search=공예"> 
                 <img src="${pageContext.request.contextPath}/resources/images/main/craft.png" class="rounded-circle" alt="Profile Image" width="140" height="140">
                 </a>
-                <h2 class="fw-normal"><a class="catecolor" href="${pageContext.request.contextPath}/lesoon/lessonList">공예</a></h2>
+                <h2 class="fw-normal"><a class="catecolor" href="${pageContext.request.contextPath}/lesson/categorySearch?search=공예">공예</a></h2>
             </div>
         </div>
         <div class="col-lg-4 col-md-3 col-sm-4">
             <div class="text-center">
             <!--            카테고리이미지4 -->
-            <a href="${pageContext.request.contextPath}/lesoon/lessonList">
+            <a href="${pageContext.request.contextPath}/lesson/categorySearch?search=예술">
                 <img src="${pageContext.request.contextPath}/resources/images/main/art.png" class="rounded-circle" alt="Profile Image" width="140" height="140">
                 </a>
-                <h2 class="fw-normal"><a class="catecolor" href="${pageContext.request.contextPath}/lesoon/lessonList">예술</a></h2>
+                <h2 class="fw-normal"><a class="catecolor" href="${pageContext.request.contextPath}/lesson/categorySearch?search=예술">예술</a></h2>
             </div>
         </div>
         <div class="col-lg-4 col-md-3 col-sm-4">
             <div class="text-center">
 <!--           			    카테고리이미지5 -->
-			<a href="${pageContext.request.contextPath}/lesoon/lesoonlist"> 
+			<a href="${pageContext.request.contextPath}/lesson/categorySearch?search=기타"> 
                 <img src="${pageContext.request.contextPath}/resources/images/main/etc.png" class="rounded-circle" alt="Profile Image" width="140" height="140">
                 </a>
-                <h2 class="fw-normal"><a class="catecolor" href="${pageContext.request.contextPath}/lesoon/lessonList">기타</a></h2>
+                <h2 class="fw-normal"><a class="catecolor" href="${pageContext.request.contextPath}/lesson/categorySearch?search=기타">기타</a></h2>
             </div>
         </div>
     </div>
     
       <div class="row row-cols-1 row-cols-sm-2 row-cols-md-3 g-3">
       <c:forEach var="lessonDTO" items="${lessonList }">
+<%--       <c:if test="${lessonDTO.status eq 1 }"> --%>
    		<div class="col">
           <div class="card shadow-sm">
             <svg class="bd-placeholder-img card-img-top" width="100%" height="225" xmlns="http://www.w3.org/2000/svg" role="img" aria-label="Placeholder: Thumbnail" preserveAspectRatio="xMidYMid slice" focusable="false"><title>Placeholder</title><rect width="100%" height="100%" fill="#55595c"/><text x="50%" y="50%" fill="#eceeef" dy=".3em">Thumbnail</text></svg>
@@ -185,7 +186,7 @@
               <p>${lessonDTO.subject }</p>
               <div class="d-flex justify-content-between align-items-center">
                 <div class="btn-group">
-                  <button type="button" class="btn btn-sm btn-outline-secondary">상세정보</button>
+                  <button type="button" class="btn btn-sm btn-outline-secondary" onclick="location.href='${pageContext.request.contextPath}/lesson/lessonInfo?num=${lessonDTO.num}'">상세정보</button>
                   <button type="button" class="btn btn-sm btn-outline-secondary" onclick="toggleHeart(this)"><i class="fas fa-heart heart"></i></button>
 <!--                   <button type="button" class="btn btn-sm btn-outline-secondary">Edit</button> -->
                 </div>
@@ -194,6 +195,7 @@
             </div>
           </div>
         </div>
+<%--       </c:if> --%>
       </c:forEach>
     <script>
         function toggleHeart(el) {

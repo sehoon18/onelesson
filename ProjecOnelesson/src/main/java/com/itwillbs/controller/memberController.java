@@ -6,6 +6,7 @@ import org.springframework.stereotype.Controller;
 import org.springframework.web.bind.annotation.GetMapping;
 import org.springframework.web.bind.annotation.RequestMapping;
 
+import com.itwillbs.domain.MemberDTO;
 import com.itwillbs.service.MemberService;
 
 @Controller
@@ -21,4 +22,24 @@ public class memberController {
 		return "member/main";
 	}
 
+	@GetMapping("/mypage")
+	public String mypage(MemberDTO memberDTO) {
+		System.out.println("MemberController mypage()");
+		
+		return "member/mypage";
+	}//mypage()
+	
+	@GetMapping("/myLessonList")
+	public String myLessionList(MemberDTO memberDTO) {
+		System.out.println("MemberController myLessionList()");
+		
+		return "member/myLessonList";
+	}//myLessionList();
+	
+	@GetMapping("/myInfo")
+	public String myInfo(MemberDTO memberDTO) {
+		System.out.println("MemberController myInfo()");
+		
+		return "member/myInfo";
+	}//myInfo();
 }

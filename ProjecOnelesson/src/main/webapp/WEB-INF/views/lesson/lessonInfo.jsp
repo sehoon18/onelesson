@@ -1,5 +1,6 @@
 <%@ page language="java" contentType="text/html; charset=UTF-8"
     pageEncoding="UTF-8"%>
+<%@ taglib prefix="fmt" uri="http://java.sun.com/jsp/jstl/fmt"%>
 <!doctype html>
 <html lang="en" class="h-100" data-bs-theme="auto">
   <head>
@@ -149,7 +150,7 @@
 <main class="flex-shrink-0" style="padding-top: 100px">
   <div class="container">
     <h1 class="mt-5">
-	  홍길동과 함께하는 즐거운 수영교실
+	  ${lessonDTO.subject}
 	</h1>
     <hr>
     
@@ -161,7 +162,7 @@
 		</td>
 		<td>  
 	  	<div id="info" style="width: 100px">카테고리</div>
-    	</td><td style="width: 400px">수영</td>
+    	</td><td style="width: 400px">${lessonDTO.category} / ${lessonDTO.subCategory }</td>
     	<td rowspan="5" style="width: 300px; vertical-align : bottom;">
    			<button type="button" class="btn btn-primary btn-lg" onclick="">예약하기</button>
 			<button type="button" class="btn btn-primary btn-lg" onclick="">문의</button>
@@ -172,20 +173,20 @@
 	</td><td>홍길동</td></tr>
     	<tr><td>
    		<div id="info">위치</div>
-		</td><td>부산광역시 부산진구 중앙대로123</td></tr>
+		</td><td>${lessonDTO.location }</td></tr>
     	<tr><td>
 		<div id="info">날짜</div>
-	</td><td><b>2024-01-01</b></td></tr>
+	</td><td><b>${lessonDTO.date }</b></td></tr>
     	<tr><td>
    		<div id="info">가격</div>
-		</td><td><b>50,000원</b></td></tr>
+		</td><td><b><fmt:formatNumber value="${lessonDTO.price }" type="currency"/></b></td></tr>
     </table>
     
     <hr>
 	
 	<div class="form-group">
 	<label for="text">상세내용</label>
-	<div style="border: 1px solid #ccc; width: 1298px; height: 1000px;">상세내용 칸</div>
+	<div style="border: 1px solid #ccc; width: 1298px; height: 1000px;">${lessonDTO.content }</div>
 	<hr>
 	<label>리뷰</label>
 	<div style="border: 1px solid #ccc; width: 1298px; height: 100px; margin-bottom: 5px;">리뷰 칸1</div>

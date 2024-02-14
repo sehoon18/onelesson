@@ -5,27 +5,46 @@
   
 <mapper namespace="com.itwillbs.mappers.lessonMapper">
     <insert id="insertLesson">
-		insert into lesson(LES_SUBJECT, LES_CONTENT, LES_PREVIEW, LES_UPDATE, LES_DATE, LES_PRICE, LES_CATEGORY, LES_LOCATION) 
-		values(#{subject}, #{content}, #{preview}, #{update}, #{date}, #{price}, #{subCategory}, #{location})
+		insert into lesson(LES_SUBJECT, LES_CONTENT, LES_PREVIEW, LES_UPDATE, LES_DATE, LES_PRICE, LES_CATEGORY, LES_SUBCATEGORY, LES_LOCATION) 
+		values(#{subject}, #{content}, #{preview}, #{update}, #{date}, #{price}, #{category}, #{subCategory}, #{location})
     </insert>
     
     <select id="getLessonList" resultType="com.itwillbs.domain.LessonDTO">
-    	select LES_SUBJECT "subject", LES_UPDATE "update"
+    	select LES_SUBJECT "subject", LES_UPDATE "update", LES_NUM as "num", LES_STATUS as "status"
     	from lesson
+    	where LES_STATUS = 1
     	order by LES_NUM desc
     	limit #{startRow}, #{pageSize}
     </select>
     
     <select id="getLessonCount" resultType="java.lang.Integer">
-    	select count(*) from lesson
+    	select count(*)
+    	from lesson
+    	where LES_STATUS = 1
+    	
     </select>
     
     <select id="getlessonSearch" resultType="com.itwillbs.domain.LessonDTO">
-    	select LES_SUBJECT as "subject", LES_UPDATE as "update"
+    	select LES_SUBJECT as "subject", LES_UPDATE as "update", LES_NUM as "num"
     	from lesson
     	where LES_SUBJECT like CONCAT('%',#{search},'%')
     	order by LES_NUM desc
     	limit #{startRow}, #{pageSize}
     </select>
     
+    
+	<select id="getcategorySearch" resultType="com.itwillbs.domain.LessonDTO">
+    	select LES_SUBJECT as "subject", LES_UPDATE as "update", LES_NUM as "num"
+    	from lesson
+    	where LES_CATEGORY = #{search}
+    	order by LES_NUM desc
+    	limit #{startRow}, #{pageSize}
+    </select>
+    
+	<select id="getLesson" resultType="com.itwillbs.domain.LessonDTO">
+		select LES_SUBJECT as "subject", LES_CONTENT as "content", LES_CATEGORY as "category", LES_SUBCATEGORY as "subCategory", LES_UPDATE as "update", LES_DATE as "date", LES_LOCATION as "location", LES_PRICE as "price" 
+		from lesson
+		where LES_NUM = #{num}
+	</select>
+   
 </mapper>

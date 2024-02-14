@@ -38,4 +38,13 @@ public class LessonDAO {
 		return sqlSession.selectList(namespace + ".getlessonSearch", pageDTO);
 	}
 
+	public List<LessonDTO> getcategorySearch(PageDTO pageDTO) {
+		return sqlSession.selectList(namespace + ".getcategorySearch", pageDTO);
+	}
+
+	public LessonDTO getLesson(LessonDTO lessonDTO) {
+		return sqlSession.selectOne(namespace + ".getLesson", lessonDTO);
+	}
+
+
 }

@@ -170,7 +170,7 @@
   <div class="mb-3 row">
   <label class="col-sm-2 col-form-label">카테고리</label>
     <div class="select-wrapper" >
-      <select class="form-control" id="category">
+      <select class="form-control" id="category" name="category">
         <option value="">-- 카테고리 선택 --</option>
         <option value="요리">요리</option>
         <option value="스포츠">스포츠</option>

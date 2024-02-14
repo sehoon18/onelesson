@@ -5,6 +5,7 @@ import java.sql.Timestamp;
 import org.springframework.web.multipart.MultipartFile;
 
 public class LessonDTO {
+	private int num;
 	private String subject;
 	private String content;
 	private MultipartFile preview;
@@ -13,6 +14,8 @@ public class LessonDTO {
 	private String location;
 	private Timestamp update;
 	private String subCategory;
+	private String category;
+	private int status;
 	
 	@Override
 	public String toString() {
@@ -21,6 +24,12 @@ public class LessonDTO {
 	
 	public LessonDTO() {}
 	
+	public int getNum() {
+		return num;
+	}
+	public void setNum(int num) {
+		this.num = num;
+	}
 	public String getSubject() {
 		return subject;
 	}
@@ -68,6 +77,20 @@ public class LessonDTO {
 	}
 	public void setSubCategory(String subCategory) {
 		this.subCategory = subCategory;
+	}
+	public String getCategory() {
+		return category;
+	}
+	public void setCategory(String category) {
+		this.category = category;
+	}
+
+	public int getStatus() {
+		return status;
+	}
+
+	public void setStatus(int status) {
+		this.status = status;
 	}
 	
 	
