@@ -9,18 +9,22 @@ public class BoardDTO {
 	private int num;
 	private String name;
 	private int type;
-	private String subject;
-	private String content;
-	private Timestamp date;
+	private String subject; //글 제목
+	private String content; //글 내용
+	private String question; //문의/신고 내용
+	private String answer; //문의/신고 답변
+	private Timestamp date; //작성일
+	private Timestamp update; //문의/신고 답변일
 	private int readcount;
 	private Blob image;
 	
 	@Override
 	public String toString() {
 		return "BoardDTO [num=" + num + ", name=" + name + ", type=" + type + ", subject=" + subject + ", content="
-				+ content + ", date=" + date + ", radcount=" + readcount + ", image=" + image + "]";
+				+ content + ", question=" + question + ", answer=" + answer + ", date=" + date + ", update=" + update
+				+ ", readcount=" + readcount + ", image=" + image + "]";
 	}
-	
+
 	public int getNum() {
 		return num;
 	}
@@ -51,11 +55,29 @@ public class BoardDTO {
 	public void setContent(String content) {
 		this.content = content;
 	}
+	public String getQuestion() {
+		return question;
+	}
+	public void setQuestion(String question) {
+		this.question = question;
+	}
+	public String getAnswer() {
+		return answer;
+	}
+	public void setAnswer(String answer) {
+		this.answer = answer;
+	}
 	public Timestamp getDate() {
 		return date;
 	}
 	public void setDate(Timestamp date) {
 		this.date = date;
+	}
+	public Timestamp getUpdate() {
+		return update;
+	}
+	public void setUpdate(Timestamp update) {
+		this.update = update;
 	}
 	public int getReadcount() {
 		return readcount;
@@ -63,14 +85,11 @@ public class BoardDTO {
 	public void setReadcount(int readcount) {
 		this.readcount = readcount;
 	}
-
 	public Blob getImage() {
 		return image;
 	}
-
 	public void setImage(Blob image) {
 		this.image = image;
 	}
-
 	
 }
