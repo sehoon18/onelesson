@@ -2,7 +2,6 @@ package com.itwillbs.domain;
 
 import java.sql.Timestamp;
 
-import org.springframework.web.multipart.MultipartFile;
 
 public class LessonDTO {
 	private int num;
@@ -16,6 +15,7 @@ public class LessonDTO {
 	private String subCategory;
 	private String category;
 	private int status;
+	private String id;
 	
 	@Override
 	public String toString() {
@@ -91,6 +91,14 @@ public class LessonDTO {
 
 	public void setStatus(int status) {
 		this.status = status;
+	}
+
+	public String getId() {
+		return id;
+	}
+
+	public void setId(String id) {
+		this.id = id;
 	}
 	
 	

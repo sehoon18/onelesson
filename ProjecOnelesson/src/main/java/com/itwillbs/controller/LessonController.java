@@ -1,6 +1,7 @@
 package com.itwillbs.controller;
 
 import java.io.File;
+import java.sql.Timestamp;
 import java.util.List;
 import java.util.UUID;
 
@@ -17,18 +18,19 @@ import org.springframework.web.bind.annotation.RequestMapping;
 import org.springframework.web.multipart.MultipartFile;
 
 import com.itwillbs.domain.LessonDTO;
+import com.itwillbs.domain.MemberDTO;
 import com.itwillbs.domain.PageDTO;
-import com.itwillbs.service.BoardService;
 import com.itwillbs.service.LessonService;
+import com.itwillbs.service.MemberService;
 
-import lombok.extern.log4j.Log4j;
 
 @Controller
 @RequestMapping("/lesson/*")
-@Log4j
 public class LessonController {
 	@Inject
 	private LessonService lessonService;
+	@Inject
+	private MemberService memberService;
 	@Resource(name = "uploadPath")
 	private String uploadPath;
 	
@@ -85,8 +87,15 @@ public class LessonController {
 	}
 	
 	@PostMapping("/lessonInsertPro")
-	public String lessonInsertPro(MultipartFile preview, HttpServletRequest request) throws Exception{
+	public String lessonInsertPro(MultipartFile preview, HttpServletRequest request, Model model, MemberDTO memberDTO) throws Exception{
 		System.out.println("LessonController lessonInsertPro()");
+		
+		boolean userCheck = false;
+		if(memberService.userCheck(memberDTO) != null) {
+			userCheck = true;
+		} else {
+			userCheck = false;
+		}
 		
 		UUID uuid = UUID.randomUUID();
 		String filename = uuid.toString() + "_" + preview.getOriginalFilename();
@@ -102,10 +111,18 @@ public class LessonController {
 		lessonDTO.setLocation(request.getParameter("location"));
 		lessonDTO.setDate(request.getParameter("date"));
 		lessonDTO.setPrice(Integer.parseInt(request.getParameter("price")));
-		lessonDTO.setDate(request.getParameter("date"));
+		lessonDTO.setUpdate(new Timestamp(System.currentTimeMillis()));
 		lessonDTO.setPreview(filename);
+		lessonDTO.setId(request.getParameter("id"));
+		
+		if(userCheck == false) {
+	        model.addAttribute("errorMessage", "비밀번호가 틀렸습니다.");
+	        model.addAttribute("lessonDTO", lessonDTO); 
+	        return "lesson/lessonInsert";
+		}
 		
 		lessonService.insertLesson(lessonDTO);
+		
 		return "redirect:/lesson/lessonList";
 	}
 	

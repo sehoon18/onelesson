@@ -10,6 +10,7 @@ import org.springframework.transaction.annotation.Transactional;
 
 import com.itwillbs.dao.LessonDAO;
 import com.itwillbs.domain.LessonDTO;
+import com.itwillbs.domain.MemberDTO;
 import com.itwillbs.domain.PageDTO;
 
 @Service
@@ -19,16 +20,10 @@ public class LessonService {
 
 	public void insertLesson(LessonDTO lessonDTO) {
 		System.out.println("LessonService insertLesson()");
-		lessonDTO.setUpdate(new Timestamp(System.currentTimeMillis()));
 		lessonDAO.insertLesson(lessonDTO);
 		System.out.println(lessonDTO);
 	}
-
-	public void insertWrite(LessonDTO lessonDTO) {
-		System.out.println("LessonService insertLesson()");
-
-	}
-
+	
 	public List<LessonDTO> getLessonList(PageDTO pageDTO) {
 		System.out.println("LessonService getLessonList()");
 		
@@ -72,5 +67,6 @@ public class LessonService {
 	public LessonDTO getLesson(LessonDTO lessonDTO) {
 		return lessonDAO.getLesson(lessonDTO);
 	}
+
 
 }

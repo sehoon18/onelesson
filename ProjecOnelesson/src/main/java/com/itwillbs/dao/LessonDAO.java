@@ -9,6 +9,7 @@ import org.springframework.stereotype.Repository;
 import org.springframework.transaction.annotation.Transactional;
 
 import com.itwillbs.domain.LessonDTO;
+import com.itwillbs.domain.MemberDTO;
 import com.itwillbs.domain.PageDTO;
 
 @Repository
@@ -19,12 +20,9 @@ public class LessonDAO {
 	
 	public void insertLesson(LessonDTO lessonDTO) {
 		System.out.println("LessonDAO insertLesson()");
-		System.out.println(lessonDTO);
-
 		sqlSession.insert(namespace + ".insertLesson", lessonDTO);
-		System.out.println(lessonDTO);
 	}
-
+	
 	public List<LessonDTO> getLessonList(PageDTO pageDTO) {
 		System.out.println("LessonDAO getLessonList()");
 		return sqlSession.selectList(namespace + ".getLessonList", pageDTO);

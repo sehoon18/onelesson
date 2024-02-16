@@ -7,6 +7,8 @@
   <script src="/docs/5.3/assets/js/color-modes.js"></script>
   <script src="https://code.jquery.com/jquery-3.3.1.slim.min.js"></script>
   <script src="https://cdn.jsdelivr.net/simplemde/latest/simplemde.min.js"></script>
+  <script src="https://cdn.jsdelivr.net/npm/bootstrap@5.3.1/dist/js/bootstrap.bundle.min.js"></script>
+  <script src="https://cdn.jsdelivr.net/npm/marked/marked.min.js"></script>
 
     <meta name="viewport" content="width=device-width, initial-scale=1">
     <meta name="description" content="">
@@ -157,7 +159,11 @@
     <table>
     	<tr><td rowspan="5" style="width:420px;">    
     	<div class="imagespace">
-		<div id="image_container" style="margin: 5px 15px;"></div>
+		<div id="image_container" style="margin: 5px 15px;">
+			<svg class="bd-placeholder-img card-img-top" width="100%" height="225" xmlns="http://www.w3.org/2000/svg" preserveAspectRatio="xMidYMid slice" role="img" aria-label="Placeholder: Thumbnail" focusable="false">
+			    <image xlink:href="${pageContext.request.contextPath}/resources/upload/${lessonDTO.preview}" x="0" y="0" width="100%" height="225"/>
+			</svg>
+		</div>
 		</div>
 		</td>
 		<td>  
@@ -188,7 +194,7 @@
 	
 	<div class="form-group">
 	<label for="text">상세내용</label>
-	<div style="border: 1px solid #ccc; width: 1080px; height: 1000px;">${lessonDTO.content }</div>
+	<div style="border: 1px solid #ccc; width: 1080px; height: 1000px; word-wrap: break-word; padding: 20px;">${lessonDTO.content }</div>
 	<hr>
 	<label>리뷰</label>
 	<div style="border: 1px solid #ccc; width: 1080px; height: 100px; margin-bottom: 5px;">리뷰 칸1</div>
@@ -203,10 +209,10 @@
             heartIcon.classList.toggle('filled');
         }
     </script>
+    
 </main>
 
 <jsp:include page="../inc/footer.jsp" />
-<script src="https://cdn.jsdelivr.net/npm/bootstrap@5.3.1/dist/js/bootstrap.bundle.min.js"></script>
-<script src="https://cdn.jsdelivr.net/npm/marked/marked.min.js"></script>
+
     </body>
 </html>

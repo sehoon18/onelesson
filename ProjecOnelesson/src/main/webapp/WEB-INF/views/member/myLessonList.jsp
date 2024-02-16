@@ -219,37 +219,7 @@ display: inline-block;
 </style>
 </head>
 <!-- 헤더 넣는 곳 -->
- <header data-bs-theme="dark">
-      <nav class="navbar navbar-expand-md navbar-dark fixed-top bg-dark">
-        <div class="container-fluid">
-          <a class="navbar-brand" href="#">OneLesson</a>
-          <button class="navbar-toggler" type="button" data-bs-toggle="collapse" data-bs-target="#navbarCollapse" aria-controls="navbarCollapse" aria-expanded="false" aria-label="Toggle navigation">
-            <span class="navbar-toggler-icon"></span>
-          </button>
-          <div class="collapse navbar-collapse" id="navbarCollapse">
-            <ul class="navbar-nav me-auto mb-2 mb-md-0">
-              <li class="nav-item">
-                <a class="nav-link active" aria-current="page" href="#">공지사항/이벤트</a>
-              </li>
-              <li class="nav-item">
-                <a class="nav-link active" aria-current="page" href="${pageContext.request.contextPath}/lesson/lessonList">레슨</a>
-              </li>
-              <li class="nav-item">
-                <a class="nav-link active" aria-current="page" href="#">자주묻는질문</a>
-              </li>                 
-            </ul>
-            <form class="d-flex mx-auto" role="search">
-              <input class="form-control me-2" type="search" placeholder="Search" aria-label="Search">
-              <button class="btn btn-outline-success" type="submit">Search</button>
-            </form>
-             <div class="info-card-text">
-                                    <div class="fs-lg text-truncate text-truncate-lg"><span style="color:#fff;font-weight:900;">${memberDTO_name }</span>님</div>
-                                    <span class="text-truncate text-truncate-md opacity-80">안녕하세요!</span>
-                                </div>     
-          </div>
-        </div>
-      </nav>
-    </header>
+ <jsp:include page="../inc/header.jsp" />
 <!-- 헤더 넣는 곳 -->
 <body>
 	<div class="top-margin"> </div>
@@ -263,9 +233,9 @@ display: inline-block;
     </span>
     </span>
       <div class="myMenu">              
-     <span class="userInfo"><a><input type="button" value="나의 정보 확인" onclick="location.href='${pageContext.request.contextPath}/member/myInfo'"></a></span>    
+     <span class="userInfo"><a><input type="button" value="나의 정보 수정" onclick="location.href='${pageContext.request.contextPath}/member/myInfo'"></a></span>    
      <span class="userlesson"><a><input type="button" value="나의 레슨 확인" onclick="location.href='${pageContext.request.contextPath}/member/myLessonList'"></a></span>
-     <span class="userPayment"><a><input type="button" value="나의 결제 확인" onclick="myPaymentInfo"></a></span>
+     <span class="userPayment"><a><input type="button" value="나의 결제 확인" onclick="location.href='${pageContext.request.contextPath}/member/myPayment'"></a></span>
 	 <span class="userReview"><a><input type="button" value="나의 후기 확인" onclick="location.href='${pageContext.request.contextPath}/board/review'"></a></span>
 	 <span class="userQnA"><a><input type="button" value="나의 문의 확인" onclick="myQnAInfo"></a></span>
 	 <span class="mainPage"><a><input type="button" value="메인 페이지" onclick="location.href='${pageContext.request.contextPath}/lesson/main'"></a></span>
@@ -419,16 +389,7 @@ display: inline-block;
     </div>
   </div>
 
-  <footer class="text-body-secondary py-5">
-  <div class="container">
-    <p class="float-end mb-1">
-      <a href="#">Back to top</a>
-    </p>
-    <p class="mb-1">Album example is &copy; Bootstrap, but please download and customize it for yourself!</p>
-    <p class="mb-0">New to Bootstrap? <a href="/">Visit the homepage</a> or read our <a href="../getting-started/introduction/">getting started guide</a>.</p>
-  </div>
- 
-</footer>
+  <jsp:include page="../inc/footer.jsp" />
  <script>
  function backPage(){
 		history.back();

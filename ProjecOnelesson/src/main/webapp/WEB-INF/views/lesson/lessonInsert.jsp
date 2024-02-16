@@ -1,5 +1,6 @@
 <%@ page language="java" contentType="text/html; charset=UTF-8"
     pageEncoding="UTF-8"%>
+<%@ taglib prefix="c" uri="http://java.sun.com/jsp/jstl/core"%>
 <!doctype html>
 <html lang="en" class="h-100" data-bs-theme="auto">
   <head>
@@ -38,11 +39,6 @@
         user-select: none;
       }
 
-      @media (min-width: 768px) {
-        .bd-placeholder-img-lg {
-          font-size: 3.5rem;
-        }
-      }
 
       .b-example-divider {
         width: 100%;
@@ -117,46 +113,39 @@
 	  hr{
 	  clear: both;
   	}   
-	  .select-wrapper {
-	      display: flex;
-	      width: 100%;
-	      max-width: 600px;
+	.select-wrapper {
+		display:flex;
+		flex-direction: row;
     	}
       .select-wrapper select {
-	      width: 48%;
+	      width: 200px;
 	    }
         #image_container img {
             max-width: 100%;
             max-height: 100%;
         }
     </style>
-    </style>
 
     <!-- Custom styles for this template -->
     <link href="sticky-footer-navbar.css" rel="stylesheet">
   </head>
   <body class="d-flex flex-column h-100">
-    <svg xmlns="http://www.w3.org/2000/svg" class="d-none">
-      <symbol id="check2" viewBox="0 0 16 16">
-        <path d="M13.854 3.646a.5.5 0 0 1 0 .708l-7 7a.5.5 0 0 1-.708 0l-3.5-3.5a.5.5 0 1 1 .708-.708L6.5 10.293l6.646-6.647a.5.5 0 0 1 .708 0z"/>
-      </symbol>
-      <symbol id="circle-half" viewBox="0 0 16 16">
-        <path d="M8 15A7 7 0 1 0 8 1v14zm0 1A8 8 0 1 1 8 0a8 8 0 0 1 0 16z"/>
-      </symbol>
-      <symbol id="moon-stars-fill" viewBox="0 0 16 16">
-        <path d="M6 .278a.768.768 0 0 1 .08.858 7.208 7.208 0 0 0-.878 3.46c0 4.021 3.278 7.277 7.318 7.277.527 0 1.04-.055 1.533-.16a.787.787 0 0 1 .81.316.733.733 0 0 1-.031.893A8.349 8.349 0 0 1 8.344 16C3.734 16 0 12.286 0 7.71 0 4.266 2.114 1.312 5.124.06A.752.752 0 0 1 6 .278z"/>
-        <path d="M10.794 3.148a.217.217 0 0 1 .412 0l.387 1.162c.173.518.579.924 1.097 1.097l1.162.387a.217.217 0 0 1 0 .412l-1.162.387a1.734 1.734 0 0 0-1.097 1.097l-.387 1.162a.217.217 0 0 1-.412 0l-.387-1.162A1.734 1.734 0 0 0 9.31 6.593l-1.162-.387a.217.217 0 0 1 0-.412l1.162-.387a1.734 1.734 0 0 0 1.097-1.097l.387-1.162zM13.863.099a.145.145 0 0 1 .274 0l.258.774c.115.346.386.617.732.732l.774.258a.145.145 0 0 1 0 .274l-.774.258a1.156 1.156 0 0 0-.732.732l-.258.774a.145.145 0 0 1-.274 0l-.258-.774a1.156 1.156 0 0 0-.732-.732l-.774-.258a.145.145 0 0 1 0-.274l.774-.258c.346-.115.617-.386.732-.732L13.863.1z"/>
-      </symbol>
-      <symbol id="sun-fill" viewBox="0 0 16 16">
-        <path d="M8 12a4 4 0 1 0 0-8 4 4 0 0 0 0 8zM8 0a.5.5 0 0 1 .5.5v2a.5.5 0 0 1-1 0v-2A.5.5 0 0 1 8 0zm0 13a.5.5 0 0 1 .5.5v2a.5.5 0 0 1-1 0v-2A.5.5 0 0 1 8 13zm8-5a.5.5 0 0 1-.5.5h-2a.5.5 0 0 1 0-1h2a.5.5 0 0 1 .5.5zM3 8a.5.5 0 0 1-.5.5h-2a.5.5 0 0 1 0-1h2A.5.5 0 0 1 3 8zm10.657-5.657a.5.5 0 0 1 0 .707l-1.414 1.415a.5.5 0 1 1-.707-.708l1.414-1.414a.5.5 0 0 1 .707 0zm-9.193 9.193a.5.5 0 0 1 0 .707L3.05 13.657a.5.5 0 0 1-.707-.707l1.414-1.414a.5.5 0 0 1 .707 0zm9.193 2.121a.5.5 0 0 1-.707 0l-1.414-1.414a.5.5 0 0 1 .707-.707l1.414 1.414a.5.5 0 0 1 0 .707zM4.464 4.465a.5.5 0 0 1-.707 0L2.343 3.05a.5.5 0 1 1 .707-.707l1.414 1.414a.5.5 0 0 1 0 .708z"/>
-      </symbol>
-    </svg>
+<c:if test="${empty sessionScope.id }">
+<script>
+alert("로그인이 필요합니다.");
+window.location.href = "${pageContext.request.contextPath}/member/memberLogin";
+</script>
+
+</c:if>
+<c:if test="${not empty errorMessage}">
+    <script>alert('${errorMessage}');</script>
+</c:if>
 
 <jsp:include page="../inc/header.jsp" />
 
 <!-- Begin page content -->
 <main class="flex-shrink-0" style="padding-top: 100px">
-  <div class="container">
+  <div class="container" style="width: 1120px">
     <h1 class="mt-5">레슨 등록</h1>
     <p class="lead">레슨 등록 페이지입니다.</p>
     <hr>
@@ -164,13 +153,14 @@
 <div id="topinfo" style="display: inline; ">
     <div class="imagespace">
 	<div id="image_container"></div>
-	<input type="file" name="preview" id="image" accept="image/*" onchange="setThumbnail(event);">
+	<input type="file" name="preview" id="image" accept="image/*" onchange="setThumbnail(event);" style="padding-top: 10px;" required>
 	</div>
   
   <div class="mb-3 row">
   <label class="col-sm-2 col-form-label">카테고리</label>
+  <div class="col-sm-10">
     <div class="select-wrapper" >
-      <select class="form-control" id="category" name="category">
+      <select class="form-control" id="category" name="category" required>
         <option value="">-- 카테고리 선택 --</option>
         <option value="요리">요리</option>
         <option value="스포츠">스포츠</option>
@@ -178,29 +168,30 @@
         <option value="예술">예술</option>
         <option value="기타">기타</option>
       </select>
-      <select class="form-control" id="subCategory" name="subCategory">
+      <select class="form-control" id="subCategory" name="subCategory" required>
       </select>
+    </div>
     </div>
   </div>
     
 	<div class="mb-3 row">
  		<label for="staticEmail" class="col-sm-2 col-form-label">작성자</label>
     	<div class="col-sm-10">
-      		<input type="text" name="name" readonly class="form-control-plaintext" id="staticEmail" value="홍길동">
+      		<input type="text" name="id" readonly class="form-control-plaintext" id="staticEmail" value="${sessionScope.id }">
     	</div>
 	</div>
 
 	<div class="mb-3 row">
 		<label for="date" class="col-sm-2 col-form-label">날짜</label>
     	<div class="col-sm-6">
-			<input type="date" id="date" name="date" class="form-control">
+			<input type="date" id="date" name="date" class="form-control" value="${lessonDTO.date }" required>
 		</div>
 	</div>
 	
 	<div class="mb-3 row">
 		<label for="text" class="col-sm-2 col-form-label">위치</label>
     	<div class="col-sm-6">
-			<input type="text" id="location" name="location" class="form-control" readonly>
+			<input type="text" id="location" name="location" class="form-control" readonly value="${lessonDTO.location }">
 		</div>
 	</div>
 	
@@ -208,7 +199,7 @@
    	<label class="col-sm-2 col-form-label">가격</label>
 	   	<div class="col-sm-4">
 			<div class="input-group mb-3">
-			  <input type="number" name="price" class="form-control" min="0" step="100">
+			  <input type="number" name="price" class="form-control" min="0" step="100" value="${lessonDTO.price }" required>
 			  <span class="input-group-text">원</span>
 			</div>
 		</div>
@@ -217,12 +208,12 @@
 	<hr>
 	<div class="input-group mb-3">
 	  <span class="input-group-text" id="inputGroup-sizing-default">제목</span>
-	  <input type="text" name="subject" class="form-control" aria-label="Sizing example input" aria-describedby="inputGroup-sizing-default">
+	  <input type="text" name="subject" class="form-control" aria-label="Sizing example input" aria-describedby="inputGroup-sizing-default" value="${lessonDTO.subject }" required>
 	</div>
 	
 	<div class="form-group">
-	<label for="text">상세 설명</label>
- 	<textarea id="myEditor" name="content"></textarea>
+<!-- 	<label for="text">상세 설명</label> -->
+ 	<textarea id="myEditor" name="content">${lessonDTO.content }</textarea>
     </div>	
 	<hr>
 	<div class="mb-3 row">
@@ -233,7 +224,7 @@
 	    <input type="password" name="pass" class="form-control" id="inputPassword">
 	  </div>
 	  <div class="col-sm-2 ml-auto">
-	    <input type="submit" class="btn btn-primary" value="등록">
+	    <input type="submit" class="btn btn-success" value="등록">
 	  </div>
 	</div>
     </form>

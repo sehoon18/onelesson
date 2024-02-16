@@ -1,27 +1,33 @@
 package com.itwillbs.domain;
 
 import java.sql.Timestamp;
-import java.time.LocalDate;
-
-import com.mysql.cj.jdbc.Blob;
 
 public class MemberDTO {
 	private String id;
 	private String pass;
+	private String nick;
 	private String name;
-	private LocalDate birth;
+	private int gender;
+	private String birth;
 	private int phone;
 	private String address;
 	private String email;
-	private int gender;
 	private int point;
 	private String businessNum;
 	private String mailOrderNum;
-	private Blob image;
+	private String image;
 	private Timestamp join;
 	private int type;
 	private int status;
 	
+	
+	@Override
+	public String toString() {
+		return "MemberDTO [id=" + id + ", pass=" + pass + ", nick=" + nick + ", name=" + name + ", birth=" + birth
+				+ ", phone=" + phone + ", address=" + address + ", email=" + email + ", gender=" + gender + ", point="
+				+ point + ", businessNum=" + businessNum + ", mailOrderNum=" + mailOrderNum + ", image=" + image
+				+ ", join=" + join + ", type=" + type + ", status=" + status + "]";
+	}
 	public String getId() {
 		return id;
 	}
@@ -40,10 +46,10 @@ public class MemberDTO {
 	public void setName(String name) {
 		this.name = name;
 	}
-	public LocalDate getBirth() {
+	public String getBirth() {
 		return birth;
 	}
-	public void setBirth(LocalDate birth) {
+	public void setBirth(String birth) {
 		this.birth = birth;
 	}
 	public int getPhone() {
@@ -88,10 +94,10 @@ public class MemberDTO {
 	public void setMailOrderNum(String mailOrderNum) {
 		this.mailOrderNum = mailOrderNum;
 	}
-	public Blob getImage() {
+	public String getImage() {
 		return image;
 	}
-	public void setImage(Blob image) {
+	public void setImage(String image) {
 		this.image = image;
 	}
 	public Timestamp getJoin() {
@@ -111,6 +117,12 @@ public class MemberDTO {
 	}
 	public void setStatus(int status) {
 		this.status = status;
+	}
+	public String getNick() {
+		return nick;
+	}
+	public void setNick(String nick) {
+		this.nick = nick;
 	}
 	
 }

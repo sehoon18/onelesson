@@ -5,13 +5,13 @@
   
 <mapper namespace="com.itwillbs.mappers.lessonMapper">
     <insert id="insertLesson">
-		insert into lesson(LES_SUBJECT, LES_CONTENT, LES_PREVIEW, LES_UPDATE, LES_DATE, LES_PRICE, LES_CATEGORY, LES_SUBCATEGORY, LES_LOCATION) 
-		values(#{subject}, #{content}, #{preview}, #{update}, #{date}, #{price}, #{category}, #{subCategory}, #{location})
+		insert into LESSON(LES_SUBJECT, LES_CONTENT, LES_PREVIEW, LES_UPDATE, LES_DATE, LES_PRICE, LES_CATEGORY, LES_SUBCATEGORY, LES_LOCATION, MEM_ID) 
+		values(#{subject}, #{content}, #{preview}, #{update}, #{date}, #{price}, #{category}, #{subCategory}, #{location}, #{id})
     </insert>
     
     <select id="getLessonList" resultType="com.itwillbs.domain.LessonDTO">
-    	select LES_SUBJECT as "subject", LES_UPDATE as "update", LES_NUM as "num", LES_STATUS as "status"
-    	from lesson
+    	select LES_SUBJECT as "subject", LES_UPDATE as "update", LES_NUM as "num", LES_STATUS as "status", LES_PREVIEW as "preview"
+    	from LESSON
     	where LES_STATUS = 1
     	order by LES_NUM desc
     	limit #{startRow}, #{pageSize}
@@ -19,14 +19,13 @@
     
     <select id="getLessonCount" resultType="java.lang.Integer">
     	select count(*)
-    	from lesson
+    	from LESSON
     	where LES_STATUS = 1
-    	
     </select>
     
     <select id="getlessonSearch" resultType="com.itwillbs.domain.LessonDTO">
-    	select LES_SUBJECT as "subject", LES_UPDATE as "update", LES_NUM as "num", LES_STATUS as "status"
-    	from lesson
+    	select LES_SUBJECT as "subject", LES_UPDATE as "update", LES_NUM as "num", LES_STATUS as "status", LES_PREVIEW as "preview"
+    	from LESSON
     	where LES_SUBJECT like CONCAT('%',#{search},'%')
     	and   LES_STATUS = 1
     	order by LES_NUM desc
@@ -35,8 +34,8 @@
     
     
 	<select id="getcategorySearch" resultType="com.itwillbs.domain.LessonDTO">
-    	select LES_SUBJECT as "subject", LES_UPDATE as "update", LES_NUM as "num", LES_STATUS as "status"
-    	from lesson
+    	select LES_SUBJECT as "subject", LES_UPDATE as "update", LES_NUM as "num", LES_STATUS as "status", LES_PREVIEW as "preview"
+    	from LESSON
     	where LES_CATEGORY = #{search}
     	and   LES_STATUS = 1
     	order by LES_NUM desc
@@ -44,8 +43,8 @@
     </select>
     
 	<select id="getLesson" resultType="com.itwillbs.domain.LessonDTO">
-		select LES_NUM as "num", LES_SUBJECT as "subject", LES_CONTENT as "content", LES_CATEGORY as "category", LES_SUBCATEGORY as "subCategory", LES_UPDATE as "update", LES_DATE as "date", LES_LOCATION as "location", LES_PRICE as "price" 
-		from lesson
+		select LES_NUM as "num", LES_SUBJECT as "subject", LES_CONTENT as "content", LES_CATEGORY as "category", LES_SUBCATEGORY as "subCategory", LES_UPDATE as "update", LES_DATE as "date", LES_LOCATION as "location", LES_PRICE as "price", LES_PREVIEW as "preview"  
+		from LESSON
 		where LES_NUM = #{num}
 	</select>
    

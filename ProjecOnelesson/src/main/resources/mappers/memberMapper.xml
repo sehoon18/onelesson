@@ -2,7 +2,24 @@
 <!DOCTYPE mapper
   PUBLIC "-//mybatis.org//DTD Mapper 3.0//EN"
   "https://mybatis.org/dtd/mybatis-3-mapper.dtd">
-  
+<!--    												DB만들어야함			  -->
 <mapper namespace="com.itwillbs.mappers.memberMapper">
-
+<!--     일반회원  -->
+<insert id="insertMember1">
+<!--  		DB상의 테이블 컬럼명만 같으면됨  -->
+insert into MEMBER(MEM_ID,MEM_PASS,MEM_NICK,MEM_NAME,MEM_GENDER,MEM_BIRTH,MEM_PHONE,MEM_ADDRESS,MEM_EMAIL,MEM_POINT,MEM_IMAGE,MEM_JOIN,MEM_TYPE,MEM_STATUS)
+<!--  		memberDTO 상 이름이 같아야함  -->
+value(#{id},#{pass},#{nick},#{name},#{gender},#{birth},#{phone},#{address},#{email},#{point},#{image},#{join},#{type},#{status})
+</insert>
+<!-- 강사반회원  -->
+<insert id="insertMember2">
+<!--  		DB상의 테이블 컬럼명만 같으면됨  -->
+insert into MEMBER(MEM_ID,MEM_PASS,MEM_NICK,MEM_NAME,MEM_GENDER,MEM_BIRTH,MEM_PHONE,MEM_ADDRESS,MEM_EMAIL,MEM_BUSINESS_NUM,MEM_MAIL_ORDER_NUM,MEM_POINT,MEM_IMAGE,MEM_JOIN,MEM_TYPE,MEM_STATUS)
+<!--  		memberDTO 상 이름이 같아야함  -->
+value(#{id},#{pass},#{nick},#{name},#{gender},#{birth},#{phone},#{address},#{email},#{businessNum},#{mailOrderNum},#{point},#{image},#{join},#{type},#{status})
+</insert>
+<select id="userCheck" resultType="com.itwillbs.domain.MemberDTO"> select MEM_ID as "id", MEM_PASS as "pass" from MEMBER where MEM_ID = #{id} and MEM_PASS = #{pass} </select>
+<select id="getMember" resultType="com.itwillbs.domain.MemberDTO"> select * from MEMBER where MEM_ID = #{id} </select>
+<update id="updateMember"> update MEMBER set MEM_NAME = #{name} where MEM_ID = #{id} </update>
+<delete id="deleteMember"> delete from MEMBER where MEM_ID = #{id} </delete>
 </mapper>

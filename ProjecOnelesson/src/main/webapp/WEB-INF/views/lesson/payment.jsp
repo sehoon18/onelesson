@@ -143,7 +143,11 @@
     <table >
     	<tr><td rowspan="5" style="width:500px;">    
     	<div class="imagespace">
-		<div id="image_container" style="margin: 5px 15px;"></div>
+		<div id="image_container">
+			<svg class="bd-placeholder-img card-img-top" width="100%" height="225" xmlns="http://www.w3.org/2000/svg" preserveAspectRatio="xMidYMid slice" role="img" aria-label="Placeholder: Thumbnail" focusable="false">
+			    <image xlink:href="${pageContext.request.contextPath}/resources/upload/${lessonDTO.preview}" x="0" y="0" width="100%" height="225"/>
+			</svg>
+		</div>
 		</div>
 		</td>
 		<td>  
