@@ -1,12 +1,16 @@
 package com.itwillbs.controller;
 
+import java.io.File;
 import java.util.List;
+import java.util.UUID;
 
+import javax.annotation.Resource;
 import javax.inject.Inject;
 import javax.servlet.http.HttpServletRequest;
 
 import org.springframework.stereotype.Controller;
 import org.springframework.ui.Model;
+import org.springframework.util.FileCopyUtils;
 import org.springframework.web.bind.annotation.GetMapping;
 import org.springframework.web.bind.annotation.PostMapping;
 import org.springframework.web.bind.annotation.RequestMapping;
@@ -25,6 +29,8 @@ import lombok.extern.log4j.Log4j;
 public class LessonController {
 	@Inject
 	private LessonService lessonService;
+	@Resource(name = "uploadPath")
+	private String uploadPath;
 	
 	@GetMapping("/test1")
 	public String test1() {
@@ -79,9 +85,25 @@ public class LessonController {
 	}
 	
 	@PostMapping("/lessonInsertPro")
-	public String lessonInsertPro(LessonDTO lessonDTO, MultipartFile[] multipart) {
+	public String lessonInsertPro(MultipartFile preview, HttpServletRequest request) throws Exception{
 		System.out.println("LessonController lessonInsertPro()");
-		System.out.println(lessonDTO);
+		
+		UUID uuid = UUID.randomUUID();
+		String filename = uuid.toString() + "_" + preview.getOriginalFilename();
+		System.out.println(filename);
+		System.out.println(uploadPath);
+		FileCopyUtils.copy(preview.getBytes(), new File(uploadPath, filename));
+		
+		LessonDTO lessonDTO = new LessonDTO();
+		lessonDTO.setCategory(request.getParameter("category"));
+		lessonDTO.setSubCategory(request.getParameter("subCategory"));
+		lessonDTO.setSubject(request.getParameter("subject"));
+		lessonDTO.setContent(request.getParameter("content"));
+		lessonDTO.setLocation(request.getParameter("location"));
+		lessonDTO.setDate(request.getParameter("date"));
+		lessonDTO.setPrice(Integer.parseInt(request.getParameter("price")));
+		lessonDTO.setDate(request.getParameter("date"));
+		lessonDTO.setPreview(filename);
 		
 		lessonService.insertLesson(lessonDTO);
 		return "redirect:/lesson/lessonList";
@@ -99,9 +121,11 @@ public class LessonController {
 	}
 	
 	@GetMapping("/payment")
-	public String payment(LessonDTO lessonDTO) {
+	public String payment(LessonDTO lessonDTO, Model model) {
 		System.out.println("LessonController payment()");
 		
+		lessonDTO = lessonService.getLesson(lessonDTO);
+		model.addAttribute("lessonDTO", lessonDTO);
 		return "lesson/payment";
 	}
 	

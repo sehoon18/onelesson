@@ -1,11 +1,14 @@
 <%@ page language="java" contentType="text/html; charset=UTF-8"
     pageEncoding="UTF-8"%>
+<%@ taglib prefix="fmt" uri="http://java.sun.com/jsp/jstl/fmt"%>
 <!doctype html>
 <html lang="en" class="h-100" data-bs-theme="auto">
   <head>
   <script src="/docs/5.3/assets/js/color-modes.js"></script>
   <script src="https://code.jquery.com/jquery-3.3.1.slim.min.js"></script>
   <script src="https://cdn.jsdelivr.net/simplemde/latest/simplemde.min.js"></script>
+	<script type="text/javascript" src="https://code.jquery.com/jquery-1.12.4.min.js" ></script>
+	<script type="text/javascript" src="https://cdn.iamport.kr/js/iamport.payment-1.2.0.js"></script>
 
     <meta name="viewport" content="width=device-width, initial-scale=1">
     <meta name="description" content="">
@@ -17,7 +20,7 @@
 		<link href="https://cdn.jsdelivr.net/npm/bootstrap@5.3.1/dist/css/bootstrap.min.css" rel="stylesheet">
 		<link rel="stylesheet" href="https://cdn.jsdelivr.net/simplemde/latest/simplemde.min.css">
 
-    <!-- Favicons -->
+    <!-- Favicons -->	
 <link rel="apple-touch-icon" href="/docs/5.3/assets/img/favicons/apple-touch-icon.png" sizes="180x180">
 <link rel="icon" href="/docs/5.3/assets/img/favicons/favicon-32x32.png" sizes="32x32" type="image/png">
 <link rel="icon" href="/docs/5.3/assets/img/favicons/favicon-16x16.png" sizes="16x16" type="image/png">
@@ -34,12 +37,6 @@
         -webkit-user-select: none;
         -moz-user-select: none;
         user-select: none;
-      }
-
-      @media (min-width: 768px) {
-        .bd-placeholder-img-lg {
-          font-size: 3.5rem;
-        }
       }
 
       .b-example-divider {
@@ -101,8 +98,8 @@
       }
       
       #image_container {
-	    width: 400px;
-	    height: 250px;
+	    width: 360px;
+	    height: 240px;
 	    display: flex;
 		border: 1px solid #ccc; 
 	    justify-content: center;
@@ -110,7 +107,6 @@
 	  }
 	.imagespace{
 	  float: left;
-	  padding-bottom: 20px;
   	}
 	  hr{
 	  clear: both;
@@ -125,8 +121,9 @@
 	    }
 	    #pay_container{
 	    border: 1px solid #ccc;
-	    width: 1296px;
+	    width: 1100px;
 	    height: 500px;
+	    margin-bottom: 50px;
 	    }
     </style>
 
@@ -137,47 +134,84 @@
 
   <!-- Fixed navbar -->
 <jsp:include page="../inc/header.jsp" />
-
 <!-- Begin page content -->
-<main class="flex-shrink-0" style="padding-top: 100px">
-  <div class="container">
+<main class="flex-shrink-0" style="padding-top: 100px; ">
+  <div class="container" style="width:1120px;">
     <h1 class="mt-5">결제</h1>
-    <p class="lead">강의명 : 홍길동과 함께하는 즐거운 수영교실</p>
+    <p class="lead">${lessonDTO.subject }</p>
     <hr>
-    <table style="width: 1296px">
+    <table >
     	<tr><td rowspan="5" style="width:500px;">    
     	<div class="imagespace">
 		<div id="image_container" style="margin: 5px 15px;"></div>
 		</div>
 		</td>
 		<td>  
-	  	<div id="info" style="width: 100px">카테고리</div>
-    	</td><td style="width: 500px">수영</td>
-    	<td rowspan="5" style="width: 200px; vertical-align : bottom;">
-   			<button type="button" class="btn btn-primary btn-lg" onclick="">결제하기</button>
+	  	<div id="info" style="width: 140px">카테고리</div>
+    	</td><td style="width: 400px">${lessonDTO.category } / ${lessonDTO.subCategory }</td>
+    	<td rowspan="5" style="vertical-align : bottom;">
+<!--    			<button type="button" class="btn btn-primary btn-lg" onclick="">결제하기</button> -->
     	</td></tr>
     	<tr><td>
  		<div id="info">강사명</div>
 	</td><td>홍길동</td></tr>
     	<tr><td>
    		<div id="info">위치</div>
-		</td><td>부산광역시 부산진구 중앙대로123</td></tr>
+		</td><td>${lessonDTO.location }</td></tr>
     	<tr><td>
 		<div id="info">날짜</div>
-	</td><td><b>2024-01-01</b></td></tr>
+	</td><td><b>${lessonDTO.date }</b></td></tr>
     	<tr><td>
    		<div id="info">가격</div>
-		</td><td><b>50,000원</b></td></tr>
+		</td><td><b><fmt:formatNumber value="${lessonDTO.price }" type="currency"/></b></td></tr>
     </table>
     <hr>
-    <div id="pay_container"></div>
-    
+    <div id="pay_container">
+    <table>
+    <tr><td style="width: 1100px; height: 450px;">내용</td>
+    </tr>
+    <tr><td style="height: 50px;"><div style="text-align: right;"><button id="payment-button" class="btn btn-success">결제하기</button>
+		<button class="btn btn-outline-success" onclick="location.href=">뒤로가기</button></div></td>
+    </tr>
+    </table>
+
+    </div>
+
+<script type="text/javascript">
+  var IMP = window.IMP; // 생략 가능
+  IMP.init('imp26074165'); // 가맹점 식별코드를 실제 코드로 대체
+
+  document.getElementById('payment-button').addEventListener('click', function() {
+    IMP.request_pay({
+        pg: 'html5_inicis',
+        pay_method: 'card',
+        merchant_uid: 'merchant_' + new Date().getTime(),
+        name: '${lessonDTO.subject }',
+        amount: 100,
+        buyer_email: 'iamport@siot.do',
+        buyer_name: '구매자이름',
+        buyer_tel: '010-1234-5678',
+        buyer_addr: '서울특별시 강남구 삼성동',
+        buyer_postcode: '123-456'
+    }, function (rsp) {
+        console.log(rsp);
+        if (rsp.success) {
+          var msg = '결제가 완료되었습니다.';
+          alert(msg);
+          location.href = "${pageContext.request.contextPath}/lesson/lessonList"
+        } else {
+          var msg = '결제에 실패하였습니다.';
+          msg += '에러내용 : ' + rsp.error_msg;
+          alert(msg);
+        }
+      });
+  });
+</script>
+
     </div>
 
 </main>
 
 <jsp:include page="../inc/footer.jsp" />
-<script src="https://cdn.jsdelivr.net/npm/bootstrap@5.3.1/dist/js/bootstrap.bundle.min.js"></script>
-<script src="https://cdn.jsdelivr.net/npm/marked/marked.min.js"></script>
     </body>
 </html>

@@ -119,8 +119,7 @@
   <div class="album py-5 bg-body-tertiary">
   
 	<div class="container">
-<%--  	<jsp:include page="includeSource/category.jsp"></jsp:include> --%>
-
+	<div class="container marketing">
       <div class="row row-cols-1 row-cols-sm-2 row-cols-md-3 g-3">
       <c:forEach var="lessonDTO" items="${lessonList }">
    		<div class="col">
@@ -139,6 +138,7 @@
           </div>
         </div>
       </c:forEach>
+      </div>
     <script>
         function toggleHeart(el) {
             var heartIcon = el.querySelector('.heart');

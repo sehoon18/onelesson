@@ -8,7 +8,7 @@ public class LessonDTO {
 	private int num;
 	private String subject;
 	private String content;
-	private MultipartFile preview;
+	private String preview;
 	private String date;
 	private int price;
 	private String location;
@@ -42,10 +42,10 @@ public class LessonDTO {
 	public void setContent(String content) {
 		this.content = content;
 	}
-	public MultipartFile getPreview() {
+	public String getPreview() {
 		return preview;
 	}
-	public void setPreview(MultipartFile preview) {
+	public void setPreview(String preview) {
 		this.preview = preview;
 	}
 	public String getDate() {

@@ -104,8 +104,8 @@
       }
       
       #image_container {
-	    width: 400px;
-	    height: 250px;
+	    width: 360px;
+	    height: 240px;
 	    display: flex;
 		border: 1px solid #ccc; 
 	    justify-content: center;
@@ -148,14 +148,14 @@
 
 <!-- Begin page content -->
 <main class="flex-shrink-0" style="padding-top: 100px">
-  <div class="container">
+  <div class="container" style="width: 1100px">
     <h1 class="mt-5">
 	  ${lessonDTO.subject}
 	</h1>
     <hr>
     
-    <table style="width: 1296px">
-    	<tr><td rowspan="5" style="width:500px;">    
+    <table>
+    	<tr><td rowspan="5" style="width:420px;">    
     	<div class="imagespace">
 		<div id="image_container" style="margin: 5px 15px;"></div>
 		</div>
@@ -163,10 +163,12 @@
 		<td>  
 	  	<div id="info" style="width: 100px">카테고리</div>
     	</td><td style="width: 400px">${lessonDTO.category} / ${lessonDTO.subCategory }</td>
-    	<td rowspan="5" style="width: 300px; vertical-align : bottom;">
-   			<button type="button" class="btn btn-primary btn-lg" onclick="">예약하기</button>
-			<button type="button" class="btn btn-primary btn-lg" onclick="">문의</button>
-			<button type="button" style="background-color: skyblue; border: 1px solid #fff;" class="btn btn-secondary btn-lg"onclick="toggleHeart(this)"><i class="fas fa-heart heart"></i></button>
+    	<td rowspan="5" style="vertical-align : bottom;">
+    	<div class="btn-group-vertical" role="group" aria-label="Vertical button group">
+ 			<button type="button" class="btn btn-success"  onclick="location.href='${pageContext.request.contextPath}/lesson/payment?num=${lessonDTO.num}'">예약하기</button>
+			<button type="button" class="btn btn-success"  onclick="">문의</button>
+			<button type="button" class="btn btn-success"  onclick="toggleHeart(this)"><i class="fas fa-heart heart"></i></button>
+		</div>
     	</td></tr>
     	<tr><td>
  		<div id="info">등록자</div>
@@ -186,12 +188,12 @@
 	
 	<div class="form-group">
 	<label for="text">상세내용</label>
-	<div style="border: 1px solid #ccc; width: 1298px; height: 1000px;">${lessonDTO.content }</div>
+	<div style="border: 1px solid #ccc; width: 1080px; height: 1000px;">${lessonDTO.content }</div>
 	<hr>
 	<label>리뷰</label>
-	<div style="border: 1px solid #ccc; width: 1298px; height: 100px; margin-bottom: 5px;">리뷰 칸1</div>
-	<div style="border: 1px solid #ccc; width: 1298px; height: 100px; margin-bottom: 5px;">리뷰 칸2</div>
-	<div style="border: 1px solid #ccc; width: 1298px; height: 100px; margin-bottom: 5px;">리뷰 칸3</div>
+	<div style="border: 1px solid #ccc; width: 1080px; height: 100px; margin-bottom: 5px;">리뷰 칸1</div>
+	<div style="border: 1px solid #ccc; width: 1080px; height: 100px; margin-bottom: 5px;">리뷰 칸2</div>
+	<div style="border: 1px solid #ccc; width: 1080px; height: 100px; margin-bottom: 5px;">리뷰 칸3</div>
     </div>	
     </div>
     

@@ -114,7 +114,7 @@
 
 <main>
 <div style="background-size: cover; background-position: center; background-image: url('https://images.unsplash.com/photo-1608308594534-223d7579f3c9?q=80&w=2070&auto=format&fit=crop&ixlib=rb-4.0.3&ixid=M3wxMjA3fDB8MHxwaG90by1wYWdlfHx8fGVufDB8fHx8fA%3D%3D'); ">
-  <section class="py-5 text-center container" >
+  <section class="py-5 text-center container" style="height: 300px;">
     <div class="row py-lg-5">
       <div class="col-lg-6 col-md-8 mx-auto">
         <h1 class="fw-light" style="color: white;">새로 등록된 레슨</h1>
@@ -126,59 +126,9 @@
   <div class="album py-5 bg-body-tertiary">
   
 	<div class="container">
-	
-<div class="container marketing">
-    <div class="row justify-content-center">
-        <div class="col-lg-4 col-md-3 col-sm-4">
-            <div class="text-center">
-            <!--            카테고리이미지1 -->
-            <a href="${pageContext.request.contextPath}/lesson/categorySearch?search=요리"> 
-                <img src="${pageContext.request.contextPath}/resources/images/main/cooking.png" class="rounded-circle" alt="category Image" width="140" height="140">
-             </a>
-			 <h2 class="fw-normal"><a class="catecolor" href="${pageContext.request.contextPath}/lesson/categorySearch?search=요리">요리</a></h2>
-            </div>
-        </div>
-        <div class="col-lg-4 col-md-3 col-sm-4">
-            <div class="text-center">
-            <!--            카테고리이미지2 -->
-            <a href="${pageContext.request.contextPath}/lesson/categorySearch?search=스포츠"> 
-                <img src="${pageContext.request.contextPath}/resources/images/main/sports.png" class="rounded-circle" alt="Profile Image" width="140" height="140">
-                </a>
-                <h2 class="fw-normal"><a class="catecolor" href="${pageContext.request.contextPath}/lesson/categorySearch?search=스포츠">스포츠</a></h2>
-            </div>
-        </div>
-        <div class="col-lg-4 col-md-3 col-sm-4">
-            <div class="text-center">
-            <!--            카테고리이미지3 -->
-            <a href="${pageContext.request.contextPath}/lesson/categorySearch?search=공예"> 
-                <img src="${pageContext.request.contextPath}/resources/images/main/craft.png" class="rounded-circle" alt="Profile Image" width="140" height="140">
-                </a>
-                <h2 class="fw-normal"><a class="catecolor" href="${pageContext.request.contextPath}/lesson/categorySearch?search=공예">공예</a></h2>
-            </div>
-        </div>
-        <div class="col-lg-4 col-md-3 col-sm-4">
-            <div class="text-center">
-            <!--            카테고리이미지4 -->
-            <a href="${pageContext.request.contextPath}/lesson/categorySearch?search=예술">
-                <img src="${pageContext.request.contextPath}/resources/images/main/art.png" class="rounded-circle" alt="Profile Image" width="140" height="140">
-                </a>
-                <h2 class="fw-normal"><a class="catecolor" href="${pageContext.request.contextPath}/lesson/categorySearch?search=예술">예술</a></h2>
-            </div>
-        </div>
-        <div class="col-lg-4 col-md-3 col-sm-4">
-            <div class="text-center">
-<!--           			    카테고리이미지5 -->
-			<a href="${pageContext.request.contextPath}/lesson/categorySearch?search=기타"> 
-                <img src="${pageContext.request.contextPath}/resources/images/main/etc.png" class="rounded-circle" alt="Profile Image" width="140" height="140">
-                </a>
-                <h2 class="fw-normal"><a class="catecolor" href="${pageContext.request.contextPath}/lesson/categorySearch?search=기타">기타</a></h2>
-            </div>
-        </div>
-    </div>
-    
+	<div class="container marketing">
       <div class="row row-cols-1 row-cols-sm-2 row-cols-md-3 g-3">
       <c:forEach var="lessonDTO" items="${lessonList }">
-<%--       <c:if test="${lessonDTO.status eq 1 }"> --%>
    		<div class="col">
           <div class="card shadow-sm">
             <svg class="bd-placeholder-img card-img-top" width="100%" height="225" xmlns="http://www.w3.org/2000/svg" role="img" aria-label="Placeholder: Thumbnail" preserveAspectRatio="xMidYMid slice" focusable="false"><title>Placeholder</title><rect width="100%" height="100%" fill="#55595c"/><text x="50%" y="50%" fill="#eceeef" dy=".3em">Thumbnail</text></svg>
@@ -188,15 +138,14 @@
                 <div class="btn-group">
                   <button type="button" class="btn btn-sm btn-outline-secondary" onclick="location.href='${pageContext.request.contextPath}/lesson/lessonInfo?num=${lessonDTO.num}'">상세정보</button>
                   <button type="button" class="btn btn-sm btn-outline-secondary" onclick="toggleHeart(this)"><i class="fas fa-heart heart"></i></button>
-<!--                   <button type="button" class="btn btn-sm btn-outline-secondary">Edit</button> -->
                 </div>
                 <small class="text-body-secondary"><fmt:formatDate value="${lessonDTO.update }" pattern="yyyy.MM.dd"/></small>
               </div>
             </div>
           </div>
         </div>
-<%--       </c:if> --%>
       </c:forEach>
+      </div>
     <script>
         function toggleHeart(el) {
             var heartIcon = el.querySelector('.heart');
