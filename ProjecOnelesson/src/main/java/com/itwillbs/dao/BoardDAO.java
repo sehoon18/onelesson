@@ -16,12 +16,6 @@ public class BoardDAO {
 	private SqlSession sqlSession;
 	private static final String namespace = "com.itwillbs.mappers.boardMapper";
 	
-	public void noticeInsert(BoardDTO boardDTO) {
-		System.out.println("BoardDAO noticeInsert()");
-		System.out.println(boardDTO);
-		
-		sqlSession.insert(namespace + ".noticeInsert", boardDTO);
-	}
 
 	public int getMaxNoticeNum() {
 		System.out.println("BoardDAO getMaxNoticeNum()");
@@ -53,18 +47,6 @@ public class BoardDAO {
 		
 		sqlSession.update(namespace + ".updateNoticeReadcount", boardDTO);
 	}
-	
-	public void noticeUpdate(BoardDTO boardDTO) {
-		System.out.println("BoardDAO updateNotice()");
-		
-		sqlSession.update(namespace + ".noticeUpdate", boardDTO);
-	}
-	
-	public void noticeDelete(BoardDTO boardDTO) {
-		System.out.println("BoardDAO noticeDelete()");
-		
-		sqlSession.delete(namespace + ".noticeDelete", boardDTO);
-	}
 
 	public List<BoardDTO> getFaqList(PageDTO pageDTO) {
 		System.out.println("BoardDAO getFaqList()");
@@ -85,35 +67,10 @@ public class BoardDAO {
 		return sqlSession.selectOne(namespace + ".getMaxFaqNum");
 	}
 
-	public void faqInsert(BoardDTO boardDTO) {
-		System.out.println("BoardDAO faqInsert()");
-		System.out.println(boardDTO);
-		
-		sqlSession.insert(namespace + ".faqInsert", boardDTO);
-	}
-
 	public BoardDTO getFaq(BoardDTO boardDTO) {
 		System.out.println("BoardDAO getFaq()");
 		
 		return sqlSession.selectOne(namespace + ".getFaq", boardDTO);
 	}
 
-	public void faqUpdate(BoardDTO boardDTO) {
-		System.out.println("BoardDAO faqUpdate()");
-		
-		sqlSession.update(namespace + ".faqUpdate", boardDTO);
-	}
-
-	public void faqDelete(BoardDTO boardDTO) {
-		System.out.println("BoardDAO faqDelete()");
-		
-		sqlSession.delete(namespace + ".faqDelete", boardDTO);
-	}
-
-
-
-
-
-
-	
 }

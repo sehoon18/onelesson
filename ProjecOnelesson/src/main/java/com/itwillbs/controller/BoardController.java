@@ -68,23 +68,6 @@ public class BoardController {
 		return "board/noticeList";
 	}
 	
-	@GetMapping("/noticeInsert")
-	public String noticeInsert() {
-		System.out.println("BoardController noticeInsert()");
-		
-		return "board/noticeInsert";
-	}
-
-	@PostMapping("/noticeInsertPro")
-	public String noticeInsertPro(BoardDTO boardDTO) {
-		System.out.println("BoardController noticeInsertPro()");
-		System.out.println(boardDTO);
-		
-		boardService.noticeInsert(boardDTO);
-		
-		return "redirect:/board/noticeList";
-	}
-	
 	@GetMapping("/noticeContent")
 	public String noticeContent(BoardDTO boardDTO, Model model) {
 		System.out.println("BoardController noticeContent()");
@@ -97,37 +80,6 @@ public class BoardController {
 		model.addAttribute("boardDTO", boardDTO);
 		
 		return "board/noticeContent";
-	}
-	
-	@GetMapping("/noticeUpdate")
-	public String noticeUpdate(BoardDTO boardDTO, Model model) {
-		System.out.println("BoardController noticeUpdate()");
-		System.out.println(boardDTO);
-		
-		boardDTO = boardService.getNotice(boardDTO);
-		
-		model.addAttribute("boardDTO", boardDTO);
-		
-		return "board/noticeUpdate";
-	}
-	
-	@PostMapping("/noticeUpdatePro")
-	public String noticeUpdatePro(BoardDTO boardDTO) {
-		System.out.println("BoardController noticeUpdatePro()");
-		System.out.println(boardDTO);
-		
-		boardService.noticeUpdate(boardDTO);
-		return "redirect:/board/noticeList";
-	}
-	
-	@GetMapping("/noticeDelete")
-	public String noticeDelete(BoardDTO boardDTO) {
-		System.out.println("BoardController noticeDelete()");
-		System.out.println(boardDTO);
-		
-		boardService.noticeDelete(boardDTO);
-		
-		return "redirect:/board/noticeList";
 	}
 	
 	@GetMapping("/faqList")
@@ -170,23 +122,6 @@ public class BoardController {
 		return "board/faqList";
 	}
 	
-	@GetMapping("/faqInsert")
-	public String faqInsert() {
-		System.out.println("BoardController faqInsert()");
-		
-		return "board/faqInsert";
-	}
-	
-	@PostMapping("/faqInsertPro")
-	public String faqInsertPro(BoardDTO boardDTO) {
-		System.out.println("BoardController faqInsertPro()");
-		System.out.println(boardDTO);
-		
-		boardService.faqInsert(boardDTO);
-		
-		return "redirect:/board/faqList";
-	}
-	
 	@GetMapping("/faqContent")
 	public String faqContent(BoardDTO boardDTO, Model model) {
 		System.out.println("BoardController faqContent()");
@@ -198,37 +133,5 @@ public class BoardController {
 		
 		return "board/faqContent";
 	}
-	
-	@GetMapping("/faqUpdate")
-	public String faqUpdate(BoardDTO boardDTO, Model model) {
-		System.out.println("BoardController faqUpdate()");
-		System.out.println(boardDTO);
-		
-		boardDTO = boardService.getFaq(boardDTO);
-		
-		model.addAttribute("boardDTO", boardDTO);
-		
-		return "board/faqUpdate";
-	}
-	
-	@PostMapping("/faqUpdatePro")
-	public String faqUpdatePro(BoardDTO boardDTO) {
-		System.out.println("BoardController faqUpdatePro()");
-		System.out.println(boardDTO);
-		
-		boardService.faqUpdate(boardDTO);
-		return "redirect:/board/faqList";
-	}
-	
-	@GetMapping("/faqDelete")
-	public String faqDelete(BoardDTO boardDTO) {
-		System.out.println("BoardController faqDelete()");
-		System.out.println(boardDTO);
-		
-		boardService.faqDelete(boardDTO);
-		
-		return "redirect:/board/faqList";
-	}
-	
 	
 }

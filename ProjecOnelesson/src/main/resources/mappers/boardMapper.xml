@@ -4,11 +4,6 @@
   "https://mybatis.org/dtd/mybatis-3-mapper.dtd">
   
 <mapper namespace="com.itwillbs.mappers.boardMapper">
-
-	<insert id="noticeInsert">
-		insert into NOTICE(NOTICE_NUM, ADMIN_ID, NOTICE_TYPE, NOTICE_SUBJECT, NOTICE_CONTENT, NOTICE_DATE, NOTICE_READCOUNT, NOTICE_IMAGE)
-		values (#{num}, #{id}, #{type}, #{subject}, #{content}, #{date}, #{readcount}, #{image})
-	</insert>
 	
 	<select id="getMaxNoticeNum" resultType="java.lang.Integer">
 		select max(NOTICE_NUM) from NOTICE
@@ -35,17 +30,6 @@
 		where NOTICE_NUM = #{num}
 	</update>
 	
-	<update id="noticeUpdate">
-		update NOTICE
-		set NOTICE_SUBJECT = #{subject}, NOTICE_CONTENT = #{content}
-		where NOTICE_NUM = #{num}
-	</update>
-	
-	<delete id="noticeDelete">
-		delete from NOTICE
-		where NOTICE_NUM = #{num}
-	</delete>
-	
 	<select id="getFaqList" resultType="com.itwillbs.domain.BoardDTO">
 		select * from FAQ
 		order by FAQ_NUM desc
@@ -60,20 +44,9 @@
 		select max(FAQ_NUM) from FAQ
 	</select>
 	
-	<insert id="faqInsert">
-		insert into FAQ(FAQ_NUM, FAQ_ID, FAQ_SUBJECT, FAQ_CONTENT)
-		values (#{num}, #{id}, #{subject}, #{content})
-	</insert>
-	
-	<update id="faqUpdate">
-		update FAQ
-		set FAQ_SUBJECT = #{subject}, FAQ_CONTENT = #{content}
+	<select id="getFaq" resultType="com.itwillbs.domain.BoardDTO">
+		select * from FAQ
 		where FAQ_NUM = #{num}
-	</update>
-	
-	<delete id="faqDelete">
-		delete from FAQ
-		where FAQ_NUM = #{num}
-	</delete>
+	</select>
 	
 </mapper>

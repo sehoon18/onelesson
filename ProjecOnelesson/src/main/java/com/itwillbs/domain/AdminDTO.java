@@ -8,7 +8,6 @@ public class AdminDTO {
 	private String phone;
 	private String email;
 	
-	
 	@Override
 	public String toString() {
 		return "AdminDTO [id=" + id + ", pass=" + pass + ", name=" + name + ", phone=" + phone + ", email=" + email

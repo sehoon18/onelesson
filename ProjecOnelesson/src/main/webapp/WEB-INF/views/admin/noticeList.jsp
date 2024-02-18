@@ -11,7 +11,7 @@
   <script src="https://cdn.jsdelivr.net/simplemde/latest/simplemde.min.js"></script>
 
 <meta charset="UTF-8">
-<title>자주 묻는 질문 목록</title>
+<title>공지/이벤트 목록</title>
 <link href="https://cdn.jsdelivr.net/npm/bootstrap@5.3.1/dist/css/bootstrap.min.css" rel="stylesheet" integrity="sha384-4bw+/aepP/YC94hEpVNVgiZdgIC5+VKNBQNGCHeKRQN+PtmoHDEXuppvnDJzQIu9" crossorigin="anonymous">
 
  		<link rel="canonical" href="https://getbootstrap.kr/docs/5.3/examples/sticky-footer-navbar/">
@@ -123,8 +123,6 @@
     </style>
 
 
-
-
 </head>
 <body>
 
@@ -132,7 +130,7 @@
 
 <div class="container">
 	<div class="h4 pb-2 mb-4 text-danger border-bottom border-secondary">
-		<h4 class="text-center"><a href="#">자주 묻는 질문</a></h1>
+		<h4 class="text-center"><a href="#">공지사항/이벤트</a></h1>
 	</div>
 
 <div class="btn-group">
@@ -140,9 +138,8 @@
     타입
   </button>
   <ul class="dropdown-menu">
-    <li><a class="dropdown-item" href="#">공통</a></li>
-    <li><a class="dropdown-item" href="#">학생</a></li>
-    <li><a class="dropdown-item" href="#">강사</a></li>
+    <li><a class="dropdown-item" href="#">공지</a></li>
+    <li><a class="dropdown-item" href="#">이벤트</a></li>
   </ul>
 </div>
 
@@ -152,27 +149,28 @@
       <th scope="col">번호</th>
       <th scope="col">타입</th>
       <th scope="col">제목</th>
+      <th scope="col">작성일</th>
+      <th scope="col">조회수</th>
     </tr>
   </thead>
   <tbody>
-  	<c:forEach var="boardDTO" items="${boardList}">
-    <tr onclick="location.href='${pageContext.request.contextPath}/board/noticeContent?num=${boardDTO.num}'">
+  	<c:forEach var="adminBoardDTO" items="${noticeList}">
+    <tr onclick="location.href='${pageContext.request.contextPath}/admin/noticeContent?num=${adminBoardDTO.num}'">
         <c:choose>
-            <c:when test="${boardDTO.type == '공통'}">
-                <td>${boardDTO.num}</td>
-                <td>${boardDTO.type}</td>
-                <td>${boardDTO.subject}</td>
+            <c:when test="${adminBoardDTO.type == '공지'}">
+                <td>${adminBoardDTO.num}</td>
+                <td>${adminBoardDTO.type}</td>
+                <td>${adminBoardDTO.subject}</td>
+                <td><fmt:formatDate value="${adminBoardDTO.date}" pattern="yyyy.MM.dd"/></td>
+                <td>${adminBoardDTO.readcount}</td>
             </c:when>
-            <c:when test="${boardDTO.type == '학생'}">
-                <td>${boardDTO.num}</td>
-                <td>${boardDTO.type}</td>
-                <td>${boardDTO.subject}</td>
+            <c:when test="${adminBoardDTO.type == '이벤트'}">
+                <td>${adminBoardDTO.num}</td>
+                <td>${adminBoardDTO.type}</td>
+                <td>${adminBoardDTO.subject}</td>
+                <td><fmt:formatDate value="${adminBoardDTO.date}" pattern="yyyy.MM.dd"/></td>
+                <td>${adminBoardDTO.readcount}</td>
             </c:when>
-            <c:otherwise>
-                <td>${boardDTO.num}</td>
-                <td>${boardDTO.type}</td>
-                <td>${boardDTO.subject}</td>
-            </c:otherwise>
         </c:choose>
     </tr>
 </c:forEach>
@@ -180,23 +178,31 @@
   </tbody>
 </table>
 
+<c:if test="${ ! empty sessionScope.id }">
+	<div id="table_search">
+	<input type="button" value="작성" class="btn" 
+  	onclick="location.href='${pageContext.request.contextPath}/admin/noticeInsert'">
+	</div>
+</c:if>
+
+
 	<nav aria-label="Page navigation example">
     <ul class="pagination justify-content-center">
         <li class="page-item">
             <c:if test="${pageDTO.startPage > pageDTO.pageBlock}">
-                <a class="page-link" href="${pageContext.request.contextPath}/board/faqList?pageNum=${pageDTO.startPage - pageDTO.pageBlock}" aria-label="Previous">
+                <a class="page-link" href="${pageContext.request.contextPath}/admin/noticeList?pageNum=${pageDTO.startPage - pageDTO.pageBlock}" aria-label="Previous">
                     <span aria-hidden="true">&laquo;</span>
                 </a>
             </c:if>
         </li>
 
         <c:forEach var="i" begin="${pageDTO.startPage}" end="${pageDTO.endPage}" step="1">
-            <li class="page-item"><a class="page-link" href="${pageContext.request.contextPath}/board/faqList?pageNum=${i}">${i}</a></li>
+            <li class="page-item"><a class="page-link" href="${pageContext.request.contextPath}/admin/noticeList?pageNum=${i}">${i}</a></li>
         </c:forEach>
 
         <li class="page-item">
             <c:if test="${pageDTO.endPage < pageDTO.pageCount}">
-                <a class="page-link" href="${pageContext.request.contextPath}/board/faqList?pageNum=${pageDTO.startPage + pageDTO.pageBlock}" aria-label="Next">
+                <a class="page-link" href="${pageContext.request.contextPath}/admin/noticeList?pageNum=${pageDTO.startPage + pageDTO.pageBlock}" aria-label="Next">
                     <span aria-hidden="true">&raquo;</span>
                 </a>
             </c:if>

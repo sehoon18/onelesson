@@ -125,7 +125,7 @@
         <h1 class="mt-5">공지/이벤트</h1>
         <p class="lead">공지/이벤트 페이지입니다.</p>
         <hr>
-        <form action="${pageContext.request.contextPath}/board/noticeInsertPro" method="post"
+        <form action="${pageContext.request.contextPath}/admin/noticeInsertPro" method="post"
               enctype="multipart/form-data">
             <div class="row">
                 <div class="col-md-2">
@@ -140,8 +140,15 @@
                 </div>
             </div>
             
+            <c:if test="${!empty sessionScope.id}">
+            	<c:if test="${sessionScope.id == boardDTO.name}">
+            		<input type="button" value="수정" class="btn btn-primary" onclick="location.href='${pageContext.request.contextPath}/admin/noticeUpdate?num=${adminBoardDTO.num}'">
+            		<input type="button" value="삭제" class="btn btn-primary" onclick="location.href='${pageContext.request.contextPath}/admin/noticeDelete?num=${adminBoardDTO.num}'">
+            	</c:if>
+            </c:if>
+            
             <hr>
-            <button type="submit" class="btn btn-primary" onclick="href='${pageContext.request.contextPath}/board/noticeList'">목록</button>
+            <input type="button" value="목록" class="btn btn-primary" onclick="location.href='${pageContext.request.contextPath}/admin/noticeList'">
         </form>
     </div>
 </main>

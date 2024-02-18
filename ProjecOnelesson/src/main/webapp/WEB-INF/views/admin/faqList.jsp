@@ -155,24 +155,24 @@
     </tr>
   </thead>
   <tbody>
-  	<c:forEach var="boardDTO" items="${boardList}">
-    <tr onclick="location.href='${pageContext.request.contextPath}/board/noticeContent?num=${boardDTO.num}'">
+  	<c:forEach var="adminBoardDTO" items="${faqList}">
+    <tr onclick="location.href='${pageContext.request.contextPath}/admin/faqContent?num=${adminBoardDTO.num}'">
         <c:choose>
-            <c:when test="${boardDTO.type == '공통'}">
-                <td>${boardDTO.num}</td>
-                <td>${boardDTO.type}</td>
-                <td>${boardDTO.subject}</td>
+            <c:when test="${adminBoardDTO.type == '공통'}">
+                <td>${adminBoardDTO.num}</td>
+                <td>${adminBoardDTO.type}</td>
+                <td>${adminBoardDTO.subject}</td>
             </c:when>
-            <c:when test="${boardDTO.type == '학생'}">
-                <td>${boardDTO.num}</td>
-                <td>${boardDTO.type}</td>
-                <td>${boardDTO.subject}</td>
+            <c:when test="${adminBoardDTO.type == '학생'}">
+                <td>${adminBoardDTO.num}</td>
+                <td>${adminBoardDTO.type}</td>
+                <td>${adminBoardDTO.subject}</td>
             </c:when>
-            <c:otherwise>
-                <td>${boardDTO.num}</td>
-                <td>${boardDTO.type}</td>
-                <td>${boardDTO.subject}</td>
-            </c:otherwise>
+            <c:when test="${adminBoardDTO.type == '강사'}">
+                <td>${adminBoardDTO.num}</td>
+                <td>${adminBoardDTO.type}</td>
+                <td>${adminBoardDTO.subject}</td>
+            </c:when>
         </c:choose>
     </tr>
 </c:forEach>
@@ -180,23 +180,31 @@
   </tbody>
 </table>
 
+<c:if test="${ ! empty sessionScope.id }">
+	<div id="table_search">
+	<input type="button" value="작성" class="btn" 
+  	onclick="location.href='${pageContext.request.contextPath}/admin/faqInsert'">
+	</div>
+</c:if>
+
+
 	<nav aria-label="Page navigation example">
     <ul class="pagination justify-content-center">
         <li class="page-item">
             <c:if test="${pageDTO.startPage > pageDTO.pageBlock}">
-                <a class="page-link" href="${pageContext.request.contextPath}/board/faqList?pageNum=${pageDTO.startPage - pageDTO.pageBlock}" aria-label="Previous">
+                <a class="page-link" href="${pageContext.request.contextPath}/admin/faqList?pageNum=${pageDTO.startPage - pageDTO.pageBlock}" aria-label="Previous">
                     <span aria-hidden="true">&laquo;</span>
                 </a>
             </c:if>
         </li>
 
         <c:forEach var="i" begin="${pageDTO.startPage}" end="${pageDTO.endPage}" step="1">
-            <li class="page-item"><a class="page-link" href="${pageContext.request.contextPath}/board/faqList?pageNum=${i}">${i}</a></li>
+            <li class="page-item"><a class="page-link" href="${pageContext.request.contextPath}/admin/faqList?pageNum=${i}">${i}</a></li>
         </c:forEach>
 
         <li class="page-item">
             <c:if test="${pageDTO.endPage < pageDTO.pageCount}">
-                <a class="page-link" href="${pageContext.request.contextPath}/board/faqList?pageNum=${pageDTO.startPage + pageDTO.pageBlock}" aria-label="Next">
+                <a class="page-link" href="${pageContext.request.contextPath}/admin/faqList?pageNum=${pageDTO.startPage + pageDTO.pageBlock}" aria-label="Next">
                     <span aria-hidden="true">&raquo;</span>
                 </a>
             </c:if>

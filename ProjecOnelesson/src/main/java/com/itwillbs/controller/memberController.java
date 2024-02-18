@@ -52,13 +52,6 @@ public class memberController {
 		return "member/memberInsert2";
 	}
 	
-	@GetMapping("/adminInsert")
-	public String adminInsert() {
-		System.out.println("MemberController adminInsert()");
-		return "member/adminInsert";
-	}
-
-	
 	@GetMapping("/memberFindId")
 	public String memberFindId() {
 		System.out.println("MemberController memberFindId()");

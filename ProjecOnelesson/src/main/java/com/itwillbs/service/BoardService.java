@@ -15,16 +15,6 @@ import com.itwillbs.domain.PageDTO;
 public class BoardService {
 	@Inject
 	private BoardDAO boardDAO;
-	
-	public void noticeInsert(BoardDTO boardDTO) {
-		System.out.println("BoardService noticeInsert()");
-		
-		boardDTO.setNum(boardDAO.getMaxNoticeNum() + 1);
-		boardDTO.setReadcount(0);
-		boardDTO.setDate(new Timestamp(System.currentTimeMillis()));
-		
-		boardDAO.noticeInsert(boardDTO);
-	}
 
 	public List<BoardDTO> getNoticeList(PageDTO pageDTO) {
 		System.out.println("BoardService getNoticeList()");
@@ -57,18 +47,6 @@ public class BoardService {
 		
 		boardDAO.updateNoticeReadcount(boardDTO);
 	}
-	
-	public void noticeUpdate(BoardDTO boardDTO) {
-		System.out.println("BoardService noticeUpdate()");
-		
-		boardDAO.noticeUpdate(boardDTO);
-	}
-	
-	public void noticeDelete(BoardDTO boardDTO) {
-		System.out.println("BoardService noticeDelete()");
-		
-		boardDAO.noticeDelete(boardDTO);
-	}
 
 	public List<BoardDTO> getFaqList(PageDTO pageDTO) {
 		System.out.println("BoardService getFaqList()");
@@ -90,40 +68,10 @@ public class BoardService {
 		return boardDAO.getFaqCount();
 	}
 
-	public void faqInsert(BoardDTO boardDTO) {
-		System.out.println("BoardService faqInsert()");
-
-		boardDTO.setNum(boardDAO.getMaxFaqNum() + 1);
-		boardDTO.setReadcount(0);
-		boardDTO.setDate(new Timestamp(System.currentTimeMillis()));
-		
-		boardDAO.faqInsert(boardDTO);
-	}
-
 	public BoardDTO getFaq(BoardDTO boardDTO) {
 		System.out.println("BoardService getFaq()");
 		
 		return boardDAO.getFaq(boardDTO);
 	}
 
-	public void faqUpdate(BoardDTO boardDTO) {
-		System.out.println("BoardService faqUpdate()");
-		
-		boardDAO.faqUpdate(boardDTO);
-	}
-
-	public void faqDelete(BoardDTO boardDTO) {
-		System.out.println("BoardService faqDelete()");
-		
-		boardDAO.faqDelete(boardDTO);
-	}
-
-
-
-
-
-
-
-
-	
 }

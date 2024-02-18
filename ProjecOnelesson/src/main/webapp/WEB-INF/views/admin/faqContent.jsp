@@ -1,11 +1,11 @@
 <%@ page language="java" contentType="text/html; charset=UTF-8"
     pageEncoding="UTF-8"%>
-    <%@ taglib prefix="c" uri="http://java.sun.com/jsp/jstl/core" %>
+<%@ taglib prefix="c" uri="http://java.sun.com/jsp/jstl/core" %>    
 <!DOCTYPE html>
 <html lang="ko">
 <head>
     <meta charset="UTF-8">
-    <title>공지/이벤트</title>
+    <title>자주 묻는 질문 등록</title>
     <link href="https://cdn.jsdelivr.net/npm/bootstrap@5.3.1/dist/css/bootstrap.min.css" rel="stylesheet">
     <link rel="stylesheet" href="https://cdn.jsdelivr.net/npm/summernote@0.8.18/dist/summernote-bs4.min.css">
     <link rel="stylesheet" href="https://cdn.jsdelivr.net/npm/summernote@0.8.20/dist/summernote-lite.min.css"
@@ -122,10 +122,10 @@
 
 <main class="flex-shrink-0" style="padding-top: 100px">
     <div class="container">
-        <h1 class="mt-5">공지/이벤트</h1>
-        <p class="lead">공지/이벤트 페이지입니다.</p>
+        <h1 class="mt-5">자주 묻는 질문</h1>
+        <p class="lead">자주 묻는 질문 페이지입니다.</p>
         <hr>
-        <form action="${pageContext.request.contextPath}/board/noticeInsertPro" method="post"
+        <form action="${pageContext.request.contextPath}/admin/faqInsertPro" method="post"
               enctype="multipart/form-data">
             <div class="row">
                 <div class="col-md-2">
@@ -140,8 +140,15 @@
                 </div>
             </div>
             
+            <c:if test="${!empty sessionScope.id}">
+            	<c:if test="${sessionScope.id == boardDTO.name}">
+            		<input type="button" class="btn btn-primary" onclick="location.href='${pageContext.request.contextPath}/admin/faqUpdate?num=${adminBoardDTO.num}'">수정</input>
+            		<input type="button" class="btn btn-primary" onclick="location.href='${pageContext.request.contextPath}/admin/faqDelete?num=${adminBoardDTO.num}'">삭제</input>
+            	</c:if>
+            </c:if>
+            
             <hr>
-            <button type="submit" class="btn btn-primary" onclick="href='${pageContext.request.contextPath}/board/noticeList'">목록</button>
+            <input type="button" class="btn btn-primary" onclick="location.href='${pageContext.request.contextPath}/admin/faqList'">목록</input>
         </form>
     </div>
 </main>
@@ -165,10 +172,12 @@
 
             typeOptions.empty(); // 기존의 옵션을 제거
 
-            if (selectedType === '공지') {
-                typeOptions.append($('<option>', {value: '공지', text: '공지'}));
-            } else if (selectedType === '이벤트') {
-                typeOptions.append($('<option>', {value: '이벤트', text: '이벤트'}));
+            if (selectedType === '공통') {
+                typeOptions.append($('<option>', {value: '공통', text: '공통'}));
+            } else if (selectedType === '학생') {
+                typeOptions.append($('<option>', {value: '학생', text: '학생'}));
+            } else {
+            	typeOptions.append($('<option>', {value: '강사', text: '강사'}));
             }
             // 추가적인 타입이 있다면 여기에 추가
         });
