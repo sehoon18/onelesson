@@ -14,8 +14,10 @@ import org.springframework.stereotype.Controller;
 import org.springframework.ui.Model;
 import org.springframework.util.FileCopyUtils;
 import org.springframework.web.bind.annotation.GetMapping;
+import org.springframework.web.bind.annotation.ModelAttribute;
 import org.springframework.web.bind.annotation.PostMapping;
 import org.springframework.web.bind.annotation.RequestMapping;
+import org.springframework.web.bind.annotation.ResponseBody;
 import org.springframework.web.multipart.MultipartFile;
 
 import com.itwillbs.domain.LessonDTO;
@@ -166,14 +168,15 @@ public class LessonController {
 	}
 	
 	@PostMapping("/paymentPro")
-	public String paymentPro(LessonDTO lessonDTO, HttpServletRequest request, HttpSession session){
-		System.out.println("LessonController lessonInsertPro()");
+	@ResponseBody
+	public String paymentPro(@ModelAttribute LessonDTO lessonDTO, HttpSession session){
+		System.out.println("LessonController paymentPro()");
 		
 		lessonDTO.setId((String)session.getAttribute("id"));
 		lessonDTO.setUpdate(new Timestamp(System.currentTimeMillis()));
 		lessonService.insertOrders(lessonDTO);
 		
-		return "redirect:lesson/paymentInfo";
+		return null;
 	}
 	
 	@GetMapping("/lessonSearch")

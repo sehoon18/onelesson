@@ -129,7 +129,10 @@
 			    <image xlink:href="${pageContext.request.contextPath}/resources/upload/${lessonDTO.preview}" x="0" y="0" width="100%" height="225"/>
 			</svg>
             <div class="card-body">
-              <p>${lessonDTO.subject }</p>
+            <div class="d-flex justify-content-between align-items-center" style="margin-bottom: 5px;">
+              <div>${lessonDTO.subject }</div>
+              <small class="text-body-secondary"><fmt:formatNumber value="${lessonDTO.price }" type="currency"/></small>
+            </div>
               <div class="d-flex justify-content-between align-items-center">
                 <div class="btn-group">
                   <button type="button" class="btn btn-sm btn-outline-secondary" onclick="location.href='${pageContext.request.contextPath}/lesson/lessonInfo?num=${lessonDTO.num}'">상세정보</button>

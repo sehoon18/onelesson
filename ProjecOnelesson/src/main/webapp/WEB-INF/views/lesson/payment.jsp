@@ -120,7 +120,6 @@
 	      width: 48%;
 	    }
 	    #pay_container{
-	    border: 1px solid #ccc;
 	    width: 1100px;
 	    height: 500px;
 	    margin-bottom: 50px;
@@ -137,10 +136,11 @@
 <!-- Begin page content -->
 <main class="flex-shrink-0" style="padding-top: 100px; ">
   <div class="container" style="width:1120px;">
+  
     <h1 class="mt-5">결제</h1>
     <p class="lead">${lessonDTO.subject }</p>
     <hr>
-    <table >
+    <table>
     	<tr><td rowspan="5" style="width:500px;">    
     	<div class="imagespace">
 		<div id="image_container">
@@ -154,7 +154,6 @@
 	  	<div id="info" style="width: 140px">카테고리</div>
     	</td><td style="width: 400px">${lessonDTO.category } / ${lessonDTO.subCategory }</td>
     	<td rowspan="5" style="vertical-align : bottom;">
-<!--    			<button type="button" class="btn btn-primary btn-lg" onclick="">결제하기</button> -->
     	</td></tr>
     	<tr><td>
  		<div id="info">강사명</div>
@@ -172,31 +171,27 @@
     <hr>
     <div id="pay_container">
     <table>
-    <tr><td style="width: 1100px; height: 450px;">내용</td>
+    <tr><td style="width: 1100px; height: 450px; vertical-align: top; padding: 10px;">내용</td>
     </tr>
     <tr><td style="height: 50px;"><div style="text-align: right;"><button id="payment-button" class="btn btn-success">결제하기</button>
 		<button class="btn btn-outline-success" onclick="location.href=">뒤로가기</button></div></td>
     </tr>
     </table>
-
     </div>
 
-<script type="text/javascript">
+<script>
   var IMP = window.IMP; // 생략 가능
+  var method = 'kg_inicis'; // 결제 방식
+  var num = '${lessonDTO.num}'; // 강의 번호
   IMP.init('imp26074165'); // 가맹점 식별코드를 실제 코드로 대체
 
   document.getElementById('payment-button').addEventListener('click', function() {
     IMP.request_pay({
         pg: 'html5_inicis',
-        pay_method: 'card',
+        method: 'kg_inicis',
         merchant_uid: 'merchant_' + new Date().getTime(),
         name: '${lessonDTO.subject }',
         amount: ${lessonDTO.price},
-        buyer_email: '${memberDTO.email }',
-        buyer_name: '${lessonDTO.name }',
-        buyer_tel: '${memberDTO.phone }',
-        buyer_addr: '${memberDTO.address }',
-        buyer_postcode: '-'
     }, function (rsp) {
         console.log(rsp);
         if (rsp.success) {
@@ -207,13 +202,15 @@
                 url: '${pageContext.request.contextPath}/lesson/paymentPro', // 서버 API URL
                 method: 'POST',
                 data: {
-                	pay_method: rsp.pay_method
+                	method:method,
+                	num:num
                 }
             }).done(function(data) {
                 // 서버로부터 응답을 받았을 때의 처리
                 alert(msg);
-                location.href = "${pageContext.request.contextPath}/lesson/paymentPro";
+                location.href = "${pageContext.request.contextPath}/lesson/lessonList";
             }).fail(function(error) {
+
                 // 에러 발생 시 처리
                 alert('서버와의 통신에 실패하였습니다.');
             });

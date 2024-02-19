@@ -10,7 +10,7 @@
     </insert>
     
     <select id="getLessonList" resultType="com.itwillbs.domain.LessonDTO">
-    	select LES_SUBJECT as "subject", LES_UPDATE as "update", LES_NUM as "num", LES_STATUS as "status", LES_PREVIEW as "preview"
+    	select LES_SUBJECT as "subject", LES_UPDATE as "update", LES_NUM as "num", LES_STATUS as "status", LES_PREVIEW as "preview", LES_PRICE as "price"
     	from LESSON
     	where LES_STATUS = 1
     	order by LES_NUM desc
@@ -24,7 +24,7 @@
     </select>
     
     <select id="getlessonSearch" resultType="com.itwillbs.domain.LessonDTO">
-    	select LES_SUBJECT as "subject", LES_UPDATE as "update", LES_NUM as "num", LES_STATUS as "status", LES_PREVIEW as "preview"
+    	select LES_SUBJECT as "subject", LES_UPDATE as "update", LES_NUM as "num", LES_STATUS as "status", LES_PREVIEW as "preview", LES_PRICE as "price"
     	from LESSON
     	where LES_SUBJECT like CONCAT('%',#{search},'%')
     	and   LES_STATUS = 1
@@ -34,7 +34,7 @@
     
     
 	<select id="getcategorySearch" resultType="com.itwillbs.domain.LessonDTO">
-    	select LES_SUBJECT as "subject", LES_UPDATE as "update", LES_NUM as "num", LES_STATUS as "status", LES_PREVIEW as "preview"
+    	select LES_SUBJECT as "subject", LES_UPDATE as "update", LES_NUM as "num", LES_STATUS as "status", LES_PREVIEW as "preview", LES_PRICE as "price"
     	from LESSON
     	where LES_CATEGORY = #{search}
     	and   LES_STATUS = 1

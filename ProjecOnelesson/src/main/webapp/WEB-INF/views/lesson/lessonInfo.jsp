@@ -194,8 +194,7 @@
     <hr>
 	
 	<div class="form-group">
-	<label for="text">상세내용</label>
-	<div style="border: 1px solid #ccc; width: 1080px; height: 1000px; word-wrap: break-word; padding: 20px;">${lessonDTO.content }</div>
+	<div style="width: 1080px; height: 1000px; word-wrap: break-word; padding: 10px;">${lessonDTO.content }</div>
 	<hr>
 	<label>리뷰</label>
 	<div style="border: 1px solid #ccc; width: 1080px; height: 100px; margin-bottom: 5px;">리뷰 칸1</div>

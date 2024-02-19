@@ -193,8 +193,11 @@ public class memberController {
 		return "member/myInfo";
 	}
 	@GetMapping("/mypage")
-	public String mypage() {
+	public String mypage(HttpSession session) {
 		System.out.println("MemberController mypage()");
+		memberService.getMember((String)session.getAttribute("id"));
+		
+		
 		return "member/mypage";
 	}
 
@@ -209,5 +212,11 @@ public class memberController {
 		return "member/myPayment";
 	}
 
-
+// ----------------- TEST ------------------------------
+	
+	@GetMapping("/wish")
+	public String wish() {
+		System.out.println("");
+		return "member/wish";
+	}
 }

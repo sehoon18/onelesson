@@ -15,6 +15,14 @@
 
 
 <style>
+      .b-example-divider {
+        width: 100%;
+        height: 3rem;
+        background-color: rgba(0, 0, 0, .1);
+        border: solid rgba(0, 0, 0, .15);
+        border-width: 1px 0;
+        box-shadow: inset 0 .5em 1.5em rgba(0, 0, 0, .1), inset 0 .125em .5em rgba(0, 0, 0, .15);
+      }
 .head-Boxleft{
 	display: inline-block;
 	float : left;
@@ -23,18 +31,17 @@
 }
 .head-Box-center{
 	display: inline-block;
+	width:1100px;
 	height: 100px;
 	flex: em;
-	padding-left: 25%;
 }
 .head-Box-right{
 	display: inline-block;
-	height: 130px;
+	height: 150px;
 	flex: em;
 	float: right;
-	padding: 1.5em;
-	border: solid skyblue;
-	
+	padding: 1.2em;
+	vertical-align: bottom;
 }
 
 .myinfoA1{
@@ -166,21 +173,17 @@ display: inline-block;
 	color: white;
 	
 }
-.myName{
-	margin-left: 70px;
-	
-}
 .myPageT{
 	display : inline-block;
-	background-color: orange;
+	background-color: green;
 	width: 100%;
 	height: 10px;
 	position: relative;
-	margin-top: 50px;
+	margin-top: 10px;
 }
 .myPageT2{
 	display : inline-block;
-	background-color: orange;
+	background-color: green;
 	width: 100%;
 	height: 10px;
 	position: relative;
@@ -215,8 +218,7 @@ display: inline-block;
 }
 .top-margin{
 	display : inline-block;
-	width : 100%;
-	height: 150px;
+	height: 100px;
 
 }
 .topView{
@@ -254,29 +256,33 @@ display: inline-block;
  <jsp:include page="../inc/header.jsp" />
 <!-- 헤더 넣는 곳 -->
 <body>
-	<div class="top-margin"> </div>
-	<div class="head-Boxleft"><button type="button" class="backPage" onclick="backPage()"><img src="${pageContext.request.contextPath}/resources/images/backArroy.jpg" style="width: 50px; height: 50px;"></button></div>
-      
-    <span class="head-Box-center"><h2 class="topView">마이페이지</h2></span>
-    <span class="head-Box-right">
-    <span class="myinfoA1"><img src="" class="myProImg" style="width: 80px; height: 80px;">
-    <span class="myName">  000 회원
-         </span>           
+<main  style="height: 1200px;">
+	<div class="top-margin"></div>
+
+    
+    
+    <div id="container" style="width: 1100px; margin: 0px auto;">
+    	<table>
+	<tr><td style="width: 300px;"></td><td style="width: 500px; text-align: center;"><h2 class="topView">마이페이지</h2></td><td style="width: 300px;">
+	<span class="head-Box-right" style="text-align: center;">
+	<img src="${pageContext.request.contextPath}/resources/images/default.png" class="myProImg" style="width: 80px; height: 80px; margin: 0px auto;"><br>
+    <span class="myName">000 회원</span>           
     </span>
-    </span>
-      <div class="myMenu">              
-     <span class="userInfo"><a><input type="button" value="나의 정보 수정" i onclick="location.href='${pageContext.request.contextPath}/member/myInfo'"></a></span>    
-     <span class="userlesson"><a><input type="button" value="나의 레슨 확인" onclick="location.href='${pageContext.request.contextPath}/member/myLessonList'"></a></span>
-     <span class="userPayment"><a><input type="button" value="나의 결제 확인" onclick="location.href='${pageContext.request.contextPath}/member/myPayment'"></a></span>
-	 <span class="userReview"><a><input type="button" value="나의 후기 확인" onclick="location.href='${pageContext.request.contextPath}/board/review'"></a></span>
-	 <span class="userQnA"><a><input type="button" value="나의 문의 확인" onclick="myQnAInfo"></a></span>
-	 <span class="mainPage"><a><input type="button" value="메인 페이지" onclick="location.href='${pageContext.request.contextPath}/lesson/main'"></a></span>
-	 <span class="JJimList"><a><input type="button" value="찜 리스트 확인" onclick=""></a></span>
-	 <span class="userCenter"><a><input type="button" value="고객 센터" onclick=""></a></span>
-	 </div>
- <div class="myPageT">.</div>
-	 		<div class="myLessonInfo">나의 레슨 수강 간단히 보기<br>
-  <div class="album py-5 bg-body-tertiary">
+	</td></tr>
+	</table>
+    
+    <div class="btn-group" role="group" aria-label="Basic example">
+	  <button type="button" class="btn btn-outline-success btn-lg" onclick="location.href='${pageContext.request.contextPath}/member/myInfo'">내 정보</button>
+	  <button type="button" class="btn btn-outline-success btn-lg" onclick="location.href='${pageContext.request.contextPath}/member/myPayment'">결제내역</button>
+	  <button type="button" class="btn btn-outline-success btn-lg" onclick="location.href='${pageContext.request.contextPath}/board/review'">후기</button>
+	  <button type="button" class="btn btn-outline-success btn-lg" onclick="location.href='${pageContext.request.contextPath}/member/main'">메인페이지</button>
+	  <button type="button" class="btn btn-outline-success btn-lg" onclick="location.href='${pageContext.request.contextPath}/member/wish'">찜리스트</button>
+	  <button type="button" class="btn btn-outline-success btn-lg" onclick="location.href='${pageContext.request.contextPath}/board/lessonQna'">레슨 문의</button>
+	  <button type="button" class="btn btn-outline-success btn-lg" onclick="location.href='${pageContext.request.contextPath}/board/qnaList'">관리자에게 문의</button>
+	</div>
+ <div class="myPageT"></div>
+<!-- 	 		<div class="myLessonInfo"><h5>최근 수강한 강의</h5></div> -->
+<!--   <div class="album py-5 bg-body-tertiary"> -->
     <div class="container">
 
       <div class="row row-cols-1 row-cols-sm-2 row-cols-md-3 g-3">
@@ -326,14 +332,17 @@ display: inline-block;
           </div>
         </div>
         </div>
-      </div>	<div class="myPageT2"></div>
+      </div>	
+      <div class="myPageT2"></div>
 	 		<div class="myLessonInfo">나의 후기 간단히 보기<br>
-	 		<div class="pageMargin"></div>
+				<div class="form-group" >
+					<div style="border: 1px solid #ccc; width: 1080px; height: 100px; margin: 2px auto;">리뷰 칸1</div>
+					<div style="border: 1px solid #ccc; width: 1080px; height: 100px; margin: 2px auto;">리뷰 칸2</div>
+					<div style="border: 1px solid #ccc; width: 1080px; height: 100px; margin: 2px auto;">리뷰 칸3</div>
+			    </div>	
   			</div>
-	 			<div class="bottom-margin"></div>
-<!-- 푸터 넣는곳 -->
-<jsp:include page="../inc/footer.jsp" />
-<!-- 푸터 넣는곳 --> 
+  			</div>
+</main>
 <script>
  function backPage(){
 		history.back();
@@ -344,7 +353,9 @@ display: inline-block;
  function myLessonInfo_P(){
 	 location.href="../lesson/myLesson_Page";
  }
- 
  </script>
+ <!-- 푸터 넣는곳 -->
+<jsp:include page="../inc/footer.jsp" />
+<!-- 푸터 넣는곳 --> 
 </body>
 </html>

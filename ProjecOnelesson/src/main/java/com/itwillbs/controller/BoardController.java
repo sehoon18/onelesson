@@ -12,6 +12,7 @@ import org.springframework.web.bind.annotation.PostMapping;
 import org.springframework.web.bind.annotation.RequestMapping;
 
 import com.itwillbs.domain.BoardDTO;
+import com.itwillbs.domain.LessonDTO;
 import com.itwillbs.domain.PageDTO;
 import com.itwillbs.service.BoardService;
 
@@ -132,6 +133,87 @@ public class BoardController {
 		model.addAttribute("boardDTO", boardDTO);
 		
 		return "board/faqContent";
+	}
+	
+	// 
+	@GetMapping("/qnaList")
+	public String lessonList(HttpServletRequest request, PageDTO pageDTO, Model model, LessonDTO lessonDTO) {
+		System.out.println("LessonController qnaList()");
+		
+//		int pageSize = 3;
+//		String pageNum = request.getParameter("pageNum");
+//		if(pageNum == null) {
+//			pageNum="1";
+//		}
+//		
+//		int currentPage = Integer.parseInt(pageNum);
+//		
+//		pageDTO.setPageSize(pageSize);
+//		pageDTO.setPageNum(pageNum);
+//		pageDTO.setCurrentPage(currentPage);
+//		
+//		List<LessonDTO> lessonList = boardService.getLessonList(pageDTO);
+//		
+//		int count =  boardService.getLessonCount();
+//		int pageBlock = 10;
+//		int startPage = (currentPage - 1) / pageBlock * pageBlock + 1;
+//		int endPage = startPage + pageBlock -1;
+//		int pageCount = count / pageSize + (count % pageSize == 0 ? 0 : 1);
+//		
+//		if(endPage > pageCount) {
+//			endPage = pageCount;
+//		}
+//		
+//		pageDTO.setCount(pageCount);
+//		pageDTO.setPageBlock(pageBlock);
+//		pageDTO.setStartPage(startPage);
+//		pageDTO.setEndPage(endPage);
+//		pageDTO.setPageCount(pageCount);
+//		
+//		model.addAttribute("lessonList", lessonList);
+//		model.addAttribute("pageDTO", pageDTO);
+		
+		return "board/qnaList";
+	}
+
+	@GetMapping("/lessonQna")
+	public String lessonQna(HttpServletRequest request, PageDTO pageDTO, Model model, LessonDTO lessonDTO) {
+		System.out.println("LessonController lessonQna()");
+		
+//		int pageSize = 3;
+//		String pageNum = request.getParameter("pageNum");
+//		if(pageNum == null) {
+//			pageNum="1";
+//		}
+//		
+//		int currentPage = Integer.parseInt(pageNum);
+//		
+//		pageDTO.setPageSize(pageSize);
+//		pageDTO.setPageNum(pageNum);
+//		pageDTO.setCurrentPage(currentPage);
+//		
+//		List<LessonDTO> lessonList = boardService.getLessonList(pageDTO);
+//		
+//		int count =  boardService.getLessonCount();
+//		int pageBlock = 10;
+//		int startPage = (currentPage - 1) / pageBlock * pageBlock + 1;
+//		int endPage = startPage + pageBlock -1;
+//		int pageCount = count / pageSize + (count % pageSize == 0 ? 0 : 1);
+//		
+//		if(endPage > pageCount) {
+//			endPage = pageCount;
+//		}
+//		
+//		pageDTO.setCount(pageCount);
+//		pageDTO.setPageBlock(pageBlock);
+//		pageDTO.setStartPage(startPage);
+//		pageDTO.setEndPage(endPage);
+//		pageDTO.setPageCount(pageCount);
+//		
+//		model.addAttribute("lessonList", lessonList);
+//		model.addAttribute("pageDTO", pageDTO);
+		
+		return "board/lessonQna";
 	}
 	
 }
