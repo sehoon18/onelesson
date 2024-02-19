@@ -1,5 +1,7 @@
 <%@ page language="java" contentType="text/html; charset=UTF-8"
     pageEncoding="UTF-8"%>
+<%@ taglib prefix="c" uri="http://java.sun.com/jsp/jstl/core" %>
+<%@ taglib prefix="fmt" uri="http://java.sun.com/jsp/jstl/fmt" %>
 <!DOCTYPE html>
 <html>
 <head>
@@ -262,8 +264,20 @@ display: inline-block;
 	text-align: center;
 	float: left;
 }
-
+.myProfil{
+	width : 100%;
+	margin-top: 30px;
+	padding-left: 25%;
+	padding-right: 25%;
+	text-align: center;
+}
+.UserProfil{
+	padding-top: 5px;
+	padding-bottom: 5px;
+}
+.User
 </style>
+<script type="text/javascript" src="/resources/script/jquery-3.7.1.min.js"></script>
 </head>
 <!-- 헤더 넣는 곳 -->
  <jsp:include page="../inc/header.jsp" />
@@ -274,8 +288,8 @@ display: inline-block;
       
     <span class="head-Box-center"><h2 class="topView">마이페이지</h2></span>
     <span class="head-Box-right">
-    <span class="myinfoA1"><img src="" class="myProImg" style="width: 80px; height: 80px;">
-    <span class="myName">  000 회원
+    <span class="myinfoA1"><img src="${pageContext.request.contextPath }/resources/upload${MemberDTO.image }" class="myProImg" style="width: 80px; height: 80px;">
+    <span class="myName"> ${memberDTO.nick } 회원님
          </span>           
     </span>
     </span>
@@ -288,60 +302,50 @@ display: inline-block;
 	 <span class="userQnA"><a><input type="button" value="나의 문의 확인" onclick="myQnAInfo"></a></span>
 	 <span class="mainPage"><a><input type="button" value="메인 페이지" onclick="location.href='${pageContext.request.contextPath}/member/main'"></a></span>
 	 <span class="JJimList"><a><input type="button" value="찜 리스트 확인" onclick=""></a></span>
-	 <span class="userCenter"><a><input type="button" value="고객 센터" onclick=""></a></span>
+	 <span class="userCenter"><a><input type="button" value="고객 센터" onclick="location.href='${pageContext.request.contextPath}/admin/faqinsert'"></a></span>
 	 </div>
+	 
+	  <div class="myPageT">.</div>
+	 		<div class="myLessonInfo">나의 회원 정보 간단히 보기<br>
+	 				<div class="myProfil">
+	 						<span class="UserProfil">${memberDTO.nick } 회원님</span><br>
+	 						<span class="UserProImg"><img src="${pageContext.request.contextPath}/resources/upload/${memberDTO.image }" width="100px" height="100px"></span><br>
+	 						<span class="UserProfil">회원 이름 : ${memberDTO.name }</span><br>
+	 						<span class="UserProfil">전화 번호 : ${memberDTO.phone }</span><br>
+	 						<span class="UserProfil">email : ${memberDTO.email }</span><br>
+	 						<span class="UserProfil">주소 : ${memberDTO.address }</span><br>
+	 						<c:if test="${ 0 eq memberDTO.type }">	 							
+	 							<span class="UserProfil1">회원 속성 : 학생</span><br></c:if>
+	 				</div>			
+	 			
+	 			</div>
  <div class="myPageT">.</div>
 	 		<div class="myLessonInfo">나의 레슨 수강 간단히 보기<br>
-  <div class="album py-5 bg-body-tertiary">
-    <div class="container">
-
+     <div class="album py-5 bg-body-tertiary">
+  
+	<div class="container">
+	<div class="container marketing">
       <div class="row row-cols-1 row-cols-sm-2 row-cols-md-3 g-3">
-        <div class="col">
+      <c:forEach var="lessonDTO" items="${lessonList }">
+   		<div class="col">
           <div class="card shadow-sm">
-            <svg class="bd-placeholder-img card-img-top" width="100%" height="225" xmlns="http://www.w3.org/2000/svg" role="img" aria-label="Placeholder: Thumbnail" preserveAspectRatio="xMidYMid slice" focusable="false"><title>Placeholder</title><rect width="100%" height="100%" fill="#55595c"/><text x="50%" y="50%" fill="#eceeef" dy=".3em">Thumbnail</text></svg>
+            <svg class="bd-placeholder-img card-img-top" width="100%" height="225" xmlns="http://www.w3.org/2000/svg" preserveAspectRatio="xMidYMid slice" role="img" aria-label="Placeholder: Thumbnail" focusable="false">
+			    <image xlink:href="${pageContext.request.contextPath}/resources/upload/${lessonDTO.preview}" x="0" y="0" width="100%" height="225"/>
+			</svg>
             <div class="card-body">
-              <p class="card-text">This is a wider card with supporting text below as a natural lead-in to additional content. This content is a little bit longer.</p>
+              <p>${lessonDTO.subject }</p>
               <div class="d-flex justify-content-between align-items-center">
                 <div class="btn-group">
-                  <button type="button" class="btn btn-sm btn-outline-secondary">View</button>
-                  <button type="button" class="btn btn-sm btn-outline-secondary">Edit</button>
+                  <button type="button" class="btn btn-sm btn-outline-secondary" onclick="location.href='${pageContext.request.contextPath}/lesson/lessonInfo?num=${lessonDTO.num}'">상세정보</button>
+                  <button type="button" class="btn btn-sm btn-outline-secondary" onclick="toggleHeart(this)"><i class="fas fa-heart heart"></i></button>
                 </div>
-                <small class="text-body-secondary">9 mins</small>
+                <small class="text-body-secondary"><fmt:formatDate value="${lessonDTO.update }" pattern="yyyy.MM.dd"/></small>
               </div>
             </div>
           </div>
         </div>
-        <div class="col">
-          <div class="card shadow-sm">
-            <svg class="bd-placeholder-img card-img-top" width="100%" height="225" xmlns="http://www.w3.org/2000/svg" role="img" aria-label="Placeholder: Thumbnail" preserveAspectRatio="xMidYMid slice" focusable="false"><title>Placeholder</title><rect width="100%" height="100%" fill="#55595c"/><text x="50%" y="50%" fill="#eceeef" dy=".3em">Thumbnail</text></svg>
-            <div class="card-body">
-              <p class="card-text">This is a wider card with supporting text below as a natural lead-in to additional content. This content is a little bit longer.</p>
-              <div class="d-flex justify-content-between align-items-center">
-                <div class="btn-group">
-                  <button type="button" class="btn btn-sm btn-outline-secondary">View</button>
-                  <button type="button" class="btn btn-sm btn-outline-secondary">Edit</button>
-                </div>
-                <small class="text-body-secondary">9 mins</small>
-              </div>
-            </div>
-          </div>
-        </div>
-        <div class="col">
-          <div class="card shadow-sm">
-            <svg class="bd-placeholder-img card-img-top" width="100%" height="225" xmlns="http://www.w3.org/2000/svg" role="img" aria-label="Placeholder: Thumbnail" preserveAspectRatio="xMidYMid slice" focusable="false"><title>Placeholder</title><rect width="100%" height="100%" fill="#55595c"/><text x="50%" y="50%" fill="#eceeef" dy=".3em">Thumbnail</text></svg>
-            <div class="card-body">
-              <p class="card-text">This is a wider card with supporting text below as a natural lead-in to additional content. This content is a little bit longer.</p>
-              <div class="d-flex justify-content-between align-items-center">
-                <div class="btn-group">
-                  <button type="button" class="btn btn-sm btn-outline-secondary">View</button>
-                  <button type="button" class="btn btn-sm btn-outline-secondary">Edit</button>
-                </div>
-                <small class="text-body-secondary">9 mins</small>
-              </div>
-            </div>
-          </div>
-        </div>
-        </div>
+      </c:forEach>
+      </div>
       </div>	<div class="myPageT2"></div>
 	 		<div class="myLessonInfo">나의 후기 간단히 보기<br>
 	 		<div class="pageMargin"></div>

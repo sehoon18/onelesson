@@ -159,6 +159,8 @@ public class LessonController {
 			memberDTO = memberService.getMember((String)session.getAttribute("id"));
 			model.addAttribute("memberDTO", memberDTO);
 			
+			System.out.println(memberDTO);
+			System.out.println(lessonDTO);
 			return "lesson/payment";
 		} else {
 			return "redirect:/member/memberLogin";

@@ -193,8 +193,14 @@ public class memberController {
 		return "member/myInfo";
 	}
 	@GetMapping("/mypage")
-	public String mypage() {
+	public String mypage(HttpSession session , Model model) {
 		System.out.println("MemberController mypage()");
+		String id = (String)session.getAttribute("id");
+		
+		MemberDTO memberDTO = memberService.getMember(id);
+		
+		model.addAttribute("memberDTO" , memberDTO);
+		System.out.println(memberDTO);
 		return "member/mypage";
 	}
 
