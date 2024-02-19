@@ -66,6 +66,21 @@ display: inline-block;
 	color: white;
 
 }
+.userUpdate{
+	display: inline-block;
+	padding: 1rem 0;
+	font-size: 2em;
+	text-align: center;
+	border: solid black;
+	background-color : gray;
+	width: 120px;
+	height : 60px;
+	position: relative;
+	font-size: 15px;
+	color: white;
+
+}
+
 .userlesson{
 	display: inline-block;
 	padding: 1rem 0;
@@ -264,13 +279,14 @@ display: inline-block;
          </span>           
     </span>
     </span>
-      <div class="myMenu">              
-     <span class="userInfo"><a><input type="button" value="나의 정보 수정" i onclick="location.href='${pageContext.request.contextPath}/member/myInfo'"></a></span>    
+      <div class="myMenu">
+     <span class="userInfo"><a><input type="button" value="나의 정보 보기" i onclick="location.href='${pageContext.request.contextPath}/member/mypage'"></a></span>              
+     <span class="userUpdate"><a><input type="button" value="나의 정보 수정" i onclick="location.href='${pageContext.request.contextPath}/member/myInfo'"></a></span>    
      <span class="userlesson"><a><input type="button" value="나의 레슨 확인" onclick="location.href='${pageContext.request.contextPath}/member/myLessonList'"></a></span>
      <span class="userPayment"><a><input type="button" value="나의 결제 확인" onclick="location.href='${pageContext.request.contextPath}/member/myPayment'"></a></span>
 	 <span class="userReview"><a><input type="button" value="나의 후기 확인" onclick="location.href='${pageContext.request.contextPath}/board/review'"></a></span>
 	 <span class="userQnA"><a><input type="button" value="나의 문의 확인" onclick="myQnAInfo"></a></span>
-	 <span class="mainPage"><a><input type="button" value="메인 페이지" onclick="location.href='${pageContext.request.contextPath}/lesson/main'"></a></span>
+	 <span class="mainPage"><a><input type="button" value="메인 페이지" onclick="location.href='${pageContext.request.contextPath}/member/main'"></a></span>
 	 <span class="JJimList"><a><input type="button" value="찜 리스트 확인" onclick=""></a></span>
 	 <span class="userCenter"><a><input type="button" value="고객 센터" onclick=""></a></span>
 	 </div>
