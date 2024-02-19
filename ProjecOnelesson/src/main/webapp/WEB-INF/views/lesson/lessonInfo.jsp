@@ -1,5 +1,6 @@
 <%@ page language="java" contentType="text/html; charset=UTF-8"
     pageEncoding="UTF-8"%>
+<%@ taglib prefix="c" uri="http://java.sun.com/jsp/jstl/core"%>
 <%@ taglib prefix="fmt" uri="http://java.sun.com/jsp/jstl/fmt"%>
 <!doctype html>
 <html lang="en" class="h-100" data-bs-theme="auto">
@@ -178,7 +179,7 @@
     	</td></tr>
     	<tr><td>
  		<div id="info">등록자</div>
-	</td><td>홍길동</td></tr>
+	</td><td>${lessonDTO.id }</td></tr>
     	<tr><td>
    		<div id="info">위치</div>
 		</td><td>${lessonDTO.location }</td></tr>

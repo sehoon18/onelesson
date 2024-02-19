@@ -9,7 +9,7 @@ public class MemberDTO {
 	private String name;
 	private int gender;
 	private String birth;
-	private int phone;
+	private String phone;
 	private String address;
 	private String email;
 	private int point;
@@ -19,7 +19,6 @@ public class MemberDTO {
 	private Timestamp join;
 	private int type;
 	private int status;
-	
 	
 	@Override
 	public String toString() {
@@ -52,10 +51,10 @@ public class MemberDTO {
 	public void setBirth(String birth) {
 		this.birth = birth;
 	}
-	public int getPhone() {
+	public String getPhone() {
 		return phone;
 	}
-	public void setPhone(int phone) {
+	public void setPhone(String phone) {
 		this.phone = phone;
 	}
 	public String getAddress() {

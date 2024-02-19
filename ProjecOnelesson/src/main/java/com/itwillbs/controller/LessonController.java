@@ -8,6 +8,7 @@ import java.util.UUID;
 import javax.annotation.Resource;
 import javax.inject.Inject;
 import javax.servlet.http.HttpServletRequest;
+import javax.servlet.http.HttpSession;
 
 import org.springframework.stereotype.Controller;
 import org.springframework.ui.Model;
@@ -81,9 +82,19 @@ public class LessonController {
 	}
 	
 	@GetMapping("/lessonInsert")
-	public String lessonInsert() {
+	public String lessonInsert(MemberDTO memberDTO, HttpSession session) {
 		System.out.println("LessonController lessonInsert()");
-		return "lesson/lessonInsert";
+		
+		memberDTO = memberService.getMember((String)session.getAttribute("id"));
+		if(memberDTO != null) {
+			if(memberDTO.getType() == 1) {
+				return "lesson/lessonInsert";
+			} else {
+				return "redirect:/member/main";
+			}
+		} else {
+			return "redirect:/member/main";
+		}
 	}
 	
 	@PostMapping("/lessonInsertPro")
@@ -138,12 +149,31 @@ public class LessonController {
 	}
 	
 	@GetMapping("/payment")
-	public String payment(LessonDTO lessonDTO, Model model) {
+	public String payment(LessonDTO lessonDTO, Model model, MemberDTO memberDTO, HttpSession session) {
 		System.out.println("LessonController payment()");
 		
-		lessonDTO = lessonService.getLesson(lessonDTO);
-		model.addAttribute("lessonDTO", lessonDTO);
-		return "lesson/payment";
+		if(session.getAttribute("id") != null) {
+			lessonDTO = lessonService.getLesson(lessonDTO);
+			model.addAttribute("lessonDTO", lessonDTO);
+			
+			memberDTO = memberService.getMember((String)session.getAttribute("id"));
+			model.addAttribute("memberDTO", memberDTO);
+			
+			return "lesson/payment";
+		} else {
+			return "redirect:/member/memberLogin";
+		}
+	}
+	
+	@PostMapping("/paymentPro")
+	public String paymentPro(LessonDTO lessonDTO, HttpServletRequest request, HttpSession session){
+		System.out.println("LessonController lessonInsertPro()");
+		
+		lessonDTO.setId((String)session.getAttribute("id"));
+		lessonDTO.setUpdate(new Timestamp(System.currentTimeMillis()));
+		lessonService.insertOrders(lessonDTO);
+		
+		return "redirect:lesson/paymentInfo";
 	}
 	
 	@GetMapping("/lessonSearch")

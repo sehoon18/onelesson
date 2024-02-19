@@ -4,5 +4,49 @@
   "https://mybatis.org/dtd/mybatis-3-mapper.dtd">
   
 <mapper namespace="com.itwillbs.mappers.boardMapper">
-
+	
+	<select id="getMaxNoticeNum" resultType="java.lang.Integer">
+		select max(NOTICE_NUM) from NOTICE
+	</select>
+	
+	<select id="getNoticeList" resultType="com.itwillbs.domain.BoardDTO">
+		select * from NOTICE
+		order by NOTICE_NUM desc
+		limit #{startRow}, #{pageSize}
+	</select>
+	
+	<select id="getNoticeCount" resultType="java.lang.Integer">
+		select count(*) from NOTICE
+	</select>
+	
+	<select id="getNotice" resultType="com.itwillbs.domain.BoardDTO">
+		select * from NOTICE
+		where NOTICE_NUM = #{num}
+	</select>
+	
+	<update id="updateNoticeReadcount">
+		update NOTICE
+		set NOTICE_READCOUNT = NOTICE_READCOUNT + 1
+		where NOTICE_NUM = #{num}
+	</update>
+	
+	<select id="getFaqList" resultType="com.itwillbs.domain.BoardDTO">
+		select * from FAQ
+		order by FAQ_NUM desc
+		limit #{startRow}, #{pageSize}
+	</select>
+	
+	<select id="getFaqCount" resultType="java.lang.Integer">
+		select count(*) from FAQ
+	</select>
+	
+	<select id="getMaxFaqNum" resultType="java.lang.Integer">
+		select max(FAQ_NUM) from FAQ
+	</select>
+	
+	<select id="getFaq" resultType="com.itwillbs.domain.BoardDTO">
+		select * from FAQ
+		where FAQ_NUM = #{num}
+	</select>
+	
 </mapper>

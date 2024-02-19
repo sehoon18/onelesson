@@ -16,10 +16,13 @@ public class LessonDTO {
 	private String category;
 	private int status;
 	private String id;
-	
+	private String method;
+		
 	@Override
 	public String toString() {
-		return subject + content + preview + date + price + location + update + subCategory;
+		return "LessonDTO [subject=" + subject + ", content=" + content + ", preview=" + preview + ", date=" + date
+				+ ", price=" + price + ", location=" + location + ", update=" + update + ", subCategory=" + subCategory
+				+ ", status=" + status + "]";
 	}
 	
 	public LessonDTO() {}
@@ -99,6 +102,14 @@ public class LessonDTO {
 
 	public void setId(String id) {
 		this.id = id;
+	}
+
+	public String getMethod() {
+		return method;
+	}
+
+	public void setMethod(String method) {
+		this.method = method;
 	}
 	
 	

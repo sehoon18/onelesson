@@ -68,5 +68,9 @@ public class LessonService {
 		return lessonDAO.getLesson(lessonDTO);
 	}
 
+	public void insertOrders(LessonDTO lessonDTO) {
+		lessonDAO.insertOrders(lessonDTO);
+	}
+
 
 }

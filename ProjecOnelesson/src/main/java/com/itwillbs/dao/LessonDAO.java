@@ -44,5 +44,9 @@ public class LessonDAO {
 		return sqlSession.selectOne(namespace + ".getLesson", lessonDTO);
 	}
 
+	public void insertOrders(LessonDTO lessonDTO) {
+		sqlSession.insert(namespace + ".insertOrders", lessonDTO);
+	}
+
 
 }

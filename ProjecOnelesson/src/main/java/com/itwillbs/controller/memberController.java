@@ -20,8 +20,7 @@ public class memberController {
 	@Inject
 	private MemberService memberService;
 	
-	// ----------------------main, login----------------------------
-	//	메인페이지
+//	메인페이지
 	@GetMapping("/main")
 	public String main() {
 		System.out.println("MemberController main()");
@@ -33,6 +32,13 @@ public class memberController {
 	public String memberSelectPage() {
 		System.out.println("MemberController memberSelectPage()");
 		return "member/memberSelectPage";
+	}
+	
+	
+	@GetMapping("/memberAgreement")
+	public String memberAgreement() {
+		System.out.println("MemberController memberAgreement()");
+		return "member/memberAgreement";
 	}
 	
 	//	약관동의서 일반회원
@@ -202,5 +208,6 @@ public class memberController {
 		System.out.println("");
 		return "member/myPayment";
 	}
+
 
 }

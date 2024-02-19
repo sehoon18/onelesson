@@ -43,9 +43,14 @@
     </select>
     
 	<select id="getLesson" resultType="com.itwillbs.domain.LessonDTO">
-		select LES_NUM as "num", LES_SUBJECT as "subject", LES_CONTENT as "content", LES_CATEGORY as "category", LES_SUBCATEGORY as "subCategory", LES_UPDATE as "update", LES_DATE as "date", LES_LOCATION as "location", LES_PRICE as "price", LES_PREVIEW as "preview"  
+		select LES_NUM as "num", LES_SUBJECT as "subject", LES_CONTENT as "content", LES_CATEGORY as "category", LES_SUBCATEGORY as "subCategory", LES_UPDATE as "update", LES_DATE as "date", LES_LOCATION as "location", LES_PRICE as "price", LES_PREVIEW as "preview", MEM_ID as "id" 
 		from LESSON
 		where LES_NUM = #{num}
 	</select>
+	
+	<insert id="insertOrders">
+		insert into ORDERS(ORDER_METHOD, ORDER_DATE, LES_NUM, MEM_ID) 
+		values(#{method}, #{update}, #{num}, #{id})
+	</insert>
    
 </mapper>

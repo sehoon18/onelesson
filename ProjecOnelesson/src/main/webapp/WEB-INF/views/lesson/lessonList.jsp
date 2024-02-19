@@ -11,7 +11,9 @@
     <meta name="author" content="Mark Otto, Jacob Thornton, and Bootstrap contributors">
     <meta name="generator" content="Hugo 0.115.4">
     <title>레슨 목록</title>
-
+    
+	<link rel="icon" href="${pageContext.request.contextPath}/resources/images/favicon.png"/>
+	<link rel="apple-touch-icon" href="${pageContext.request.contextPath}/resources/images/favicon.png"/>
     <link rel="canonical" href="https://getbootstrap.com/docs/5.3/examples/album/">
 	<link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/5.15.4/css/all.min.css">
     <link rel="stylesheet" href="https://cdn.jsdelivr.net/npm/@docsearch/css@3">
