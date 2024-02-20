@@ -210,7 +210,7 @@ display: inline-block;
 .myLessonInfo{
 	display : inline-block;
 	width: 100%;
-	height: 10px;
+	height: 30px;
 	position: relative;
 	padding-left: 10px;
 	
@@ -270,14 +270,14 @@ display: inline-block;
 	padding-left: 25%;
 	padding-right: 25%;
 	text-align: center;
+	display : none;
 }
 .UserProfil{
 	padding-top: 5px;
 	padding-bottom: 5px;
 }
-.User
 </style>
-<script type="text/javascript" src="/resources/script/jquery-3.7.1.min.js"></script>
+<script type="text/javascript" src="${PageContext.request.contextPath }/resources/script/jquery-3.7.1.min.js"></script>
 </head>
 <!-- 헤더 넣는 곳 -->
  <jsp:include page="../inc/header.jsp" />
@@ -306,8 +306,8 @@ display: inline-block;
 	 </div>
 	 
 	  <div class="myPageT">.</div>
-	 		<div class="myLessonInfo">나의 회원 정보 간단히 보기<br>
-	 				<div class="myProfil">
+	 		<div id="myProInfo" class="myLessonInfo"><a href="javascript:openDisplay();">나의 회원 정보 간단히 보기/닫기</a>
+	 				<div id="myProfil" class="myProfil">
 	 						<span class="UserProfil">${memberDTO.nick } 회원님</span><br>
 	 						<span class="UserProImg"><img src="${pageContext.request.contextPath}/resources/upload/${memberDTO.image }" width="100px" height="100px"></span><br>
 	 						<span class="UserProfil">회원 이름 : ${memberDTO.name }</span><br>
@@ -317,9 +317,9 @@ display: inline-block;
 	 						<c:if test="${ 0 eq memberDTO.type }">	 							
 	 							<span class="UserProfil1">회원 속성 : 학생</span><br></c:if>
 	 				</div>			
-	 			
+	 				
 	 			</div>
- <div class="myPageT">.</div>
+  <div class="myPageT">.</div>
 	 		<div class="myLessonInfo">나의 레슨 수강 간단히 보기<br>
      <div class="album py-5 bg-body-tertiary">
   
@@ -355,16 +355,19 @@ display: inline-block;
 <jsp:include page="../inc/footer.jsp" />
 <!-- 푸터 넣는곳 --> 
 <script>
- function backPage(){
-		history.back();
-	}
- function mainPage(){
-		location.href="../lesson/main.jsp";
-	}
- function myLessonInfo_P(){
-	 location.href="../lesson/myLesson_Page";
- }
- 
+var ProDisplay = true;
+function openDisplay(){
+    var onP = document.getElementById("myProfil");
+    if(onP.style.display=='none'){
+        onP.style.display = 'inline-block';
+    }else{
+        onP.style.display = 'none';
+    }
+}
+function backPage(){
+	history.back();
+}
+
  </script>
 </body>
 </html>
