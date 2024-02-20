@@ -13,6 +13,7 @@ import org.springframework.web.bind.annotation.GetMapping;
 import org.springframework.web.bind.annotation.PostMapping;
 import org.springframework.web.bind.annotation.RequestMapping;
 
+import com.itwillbs.domain.BoardDTO;
 import com.itwillbs.domain.LessonDTO;
 import com.itwillbs.domain.MemberDTO;
 import com.itwillbs.domain.PageDTO;
@@ -202,8 +203,8 @@ public class memberController {
 	@GetMapping("/mypage")
 	public String mypage(HttpSession session, MemberDTO memberDTO, Model model, LessonDTO lessonDTO, PageDTO pageDTO, HttpServletRequest request) {
 		System.out.println("MemberController mypage()");
-		memberDTO = memberService.getMember((String)session.getAttribute("id"));
 		
+		memberDTO = memberService.getMember((String)session.getAttribute("id"));
 		model.addAttribute("memberDTO", memberDTO);
 
 		int pageSize = 3;
@@ -257,11 +258,7 @@ public class memberController {
 
 // ----------------- TEST ------------------------------
 	
-	@GetMapping("/wish")
-	public String wish() {
-		System.out.println("");
-		return "member/wish";
-	}
+
 	
 	@GetMapping("/logout")
 	public String logout(HttpSession session) {

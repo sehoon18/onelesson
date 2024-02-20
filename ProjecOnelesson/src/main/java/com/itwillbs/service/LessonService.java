@@ -9,6 +9,7 @@ import org.springframework.stereotype.Service;
 import org.springframework.transaction.annotation.Transactional;
 
 import com.itwillbs.dao.LessonDAO;
+import com.itwillbs.domain.BoardDTO;
 import com.itwillbs.domain.LessonDTO;
 import com.itwillbs.domain.MemberDTO;
 import com.itwillbs.domain.PageDTO;
@@ -88,5 +89,23 @@ public class LessonService {
 		return lessonDAO.getMyLessonCount(pageDTO);
 	}
 
+	public List<LessonDTO> getWishList(PageDTO pageDTO) {
+		System.out.println("BoardService getWishList()");
+		
+		int currentPage = pageDTO.getCurrentPage();
+		int pageSize = pageDTO.getPageSize();
+		int startRow = (currentPage - 1) * pageSize + 1;
+		int endRow = startRow + pageSize - 1;
+		
+		pageDTO.setStartRow(startRow - 1);
+		pageDTO.setEndRow(endRow);
+		
+		return lessonDAO.getWishList(pageDTO);
+	}
+
+	public int getWishCount(PageDTO pageDTO) {
+		return lessonDAO.getWishCount(pageDTO);
+
+	}
 
 }

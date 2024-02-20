@@ -117,7 +117,7 @@
 	</tr>
 </table>
 <br>
-<button class="btn btn-info">글쓰기</button>
+<button class="btn btn-info" onclick="location.href='${pageContext.request.contextPath}/board/lessonQnaWrite'">글쓰기</button>
 <button class="btn btn-outline-info">돌아가기</button>
 <hr>
 </div>

@@ -8,6 +8,7 @@ import org.apache.ibatis.session.SqlSession;
 import org.springframework.stereotype.Repository;
 import org.springframework.transaction.annotation.Transactional;
 
+import com.itwillbs.domain.BoardDTO;
 import com.itwillbs.domain.LessonDTO;
 import com.itwillbs.domain.MemberDTO;
 import com.itwillbs.domain.PageDTO;
@@ -56,5 +57,11 @@ public class LessonDAO {
 		return sqlSession.selectOne(namespace+".getMyLessonCount", pageDTO);
 	}
 
+	public List<LessonDTO> getWishList(PageDTO pageDTO) {
+		return sqlSession.selectList(namespace + ".getWishList", pageDTO);
+	}
 
+	public int getWishCount(PageDTO pageDTO) {
+		return sqlSession.selectOne(namespace+".getWishCount", pageDTO);
+	}
 }

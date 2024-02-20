@@ -66,7 +66,24 @@
    
 	<select id="getMyLessonCount" resultType="java.lang.Integer">
     	select count(*)
-    	from LESSON
+    	from ORDERS
     	where MEM_ID = #{id}
     </select>
+   
+	<select id="getWishList" resultType="com.itwillbs.domain.LessonDTO">
+    	SELECT LES_SUBJECT as "subject", LES_PREVIEW as "preview", LES_CATEGORY as "category", LES_SUBCATEGORY as "subCategory", LES_PRICE as "price", LES_LOCATION as "location"
+		from LESSON
+		where LES_NUM IN (SELECT LES_NUM
+							from WISH
+							WHERE MEM_ID = #{id})
+    	order by LES_NUM desc
+    	limit #{startRow}, #{pageSize}
+    </select>
+    
+	<select id="getWishCount" resultType="java.lang.Integer">
+    	select count(*)
+    	from WISH
+    	where MEM_ID = #{id}
+    </select>
+    
 </mapper>

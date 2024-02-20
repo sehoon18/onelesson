@@ -48,5 +48,15 @@
 		select * from FAQ
 		where FAQ_NUM = #{num}
 	</select>
-	
+	    
+    <insert id="addWish">
+    	insert into WISH(MEM_ID, LES_NUM) 
+		values(#{id}, #{num})
+    </insert>
+        
+    <insert id="removeWish">
+    	delete from WISH
+		WHERE MEM_ID = #{id} AND LES_NUM = #{num}
+    </insert>
+    
 </mapper>

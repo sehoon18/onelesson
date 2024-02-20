@@ -8,6 +8,7 @@ import org.apache.ibatis.session.SqlSession;
 import org.springframework.stereotype.Repository;
 
 import com.itwillbs.domain.BoardDTO;
+import com.itwillbs.domain.LessonDTO;
 import com.itwillbs.domain.PageDTO;
 
 @Repository
@@ -72,5 +73,14 @@ public class BoardDAO {
 		
 		return sqlSession.selectOne(namespace + ".getFaq", boardDTO);
 	}
+
+	public void addWish(LessonDTO lessonDTO) {
+		sqlSession.insert(namespace + ".addWish", lessonDTO);
+	}
+
+	public void removeWish(LessonDTO lessonDTO) {
+		sqlSession.delete(namespace + ".removeWish", lessonDTO);
+	}
+
 
 }
