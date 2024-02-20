@@ -59,11 +59,21 @@
 		WHERE MEM_ID = #{id} AND LES_NUM = #{num}
     </delete>
     
-	<insert id="insertBoard">
-    	insert into WISH(MEM_ID, QNA_SUBJECT, QNA_CONTENT) 
-		values(#{id}, #{subject}, #{content})
+	<insert id="insertQna">
+    	insert into QNA(MEM_ID, QNA_SUBJECT, QNA_QUESTION, QNA_UPDATE)
+		values(#{name}, #{subject}, #{content}, #{update})
     </insert>
     
-    
+    <update id="updateQna">
+		update QNA
+		set QNA_ANSWER= #{content}
+		where NOTICE_NUM = #{num}
+	</update>
+	
+	<select id="getQna" resultType="com.itwillbs.domain.BoardDTO">
+		select QNA_CONTENT as "content", QNA_SUBJECT as "subject", MEM_ID as "id"
+		from QNA
+		WHERE QNA_NUM = #{num}
+	</select>
     
 </mapper>

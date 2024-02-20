@@ -83,8 +83,16 @@ public class BoardService {
 		boardDAO.removeWish(lessonDTO);
 	}
 
-	public void insertBoard(BoardDTO boardDTO) {
-		boardDAO.insertBoard(boardDTO);
+	public void insertQna(BoardDTO boardDTO) {
+		boardDAO.insertQna(boardDTO);
+	}
+
+	public void updateQna(BoardDTO boardDTO) {
+		boardDAO.updateQna(boardDTO);
+	}
+
+	public BoardDTO getQna(BoardDTO boardDTO) {
+		return boardDAO.getQna(boardDTO);
 	}
 
 

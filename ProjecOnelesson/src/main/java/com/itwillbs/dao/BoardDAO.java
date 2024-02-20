@@ -82,8 +82,16 @@ public class BoardDAO {
 		sqlSession.delete(namespace + ".removeWish", lessonDTO);
 	}
 
-	public void insertBoard(BoardDTO boardDTO) {
-		sqlSession.delete(namespace + ".insertBoard", boardDTO);
+	public void insertQna(BoardDTO boardDTO) {
+		sqlSession.insert(namespace + ".insertQna", boardDTO);
+	}
+
+	public void updateQna(BoardDTO boardDTO) {
+		sqlSession.update(namespace + ".updateQna", boardDTO);
+	}
+
+	public BoardDTO getQna(BoardDTO boardDTO) {
+		return sqlSession.selectOne(namespace + ".getQna", boardDTO);
 	}
 
 

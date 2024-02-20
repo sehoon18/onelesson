@@ -1,5 +1,6 @@
 package com.itwillbs.controller;
 
+import java.sql.Timestamp;
 import java.util.List;
 
 import javax.inject.Inject;
@@ -8,15 +9,18 @@ import javax.servlet.http.HttpSession;
 
 import org.springframework.stereotype.Controller;
 import org.springframework.ui.Model;
+import org.springframework.validation.BindingResult;
 import org.springframework.web.bind.annotation.GetMapping;
 import org.springframework.web.bind.annotation.PostMapping;
 import org.springframework.web.bind.annotation.RequestMapping;
 import org.springframework.web.bind.annotation.ResponseBody;
 
+import com.itwillbs.domain.AdminDTO;
 import com.itwillbs.domain.BoardDTO;
 import com.itwillbs.domain.LessonDTO;
 import com.itwillbs.domain.MemberDTO;
 import com.itwillbs.domain.PageDTO;
+import com.itwillbs.service.AdminService;
 import com.itwillbs.service.BoardService;
 import com.itwillbs.service.LessonService;
 
@@ -182,7 +186,7 @@ public class BoardController {
 	}
 	
 	// 
-	@GetMapping("/qna")
+	@GetMapping("/qnaList")
 	public String lessonList(HttpServletRequest request, PageDTO pageDTO, Model model, LessonDTO lessonDTO) {
 		System.out.println("LessonController qnaList()");
 		
@@ -273,8 +277,8 @@ public class BoardController {
 	public String qnaWritePro(HttpSession session, BoardDTO boardDTO) {
 		System.out.println("BoardController qnaWritePro()");
 		
-		boardDTO.setName((String)session.getAttribute("id"));
-		boardService.insertBoard(boardDTO);
+		boardDTO.setUpdate(new Timestamp(System.currentTimeMillis()));
+		boardService.insertQna(boardDTO);
 		
 		return "redirect:/board/qnaList";
 	}
@@ -287,11 +291,33 @@ public class BoardController {
 	}
 
 	@GetMapping("/qnaAnswer")
-	public String qnaQuestion() {
+	public String qnaQuestion(BoardDTO boardDTO, Model model) {
 		System.out.println("BoardController qnaAnswer()");
 		
+		boardDTO = boardService.getQna(boardDTO);
+		model.addAttribute("boardDTO", boardDTO);
 		return "board/qnaAnswer";
 	}
+	
+	@PostMapping("/qnaAnswerPro")
+	public String qnaContentPro(HttpSession session, BoardDTO boardDTO, AdminDTO adminDTO) {
+		System.out.println("BoardController qnaContentPro()");
+		
+		AdminService adminService = new AdminService();
+		adminDTO = adminService.adminCheck(adminDTO);
+
+		if(adminDTO != null) {
+			boardDTO.setUpdate(new Timestamp(System.currentTimeMillis()));
+			boardService.updateQna(boardDTO);
+			return "redirect:/board/qnaList";
+		} else {
+			return "redirect:/member/login";
+		}
+		
+		
+	}
+	
+
 
 	@GetMapping("/lessonQnaWrite")
 	public String lessonQnaWrite() {
