@@ -276,11 +276,11 @@ public class BoardController {
 		return "board/qnaContent";
 	}
 
-	@GetMapping("/qnaQuestion")
+	@GetMapping("/qnaAnswer")
 	public String qnaQuestion() {
-		System.out.println("BoardController qnaQuestion()");
+		System.out.println("BoardController qnaAnswer()");
 		
-		return "board/qnaQuestion";
+		return "board/qnaAnswer";
 	}
 
 	@GetMapping("/lessonQnaWrite")
@@ -297,11 +297,11 @@ public class BoardController {
 		return "board/lessonQnaContent";
 	}
 
-	@GetMapping("/lessonQnaQuestion")
+	@GetMapping("/lessonQnaAnswer")
 	public String lessonQnaQuestion() {
-		System.out.println("BoardController lessonQnaQuestion()");
+		System.out.println("BoardController lessonQnaAnswer()");
 		
-		return "board/lessonQnaQuestion";
+		return "board/lessonQnaAnswer";
 	}
 	
 	@GetMapping("/wish")

@@ -1,6 +1,7 @@
 <%@ page language="java" contentType="text/html; charset=UTF-8"
     pageEncoding="UTF-8"%>
 <%@ taglib prefix="c" uri="http://java.sun.com/jsp/jstl/core" %>
+<%@ taglib prefix="fmt" uri="http://java.sun.com/jsp/jstl/fmt"%>
 <!DOCTYPE html>
 <html>
 <head>
@@ -296,7 +297,7 @@ display: inline-block;
             <div class="card-body">
             <div class="d-flex justify-content-between align-items-center" style="margin: 5px;">
               <div>${lessonDTO.subject }</div>
-              <small class="text-body-secondary"><fmt:formatNumber value="${lessonDTO.price }" type="currency"/></small>
+<%--               <small class="text-body-secondary"><fmt:formatNumber value="${lessonDTO.price }" type="currency"/></small> --%>
             </div>
               <div class="d-flex justify-content-between align-items-center">
                 <div class="btn-group">

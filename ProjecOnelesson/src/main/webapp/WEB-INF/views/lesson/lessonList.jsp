@@ -91,14 +91,6 @@
 		  padding-top: 100px;
 	  }
 	  */
-/*         .fas.fa-heart.heart { */
-/* 	    color: #ccc; /* fill color */ */
-/* 	    stroke: red; /* border color */ */
-/* 	    stroke-width: 1px; /* border width */ */
-/* 		} */
-/* 		.fas.fa-heart.heart.filled { */
-/* 		    color: red; /* 채워진 하트의 색상 */ */
-/* 		} */
 	  .catecolor {
 	  color:black;
 	  text-decoration:none;
@@ -161,14 +153,19 @@
       </div>
 <script>
     function toggleHeart(el) {
+        var id = '${sessionScope.id}';
+        if(id == null || id == '') {
+            alert('로그인이 필요합니다.');
+            return;
+        }
         var heartIcon = el.querySelector('.heart');
         var filled = heartIcon.classList.contains('fas');  // 현재 하트 아이콘의 상태 확인
         heartIcon.classList.toggle('fas'); 
         heartIcon.classList.toggle('far');
         
-        var id = '${sessionScope.id}';
         var num = el.value;
         
+
         $.ajax({
             url: '${pageContext.request.contextPath}/board/wishToggle',
             type: 'POST',

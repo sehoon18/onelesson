@@ -90,17 +90,15 @@
 		  padding-top: 100px;
 	  }
 	  */
-        .fas.fa-heart.heart {
-	    color: #ccc; /* fill color */
-	    stroke: red; /* border color */
-	    stroke-width: 1px; /* border width */
-		}
-		.fas.fa-heart.heart.filled {
-		    color: red; /* 채워진 하트의 색상 */
-		}
+	.heart {
+    color: gray;
+	}
+	.fas.fa-heart {
+    color: red;
+	}
     </style>
 
-    
+  <script src="https://ajax.googleapis.com/ajax/libs/jquery/3.5.1/jquery.min.js"></script>
   </head>
   <body>
 	<jsp:include page="../inc/header.jsp" />
@@ -128,16 +126,16 @@
 			    <image xlink:href="${pageContext.request.contextPath}/resources/upload/${lessonDTO.preview}" x="0" y="0" width="100%" height="225"/>
 			</svg>
             <div class="card-body">
-            <div class="d-flex justify-content-between align-items-center" style="margin-bottom: 5px;">
+            <div class="d-flex justify-content-between align-items-center" style="margin: 5px;">
               <div>${lessonDTO.subject }</div>
-              <small class="text-body-secondary"><fmt:formatNumber value="${lessonDTO.price }" type="currency"/></small>
+                <small class="text-body-secondary"><fmt:formatDate value="${lessonDTO.update }" pattern="yyyy.MM.dd"/></small>
             </div>
               <div class="d-flex justify-content-between align-items-center">
+              	<small class="text-body-secondary"><fmt:formatNumber value="${lessonDTO.price }" type="currency"/></small>
                 <div class="btn-group">
-                  <button type="button" class="btn btn-sm btn-outline-secondary" onclick="location.href='${pageContext.request.contextPath}/lesson/lessonInfo?num=${lessonDTO.num}'">상세정보</button>
-                  <button type="button" class="btn btn-sm btn-outline-secondary" onclick="toggleHeart(this)"><i class="fas fa-heart heart"></i></button>
+					<button type="button" class="btn btn-outline-success" onclick="location.href='${pageContext.request.contextPath}/lesson/lessonInfo?num=${lessonDTO.num}'">상세정보</button>
+					<button type="button" class="btn btn-outline-success" onclick="toggleHeart(this)" name="num" value="${lessonDTO.num }"><i class="far fa-heart heart"></i></button>
                 </div>
-                <small class="text-body-secondary"><fmt:formatDate value="${lessonDTO.update }" pattern="yyyy.MM.dd"/></small>
               </div>
             </div>
           </div>
@@ -151,6 +149,34 @@
         }
     </script>
       
+	<script>
+    function toggleHeart(el) {
+        var heartIcon = el.querySelector('.heart');
+        var filled = heartIcon.classList.contains('fas');  // 현재 하트 아이콘의 상태 확인
+        heartIcon.classList.toggle('fas'); 
+        heartIcon.classList.toggle('far');
+        
+        var id = '${sessionScope.id}';
+        var num = el.value;
+        
+        $.ajax({
+            url: '${pageContext.request.contextPath}/board/wishToggle',
+            type: 'POST',
+            data: {
+                'id' : id,
+                'wish' : filled ? 'remove' : 'add',  // 현재 상태에 따라 'add' 또는 'remove'
+                'num' : num
+            },
+            success: function(result) {
+                alert(result.message);
+            },
+            error: function(request, status, error) {
+                alert('오류가 발생했습니다');
+            }
+        });
+    }
+	</script>
+	
       </div>
 	<nav aria-label="Page navigation example" style="margin-top: 10px">
 	  <ul class="pagination justify-content-end">
