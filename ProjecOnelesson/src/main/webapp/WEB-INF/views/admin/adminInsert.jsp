@@ -16,7 +16,7 @@ integrity="sha384-4bw+/aepP/YC94hEpVNVgiZdgIC5+VKNBQNGCHeKRQN+PtmoHDEXuppvnDJzQI
     
     <style>
     
-         body {
+         body { 
             font-family: Arial, sans-serif;
             background-color: #f4f4f4;
 /*             margin: 0; */
@@ -123,7 +123,7 @@ option {
 
     <form action="${pageContext.request.contextPath}/member/memberInsertPro1" method="POST">
     <h1 class="h1" style="text-align:center; font-size:50px;">One lesson</h1>
-    <h3  style="text-align: center;">관리자 회원가입</h3><br><br><br>
+    <h3  style="text-align: center;">관리자 회원가입</h3><br><br>
        
     <div class="col">
     <label for="id ">아이디*</label>
@@ -203,54 +203,11 @@ style="right: 9px; margin-top: 2px"></font>
      </div>
 						</div>
 					</div>
+        		</div>
         
         
-<<<<<<< HEAD
-        <form class="validation-form" novalidate action="${pageContext.request.contextPath}/admin/adminInsertPro" method="post">
-          <div class="row">
-          
-=======
         
-        
->>>>>>> refs/remotes/origin/insert
 
-<<<<<<< HEAD
-            </div>
-            
-            <div class="signup">
-              <label for="nickname">아이디*</label>
-              <input type="text" class="form-control" id="id" name="id" placeholder="영문,숫자 포함(6~20자)입력" value="" required>
-              <div class="invalid-feedback">
-                아이디를 입력해주세요.
-              </div>
-            </div><br>
-            
-            
-           <div class="signup">
-              <label for="nickname">비밀번호*</label>
-              <input type="password" class="form-control input-cc inputPw" id="pass" name="pass" placeholder="영문,숫자,특수문자 포함 최소8자이상 입력" value="" required>
-              <div class="invalid-feedback">
-                비밀번호를 입력해주세요.
-              </div>
-            </div><br>
-            
-           <div class="signup">
-              <label for="nickname">비밀번호 확인*</label>
-              <input type="password" class="form-control input-cc inputPw" id="password" placeholder="비밀번호를 한번 더 입력해주세요" value="" required>
-              <div class="invalid-feedback">
-                비밀번호를 확인해주세요.
-              </div>
-            </div><br>
-      
-            
-                        <div class="signup">
-              <label for="name">이름*</label>
-              <input type="text" class="form-control" id="name" name="name" placeholder="" value="" required>
-              <div class="invalid-feedback">
-                이름을 입력해주세요.
-              </div>
-          </div><br>
-=======
 <label for="address">주소*</label>
          <div class="form-floating d-flex">
                   <input type="text" name="address"
@@ -258,69 +215,14 @@ style="right: 9px; margin-top: 2px"></font>
                   <label for="floatingAddress"><span>주소 입력(필수)</span></label>
                </div>             
              
->>>>>>> refs/remotes/origin/insert
 
 
-<<<<<<< HEAD
-
-                     <div class="signup">
-              <label for="phone">연락처*</label>
-              <input type="phone" class="form-control" id="name" name="phone" placeholder="연락처 '-' 제외 입력 (ex.01023456789)" value="" required>
-              <div class="invalid-feedback"> 
-              </div><br>
-           
-<!--           <button onclick="verifyPhone()">인증확인</button></div><br> -->
-          
-          
-          
-<!--                      <label for="email">이메일*</label> -->
-<!--                     <div class="mb-3" id="email"> -->
-<!--             <input type="email" class="form-control" id="email" placeholder="you@example.com" required> -->
-<!--             <div class="invalid-feedback">이메일을 입력해주세요.</div></div> -->
-<!--           <input class="form-control" id="domain-txt" type="email"/> -->
-<!--         <select class="form-control" id="domain-list" type="email"> -->
-<!--   <option value="type">직접 입력</option> -->
-<!--   <option value="@naver.com">@naver.com</option> -->
-<!--   <option value="@google.com">@google.com</option> -->
-<!--   <option value="@hanmail.net">@hanmail.net</option> -->
-<!--   <option value="@nate.com">@nate.com</option> -->
-<!--   <option value="@kakao.com">@kakao.com</option> -->
-<!-- </select><button onclick="checkDuplicate('email')">중복확인</button><br> -->
-
-
-
-<!-- 기존 코드 -->
-
-<!-- 기존 코드 -->
-
-<!-- 기존 코드 -->
-
-<!-- 기존 코드 -->
-
-=======
->>>>>>> refs/remotes/origin/insert
 <label for="email">이메일*</label>
-<<<<<<< HEAD
-<div class="mb-3" id="email" style="display: flex; align-items: center;">
-  <input type="email" class="form-control" id="email" name="email" placeholder="" style="width: 100%;" required>
-  <div style="margin-left: 10px; width: 100%;">
-    <input class="form-control" id="domain-txt" type="email" style="width: 100%;"/>
-  </div>
-  <select class="form-control" id="domain-list" type="email" style="width: 100%;">
-    <option value="type">직접 입력</option>
-    <option value="@naver.com">@naver.com</option>
-    <option value="@google.com">@google.com</option>
-    <option value="@hanmail.net">@hanmail.net</option>
-    <option value="@nate.com">@nate.com</option>
-    <option value="@kakao.com">@kakao.com</option>
-  </select>
-=======
 <div class="form-floating d-flex" style="display: flex; align-items: center;">
     <input type="text" name="email" class="form-control" id="floatingMail" placeholder="" style="flex: 1;">
     <label for="floatingMail"><span>이메일 입력</span></label>
     <font id="emailCheck" size="2" class="position-absolute top-50 start-20 translate-middle-y" 
     style="right: 9px; margin-top: 2px"></font>
->>>>>>> refs/remotes/origin/insert
 </div>
 
 <div class="form-floating d-flex" style="display: flex; align-items: center;">
