@@ -47,6 +47,18 @@ public class MemberDAO {
 		System.out.println("MemberService deleteMember()");
 		sqlSession.delete(namespace+".deleteMember",memberDTO);
 	}
+	public MemberDTO getMemberByNick(String nick) {
+		System.out.println("MemberService getMemberByNick()");
+		return sqlSession.selectOne(namespace+".getMemberByNick",nick);
+	}
+	public MemberDTO getMemberByPhone(String phone) {
+		System.out.println("MemberService getMemberByPhone()");
+		return sqlSession.selectOne(namespace+".getMemberByPhone",phone);
+	}
+	public MemberDTO getMemberByEmail(String email) {
+		System.out.println("MemberService getMemberByEmail()");
+		return sqlSession.selectOne(namespace+".getMemberByEmail",email);
+	}
 
 
 

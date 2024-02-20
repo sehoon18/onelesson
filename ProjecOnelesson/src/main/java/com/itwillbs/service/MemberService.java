@@ -44,6 +44,21 @@ public class MemberService {
 		System.out.println("MemberService deleteMember()");
 		memberDAO.deleteMember(memberDTO);
 	}
+
+	public MemberDTO getMemberByNick(String nick) {
+		System.out.println("MemberService getMemberByNick()");
+		return memberDAO.getMemberByNick(nick);
+	}
+
+	public MemberDTO getMemberByPhone(String phone) {
+		System.out.println("MemberService getMemberByPhone()");
+		return memberDAO.getMemberByPhone(phone);
+	}
+
+	public MemberDTO getMemberByEmail(String email) {
+		System.out.println("MemberService getMemberByEmail()");
+		return memberDAO.getMemberByEmail(email);
+	}
 	
 	
 	

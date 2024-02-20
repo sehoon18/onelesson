@@ -37,6 +37,19 @@ public class AdminService {
 
 		adminDAO.updateAdmin(adminDTO);
 	}
+
+	public AdminDTO getAdminByPhone(String phone) {
+		System.out.println("AdminService getAdminByPhone()");
+		
+		return adminDAO.getAdminByPhone(phone);
+	}
+
+	public AdminDTO getAdminByEmail(String email) {
+		System.out.println("AdminService getAdminByEmail()");
+		
+		return adminDAO.getAdminByEmail(email);
+	}
+	
 	
 
 

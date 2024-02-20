@@ -36,4 +36,16 @@ public class AdminDAO {
 		
 		sqlSession.update(namespace + ".updateAdmin", adminDTO);
 	}
+
+	public AdminDTO getAdminByPhone(String phone) {
+		System.out.println("AdminDAO getAdminByPhone()");
+		
+		return sqlSession.selectOne(namespace + ".getAdminByPhone", phone);
+	}
+
+	public AdminDTO getAdminByEmail(String email) {
+		System.out.println("AdminDAO getAdminByEmail()");
+		
+		return sqlSession.selectOne(namespace + ".getAdminByEmail", email);
+	}
 }
