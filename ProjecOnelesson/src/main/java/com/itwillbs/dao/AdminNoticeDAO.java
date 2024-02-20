@@ -15,7 +15,7 @@ import com.itwillbs.domain.PageDTO;
 public class AdminNoticeDAO {
 	@Inject
 	private SqlSession sqlSession;
-	private static final String namespace = "com.itwillbs.mappers.adminBoardMapper";
+	private static final String namespace = "com.itwillbs.mappers.adminNoticeMapper";
 	
 	public void noticeInsert(AdminNoticeDTO adminNoticeDTO) {
 		System.out.println("AdminNoticeDAO noticeInsert()");

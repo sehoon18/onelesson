@@ -125,7 +125,7 @@
         <h1 class="mt-5">공지/이벤트 등록</h1>
         <p class="lead">공지/이벤트 등록 페이지입니다.</p>
         <hr>
-        <form action="${pageContext.request.contextPath}/board/noticeInsertPro" method="post"
+        <form action="${pageContext.request.contextPath}/admin/noticeInsertPro" method="post"
               enctype="multipart/form-data">
             <div class="row">
                 <div class="col-md-2">

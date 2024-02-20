@@ -16,7 +16,7 @@ import com.itwillbs.domain.PageDTO;
 public class AdminFaqDAO {
 	@Inject
 	private SqlSession sqlSession;
-	private static final String namespace = "com.itwillbs.mappers.adminBoardMapper";
+	private static final String namespace = "com.itwillbs.mappers.adminFaqMapper";
 	
 	public void faqInsert(AdminFaqDTO adminFaqDTO) {
 		System.out.println("AdminFaqDAO faqInsert()");

@@ -89,38 +89,38 @@ public class AdminBoardController {
 	public String noticeList(HttpServletRequest request, PageDTO pageDTO, Model model) {
 		System.out.println("AdminBoardController notice()");
 		
-//		int pageSize = 10;
-//		String pageNum = request.getParameter("pageNum");
-//		
-//		if(pageNum == null) {
-//			pageNum = "1";
-//		}
-//		
-//		int currentPage = Integer.parseInt(pageNum);
-//		pageDTO.setPageSize(pageSize);
-//		pageDTO.setPageNum(pageNum);
-//		pageDTO.setCurrentPage(currentPage);
-//		
-//		List<AdminNoticeDTO> noticeList = adminNoticeService.getNoticeList(pageDTO);
-//		
-//		int count = adminNoticeService.getNoticeCount();
-//		int pageBlock = 10;
-//		int startPage = (currentPage - 1)/pageBlock * pageBlock + 1;
-//		int endPage = startPage + pageBlock - 1;
-//		int pageCount = count / pageSize + (count % pageSize == 0 ? 0 : 1);
-//		
-//		if(endPage > pageCount) {
-//			endPage = pageCount;
-//		}
-//		
-//		pageDTO.setCount(count);
-//		pageDTO.setPageBlock(pageBlock);
-//		pageDTO.setStartPage(startPage);
-//		pageDTO.setEndPage(endPage);
-//		pageDTO.setPageCount(pageCount);
-//		
-//		model.addAttribute("pageDTO", pageDTO);
-//		model.addAttribute("noticeList", noticeList);
+		int pageSize = 10;
+		String pageNum = request.getParameter("pageNum");
+		
+		if(pageNum == null) {
+			pageNum = "1";
+		}
+		
+		int currentPage = Integer.parseInt(pageNum);
+		pageDTO.setPageSize(pageSize);
+		pageDTO.setPageNum(pageNum);
+		pageDTO.setCurrentPage(currentPage);
+		
+		List<AdminNoticeDTO> noticeList = adminNoticeService.getNoticeList(pageDTO);
+		
+		int count = adminNoticeService.getNoticeCount();
+		int pageBlock = 10;
+		int startPage = (currentPage - 1)/pageBlock * pageBlock + 1;
+		int endPage = startPage + pageBlock - 1;
+		int pageCount = count / pageSize + (count % pageSize == 0 ? 0 : 1);
+		
+		if(endPage > pageCount) {
+			endPage = pageCount;
+		}
+		
+		pageDTO.setCount(count);
+		pageDTO.setPageBlock(pageBlock);
+		pageDTO.setStartPage(startPage);
+		pageDTO.setEndPage(endPage);
+		pageDTO.setPageCount(pageCount);
+		
+		model.addAttribute("pageDTO", pageDTO);
+		model.addAttribute("noticeList", noticeList);
 		
 		return "admin/noticeList";
 	}
