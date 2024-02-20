@@ -1,8 +1,10 @@
 package com.itwillbs.controller;
 
 import java.sql.Timestamp;
+import java.util.List;
 
 import javax.inject.Inject;
+import javax.servlet.http.HttpServletRequest;
 import javax.servlet.http.HttpSession;
 
 import org.springframework.stereotype.Controller;
@@ -11,7 +13,10 @@ import org.springframework.web.bind.annotation.GetMapping;
 import org.springframework.web.bind.annotation.PostMapping;
 import org.springframework.web.bind.annotation.RequestMapping;
 
+import com.itwillbs.domain.LessonDTO;
 import com.itwillbs.domain.MemberDTO;
+import com.itwillbs.domain.PageDTO;
+import com.itwillbs.service.LessonService;
 import com.itwillbs.service.MemberService;
 
 @Controller
@@ -19,6 +24,8 @@ import com.itwillbs.service.MemberService;
 public class memberController {
 	@Inject
 	private MemberService memberService;
+	@Inject
+	private LessonService lessonService; 
 	
 //	메인페이지
 	@GetMapping("/main")
@@ -193,9 +200,45 @@ public class memberController {
 		return "member/myInfo";
 	}
 	@GetMapping("/mypage")
-	public String mypage(HttpSession session) {
+	public String mypage(HttpSession session, MemberDTO memberDTO, Model model, LessonDTO lessonDTO, PageDTO pageDTO, HttpServletRequest request) {
 		System.out.println("MemberController mypage()");
-		memberService.getMember((String)session.getAttribute("id"));
+		memberDTO = memberService.getMember((String)session.getAttribute("id"));
+		
+		model.addAttribute("memberDTO", memberDTO);
+
+		int pageSize = 3;
+		String pageNum = request.getParameter("pageNum");
+		if(pageNum == null) {
+			pageNum="1";
+		}
+		
+		int currentPage = Integer.parseInt(pageNum);
+		
+		pageDTO.setPageSize(pageSize);
+		pageDTO.setPageNum(pageNum);
+		pageDTO.setCurrentPage(currentPage);
+		pageDTO.setId((String)session.getAttribute("id"));
+		
+		List<LessonDTO> lessonList = lessonService.getMyLessonList(pageDTO);
+		
+		int count =  lessonService.getMyLessonCount(pageDTO);
+		int pageBlock = 10;
+		int startPage = (currentPage - 1) / pageBlock * pageBlock + 1;
+		int endPage = startPage + pageBlock -1;
+		int pageCount = count / pageSize + (count % pageSize == 0 ? 0 : 1);
+		
+		if(endPage > pageCount) {
+			endPage = pageCount;
+		}
+		
+		pageDTO.setCount(pageCount);
+		pageDTO.setPageBlock(pageBlock);
+		pageDTO.setStartPage(startPage);
+		pageDTO.setEndPage(endPage);
+		pageDTO.setPageCount(pageCount);
+		
+		model.addAttribute("lessonList", lessonList);
+		model.addAttribute("pageDTO", pageDTO);
 		
 		
 		return "member/mypage";
@@ -219,4 +262,13 @@ public class memberController {
 		System.out.println("");
 		return "member/wish";
 	}
+	
+	@GetMapping("/logout")
+	public String logout(HttpSession session) {
+		System.out.println("logout");
+		session.invalidate();
+		
+		return "member/main";
+	}
+	
 }

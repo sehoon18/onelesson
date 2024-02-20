@@ -72,5 +72,21 @@ public class LessonService {
 		lessonDAO.insertOrders(lessonDTO);
 	}
 
+	public List<LessonDTO> getMyLessonList(PageDTO pageDTO) {
+		System.out.println("LessonService getMyLessonList()");
+		
+		int startRow = (pageDTO.getCurrentPage() - 1) * pageDTO.getPageSize() + 1;
+		int EndRow = startRow + pageDTO.getPageSize() - 1;
+		
+		pageDTO.setStartRow(startRow -1);
+		pageDTO.setEndRow(EndRow);
+		
+		return lessonDAO.getMyLessonList(pageDTO);
+	}
+
+	public int getMyLessonCount(PageDTO pageDTO) {
+		return lessonDAO.getMyLessonCount(pageDTO);
+	}
+
 
 }

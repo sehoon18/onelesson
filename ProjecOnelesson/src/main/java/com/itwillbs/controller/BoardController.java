@@ -216,4 +216,10 @@ public class BoardController {
 		return "board/lessonQna";
 	}
 	
+	@GetMapping("/qnaWrite")
+	public String qnaWrite() {
+		System.out.println("BoardController qnaWrite()");
+		
+		return "board/qnaWrite";
+	}
 }

@@ -58,7 +58,7 @@ background-color: #ccc;
           <a class="nav-link active" aria-current="page" href="${pageContext.request.contextPath}/board/notice" style="color: black; padding: 15px 8px;">공지사항/이벤트</a>
         </li>
         <li class="nav-item ms-5">
-          <a class="nav-link active" aria-current="page" href="${pageContext.request.contextPath}/board/faq" style="color: black; padding: 15px 8px;">자주묻는질문</a>
+          <a class="nav-link active" aria-current="page" href="${pageContext.request.contextPath}/board/faqList" style="color: black; padding: 15px 8px;">자주묻는질문</a>
         </li>
 		<li class="nav-item ms-5 dropdown">
 		  <a class="nav-link active dropdown-toggle" href="${pageContext.request.contextPath}/lesson/lessonList" id="lessonDropdown" role="button" style="color: black; padding: 15px 8px;">레슨</a>
@@ -71,9 +71,9 @@ background-color: #ccc;
 		    <!-- 필요한 드롭다운 메뉴 항목 추가 -->
 		  </div>
 		</li>
-        <li class="nav-item ms-5">
-          <a class="nav-link active" aria-current="page" href="${pageContext.request.contextPath}/board/reviewList" style="color: black; padding: 15px 8px;">리뷰</a>
-        </li>
+<!--         <li class="nav-item ms-5"> -->
+<%--           <a class="nav-link active" aria-current="page" href="${pageContext.request.contextPath}/board/reviewList" style="color: black; padding: 15px 8px;">리뷰</a> --%>
+<!--         </li> -->
       </ul>
       <form class="d-flex me-auto" action="${pageContext.request.contextPath}/lesson/lessonSearch" method="get" style="margin: 0px auto;">
         <input class="form-control me-2" type="text" name="search" placeholder="검색어를 입력하세요" aria-label="Search" style="width: 300px;">

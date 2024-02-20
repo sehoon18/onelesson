@@ -16,6 +16,7 @@ public class PageDTO {
 	private int pageCount;
 	
 	private String search;
+	private String id;
 
 	public int getPageSize() {
 		return pageSize;
@@ -103,6 +104,14 @@ public class PageDTO {
 
 	public void setSearch(String search) {
 		this.search = search;
+	}
+
+	public String getId() {
+		return id;
+	}
+
+	public void setId(String id) {
+		this.id = id;
 	}
 
 

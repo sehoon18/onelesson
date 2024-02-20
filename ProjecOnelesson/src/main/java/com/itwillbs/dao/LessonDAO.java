@@ -48,5 +48,13 @@ public class LessonDAO {
 		sqlSession.insert(namespace + ".insertOrders", lessonDTO);
 	}
 
+	public List<LessonDTO> getMyLessonList(PageDTO pageDTO) {
+		return sqlSession.selectList(namespace + ".getMyLessonList", pageDTO);
+	}
+
+	public int getMyLessonCount(PageDTO pageDTO) {
+		return sqlSession.selectOne(namespace+".getMyLessonCount", pageDTO);
+	}
+
 
 }

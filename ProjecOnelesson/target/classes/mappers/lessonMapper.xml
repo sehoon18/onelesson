@@ -53,4 +53,20 @@
 		values(#{method}, #{update}, #{num}, #{id})
 	</insert>
    
+	<select id="getMyLessonList" resultType="com.itwillbs.domain.LessonDTO">
+    	SELECT LES_SUBJECT as "subject", LES_PREVIEW as "preview"
+		from LESSON
+		where LES_NUM IN (SELECT LES_NUM
+							from ORDERS
+							WHERE MEM_ID = #{id}
+							group by LES_NUM)
+    	order by LES_NUM desc
+    	limit #{startRow}, #{pageSize}
+    </select>
+   
+	<select id="getMyLessonCount" resultType="java.lang.Integer">
+    	select count(*)
+    	from LESSON
+    	where MEM_ID = #{id}
+    </select>
 </mapper>

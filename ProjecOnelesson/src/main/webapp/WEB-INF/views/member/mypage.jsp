@@ -1,5 +1,6 @@
 <%@ page language="java" contentType="text/html; charset=UTF-8"
     pageEncoding="UTF-8"%>
+<%@ taglib prefix="c" uri="http://java.sun.com/jsp/jstl/core" %>
 <!DOCTYPE html>
 <html>
 <head>
@@ -266,12 +267,12 @@ display: inline-block;
 	<tr><td style="width: 300px;"></td><td style="width: 500px; text-align: center;"><h2 class="topView">마이페이지</h2></td><td style="width: 300px;">
 	<span class="head-Box-right" style="text-align: center;">
 	<img src="${pageContext.request.contextPath}/resources/images/default.png" class="myProImg" style="width: 80px; height: 80px; margin: 0px auto;"><br>
-    <span class="myName">000 회원</span>           
+    <span class="myName">${memberDTO.name } 회원</span>           
     </span>
 	</td></tr>
 	</table>
     
-    <div class="btn-group" role="group" aria-label="Basic example">
+    <div class="btn-group" role="group" aria-label="Basic example" style="display: flex; justify-content : center;">
 	  <button type="button" class="btn btn-outline-success btn-lg" onclick="location.href='${pageContext.request.contextPath}/member/myInfo'">내 정보</button>
 	  <button type="button" class="btn btn-outline-success btn-lg" onclick="location.href='${pageContext.request.contextPath}/member/myPayment'">결제내역</button>
 	  <button type="button" class="btn btn-outline-success btn-lg" onclick="location.href='${pageContext.request.contextPath}/board/review'">후기</button>
@@ -281,58 +282,58 @@ display: inline-block;
 	  <button type="button" class="btn btn-outline-success btn-lg" onclick="location.href='${pageContext.request.contextPath}/board/qnaList'">관리자에게 문의</button>
 	</div>
  <div class="myPageT"></div>
-<!-- 	 		<div class="myLessonInfo"><h5>최근 수강한 강의</h5></div> -->
+	 		<h4 style="text-align: center;">최근 수강한 강의</h4>
 <!--   <div class="album py-5 bg-body-tertiary"> -->
-    <div class="container">
-
+<div class="container">
+	<div class="container marketing">
       <div class="row row-cols-1 row-cols-sm-2 row-cols-md-3 g-3">
-        <div class="col">
+      <c:forEach var="lessonDTO" items="${lessonList }">
+   		<div class="col">
           <div class="card shadow-sm">
-            <svg class="bd-placeholder-img card-img-top" width="100%" height="225" xmlns="http://www.w3.org/2000/svg" role="img" aria-label="Placeholder: Thumbnail" preserveAspectRatio="xMidYMid slice" focusable="false"><title>Placeholder</title><rect width="100%" height="100%" fill="#55595c"/><text x="50%" y="50%" fill="#eceeef" dy=".3em">Thumbnail</text></svg>
+            <svg class="bd-placeholder-img card-img-top" width="100%" height="225" xmlns="http://www.w3.org/2000/svg" preserveAspectRatio="xMidYMid slice" role="img" aria-label="Placeholder: Thumbnail" focusable="false">
+			    <image xlink:href="${pageContext.request.contextPath}/resources/upload/${lessonDTO.preview}" x="0" y="0" width="100%" height="225"/>
+			</svg>
             <div class="card-body">
-              <p class="card-text">This is a wider card with supporting text below as a natural lead-in to additional content. This content is a little bit longer.</p>
+            <div class="d-flex justify-content-between align-items-center" style="margin: 5px;">
+              <div>${lessonDTO.subject }</div>
+              <small class="text-body-secondary"><fmt:formatNumber value="${lessonDTO.price }" type="currency"/></small>
+            </div>
               <div class="d-flex justify-content-between align-items-center">
                 <div class="btn-group">
-                  <button type="button" class="btn btn-sm btn-outline-secondary">View</button>
-                  <button type="button" class="btn btn-sm btn-outline-secondary">Edit</button>
+                  <button type="button" class="btn btn-sm btn-outline-secondary" onclick="location.href='${pageContext.request.contextPath}/lesson/lessonInfo?num=${lessonDTO.num}'">상세정보</button>
+<!--                   <button type="button" class="btn btn-sm btn-outline-secondary" onclick="toggleHeart(this)"><i class="fas fa-heart heart"></i></button> -->
                 </div>
-                <small class="text-body-secondary">9 mins</small>
+                <small class="text-body-secondary"><fmt:formatDate value="${lessonDTO.update }" pattern="yyyy.MM.dd"/></small>
               </div>
             </div>
           </div>
         </div>
-        <div class="col">
-          <div class="card shadow-sm">
-            <svg class="bd-placeholder-img card-img-top" width="100%" height="225" xmlns="http://www.w3.org/2000/svg" role="img" aria-label="Placeholder: Thumbnail" preserveAspectRatio="xMidYMid slice" focusable="false"><title>Placeholder</title><rect width="100%" height="100%" fill="#55595c"/><text x="50%" y="50%" fill="#eceeef" dy=".3em">Thumbnail</text></svg>
-            <div class="card-body">
-              <p class="card-text">This is a wider card with supporting text below as a natural lead-in to additional content. This content is a little bit longer.</p>
-              <div class="d-flex justify-content-between align-items-center">
-                <div class="btn-group">
-                  <button type="button" class="btn btn-sm btn-outline-secondary">View</button>
-                  <button type="button" class="btn btn-sm btn-outline-secondary">Edit</button>
-                </div>
-                <small class="text-body-secondary">9 mins</small>
-              </div>
-            </div>
-          </div>
-        </div>
-        <div class="col">
-          <div class="card shadow-sm">
-            <svg class="bd-placeholder-img card-img-top" width="100%" height="225" xmlns="http://www.w3.org/2000/svg" role="img" aria-label="Placeholder: Thumbnail" preserveAspectRatio="xMidYMid slice" focusable="false"><title>Placeholder</title><rect width="100%" height="100%" fill="#55595c"/><text x="50%" y="50%" fill="#eceeef" dy=".3em">Thumbnail</text></svg>
-            <div class="card-body">
-              <p class="card-text">This is a wider card with supporting text below as a natural lead-in to additional content. This content is a little bit longer.</p>
-              <div class="d-flex justify-content-between align-items-center">
-                <div class="btn-group">
-                  <button type="button" class="btn btn-sm btn-outline-secondary">View</button>
-                  <button type="button" class="btn btn-sm btn-outline-secondary">Edit</button>
-                </div>
-                <small class="text-body-secondary">9 mins</small>
-              </div>
-            </div>
-          </div>
-        </div>
-        </div>
-      </div>	
+      </c:forEach>
+      </div>
+    <script>
+        function toggleHeart(el) {
+            var heartIcon = el.querySelector('.heart');
+            heartIcon.classList.toggle('filled');
+        }
+    </script>
+      
+      </div>
+	<nav aria-label="Page navigation example" style="margin-top: 10px">
+	  <ul class="pagination justify-content-end">
+	  <c:if test="${pageDTO.startPage > pageDTO.pageBlock }">
+	    <li class="page-item"><a class="page-link" href="${pageContext.request.contextPath}/member/mypage?pageNum=${pageDTO.startPage - pageDTO.pageBlock}">Previous</a></li>
+	  </c:if>
+	  
+	  <c:forEach var="i" begin="${pageDTO.startPage }" end="${pageDTO.endPage }" step="1">
+	    <li class="page-item"><a class="page-link" href="${pageContext.request.contextPath}/member/mypage?pageNum=${i}">${i }</a></li>
+	  </c:forEach>
+	  
+	  <c:if test="${pageDTO.endPage < pageDTO.pageCount }">
+	    <li class="page-item"><a class="page-link" href="${pageContext.request.contextPath}/member/mypage?pageNum=${pageDTO.startPage + pageDTO.pageBlock}">Next</a></li>
+	  </c:if>  
+	  </ul>
+	</nav>
+    </div>	
       <div class="myPageT2"></div>
 	 		<div class="myLessonInfo">나의 후기 간단히 보기<br>
 				<div class="form-group" >
