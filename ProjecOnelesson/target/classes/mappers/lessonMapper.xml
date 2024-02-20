@@ -10,7 +10,7 @@
     </insert>
     
     <select id="getLessonList" resultType="com.itwillbs.domain.LessonDTO">
-    	select LES_SUBJECT as "subject", LES_UPDATE as "update", LES_NUM as "num", LES_STATUS as "status", LES_PREVIEW as "preview", LES_PRICE as "price"
+    	select LES_SUBJECT as "subject", LES_UPDATE as "update", LES_NUM as "num", LES_STATUS as "status", LES_PREVIEW as "preview", LES_PRICE as "price",LES_SUBCATEGORY as "subCategory" , LES_DATE as "date" , MEM_ID as "id"
     	from LESSON
     	where LES_STATUS = 1
     	order by LES_NUM desc
