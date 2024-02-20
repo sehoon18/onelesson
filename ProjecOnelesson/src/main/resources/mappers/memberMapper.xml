@@ -18,8 +18,32 @@ insert into MEMBER(MEM_ID,MEM_PASS,MEM_NICK,MEM_NAME,MEM_GENDER,MEM_BIRTH,MEM_PH
 <!--  		memberDTO 상 이름이 같아야함  -->
 value(#{id},#{pass},#{nick},#{name},#{gender},#{birth},#{phone},#{address},#{email},#{businessNum},#{mailOrderNum},#{point},#{image},#{join},#{type},#{status})
 </insert>
-<select id="userCheck" resultType="com.itwillbs.domain.MemberDTO"> select MEM_ID as "id", MEM_PASS as "pass" from MEMBER where MEM_ID = #{id} and MEM_PASS = #{pass} </select>
-<select id="getMember" resultType="com.itwillbs.domain.MemberDTO"> select MEM_NAME as "name", MEM_EMAIL as "email", MEM_PHONE as "phone", MEM_ADDRESS as "address", MEM_TYPE as "type" from MEMBER where MEM_ID = #{id} </select>
-<update id="updateMember"> update MEMBER set MEM_NAME = #{name} where MEM_ID = #{id} </update>
-<delete id="deleteMember"> delete from MEMBER where MEM_ID = #{id} </delete>
+<select id="userCheck" resultType="com.itwillbs.domain.MemberDTO"> 
+select MEM_ID as "id", MEM_PASS as "pass" from MEMBER where MEM_ID = #{id} and MEM_PASS = #{pass} 
+</select>
+
+<select id="getMember" resultType="com.itwillbs.domain.MemberDTO"> 
+select MEM_NAME as "name", MEM_EMAIL as "email", MEM_PHONE as "phone", MEM_ADDRESS as "address", MEM_TYPE as "type" from MEMBER where MEM_ID = #{id} 
+</select>
+
+<update id="updateMember"> 
+update MEMBER set MEM_NAME = #{name} where MEM_ID = #{id} 
+</update>
+
+<delete id="deleteMember"> 
+delete from MEMBER where MEM_ID = #{id} 
+</delete>
+
+<select id="getMemberByNick" resultType="com.itwillbs.domain.MemberDTO"> 
+select MEM_NAME as "name", MEM_ID as "id", MEM_EMAIL as "email", MEM_PHONE as "phone", MEM_ADDRESS as "address", MEM_TYPE as "type" from MEMBER where MEM_NICK = #{nick} 
+</select>
+
+<select id="getMemberByPhone" resultType="com.itwillbs.domain.MemberDTO"> 
+select MEM_NAME as "name", MEM_ID as "id", MEM_EMAIL as "email", MEM_NICK as "nick", MEM_ADDRESS as "address", MEM_TYPE as "type" from MEMBER where MEM_PHONE = #{phone} 
+</select>
+
+<select id="getMemberByEmail" resultType="com.itwillbs.domain.MemberDTO"> 
+select MEM_NAME as "name", MEM_ID as "id", MEM_PHONE as "phone", MEM_NICK as "nick", MEM_ADDRESS as "address", MEM_TYPE as "type" from MEMBER where MEM_EMAIL = #{email} 
+</select>
+
 </mapper>

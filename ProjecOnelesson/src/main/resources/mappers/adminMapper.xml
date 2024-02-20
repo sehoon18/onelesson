@@ -26,4 +26,14 @@
 		where ADMIN_ID = #{id}
 	</update>
 
+	<select id="getAdminByPhone" resultType="com.itwillbs.domain.AdminDTO">
+		select ADMIN_ID as "id", ADMIN_PASS as "pass", ADMIN_NAME as "name", ADMIN_EMAIL as "email" from ADMIN
+		where ADMIN_PHONE = #{phone}
+	</select>
+
+	<select id="getAdminByEmail" resultType="com.itwillbs.domain.AdminDTO">
+		select ADMIN_ID as "id", ADMIN_PASS as "pass", ADMIN_NAME as "name", ADMIN_PHONE as "phone" from ADMIN
+		where ADMIN_EMAIL = #{email}
+	</select>
+
 </mapper>
