@@ -31,6 +31,8 @@ public class BoardController {
 	private BoardService boardService;
 	@Inject
 	private LessonService lessonService;
+	@Inject
+	private AdminService adminService;
 
 	@GetMapping("/review")
 	public String review() {
@@ -303,7 +305,8 @@ public class BoardController {
 	public String qnaContentPro(HttpSession session, BoardDTO boardDTO, AdminDTO adminDTO) {
 		System.out.println("BoardController qnaAnswerPro()");
 		
-		AdminService adminService = new AdminService();
+		adminDTO.setId((String)session.getAttribute("id"));
+		System.out.println(adminDTO);
 		adminDTO = adminService.adminCheck(adminDTO);
 
 		if(adminDTO != null) {

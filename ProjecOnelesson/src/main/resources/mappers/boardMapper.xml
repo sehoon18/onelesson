@@ -67,11 +67,11 @@
     <update id="updateQna">
 		update QNA
 		set QNA_ANSWER= #{content}
-		where NOTICE_NUM = #{num}
+		where QNA_NUM = #{num}
 	</update>
 	
 	<select id="getQna" resultType="com.itwillbs.domain.BoardDTO">
-		select QNA_QUESTION as "content", QNA_SUBJECT as "subject", MEM_ID as "name"
+		select QNA_QUESTION as "content", QNA_SUBJECT as "subject", QNA_NUM as "num"
 		from QNA
 		WHERE QNA_NUM = #{num}
 	</select>
