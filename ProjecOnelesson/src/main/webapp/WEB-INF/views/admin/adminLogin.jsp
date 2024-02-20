@@ -101,25 +101,24 @@
 				<form action="${pageContext.request.contextPath}/admin/adminLoginPro" method="POST">
 					<div class="form-floating">
 						<input type="text" class="form-control" id="floatingInput"
-							name="member_user_id" placeholder="ID"> <label
+							name="id" placeholder="ID"> <label
 							for="floatingInput">아이디</label>
 					</div>
 					<div class="form-floating">
 						<input type="password" class="form-control" id="floatingPassword"
-							name="member_pw" placeholder="Password"> <label
+							name="pass" placeholder="Password"> <label
 							for="floatingPassword">비밀번호</label>
 					</div>
 
 					<div class="d-grid gap-2">
-						<button class="login-button-custom" type="button"
-						onclick= "location.href='${pageContext.request.contextPath}/admin/adminMain'">로그인</button>
+						<button class="login-button-custom" type="submit">로그인</button>
 					</div>
 
   	<div class="info">
 					<span>
 						<button type="button"
 							style="border: none; background-color: transparent; font-size: 12px; color:black; border: none;"
-							onclick= "location.href='${pageContext.request.contextPath}/member/adminFindPass'">비밀번호 찾기</button>							
+							onclick= "location.href='${pageContext.request.contextPath}/admin/adminFindPass'">비밀번호 찾기</button>							
 					</span> <span>&nbsp;</span> 
 					<span>
 						<button type="button"

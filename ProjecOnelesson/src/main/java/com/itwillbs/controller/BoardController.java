@@ -29,7 +29,7 @@ public class BoardController {
 		return "board/review";
 	}
 	
-	@GetMapping("/noticeList")
+	@GetMapping("/notice")
 	public String noticeList(HttpServletRequest request, PageDTO pageDTO, Model model) {
 		System.out.println("BoardController noticeList()");
 		
@@ -83,7 +83,7 @@ public class BoardController {
 		return "board/noticeContent";
 	}
 	
-	@GetMapping("/faqList")
+	@GetMapping("/faq")
 	public String faqList(HttpServletRequest request, PageDTO pageDTO, Model model) {
 		System.out.println("BoardController faqList()");
 		
@@ -136,7 +136,7 @@ public class BoardController {
 	}
 	
 	// 
-	@GetMapping("/qnaList")
+	@GetMapping("/qna")
 	public String lessonList(HttpServletRequest request, PageDTO pageDTO, Model model, LessonDTO lessonDTO) {
 		System.out.println("LessonController qnaList()");
 		

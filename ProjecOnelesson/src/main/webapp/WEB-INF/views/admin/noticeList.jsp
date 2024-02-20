@@ -178,12 +178,15 @@
   </tbody>
 </table>
 
-<c:if test="${ ! empty sessionScope.id }">
-	<div id="table_search">
-	<input type="button" value="작성" class="btn" 
-  	onclick="location.href='${pageContext.request.contextPath}/admin/noticeInsert'">
-	</div>
+<c:if test="${sessionScope.id eq 'admin'}">
+        <div class="row">
+            <div class="col text-end">
+                <input type="button" name="btn" value="작성" class="btn btn-primary"
+                onclick="location.href='${pageContext.request.contextPath}/admin/noticeInsert'">
+            </div>
+        </div>
 </c:if>
+
 
 
 	<nav aria-label="Page navigation example">
