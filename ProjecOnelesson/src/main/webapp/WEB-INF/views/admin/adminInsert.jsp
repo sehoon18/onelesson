@@ -16,7 +16,7 @@ integrity="sha384-4bw+/aepP/YC94hEpVNVgiZdgIC5+VKNBQNGCHeKRQN+PtmoHDEXuppvnDJzQI
     
     <style>
     
-         body {
+         body { 
             font-family: Arial, sans-serif;
             background-color: #f4f4f4;
 /*             margin: 0; */

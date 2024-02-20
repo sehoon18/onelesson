@@ -90,7 +90,7 @@ integrity="sha384-4bw+/aepP/YC94hEpVNVgiZdgIC5+VKNBQNGCHeKRQN+PtmoHDEXuppvnDJzQI
         }
 
         #userType,
-        .radio-label {
+        .radio-label { 
             display: inline-block;
             text-align: left;
             margin-right: 10px;
