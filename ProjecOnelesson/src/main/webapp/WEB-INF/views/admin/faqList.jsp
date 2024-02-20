@@ -155,12 +155,12 @@
     </tr>
   </thead>
 <tbody>
-    <c:forEach var="adminBoardDTO" items="${faqList}">
-        <tr onclick="location.href='${pageContext.request.contextPath}/admin/faqContent?num=${adminBoardDTO.num}'">
-            <c:if test="${selectedType eq 'all' || selectedType eq adminBoardDTO.type}">
-                <td>${adminBoardDTO.num}</td>
-                <td>${adminBoardDTO.type}</td>
-                <td>${adminBoardDTO.subject}</td>
+    <c:forEach var="adminFaqDTO" items="${faqList}">
+        <tr onclick="location.href='${pageContext.request.contextPath}/admin/faqContent?num=${adminFaqDTO.num}'">
+            <c:if test="${selectedType eq 'all' || selectedType eq adminFaqDTO.type}">
+                <td>${adminFaqDTO.num}</td>
+                <td>${adminFaqDTO.type}</td>
+                <td>${adminFaqDTO.subject}</td>
             </c:if>
         </tr>
     </c:forEach>
