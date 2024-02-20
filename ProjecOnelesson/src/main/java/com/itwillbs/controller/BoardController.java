@@ -129,7 +129,7 @@ public class BoardController {
 		return "board/noticeContent";
 	}
 	
-	@GetMapping("/faqList")
+	@GetMapping("/faq")
 	public String faqList(HttpServletRequest request, PageDTO pageDTO, Model model) {
 		System.out.println("BoardController faqList()");
 		
@@ -182,7 +182,7 @@ public class BoardController {
 	}
 	
 	// 
-	@GetMapping("/qnaList")
+	@GetMapping("/qna")
 	public String lessonList(HttpServletRequest request, PageDTO pageDTO, Model model, LessonDTO lessonDTO) {
 		System.out.println("LessonController qnaList()");
 		

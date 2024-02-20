@@ -1,0 +1,43 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<!DOCTYPE mapper
+  PUBLIC "-//mybatis.org//DTD Mapper 3.0//EN"
+  "https://mybatis.org/dtd/mybatis-3-mapper.dtd">
+  
+<mapper namespace="com.itwillbs.mappers.adminFaqMapper">
+
+	<insert id="faqInsert">
+		insert into FAQ(FAQ_NUM, ADMIN_ID, FAQ_SUBJECT, FAQ_CONTENT)
+		values (#{num}, #{id}, #{subject}, #{content})
+	</insert>
+	
+	<select id="getFaqCount" resultType="java.lang.Integer">
+		select count(*) from FAQ
+	</select>
+	
+	<select id="getMaxFaqNum" resultType="java.lang.Integer">
+		select max(FAQ_NUM) from FAQ
+	</select>
+	
+	<select id="getFaqList" resultType="com.itwillbs.domain.AdminFaqDTO">
+		select FAQ_NUM as "num", FAQ_SUBJECT as "subject" from FAQ
+		order by FAQ_NUM desc
+		limit #{startRow}, #{pageSize}
+	</select>
+	
+	<select id="getFaq" resultType="com.itwillbs.domain.AdminFaqDTO">
+		select FAQ_NUM as "num", ADMIN_ID as "id", FAQ_SUBJECT as "subject", FAQ_CONTENT as "content" from FAQ
+		where FAQ_NUM = #{num}
+	</select>
+	
+	<update id="faqUpdate">
+		update FAQ
+		set FAQ_SUBJECT = #{subject}, FAQ_CONTENT = #{content}
+		where FAQ_NUM = #{num}
+	</update>
+	
+	<delete id="faqDelete">
+		delete from FAQ
+		where FAQ_NUM = #{num}
+	</delete>
+
+</mapper>

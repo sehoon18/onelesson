@@ -3,7 +3,7 @@
   PUBLIC "-//mybatis.org//DTD Mapper 3.0//EN"
   "https://mybatis.org/dtd/mybatis-3-mapper.dtd">
   
-<mapper namespace="com.itwillbs.mappers.adminBoardMapper">
+<mapper namespace="com.itwillbs.mappers.adminNoticeMapper">
 
 	<insert id="noticeInsert">
 		insert into NOTICE(NOTICE_NUM, ADMIN_ID, NOTICE_TYPE, NOTICE_SUBJECT, NOTICE_CONTENT, NOTICE_DATE, NOTICE_READCOUNT, NOTICE_IMAGE)
@@ -14,8 +14,8 @@
 		select max(NOTICE_NUM) from NOTICE
 	</select>
 	
-	<select id="getNoticeList" resultType="com.itwillbs.domain.AdminBoardDTO">
-		select * from NOTICE
+	<select id="getNoticeList" resultType="com.itwillbs.domain.AdminNoticeDTO">
+		select NOTICE_NUM as "num", NOTICE_TYPE as "type", NOTICE_SUBJECT as "subject", NOTICE_DATE as "date", NOTICE_READCOUNT as "readcount" from NOTICE
 		order by NOTICE_NUM desc
 		limit #{startRow}, #{pageSize}
 	</select>
@@ -24,8 +24,8 @@
 		select count(*) from NOTICE
 	</select>
 	
-	<select id="getNotice" resultType="com.itwillbs.domain.AdminBoardDTO">
-		select * from NOTICE
+	<select id="getNotice" resultType="com.itwillbs.domain.AdminNoticeDTO">
+		select NOTICE_NUM as "num", ADMIN_ID as "id", NOTICE_TYPE as "type", NOTICE_SUBJECT as "subject", NOTICE_CONTENT as "content", NOTICE_DATE as "date", NOTICE_READCOUNT as "readcount", NOTICE_IMAGE as "image" from NOTICE
 		where NOTICE_NUM = #{num}
 	</select>
 	
@@ -44,41 +44,6 @@
 	<delete id="noticeDelete">
 		delete from NOTICE
 		where NOTICE_NUM = #{num}
-	</delete>
-	
-	<select id="getFaqList" resultType="com.itwillbs.domain.AdminBoardDTO">
-		select * from FAQ
-		order by FAQ_NUM desc
-		limit #{startRow}, #{pageSize}
-	</select>
-	
-	<select id="getFaq" resultType="com.itwillbs.domain.AdminBoardDTO">
-		select * from FAQ
-		where FAQ_NUM = #{num}
-	</select>
-	
-	<select id="getFaqCount" resultType="java.lang.Integer">
-		select count(*) from FAQ
-	</select>
-	
-	<select id="getMaxFaqNum" resultType="java.lang.Integer">
-		select max(FAQ_NUM) from FAQ
-	</select>
-	
-	<insert id="faqInsert">
-		insert into FAQ(FAQ_NUM, FAQ_ID, FAQ_SUBJECT, FAQ_CONTENT)
-		values (#{num}, #{id}, #{subject}, #{content})
-	</insert>
-	
-	<update id="faqUpdate">
-		update FAQ
-		set FAQ_SUBJECT = #{subject}, FAQ_CONTENT = #{content}
-		where FAQ_NUM = #{num}
-	</update>
-	
-	<delete id="faqDelete">
-		delete from FAQ
-		where FAQ_NUM = #{num}
 	</delete>
 
 </mapper>

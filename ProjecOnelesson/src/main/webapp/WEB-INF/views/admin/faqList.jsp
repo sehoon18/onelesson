@@ -154,37 +154,27 @@
       <th scope="col">제목</th>
     </tr>
   </thead>
-  <tbody>
-  	<c:forEach var="adminBoardDTO" items="${faqList}">
-    <tr onclick="location.href='${pageContext.request.contextPath}/admin/faqContent?num=${adminBoardDTO.num}'">
-        <c:choose>
-            <c:when test="${adminBoardDTO.type == '공통'}">
+<tbody>
+    <c:forEach var="adminBoardDTO" items="${faqList}">
+        <tr onclick="location.href='${pageContext.request.contextPath}/admin/faqContent?num=${adminBoardDTO.num}'">
+            <c:if test="${selectedType eq 'all' || selectedType eq adminBoardDTO.type}">
                 <td>${adminBoardDTO.num}</td>
                 <td>${adminBoardDTO.type}</td>
                 <td>${adminBoardDTO.subject}</td>
-            </c:when>
-            <c:when test="${adminBoardDTO.type == '학생'}">
-                <td>${adminBoardDTO.num}</td>
-                <td>${adminBoardDTO.type}</td>
-                <td>${adminBoardDTO.subject}</td>
-            </c:when>
-            <c:when test="${adminBoardDTO.type == '강사'}">
-                <td>${adminBoardDTO.num}</td>
-                <td>${adminBoardDTO.type}</td>
-                <td>${adminBoardDTO.subject}</td>
-            </c:when>
-        </c:choose>
-    </tr>
-</c:forEach>
+            </c:if>
+        </tr>
+    </c:forEach>
+</tbody>
 
-  </tbody>
 </table>
 
-<c:if test="${ ! empty sessionScope.id }">
-	<div id="table_search">
-	<input type="button" value="작성" class="btn" 
-  	onclick="location.href='${pageContext.request.contextPath}/admin/faqInsert'">
-	</div>
+<c:if test="${sessionScope.id eq 'admin'}">
+        <div class="row">
+            <div class="col text-end">
+                <input type="button" name="btn" value="작성" class="btn btn-primary"
+                onclick="location.href='${pageContext.request.contextPath}/admin/faqInsert'">
+            </div>
+        </div>
 </c:if>
 
 

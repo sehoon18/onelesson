@@ -99,7 +99,7 @@
         <h4 class="mb-3">관리자 회원가입</h4>
         
         
-        <form class="validation-form" novalidate>
+        <form class="validation-form" novalidate action="${pageContext.request.contextPath}/admin/adminInsertPro" method="post">
           <div class="row">
           
 
@@ -107,7 +107,7 @@
             
             <div class="signup">
               <label for="nickname">아이디*</label>
-              <input type="text" class="form-control" id="id" placeholder="영문,숫자 포함(6~20자)입력" value="" required>
+              <input type="text" class="form-control" id="id" name="id" placeholder="영문,숫자 포함(6~20자)입력" value="" required>
               <div class="invalid-feedback">
                 아이디를 입력해주세요.
               </div>
@@ -116,7 +116,7 @@
             
            <div class="signup">
               <label for="nickname">비밀번호*</label>
-              <input type="password" class="form-control input-cc inputPw" id="pass" placeholder="영문,숫자,특수문자 포함 최소8자이상 입력" value="" required>
+              <input type="password" class="form-control input-cc inputPw" id="pass" name="pass" placeholder="영문,숫자,특수문자 포함 최소8자이상 입력" value="" required>
               <div class="invalid-feedback">
                 비밀번호를 입력해주세요.
               </div>
@@ -133,7 +133,7 @@
             
                         <div class="signup">
               <label for="name">이름*</label>
-              <input type="text" class="form-control" id="name" placeholder="" value="" required>
+              <input type="text" class="form-control" id="name" name="name" placeholder="" value="" required>
               <div class="invalid-feedback">
                 이름을 입력해주세요.
               </div>
@@ -143,7 +143,7 @@
 
                      <div class="signup">
               <label for="phone">연락처*</label>
-              <input type="phone" class="form-control" id="name" placeholder="연락처 '-' 제외 입력 (ex.01023456789)" value="" required>
+              <input type="phone" class="form-control" id="name" name="phone" placeholder="연락처 '-' 제외 입력 (ex.01023456789)" value="" required>
               <div class="invalid-feedback"> 
               </div><br>
            
@@ -177,7 +177,7 @@
 
 <label for="email">이메일*</label>
 <div class="mb-3" id="email" style="display: flex; align-items: center;">
-  <input type="email" class="form-control" id="email" placeholder="" style="width: 100%;" required>
+  <input type="email" class="form-control" id="email" name="email" placeholder="" style="width: 100%;" required>
   <div style="margin-left: 10px; width: 100%;">
     <input class="form-control" id="domain-txt" type="email" style="width: 100%;"/>
   </div>

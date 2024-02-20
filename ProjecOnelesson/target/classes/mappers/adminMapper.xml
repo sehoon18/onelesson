@@ -11,12 +11,12 @@
 	</insert>
 	
 	<select id="adminCheck" resultType="com.itwillbs.domain.AdminDTO">
-		select * from ADMIN
+		select ADMIN_ID as "id", ADMIN_PASS as "pass" from ADMIN
 		where ADMIN_ID = #{id} and ADMIN_PASS = #{pass}
 	</select>
 	
 	<select id="getAdmin" resultType="com.itwillbs.domain.AdminDTO">
-		select * from ADMIN
+		select ADMIN_ID as "id", ADMIN_PASS as "pass", ADMIN_NAME as "name", ADMIN_PHONE as "phone", ADMIN_EMAIL as "email" from ADMIN
 		where ADMIN_ID = #{id}
 	</select>
 	
