@@ -268,6 +268,16 @@ public class BoardController {
 		
 		return "board/qnaWrite";
 	}
+	
+	@PostMapping("/qnaWritePro")
+	public String qnaWritePro(HttpSession session, BoardDTO boardDTO) {
+		System.out.println("BoardController qnaWritePro()");
+		
+		boardDTO.setName((String)session.getAttribute("id"));
+		boardService.insertBoard(boardDTO);
+		
+		return "redirect:/board/qnaList";
+	}
 
 	@GetMapping("/qnaContent")
 	public String qnaContent() {

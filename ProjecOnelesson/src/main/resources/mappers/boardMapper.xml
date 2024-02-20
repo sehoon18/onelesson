@@ -53,10 +53,17 @@
     	insert into WISH(MEM_ID, LES_NUM) 
 		values(#{id}, #{num})
     </insert>
-        
-    <insert id="removeWish">
+    
+    <delete id="removeWish">
     	delete from WISH
 		WHERE MEM_ID = #{id} AND LES_NUM = #{num}
+    </delete>
+    
+	<insert id="insertBoard">
+    	insert into WISH(MEM_ID, LES_NUM) 
+		values(#{id}, #{num})
     </insert>
+    
+    
     
 </mapper>

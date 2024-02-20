@@ -82,5 +82,9 @@ public class BoardDAO {
 		sqlSession.delete(namespace + ".removeWish", lessonDTO);
 	}
 
+	public void insertBoard(BoardDTO boardDTO) {
+		sqlSession.delete(namespace + ".insertBoard", boardDTO);
+	}
+
 
 }

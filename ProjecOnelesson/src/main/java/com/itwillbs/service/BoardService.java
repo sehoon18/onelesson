@@ -83,5 +83,9 @@ public class BoardService {
 		boardDAO.removeWish(lessonDTO);
 	}
 
+	public void insertBoard(BoardDTO boardDTO) {
+		boardDAO.insertBoard(boardDTO);
+	}
+
 
 }
