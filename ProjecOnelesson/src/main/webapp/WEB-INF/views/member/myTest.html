@@ -43,7 +43,32 @@
 	position: relative;
 	font-size: 15px;
 	color: black;
+	
+$(function(){
+	$('.myProfil_btn').click(function(){
+		$('.myProfil').css ( {
+			'display' : 'inline-block'
+		});
+	});
+});
 
+  let openProB = document.querySelector('#myProInfo'); 
+ let openProP = document.querySelector('#myProfil');
+ openProB.addEventListener("click", function() {
+ 	if(openProP.style.display = 'none'){
+ 	openProP.style.display = "inline-block";
+ 	}else{
+ 		openProP.style.display = 'none'
+ 	}
+ });
+ openProC.addEventListener("click", function() {
+ 	if(openProP.style.display != 'none'){
+ 	openProP.style.display = "none";
+ 	}else{
+ 		openProP.style.display = 'inline-block'
+	}
+ });
+  
 
 <div class="myPageT">.</div>
 	 		<div class="myLessonInfo">나의 레슨 수강 보기 <input type="button" class="myLessonInfoB" value="나의 레슨 모두 보기" onclick="myLessonInfo_P"><br>
@@ -51,5 +76,9 @@
 	 		<span class="userLesson2">레슨<h2>스키기초</h2><br><img src="" style="width: 100px; height: 80px;"><br>강사 : 김청운<br>수강 시간 : 2024-02-27</span>
 	 		<span class="userLesson3">레슨<h2>집밥기초</h2><br><img src="" style="width: 100px; height: 80px;"><br>강사 : 송중혁<br>수강 시간 : 2024-02-25</span>
 	 		</div>
+	 		
+<script>
+
+ 		 </script>
 </body>
 </html>

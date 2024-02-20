@@ -320,7 +320,7 @@ display: inline-block;
 	 				
 	 			</div>
   <div class="myPageT">.</div>
-	 		<div class="myLessonInfo">나의 레슨 수강 간단히 보기<br>
+	 		<div class="myLessonInfo"><a href="javascript:openDisplay();">나의 레슨 정보 간단히 보기/닫기</a><br>
      <div class="album py-5 bg-body-tertiary">
   
 	<div class="container">
@@ -346,7 +346,13 @@ display: inline-block;
         </div>
       </c:forEach>
       </div>
-      </div>	<div class="myPageT2"></div>
+    <script>
+        function toggleHeart(el) {
+            var heartIcon = el.querySelector('.heart');
+            heartIcon.classList.toggle('filled');
+        }
+    </script>
+    	<div class="myPageT2"></div>
 	 		<div class="myLessonInfo">나의 후기 간단히 보기<br>
 	 		<div class="pageMargin"></div>
   			</div>
@@ -355,6 +361,7 @@ display: inline-block;
 <jsp:include page="../inc/footer.jsp" />
 <!-- 푸터 넣는곳 --> 
 <script>
+// 간단 보기 닫고 여는 함수.
 var ProDisplay = true;
 function openDisplay(){
     var onP = document.getElementById("myProfil");
@@ -364,6 +371,38 @@ function openDisplay(){
         onP.style.display = 'none';
     }
 }
+
+var ProDisplay2 = true;
+function openDisplay2(){
+    var onP2 = document.getElementById("");
+    if(onP2.style.display=='none'){
+        onP2.style.display = 'inline-block';
+    }else{
+        onP2.style.display = 'none';
+    }
+}
+
+var ProDisplay3 = true;
+function openDisplay3(){
+    var onP3 = document.getElementById("");
+    if(onP3.style.display=='none'){
+        onP3.style.display = 'inline-block';
+    }else{
+        onP3.style.display = 'none';
+    }
+}
+
+var ProDisplay4 = true;
+function openDisplay4(){
+    var onP4 = document.getElementById("");
+    if(onP4.style.display=='none'){
+        onP4.style.display = 'inline-block';
+    }else{
+        onP4.style.display = 'none';
+    }
+}
+
+
 function backPage(){
 	history.back();
 }
