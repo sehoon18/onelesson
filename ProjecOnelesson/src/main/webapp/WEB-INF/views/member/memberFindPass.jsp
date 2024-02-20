@@ -1,4 +1,3 @@
-<<<<<<< HEAD
 <%@ page language="java" contentType="text/html; charset=UTF-8"
     pageEncoding="UTF-8"%>
 <!DOCTYPE html>
@@ -9,36 +8,27 @@
     <title>비밀번호 찾기</title>
     <link rel="stylesheet" href="styles.css">
 
- <!-- CSS only -->
-<link href="https://cdn.jsdelivr.net/npm/bootstrap@5.3.1/dist/css/bootstrap.min.css" rel="stylesheet" 
-integrity="sha384-4bw+/aepP/YC94hEpVNVgiZdgIC5+VKNBQNGCHeKRQN+PtmoHDEXuppvnDJzQIu9" crossorigin="anonymous">
-
+    <!-- CSS only -->
+    <link href="https://cdn.jsdelivr.net/npm/bootstrap@5.3.1/dist/css/bootstrap.min.css" rel="stylesheet" 
+    integrity="sha384-4bw+/aepP/YC94hEpVNVgiZdgIC5+VKNBQNGCHeKRQN+PtmoHDEXuppvnDJzQIu9" crossorigin="anonymous">
 
     <style>
         *{ 
         box-sizing: border-box;
         margin: 0;
         padding: 0;
-        	}
-        	
-       	h2{
-
-		text-align: center;
+        }
         
-	}
-        	
-        	
-        	
-
-    body {
-        width:800px;
-		position: absolute;
-		left: 50%;
-		top: 50%;
-
-		transform: translate(-50%, -50%);
+        h2{
+            text-align: center;
+        }
         
-        
+        body {
+            width:800px;
+            position: absolute;
+            left: 50%;
+            top: 50%;
+            transform: translate(-50%, -50%);
             font-family: Arial, sans-serif;
             background-color: #f4f4f4;
             margin: 0;
@@ -48,29 +38,18 @@ integrity="sha384-4bw+/aepP/YC94hEpVNVgiZdgIC5+VKNBQNGCHeKRQN+PtmoHDEXuppvnDJzQI
             align-items: center;
             height: auto;
         }
-        
-        
-            body {
-            display: flex;
-            align-items: center;
-            justify-content: center;
-            height: 100vh;
-            margin: 0;
-        }
 
         .container {
             width: 75%; /* Set width to 75% of viewport */
             text-align: left;
         }
-        
-          form { 
-             background-color: #fff; 
-             padding: 50px;  
+
+        form { 
+            background-color: #fff; 
+            padding: 50px;  
             border-radius: 8px; 
-           box-shadow: 0 0 10px rgba(0, 0, 0, 0.1); 
-         } 
-        
-        
+            box-shadow: 0 0 10px rgba(0, 0, 0, 0.1); 
+        }
 
         label {
             display: inline-block;
@@ -95,7 +74,7 @@ integrity="sha384-4bw+/aepP/YC94hEpVNVgiZdgIC5+VKNBQNGCHeKRQN+PtmoHDEXuppvnDJzQI
             margin-right: 10px;
         }
 
-    .find-button {
+        .find-button {
             padding: 15px;
             font-size: 18px;
             cursor: pointer;
@@ -113,17 +92,15 @@ integrity="sha384-4bw+/aepP/YC94hEpVNVgiZdgIC5+VKNBQNGCHeKRQN+PtmoHDEXuppvnDJzQI
             border-radius: 4px;
             cursor: pointer;
             justify-content: center;
-            
         }
 
-        #normalFields,
-        #instructorFields {
-            display: none;
-        }
+     
     </style>
 </head>
 
 <body>
+
+
     <div class="container">
         <h2>비밀번호 찾기</h2>
         <form id="findPasswordForm">
@@ -166,7 +143,7 @@ integrity="sha384-4bw+/aepP/YC94hEpVNVgiZdgIC5+VKNBQNGCHeKRQN+PtmoHDEXuppvnDJzQI
                 <button type="button" onclick="findPassword()">비밀번호 찾기</button>
             </div>
 
-            <div id="instructorFields">
+            <div id="instructorFields" style="display: none;">
                 <label>찾기 방법:</label>
                 <input type="radio" id="instructorEmailRadio" name="instructorSearchType" value="email" onchange="updateInstructorFields()">
                 <label class="radio-label" for="instructorEmailRadio">이메일</label>
@@ -210,7 +187,8 @@ integrity="sha384-4bw+/aepP/YC94hEpVNVgiZdgIC5+VKNBQNGCHeKRQN+PtmoHDEXuppvnDJzQI
                     <!-- 사업자번호 인증을 받는 로직을 추가할 수 있습니다. -->
                 </div>
 
-                <button type="button" onclick="findPassword()">비밀번호 찾기</button>
+                <button type="button" 
+                onclick= "location.href='${pageContext.request.contextPath}/member/memberFindPass'">비밀번호 찾기</button>
             </div>
         </form>
         <p id="resultMessage"></p>
@@ -231,6 +209,9 @@ integrity="sha384-4bw+/aepP/YC94hEpVNVgiZdgIC5+VKNBQNGCHeKRQN+PtmoHDEXuppvnDJzQI
                 normalFields.style.display = 'none';
                 instructorFields.style.display = 'block';
             }
+            // Additional logic to set the initial display for radio buttons
+            updateNormalFields();
+            updateInstructorFields();
         }
 
         function updateNormalFields() {
@@ -306,5 +287,7 @@ integrity="sha384-4bw+/aepP/YC94hEpVNVgiZdgIC5+VKNBQNGCHeKRQN+PtmoHDEXuppvnDJzQI
             }
         }
     </script>
+    
+     
 </body>
 </html>

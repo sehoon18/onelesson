@@ -120,6 +120,8 @@ integrity="sha384-4bw+/aepP/YC94hEpVNVgiZdgIC5+VKNBQNGCHeKRQN+PtmoHDEXuppvnDJzQI
 </head>
 
 <body>
+
+
     <div class="container">
         <h2>아이디 찾기</h2>
         <form id="findUsernameForm">
@@ -129,7 +131,7 @@ integrity="sha384-4bw+/aepP/YC94hEpVNVgiZdgIC5+VKNBQNGCHeKRQN+PtmoHDEXuppvnDJzQI
                 <option value="instructor">강사회원</option>
             </select>
 
-            <div id="normalFields" style="display: none;">
+            <div id="normalFields">
                 <label>찾기 방법:</label>
                 <input type="radio" id="normalEmailRadio" name="normalSearchType" value="email" onchange="updateNormalFields()">
                 <label for="normalEmailRadio">이메일</label>
@@ -191,7 +193,8 @@ integrity="sha384-4bw+/aepP/YC94hEpVNVgiZdgIC5+VKNBQNGCHeKRQN+PtmoHDEXuppvnDJzQI
                     <!-- 사업자번호 인증을 받는 로직을 추가할 수 있습니다. -->
                 </div>
 				
-                <button type="button" onclick="findUsername()">아이디 찾기</button>
+                <button type="button" 
+                onclick= "location.href='${pageContext.request.contextPath}/member/memberFindId'">아이디 찾기</button>
             </div>
         </form>
         <p id="resultMessage"></p>
@@ -271,9 +274,49 @@ integrity="sha384-4bw+/aepP/YC94hEpVNVgiZdgIC5+VKNBQNGCHeKRQN+PtmoHDEXuppvnDJzQI
         }
     }
 
+
+    function findUsername() {
+        var userType = document.getElementById('userType').value;
+        var resultMessage = document.getElementById('resultMessage');
+
+        if (userType === 'normal') {
+            var name = document.getElementById('normalName').value;
+            var email = document.getElementById('normalEmail').value;
+            var phone = document.getElementById('normalPhone').value;
+
+            // 서버에 대한 AJAX 요청 작성
+            var xhr = new XMLHttpRequest();
+            xhr.open('POST', '/path/to/server/script', true);
+            xhr.setRequestHeader('Content-Type', 'application/json');
+
+            xhr.onreadystatechange = function () {
+                if (xhr.readyState === 4 && xhr.status === 200) {
+                    var response = JSON.parse(xhr.responseText);
+                    if (response.success) {
+                        alert('아이디 찾기 성공: ' + response.username);
+                    } else {
+                        alert('일치하는 아이디가 없습니다.');
+                    }
+                }
+            };
+
+            // 서버로 데이터 전송
+            xhr.send(JSON.stringify({
+                userType: userType,
+                name: name,
+                email: email,
+                phone: phone
+            }));
+        } else if (userType === 'instructor') {
+            // 강사의 경우에 대한 유사한 로직 작성
+        }
+    }
+   
+    
+    
     </script>
     
-    
+  
     
 </body>
 </html>
