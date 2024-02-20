@@ -1,5 +1,7 @@
 package com.itwillbs.service;
 
+import java.util.List;
+
 import javax.inject.Inject;
 
 import org.springframework.stereotype.Service;
@@ -34,7 +36,11 @@ public class MemberService {
 		return memberDAO.getMember(id);
 	}
 
-
+	public List<MemberDTO> getMemberList(MemberDTO memberDTO) {
+		System.out.println("MemberService getMemberList()");
+		return memberDAO.getMemberList(memberDTO);
+	}
+	
 	public void updateMember(MemberDTO memberDTO) {
 		System.out.println("MemberService updateMember()");
 		memberDAO.updateMember(memberDTO);
@@ -59,6 +65,8 @@ public class MemberService {
 		System.out.println("MemberService getMemberByEmail()");
 		return memberDAO.getMemberByEmail(email);
 	}
+
+	
 	
 	
 	

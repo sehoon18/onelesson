@@ -72,16 +72,16 @@
                                     </tr>
                                 </thead>
                                 <tbody>
-                                    <c:forEach var="member" items="${members}">
+                                    <c:forEach var="member" items="${memberList}">
                                         <tr>
-                                            <td>${memberDTO.id}</td>
-                                            <td>${memberDTO.name}</td>
-                                            <td>${memberDTO.nick}</td>
-                                            <td>${memberDTO.birth}</td>
-                                            <td>${memberDTO.phone}</td>
-                                            <td>${memberDTO.email}</td>
-                                            <td>${memberDTO.type}</td>
-                                            <td>${memberDTO.status}</td>
+                                            <td>${member.id}</td>
+                                            <td>${member.name}</td>
+                                            <td>${member.nick}</td>
+                                            <td>${member.birth}</td>
+                                            <td>${member.phone}</td>
+                                            <td>${member.email}</td>
+                                            <td>${member.type}</td>
+                                            <td>${member.status}</td>
                                         </tr>
                                     </c:forEach>
                                 </tbody>
