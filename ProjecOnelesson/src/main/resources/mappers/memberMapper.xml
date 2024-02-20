@@ -26,6 +26,11 @@ select MEM_ID as "id", MEM_PASS as "pass" from MEMBER where MEM_ID = #{id} and M
 select MEM_NAME as "name", MEM_EMAIL as "email", MEM_PHONE as "phone", MEM_ADDRESS as "address", MEM_TYPE as "type" from MEMBER where MEM_ID = #{id} 
 </select>
 
+<select id="getMemberList" resultType="com.itwillbs.domain.MemberDTO">
+ select  MEM_ID as "id" ,  MEM_NAME as "name", MEM_NICK as "nick", MEM_BIRTH as "birth", MEM_PHONE as "phone", MEM_EMAIL as "email" , MEM_TYPE as "type" , MEM_STATUS as "status" from MEMBER 
+ 
+ </select>
+
 <update id="updateMember"> 
 update MEMBER set MEM_NAME = #{name} where MEM_ID = #{id} 
 </update>

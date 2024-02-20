@@ -5,6 +5,7 @@ import java.util.List;
 import javax.inject.Inject;
 import javax.servlet.http.HttpServletRequest;
 
+import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Controller;
 import org.springframework.ui.Model;
 import org.springframework.web.bind.annotation.GetMapping;
@@ -13,31 +14,68 @@ import org.springframework.web.bind.annotation.RequestMapping;
 
 import com.itwillbs.domain.AdminFaqDTO;
 import com.itwillbs.domain.AdminNoticeDTO;
+import com.itwillbs.domain.LessonDTO;
+import com.itwillbs.domain.MemberDTO;
 import com.itwillbs.domain.PageDTO;
 import com.itwillbs.service.AdminFaqService;
 import com.itwillbs.service.AdminNoticeService;
+import com.itwillbs.service.LessonService;
+import com.itwillbs.service.MemberService;
 
 @Controller
 @RequestMapping("/admin/*")
 public class AdminBoardController {
 	@Inject
 	private AdminNoticeService adminNoticeService;
-	
-	@Inject
 	private AdminFaqService adminFaqService;
+	private LessonService lessonService;
+	private MemberService memberService;
+	
+	@Autowired
+	public AdminBoardController(LessonService lessonService , MemberService memberService) {
+		this.lessonService=lessonService;
+		this.memberService=memberService;
+	}
+	
 	
 	@GetMapping("/memberAdmin")
-	public String memberAdmin() {
+	public String memberAdmin( Model model , HttpServletRequest request) {
 		System.out.println("AdminBoardController memberAdmin()");
 		
+		int pageSize = 10;
+		String pageNum = request.getParameter("pageNum");
+		if(pageNum == null) {
+			pageNum="1";
+		}
+		int currentPage = Integer.parseInt(pageNum);
+		PageDTO pageDTO = new PageDTO();
+		pageDTO.setPageSize(pageSize);
+		pageDTO.setPageNum(pageNum);
+		pageDTO.setCurrentPage(currentPage);
+		
+		MemberDTO memberDTO = new MemberDTO();
+		List<MemberDTO> memberList = memberService.getMemberList(memberDTO);
+		model.addAttribute("memberList", memberList);
 		return "admin/memberAdmin";
 	}
 	
 	@GetMapping("/lessonAdmin")
-	public String lessonAdmin() {
-		System.out.println("AdminBoardController lessonAdmin()");
-		
-		return "admin/lessonAdmin";
+	public String lessonAdmin(HttpServletRequest request,  Model model) {
+	    System.out.println("AdminBoardController lessonAdmin()" );
+	    
+	    int pageSize = 10;
+		String pageNum = request.getParameter("pageNum");
+		if(pageNum == null) {
+			pageNum="1";
+		}
+		int currentPage = Integer.parseInt(pageNum);
+		PageDTO pageDTO = new PageDTO();
+		pageDTO.setPageSize(pageSize);
+		pageDTO.setPageNum(pageNum);
+		pageDTO.setCurrentPage(currentPage);
+	    List<LessonDTO> lessonList = lessonService.getLessonList(pageDTO);
+	    model.addAttribute("lessonList", lessonList);
+	    return "admin/lessonAdmin";
 	}
 	
 	@GetMapping("/paymentAdmin")

@@ -75,12 +75,13 @@
                                     </tr>
                                 </thead>
                                 <tbody>
-                                    <c:forEach var="lesson" items="${lessons}">
+                                    <c:forEach var="lesson" items="${lessonList}">
                                         <tr>
-                                            <td>${memberDTO.id}</td>
-                                            <td>${lessonDTO.subCategory}</td>
-                                            <t>${lessonDTO.date}</td>
-                                            <td>${lessonDTO.status}</td>
+                                            <td>${lesson.id}</td> 
+								            <td>${lesson.subCategory}</td>
+								            <td>${lesson.subject}</td> 
+								            <td>${lesson.date}</td>
+								            <td>${lesson.status}</td>
                                         </tr>
                                     </c:forEach>
                                 </tbody>
