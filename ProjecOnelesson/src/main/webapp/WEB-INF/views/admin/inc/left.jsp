@@ -32,9 +32,9 @@
                             </a>
                             <div class="collapse" id="collapseBoardManagement" aria-labelledby="headingOne" data-bs-parent="#sidenavAccordion">
                                 <nav class="sb-sidenav-menu-nested nav">
-                                    <a class="nav-link" href="${pageContext.request.contextPath}/admin/noticeList">공지/이벤트 게시판</a>
-                                    <a class="nav-link" href="${pageContext.request.contextPath}/admin/faqList">FAQ 게시판</a>
-                                    <a class="nav-link" href="${pageContext.request.contextPath}/admin/qnaList">Q&A 게시판</a>
+                                    <a class="nav-link" href="${pageContext.request.contextPath}/admin/notice">공지/이벤트 게시판</a>
+                                    <a class="nav-link" href="${pageContext.request.contextPath}/admin/faq">FAQ 게시판</a>
+                                    <a class="nav-link" href="${pageContext.request.contextPath}/admin/qna">Q&A 게시판</a>
                                 </nav>
                             </div>
                             
