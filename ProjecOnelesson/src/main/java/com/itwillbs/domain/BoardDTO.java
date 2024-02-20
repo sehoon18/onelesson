@@ -17,6 +17,7 @@ public class BoardDTO {
 	private Timestamp update; //문의/신고 답변일
 	private int readcount;
 	private Blob image;
+	private String id;
 	
 	@Override
 	public String toString() {
@@ -90,6 +91,14 @@ public class BoardDTO {
 	}
 	public void setImage(Blob image) {
 		this.image = image;
+	}
+
+	public String getId() {
+		return id;
+	}
+
+	public void setId(String id) {
+		this.id = id;
 	}
 	
 }

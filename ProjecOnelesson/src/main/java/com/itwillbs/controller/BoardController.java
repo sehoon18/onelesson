@@ -301,7 +301,7 @@ public class BoardController {
 	
 	@PostMapping("/qnaAnswerPro")
 	public String qnaContentPro(HttpSession session, BoardDTO boardDTO, AdminDTO adminDTO) {
-		System.out.println("BoardController qnaContentPro()");
+		System.out.println("BoardController qnaAnswerPro()");
 		
 		AdminService adminService = new AdminService();
 		adminDTO = adminService.adminCheck(adminDTO);
