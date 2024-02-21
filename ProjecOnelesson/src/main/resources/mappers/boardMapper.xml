@@ -5,12 +5,9 @@
   
 <mapper namespace="com.itwillbs.mappers.boardMapper">
 	
-	<select id="getMaxNoticeNum" resultType="java.lang.Integer">
-		select max(NOTICE_NUM) from NOTICE
-	</select>
-	
 	<select id="getNoticeList" resultType="com.itwillbs.domain.BoardDTO">
-		select * from NOTICE
+		select NOTICE_NUM as "num", ADMIN_ID as "id", NOTICE_TYPE as "type", NOTICE_SUBJECT as "subject", NOTICE_CONTENT as "content", NOTICE_DATE as "date", NOTICE_READCOUNT as "readcount", NOTICE_IMAGE as "image" from NOTICE
+		where NOTICE_TYPE = #{type}
 		order by NOTICE_NUM desc
 		limit #{startRow}, #{pageSize}
 	</select>
@@ -20,7 +17,7 @@
 	</select>
 	
 	<select id="getNotice" resultType="com.itwillbs.domain.BoardDTO">
-		select * from NOTICE
+		select NOTICE_NUM as "num", ADMIN_ID as "id", NOTICE_TYPE as "type", NOTICE_SUBJECT as "subject", NOTICE_CONTENT as "content", NOTICE_DATE as "date", NOTICE_READCOUNT as "readcount", NOTICE_IMAGE as "image" from NOTICE
 		where NOTICE_NUM = #{num}
 	</select>
 	
@@ -31,7 +28,7 @@
 	</update>
 	
 	<select id="getFaqList" resultType="com.itwillbs.domain.BoardDTO">
-		select * from FAQ
+		select FAQ_NUM as "num", FAQ_SUBJECT as "subject" from FAQ
 		order by FAQ_NUM desc
 		limit #{startRow}, #{pageSize}
 	</select>
@@ -40,12 +37,8 @@
 		select count(*) from FAQ
 	</select>
 	
-	<select id="getMaxFaqNum" resultType="java.lang.Integer">
-		select max(FAQ_NUM) from FAQ
-	</select>
-	
 	<select id="getFaq" resultType="com.itwillbs.domain.BoardDTO">
-		select * from FAQ
+		select FAQ_NUM as "num", ADMIN_ID as "id", FAQ_SUBJECT as "subject", FAQ_CONTENT as "content" from FAQ
 		where FAQ_NUM = #{num}
 	</select>
 	    
@@ -126,5 +119,24 @@
 		set LQNA_ANSWER= #{answer}
 		where LQNA_NUM = #{num}
 	</update>
+	
+    <insert id="insertReview">
+    	insert into REVIEW(MEM_ID, LES_NUM, REVIEW_CONTENT, REVIEW_UPDATE, REVIEW_IMAGE, REVIEW_RATING)
+		values(#{id}, #{num}, #{content}, #{update}, #{preview}, #{rating})
+    </insert>
+    
+	<select id="getMyReviewList" resultType="com.itwillbs.domain.BoardDTO">
+		select REVIEW_NUM as "num", REVIEW_CONTENT as "content", REVIEW_UPDATE as "update", REVIEW_RATING as "rating"
+		from REVIEW
+		WHERE MEM_ID = #{id}
+		order by REVIEW_NUM desc
+		limit #{startRow}, #{pageSize}
+	</select>
+	
+	<select id="getMyReviewCount" resultType="java.lang.Integer">
+		select count(*)
+		from REVIEW
+		WHERE MEM_ID = #{id}
+	</select>
 	
 </mapper>

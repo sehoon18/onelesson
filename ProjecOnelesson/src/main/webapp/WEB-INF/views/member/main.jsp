@@ -231,7 +231,7 @@
   </div>
 </div>
 
-    <hr class="featurette-divider">
+    <hr class="featurette-divider" name="info">
 
     <div class="row featurette">
       <div class="col-md-5 text-center" style="width: 2000px"> <!-- 이미지 -->

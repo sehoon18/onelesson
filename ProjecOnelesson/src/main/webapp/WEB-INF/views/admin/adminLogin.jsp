@@ -115,6 +115,7 @@
 					</div>
 
   	<div class="info">
+  					<span>&nbsp;&nbsp;&nbsp;&nbsp;</span> 
 					<span>
 						<button type="button"
 							style="border: none; background-color: transparent; font-size: 12px; color:black; border: none;"

@@ -16,13 +16,6 @@ public class BoardDAO {
 	@Inject
 	private SqlSession sqlSession;
 	private static final String namespace = "com.itwillbs.mappers.boardMapper";
-	
-
-	public int getMaxNoticeNum() {
-		System.out.println("BoardDAO getMaxNoticeNum()");
-		
-		return sqlSession.selectOne(namespace + ".getMaxNoticeNum");
-	}
 
 	public List<BoardDTO> getNoticeList(PageDTO pageDTO) {
 		System.out.println("BoardDAO getNoticeList()");
@@ -60,12 +53,6 @@ public class BoardDAO {
 		System.out.println("BoardDAO getFaqCount()");
 		
 		return sqlSession.selectOne(namespace + ".getFaqCount");
-	}
-
-	public int getMaxFaqNum() {
-		System.out.println("BoardDAO getMaxFaqNum()");
-		
-		return sqlSession.selectOne(namespace + ".getMaxFaqNum");
 	}
 
 	public BoardDTO getFaq(BoardDTO boardDTO) {
@@ -126,6 +113,18 @@ public class BoardDAO {
 
 	public void updateLqna(BoardDTO boardDTO) {
 		sqlSession.update(namespace + ".updateLqna", boardDTO);
+	}
+
+	public void insertReview(BoardDTO boardDTO) {
+		sqlSession.insert(namespace + ".insertReview", boardDTO);
+	}
+
+	public List<BoardDTO> getMyReviewList(PageDTO pageDTO) {
+		return sqlSession.selectList(namespace + ".getMyReviewList", pageDTO);
+	}
+
+	public int getMyReviewCount(PageDTO pageDTO) {
+		return sqlSession.selectOne(namespace + ".getMyReviewCount", pageDTO);
 	}
 
 

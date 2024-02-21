@@ -23,7 +23,7 @@
         </div>
         <div class="col">
             <ul class="nav flex-column flex-md-row" style="margin-left: 200px; font-weight: 900;">
-                <li class="nav-item"><a href="#" class="nav-link text-body-secondary">사이트 이용안내</a></li>
+                <li class="nav-item"><a href="${pageContext.request.contextPath}/member/main/#info" class="nav-link text-body-secondary">사이트 이용안내</a></li>
 
                 <li class="nav-item"><a href="${pageContext.request.contextPath}/member/memberAgreement" class="nav-link text-body-secondary">이용약관</a></li>
 

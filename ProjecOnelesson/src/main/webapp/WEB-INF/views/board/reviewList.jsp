@@ -1,5 +1,6 @@
 <%@ page language="java" contentType="text/html; charset=UTF-8"
     pageEncoding="UTF-8"%>
+<%@ taglib prefix="c" uri="http://java.sun.com/jsp/jstl/core"%>
 <!DOCTYPE html>
 <html>
 <head>
@@ -36,31 +37,19 @@
 </div>
 
 <div align="center">
-<table style="margin-left: auto; margin-right: auto; margin-top: 15px; margin-bottom: 3px">
-	<tr>
-		<td style="padding-left: 5px">
-			<select class="custom-select" id="choice" name="choice">
-				<option selected>검색</option>
-				<option value="title">제목</option>
-				<option value="content">내용</option>
-			</select>
-		</td>
-		<td style="padding-left: 5px" class="align-middle">
-			<input type="text" class="form-control" id="search" name="search" placeholder="검색어" value="">
-		<td style="padding-left: 5px">
-			<span>
-				<button type="button" class="btn btn-primary" onclick="searchBtn()">검색</button>
-			</span>
-		</td>
-	</tr>
-</table>
 <br>
 <table class="table table-hover table-sm" style="width: 1000px">
-<col width="70"><col width="600"><col width="100"><col width="150">
+<col width="70"><col width="600"><col width="200"><col width="150">
 <thead>
 <tr class="bg-primary" style="color: white;">
-	<th>번호</th><th>제목</th><th>작성일</th><th>조회수</th>
+	<th>번호</th><th>내용</th><th>작성일</th><th>별점</th>
 </tr>
+<c:forEach var="boardDTO" items="${boardList }">
+<tr class="bg-primary" style="color: white; height: 150px;">
+	<td>${boardDTO.num }</td><td>${boardDTO.content }</td><td>${boardDTO.update}</td><td>${boardDTO.rating }</td>
+</tr>
+</c:forEach>
+
 </thead>
 </table>
 <div style="width: 1000px; height: 300px;"></div>

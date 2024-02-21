@@ -14,18 +14,14 @@
 		select count(*) from FAQ
 	</select>
 	
-	<select id="getMaxFaqNum" resultType="java.lang.Integer">
-		select max(FAQ_NUM) from FAQ
-	</select>
-	
 	<select id="getFaqList" resultType="com.itwillbs.domain.AdminFaqDTO">
-		select FAQ_NUM as "num", FAQ_SUBJECT as "subject" from FAQ
+		select FAQ_NUM as "num", ADMIN_ID as "id", FAQ_SUBJECT as "subject", FAQ_CONTENT as "content" from FAQ
 		order by FAQ_NUM desc
 		limit #{startRow}, #{pageSize}
 	</select>
 	
 	<select id="getFaq" resultType="com.itwillbs.domain.AdminFaqDTO">
-		select FAQ_NUM as "num", ADMIN_ID as "id", FAQ_SUBJECT as "subject", FAQ_CONTENT as "content" from FAQ
+		select FAQ_NUM as "num", FAQ_SUBJECT as "subject" from FAQ
 		where FAQ_NUM = #{num}
 	</select>
 	

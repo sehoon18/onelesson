@@ -18,7 +18,7 @@ import com.itwillbs.domain.LessonDTO;
 import com.itwillbs.domain.MemberDTO;
 import com.itwillbs.domain.PageDTO;
 import com.itwillbs.service.LessonService;
-import com.itwillbs.service.MemberService;
+import com.itwillbs.service.MemberService;import com.mysql.cj.Session;
 
 @Controller
 @RequestMapping("/member/*")
@@ -115,11 +115,21 @@ public class memberController {
 		System.out.println(memberDTO);	
 		MemberDTO memberDTO2 = memberService.userCheck(memberDTO);
 		if(memberDTO2 != null) {
-		session.setAttribute("id", memberDTO2.getId());
-		return "redirect:/member/main";
-		}else {
-		return "redirect:/member/memberLogin";
+			if(memberDTO2.getStatus() == 0) {
+				session.setAttribute("id", memberDTO2.getId());
+				return "redirect:/member/main";
+			} else {
+				return "redirect:/member/inactive";
+			}
+		} else {
+			return "redirect:/member/memberLogin";
 		}
+	}
+	
+	@GetMapping("/inactive")
+	public String inactive(HttpSession session, Model model) {
+		System.out.println("MemberController inactive()");
+		return "member/inactive";
 	}
 	
 	@GetMapping("/memberUpdate")
@@ -196,10 +206,33 @@ public class memberController {
 	}
 	
 	@GetMapping("/myInfo")
-	public String myInfo() {
+	public String myInfo(HttpSession session, MemberDTO memberDTO, Model model) {
 		System.out.println("MemberController myInfo()");
+		
+		String id = (String)session.getAttribute("id");
+		memberDTO = memberService.getMemberAll(id);
+		model.addAttribute("memberDTO", memberDTO);
 		return "member/myInfo";
 	}
+	
+	@PostMapping("/infoUpdate")
+	public String infoUpdate(HttpServletRequest request ,HttpSession session, MemberDTO memberDTO, Model model) {
+		System.out.println("MemberController infoUpdate()");
+		memberDTO.setId((String)session.getAttribute("id"));
+		memberDTO = memberService.userCheck(memberDTO);
+		if(memberDTO != null) {
+			memberDTO.setImage(request.getParameter("npass"));
+			memberService.infoUpdate(memberDTO);
+			model.addAttribute("memberDTO", memberDTO);
+			System.out.println("비밀번호 변경 성공");
+			return "redirect:/member/myInfo";
+		} else {
+			System.out.println("비밀번호 변경 실패");
+			return "redirect:/member/myInfo";
+		}
+		
+	}
+	
 	@GetMapping("/mypage")
 	public String mypage(HttpSession session, MemberDTO memberDTO, Model model, LessonDTO lessonDTO, PageDTO pageDTO, HttpServletRequest request) {
 		System.out.println("MemberController mypage()");
@@ -241,8 +274,31 @@ public class memberController {
 		model.addAttribute("lessonList", lessonList);
 		model.addAttribute("pageDTO", pageDTO);
 		
-		
 		return "member/mypage";
+	}
+	
+	@GetMapping("/resign")
+	public String resign(MemberDTO memberDTO, Model model) {
+		System.out.println("MemberController resign");
+		
+		model.addAttribute("memberDTO", memberDTO);
+		return "member/resign";
+	}
+	
+	@PostMapping("/resignPro")
+	public String resignPro(HttpSession session, MemberDTO memberDTO, Model model) {
+		System.out.println("MemberController resignPro");
+		
+		memberDTO.setId((String)session.getAttribute("id"));
+		memberDTO = memberService.userCheck(memberDTO);
+		System.out.println(memberDTO);
+		if(memberDTO != null) {
+			memberService.deleteMember(memberDTO);
+			session.invalidate();
+			return "redirect:/member/main";
+		} else {
+			return "redirect:/member/resign";
+		}
 	}
 
 	@GetMapping("/myLessonList")
@@ -257,8 +313,6 @@ public class memberController {
 	}
 
 // ----------------- TEST ------------------------------
-	
-
 	
 	@GetMapping("/logout")
 	public String logout(HttpSession session) {

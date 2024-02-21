@@ -1,18 +1,23 @@
 package com.itwillbs.controller;
 
+import java.io.File;
 import java.sql.Timestamp;
 import java.util.List;
+import java.util.UUID;
 
+import javax.annotation.Resource;
 import javax.inject.Inject;
 import javax.servlet.http.HttpServletRequest;
 import javax.servlet.http.HttpSession;
 
 import org.springframework.stereotype.Controller;
 import org.springframework.ui.Model;
+import org.springframework.util.FileCopyUtils;
 import org.springframework.web.bind.annotation.GetMapping;
 import org.springframework.web.bind.annotation.PostMapping;
 import org.springframework.web.bind.annotation.RequestMapping;
 import org.springframework.web.bind.annotation.ResponseBody;
+import org.springframework.web.multipart.MultipartFile;
 
 import com.itwillbs.domain.AdminDTO;
 import com.itwillbs.domain.BoardDTO;
@@ -35,16 +40,41 @@ public class BoardController {
 	private AdminService adminService;
 	@Inject
 	private MemberService memberService;
-
-	@GetMapping("/review")
-	public String review() {
-		System.out.println("BoardController review()");
+	@Resource(name = "uploadPath")
+	private String uploadPath;
+	
+	@GetMapping("/reviewWrite")
+	public String review(LessonDTO lessonDTO, Model model) {
+		System.out.println("BoardController reviewWrite()");
 		
-		return "board/review";
+		lessonDTO = lessonService.getLesson(lessonDTO);
+		model.addAttribute("lessonDTO", lessonDTO);
+		
+		return "board/reviewWrite";
+	}
+	
+	@PostMapping("/reviewWritePro")
+	public String reviewWritePro(HttpServletRequest request, MultipartFile preview) throws Exception{
+		System.out.println("BoardController reviewWritePro()");
+		
+		UUID uuid = UUID.randomUUID();
+		String filename = uuid.toString() + "_" + preview.getOriginalFilename();
+		FileCopyUtils.copy(preview.getBytes(), new File(uploadPath, filename));
+		
+		BoardDTO boardDTO = new BoardDTO();
+		boardDTO.setId(request.getParameter("id"));
+		boardDTO.setNum(Integer.parseInt(request.getParameter("num")));
+		boardDTO.setContent(request.getParameter("content"));
+		boardDTO.setUpdate(new Timestamp(System.currentTimeMillis()));
+		boardDTO.setRating(Integer.parseInt(request.getParameter("rating")));
+		boardDTO.setPreview(filename);
+		boardService.insertReview(boardDTO);
+		
+		return "redirect:/board/reviewList";
 	}
 	
 	@GetMapping("/reviewList")
-	public String reviewList(HttpServletRequest request, PageDTO pageDTO, Model model) {
+	public String reviewList(HttpServletRequest request, PageDTO pageDTO, HttpSession session, Model model) {
 		System.out.println("BoardController reviewList()");
 		
 		int pageSize = 10;
@@ -58,10 +88,11 @@ public class BoardController {
 		pageDTO.setPageSize(pageSize);
 		pageDTO.setPageNum(pageNum);
 		pageDTO.setCurrentPage(currentPage);
+		pageDTO.setId((String)session.getAttribute("id"));
 		
-		List<BoardDTO> noticeList = boardService.getNoticeList(pageDTO);
+		List<BoardDTO> boardList = boardService.getMyReviewList(pageDTO);
 		
-		int count = boardService.getNoticeCount();
+		int count = boardService.getMyReviewCount(pageDTO);
 		int pageBlock = 10;
 		int startPage = (currentPage - 1)/pageBlock * pageBlock + 1;
 		int endPage = startPage + pageBlock - 1;
@@ -78,16 +109,16 @@ public class BoardController {
 		pageDTO.setPageCount(pageCount);
 		
 		model.addAttribute("pageDTO", pageDTO);
-		model.addAttribute("noticeList", noticeList);
+		model.addAttribute("boardList", boardList);
 		
 		return "board/reviewList";
 	}
 	
-	@GetMapping("/noticeList")
+	@GetMapping("/notice")
 	public String noticeList(HttpServletRequest request, PageDTO pageDTO, Model model) {
 		System.out.println("BoardController noticeList()");
 		
-		int pageSize = 10;
+		int pageSize = 5;
 		String pageNum = request.getParameter("pageNum");
 		
 		if(pageNum == null) {
@@ -102,7 +133,7 @@ public class BoardController {
 		List<BoardDTO> noticeList = boardService.getNoticeList(pageDTO);
 		
 		int count = boardService.getNoticeCount();
-		int pageBlock = 10;
+		int pageBlock = 5;
 		int startPage = (currentPage - 1)/pageBlock * pageBlock + 1;
 		int endPage = startPage + pageBlock - 1;
 		int pageCount = count / pageSize + (count % pageSize == 0 ? 0 : 1);
@@ -141,7 +172,7 @@ public class BoardController {
 	public String faqList(HttpServletRequest request, PageDTO pageDTO, Model model) {
 		System.out.println("BoardController faqList()");
 		
-		int pageSize = 10;
+		int pageSize = 5;
 		String pageNum = request.getParameter("pageNum");
 		
 		if(pageNum == null) {
@@ -156,7 +187,7 @@ public class BoardController {
 		List<BoardDTO> faqList = boardService.getFaqList(pageDTO);
 		
 		int count = boardService.getFaqCount();
-		int pageBlock = 10;
+		int pageBlock = 5;
 		int startPage = (currentPage - 1)/pageBlock * pageBlock + 1;
 		int endPage = startPage + pageBlock - 1;
 		int pageCount = count / pageSize + (count % pageSize == 0 ? 0 : 1);
@@ -189,8 +220,7 @@ public class BoardController {
 		return "board/faqContent";
 	}
 	
-	// 
-	@GetMapping("/qnaList")
+	@GetMapping("/qna")
 	public String lessonList(HttpServletRequest request, PageDTO pageDTO, Model model, LessonDTO lessonDTO, HttpSession session) {
 		System.out.println("LessonController qnaList()");
 		

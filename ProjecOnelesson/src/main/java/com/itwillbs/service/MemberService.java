@@ -66,6 +66,15 @@ public class MemberService {
 		return memberDAO.getMemberByEmail(email);
 	}
 
+	public MemberDTO getMemberAll(String id) {
+		System.out.println("MemberService getMemberAll()");
+		return memberDAO.getMemberAll(id);
+	}
+
+	public void infoUpdate(MemberDTO memberDTO) {
+		memberDAO.infoUpdate(memberDTO);
+	}
+
 	
 	
 	

@@ -8,8 +8,6 @@ import org.apache.ibatis.session.SqlSession;
 import org.springframework.stereotype.Repository;
 
 import com.itwillbs.domain.AdminFaqDTO;
-import com.itwillbs.domain.AdminNoticeDTO;
-import com.itwillbs.domain.BoardDTO;
 import com.itwillbs.domain.PageDTO;
 
 @Repository
@@ -23,12 +21,6 @@ public class AdminFaqDAO {
 		System.out.println(adminFaqDTO);
 		
 		sqlSession.insert(namespace + ".faqInsert", adminFaqDTO);
-	}
-	
-	public int getMaxFaqNum() {
-		System.out.println("AdminFaqDAO getMaxFaqNum()");
-		
-		return sqlSession.selectOne(namespace + ".getMaxFaqNum");
 	}
 	
 	public List<AdminFaqDTO> getFaqList(PageDTO pageDTO) {

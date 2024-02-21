@@ -12,7 +12,7 @@
     <select id="getLessonList" resultType="com.itwillbs.domain.LessonDTO">
     	select LES_SUBJECT as "subject", LES_UPDATE as "update", LES_NUM as "num", LES_STATUS as "status", LES_PREVIEW as "preview", LES_PRICE as "price",LES_SUBCATEGORY as "subCategory" , LES_DATE as "date" , MEM_ID as "id"
     	from LESSON
-    	where LES_STATUS = 1
+    	where LES_STATUS = 0
     	order by LES_NUM desc
     	limit #{startRow}, #{pageSize}
     </select>
@@ -20,14 +20,14 @@
     <select id="getLessonCount" resultType="java.lang.Integer">
     	select count(*)
     	from LESSON
-    	where LES_STATUS = 1
+    	where LES_STATUS = 0
     </select>
     
     <select id="getlessonSearch" resultType="com.itwillbs.domain.LessonDTO">
     	select LES_SUBJECT as "subject", LES_UPDATE as "update", LES_NUM as "num", LES_STATUS as "status", LES_PREVIEW as "preview", LES_PRICE as "price"
     	from LESSON
     	where LES_SUBJECT like CONCAT('%',#{search},'%')
-    	and   LES_STATUS = 1
+    	and   LES_STATUS = 0
     	order by LES_NUM desc
     	limit #{startRow}, #{pageSize}
     </select>
@@ -37,7 +37,7 @@
     	select LES_SUBJECT as "subject", LES_UPDATE as "update", LES_NUM as "num", LES_STATUS as "status", LES_PREVIEW as "preview", LES_PRICE as "price"
     	from LESSON
     	where LES_CATEGORY = #{search}
-    	and   LES_STATUS = 1
+    	and   LES_STATUS = 0
     	order by LES_NUM desc
     	limit #{startRow}, #{pageSize}
     </select>
@@ -54,7 +54,7 @@
 	</insert>
    
 	<select id="getMyLessonList" resultType="com.itwillbs.domain.LessonDTO">
-    	SELECT LES_SUBJECT as "subject", LES_PREVIEW as "preview"
+    	SELECT LES_SUBJECT as "subject", LES_PREVIEW as "preview", LES_NUM as "num"
 		from LESSON
 		where LES_NUM IN (SELECT LES_NUM
 							from ORDERS

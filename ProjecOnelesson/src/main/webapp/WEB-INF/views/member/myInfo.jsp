@@ -118,177 +118,159 @@ option {
 }
         
         
-
     </style>
 </head>
 <body>
 
-
-    <form action="${pageContext.request.contextPath}/lesson/joinPro" method="POST">
+<div style="width: 800px;">
+    <form action="${pageContext.request.contextPath}/member/infoUpdate" method="POST">
     <h1 class="h3 mb-3 fw-normal" style="text-align: left;">회원 정보 수정</h1>
        
     <div class="col">
-						<div class="input-group">
-							<span class="form-floating">
-								<input type="text" name="member_user_id"
-									class="form-control input-cc inputId" id="floatingId"
-									maxlength="40" placeholder="" readonly="아이디는 변경 불가"> <label for="floatingId">아이디는 변경 불가능 합니다.</label>
-								<font id="checkId" size="2"
-									class="position-absolute top-50 start-20 translate-middle-y"
-									style="right: 9px; margin-top: 2px"></font>
-							</span>
-						</div>
-						<button onclick="checkDuplicate('아이디')">중복확인</button>
+			<div class="input-group">
+				<span class="form-floating">
+					<input type="text" name="member_user_id"
+						class="form-control input-cc inputId" id="floatingId"
+						maxlength="40" value="${memberDTO.id }" readonly><label for="floatingId">아이디</label>
+					<font id="checkId" size="2"
+						class="position-absolute top-50 start-20 translate-middle-y"
+						style="right: 9px; margin-top: 2px"></font>
+				</span>
+			</div>
+	</div>
+   		<br>
+   		<hr>
+   		<h6 align="center">비밀번호 변경</h6>
+			<div class="col">
+				<div class="input-group">
+					<div class="form-floating">
+						<input type="password" name="pass"
+							class="form-control input-cc inputPw2"
+							id="floatingCheckPassword" maxlength="40" placeholder="">
+						<label for="floatinCheckPassword">현재 비밀번호</label> 
 					</div>
-   		
-   		
-   		
-   		
-   		
-   		<div class="col">
+				</div>
+			</div>
+					
+ 					<div class="col">
 						<div class="input-group">
 							<div class="form-floating">
-								<input type="password" name="member_pw"
-									class="form-control input-cc inputPw" id="floatingPassword"
-									maxlength="40" placeholder=""> 
-									<label for="floatingPassword">비밀번호(필수)</label>
-<!-- 								<div class="password-hints"> -->
-<!-- 									<font class="hint1" color="red">대소문자 &#10003;</font> <font -->
-<!-- 										class="hint2" color="red">숫자 &#10003;</font> <font -->
-<!-- 										class="hint3" color="red">특수문자 &#10003;</font> <font -->
-<!-- 										class="hint4" color="red">8~20자 이내 &#10003;</font> -->
-<!-- 								</div> -->
+								<input type="password" name="npass"
+									class="form-control input-cc inputPw" 
+									id="floatingPassword" maxlength="40" placeholder=""> 
+								<label for="floatingPassword">새로운 비밀번호</label>
+								<font id="pwCheck" size="2" color="red"
+									class="position-absolute top-50 start-20 translate-middle-y"
+									style="right: 9px; margin-top: 2px"></font>
 							</div>
 						</div>
 					</div>
+					
 					
 
 					<div class="col">
 						<div class="input-group">
 							<div class="form-floating">
-								<input type="password" name="member_pw2"
+								<input type="password" name="npass2"
 									class="form-control input-cc inputPw2"
 									id="floatingCheckPassword" maxlength="40" placeholder="">
-								<label for="floatinCheckPassword">비밀번호 확인(필수)</label> <font
+								<label for="floatinCheckPassword">새로운 비밀번호 확인</label> <font
 									id="pwDoubleCheck" size="2" color="red"
 									class="position-absolute top-50 start-20 translate-middle-y"
 									style="right: 9px; margin-top: 2px"></font>
 							</div>
 						</div>
 					</div>
-   		
-    
-    <div class="col">
-						<div class="input-group">
-							<div class="form-floating">
-								<input type="text" name="member_user_id"
-									class="form-control input-cc inputId" id="floatingId"
-									maxlength="40" placeholder=""> <label for="floatingId">닉네임(필수)</label>
-								<font id="checkId" size="2"
-									class="position-absolute top-50 start-20 translate-middle-y"
-									style="right: 9px; margin-top: 2px"></font>
-							</div>
-						</div>
-						<button onclick="checkDuplicate('닉네임')">중복확인</button>
-					</div>
-        
+					
+					  <div style="text-align: center"><button type="submit" class="backPage">수정하기</button></div>
+   		<hr>
+    <br>
 
 				<!-- 이름 -->
 					<div class="form-floating d-flex mt-2">
-						<input type="text" name="member_name"
-							class="form-control input-cc " id="floatingName" placeholder="">
+						<input type="text" name="name"
+							class="form-control input-cc inputName" id="floatingName" value="${memberDTO.name }" readonly>
 						<label for="floatingName">이름</label>
-					</div>
+						<font id="nameError" size="2" 
+						class="position-absolute top-50 start-20 translate-middle-y" 
+						style="right: 9px; margin-top: 2px"></font>
+					</div>					
 
 
-<!--         <label>성별*</label> -->
-<!--         <input calss="form-check-input" type="radio" id="male" name="gender" value="male" checked> -->
-<!--         <label for="male">남</label> -->
-<!--         <input calss="form-check-input" type="radio" id="female" name="gender" value="female"> -->
-<!--         <label for="female">여</label> -->
-        
-        
-        <div class="form-floating d-flex">
-						<div class="form-check form-check-inline">
-							<input type="radio" name="member_gender" class="form-check-input"
-								id="floatingKor" value="M" checked>
-								 <label class="form-check-label" for="floatingKor">남</label>
-						</div>
-						<div class="form-check form-check-inline">
-							<input type="radio" name="member_gender" class="form-check-input"
-								id="floatingFor" value="W"> 
-								<label class="form-check-label" for="floatingFor">여</label>
-						</div>
-					</div>
-        
-        
-        
-        
-
-        <label for="birthdate">생년월일*</label>
-       <div class="info" id="info__birth">
-  <select class="box" id="birth-year">
-    <option disabled selected>출생 연도</option>
-  </select>
-  <select class="box" id="birth-month">
-    <option disabled selected>월</option>
-  </select>
-  <select class="box" id="birth-day">
-    <option disabled selected>일</option>
-  </select>
-</div>
-        
+<!--         <label for="birthdate">생년월일</label> -->
+					<div class="form-floating d-flex mt-2">
+						<input type="text" 
+							class="form-control input-cc inputName" id="floatingbirth" value="${memberDTO.birth}" readonly>
+						<label for="floatingbirth">생년월일</label>
+						<font id="nameError" size="2" 
+						class="position-absolute top-50 start-20 translate-middle-y" 
+						style="right: 9px; margin-top: 2px"></font>
+					</div>        
         
         
         
         					<!-- 연락처 -->
-					<div class="form-floating d-flex">
-						<input type="text" name="member_phone"
-							class="form-control input-cc" id="floatingTel" placeholder="">
-						<label for="floatingTel"><span>연락처 '-' 제외 입력</span></label>
-					</div>
-        
-        
-        
+        		 <div class="col">			
+        			<div class="input-group">
+							<div class="form-floating">
+    <input type="text" name="phone" class="form-control input-cc inputPhone" id="floatingTel" value="${memberDTO.phone }" readonly>
+    <label for="floatingTel"><span>연락처</span></label>
+<font id="checkPhone" size="2" 
+class="position-absolute top-50 start-20 translate-middle-y" 
+style="right: 9px; margin-top: 2px"></font>
+     </div>
+						</div>
+					</div>        
         
 
-<!--         <label for="phone">연락처*</label> -->
-<!--         <input type="tel" id="phone" name="phone" pattern="[0-9]{3}-[0-9]{4}-[0-9]{4}" required> -->
-        <button onclick="verifyPhone()">인증확인</button>
+<!--         <label for="address">주소</label> -->
+					<div class="form-floating d-flex mt-2">
+						<input type="text" 
+							class="form-control input-cc inputName" id="floatingaddr" value="${memberDTO.address }" readonly>
+						<label for="floatingaddr">주소</label>
+						<font id="nameError" size="2" 
+						class="position-absolute top-50 start-20 translate-middle-y" 
+						style="right: 9px; margin-top: 2px"></font>
+					</div>       
 
-        <label for="address">주소*</label>
-        <input type="text" id="address" name="address" required>
-
-<!--         <label for="email">이메일*</label> -->
-<!--         <input type="email" id="email" name="email" required> -->
-<!--         <button onclick="checkDuplicate('email')">중복확인</button> -->
         
-        
-         <label for="email">이메일*</label>
+<!--          <label for="email">이메일</label> -->
          <div class="form-floating d-flex">
 						<input type="text" name="member_mail"
-							class="form-control input-cc" id="floatingMail" placeholder="">
+							class="form-control input-cc" id="floatingMail" value="${memberDTO.email }" readonly>
 						<label for="floatingMail"><span>이메일 입력</span></label>
-					</div> @
- <input class="box" id="domain-txt" type="text"/>
-        <select class="box" id="domain-list">
-  <option value="type">직접 입력</option>
-  <option value="naver.com">naver.com</option>
-  <option value="google.com">google.com</option>
-  <option value="hanmail.net">hanmail.net</option>
-  <option value="nate.com">nate.com</option>
-  <option value="kakao.com">kakao.com</option>
-</select>
-        
-
-
-
-        <button type="button" class="next-button"
-        onclick= "location.href='${pageContext.request.contextPath}/lesson/memberLogin'">수정하기</button>
-        <button type="reset" value="초기화" class="next-button">초기화</button>
-        <button type="button" class="backPage" onclick="backPage()">취소하기</button>
+					</div> 
+        <div style="text-align: right"><button type="button" class="backPage" onclick="location.href='${pageContext.request.contextPath}/member/resign?id=${sessionScope.id}'">회원탈퇴</button></div>
     </form>
 
+</div>
+<script>
+//비밀번호 확인 입력 요소 가져오기
+const passwordConfirmInput = document.querySelector('input[name="npass2"]');
+
+//비밀번호 확인 입력 필드에 이벤트 리스너 추가
+passwordConfirmInput.addEventListener('input', function () {
+//비밀번호 입력 값과 확인 값 비교
+const passwordValue = document.querySelector('input[name="npass"]').value;
+const confirmPasswordValue = this.value;
+
+if (passwordValue !== confirmPasswordValue) {
+// 일치하지 않을 경우 메시지 표시
+displayPasswordConfirmMessage('비밀번호가 일치하지 않습니다', 'red');
+} else {
+// 일치할 경우 메시지 초기화
+displayPasswordConfirmMessage('비밀번호가 일치합니다', 'green');
+}
+});
+
+//메시지 표시 함수
+function displayPasswordConfirmMessage(message, color) {
+const pwDoubleCheckElement = document.getElementById('pwDoubleCheck');
+pwDoubleCheckElement.innerText = message;
+pwDoubleCheckElement.style.color = color;
+}
+
+</script>
     <script>
     function backPage(){
    	 alert("회원 정보 수정을 그만 둡니다.");

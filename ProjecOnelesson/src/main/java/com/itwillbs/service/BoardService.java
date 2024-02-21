@@ -147,5 +147,27 @@ public class BoardService {
 		boardDAO.updateLqna(boardDTO);
 	}
 
+	public void insertReview(BoardDTO boardDTO) {
+		boardDAO.insertReview(boardDTO);
+	}
+
+	public List<BoardDTO> getMyReviewList(PageDTO pageDTO) {
+		System.out.println("BoardService getMyReviewList()");
+		
+		int currentPage = pageDTO.getCurrentPage();
+		int pageSize = pageDTO.getPageSize();
+		int startRow = (currentPage - 1) * pageSize + 1;
+		int endRow = startRow + pageSize - 1;
+		
+		pageDTO.setStartRow(startRow - 1);
+		pageDTO.setEndRow(endRow);
+		
+		return boardDAO.getMyReviewList(pageDTO);
+	}
+
+	public int getMyReviewCount(PageDTO pageDTO) {
+		return boardDAO.getMyReviewCount(pageDTO);
+	}
+
 
 }

@@ -31,8 +31,8 @@ public class MemberDAO {
 
 
 	public MemberDTO usercheck(MemberDTO memberDTO) {
-		System.out.println("MemberService userCheck()");
-		return sqlSession.selectOne(namespace+".userCheck",memberDTO);
+		System.out.println("MemberDAO userCheck()");
+		return sqlSession.selectOne(namespace+".usercheck",memberDTO);
 	}
 
 	public MemberDTO getMember(String id) {
@@ -52,7 +52,7 @@ public class MemberDAO {
 
 	public void deleteMember(MemberDTO memberDTO) {
 		System.out.println("MemberService deleteMember()");
-		sqlSession.delete(namespace+".deleteMember",memberDTO);
+		sqlSession.update(namespace+".deleteMember",memberDTO);
 	}
 	public MemberDTO getMemberByNick(String nick) {
 		System.out.println("MemberService getMemberByNick()");
@@ -65,6 +65,12 @@ public class MemberDAO {
 	public MemberDTO getMemberByEmail(String email) {
 		System.out.println("MemberService getMemberByEmail()");
 		return sqlSession.selectOne(namespace+".getMemberByEmail",email);
+	}
+	public MemberDTO getMemberAll(String id) {
+		return sqlSession.selectOne(namespace + ".getMemberAll", id);
+	}
+	public void infoUpdate(MemberDTO memberDTO) {
+		sqlSession.update(namespace + ".infoUpdate", memberDTO);
 	}
 	
 

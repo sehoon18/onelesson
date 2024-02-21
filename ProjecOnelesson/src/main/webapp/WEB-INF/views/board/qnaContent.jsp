@@ -57,7 +57,7 @@
 <h3 style="margin-bottom: 30px;">👮‍♂️‍관리자에게 문의하기</h3>
 <table id="listTable">
 <tr><td style="width: 100px;">제목</td><td style="width: 800px;"><div class="form-floating mb-3">
-  <input type="email" class="form-control" id="floatingInput" placeholder="name@example.com" value="${boardDTO.subject }" readonly>
+  <input type="text" class="form-control" id="floatingInput" placeholder="name@example.com" value="${boardDTO.subject }" readonly>
   <label for="floatingInput">SUBJECT</label>
 </div></td></tr>
 <tr><td>내용</td><td><div class="form-floating">
