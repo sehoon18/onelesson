@@ -87,6 +87,7 @@
     <select id="getQnaCount" resultType="java.lang.Integer">
 		select count(*)
 		from QNA
+		WHERE MEM_ID = #{id}
 	</select>
 	
 	<select id="getQna" resultType="com.itwillbs.domain.BoardDTO">
@@ -100,4 +101,30 @@
 		values(#{name}, #{num}, #{subject}, #{question}, #{update})
     </insert>
     
+    <select id="getLqnaList" resultType="com.itwillbs.domain.BoardDTO">
+		select LQNA_SUBJECT as "subject", LQNA_QUESTION as "question", LQNA_NUM as "num", LQNA_UPDATE as "update"
+		from LESSON_QNA
+		WHERE MEM_ID = #{id}
+		order by LQNA_NUM desc
+		limit #{startRow}, #{pageSize}
+	</select>
+    
+	<select id="getLqnaCount" resultType="java.lang.Integer">
+		select count(*)
+		from QNA
+		WHERE MEM_ID = #{id}
+	</select>
+	
+	<select id="getLqna" resultType="com.itwillbs.domain.BoardDTO">
+		select LQNA_QUESTION as "question", LQNA_ANSWER as "answer", LQNA_SUBJECT as "subject", LQNA_NUM as "num"
+		from LESSON_QNA
+		WHERE LQNA_NUM = #{num}
+	</select>
+	
+	<update id="updateLqna">
+		update LESSON_QNA
+		set LQNA_ANSWER= #{answer}
+		where LQNA_NUM = #{num}
+	</update>
+	
 </mapper>

@@ -22,6 +22,7 @@ import com.itwillbs.domain.PageDTO;
 import com.itwillbs.service.AdminService;
 import com.itwillbs.service.BoardService;
 import com.itwillbs.service.LessonService;
+import com.itwillbs.service.MemberService;
 
 @Controller
 @RequestMapping("/board/*")
@@ -32,6 +33,8 @@ public class BoardController {
 	private LessonService lessonService;
 	@Inject
 	private AdminService adminService;
+	@Inject
+	private MemberService memberService;
 
 	@GetMapping("/review")
 	public String review() {
@@ -206,7 +209,7 @@ public class BoardController {
 		
 		List<BoardDTO> boardList = boardService.getQnaList(pageDTO);
 		
-		int count =  boardService.getQnaCount();
+		int count =  boardService.getQnaCount(pageDTO);
 		int pageBlock = 10;
 		int startPage = (currentPage - 1) / pageBlock * pageBlock + 1;
 		int endPage = startPage + pageBlock -1;
@@ -226,46 +229,6 @@ public class BoardController {
 		model.addAttribute("pageDTO", pageDTO);
 		
 		return "board/qnaList";
-	}
-
-	@GetMapping("/lessonQna")
-	public String lessonQna(HttpServletRequest request, PageDTO pageDTO, Model model, LessonDTO lessonDTO) {
-		System.out.println("LessonController lessonQna()");
-		
-//		int pageSize = 3;
-//		String pageNum = request.getParameter("pageNum");
-//		if(pageNum == null) {
-//			pageNum="1";
-//		}
-//		
-//		int currentPage = Integer.parseInt(pageNum);
-//		
-//		pageDTO.setPageSize(pageSize);
-//		pageDTO.setPageNum(pageNum);
-//		pageDTO.setCurrentPage(currentPage);
-//		
-//		List<LessonDTO> lessonList = boardService.getLessonList(pageDTO);
-//		
-//		int count =  boardService.getLessonCount();
-//		int pageBlock = 10;
-//		int startPage = (currentPage - 1) / pageBlock * pageBlock + 1;
-//		int endPage = startPage + pageBlock -1;
-//		int pageCount = count / pageSize + (count % pageSize == 0 ? 0 : 1);
-//		
-//		if(endPage > pageCount) {
-//			endPage = pageCount;
-//		}
-//		
-//		pageDTO.setCount(pageCount);
-//		pageDTO.setPageBlock(pageBlock);
-//		pageDTO.setStartPage(startPage);
-//		pageDTO.setEndPage(endPage);
-//		pageDTO.setPageCount(pageCount);
-//		
-//		model.addAttribute("lessonList", lessonList);
-//		model.addAttribute("pageDTO", pageDTO);
-		
-		return "board/lessonQna";
 	}
 	
 	@GetMapping("/qnaWrite")
@@ -295,12 +258,17 @@ public class BoardController {
 	}
 
 	@GetMapping("/qnaAnswer")
-	public String qnaQuestion(BoardDTO boardDTO, Model model) {
+	public String qnaQuestion(HttpSession session, BoardDTO boardDTO, Model model, MemberDTO memberDTO) {
 		System.out.println("BoardController qnaAnswer()");
 		
-		boardDTO = boardService.getQ(boardDTO);
-		model.addAttribute("boardDTO", boardDTO);
-		return "board/qnaAnswer";
+		memberDTO = memberService.getMember((String)session.getAttribute("id"));
+		if(memberDTO == null) {
+			boardDTO = boardService.getQ(boardDTO);
+			model.addAttribute("boardDTO", boardDTO);
+			return "board/qnaAnswer";
+		} else {
+			return "redirect:/board/lessonQna";
+		}
 	}
 	
 	@PostMapping("/qnaAnswerPro")
@@ -316,11 +284,50 @@ public class BoardController {
 			boardService.updateQna(boardDTO);
 			return "redirect:/board/qnaList";
 		} else {
-			return "redirect:/member/login";
+			return "redirect:/board/lessonQnaAnswer?num="+boardDTO.getNum();
+		}
+	}
+
+	@GetMapping("/lessonQna")
+	public String lessonQna(HttpServletRequest request, PageDTO pageDTO, Model model, LessonDTO lessonDTO, HttpSession session) {
+		System.out.println("LessonController lessonQna()");
+		
+		int pageSize = 3;
+		String pageNum = request.getParameter("pageNum");
+		if(pageNum == null) {
+			pageNum="1";
 		}
 		
+		int currentPage = Integer.parseInt(pageNum);
 		
-	}
+		pageDTO.setPageSize(pageSize);
+		pageDTO.setPageNum(pageNum);
+		pageDTO.setCurrentPage(currentPage);
+		pageDTO.setId((String)session.getAttribute("id"));
+
+		List<BoardDTO> boardList = boardService.getLqnaList(pageDTO);
+		
+		int count =  boardService.getLqnaCount(pageDTO);
+		int pageBlock = 10;
+		int startPage = (currentPage - 1) / pageBlock * pageBlock + 1;
+		int endPage = startPage + pageBlock -1;
+		int pageCount = count / pageSize + (count % pageSize == 0 ? 0 : 1);
+		
+		if(endPage > pageCount) {
+			endPage = pageCount;
+		}
+		
+		pageDTO.setCount(pageCount);
+		pageDTO.setPageBlock(pageBlock);
+		pageDTO.setStartPage(startPage);
+		pageDTO.setEndPage(endPage);
+		pageDTO.setPageCount(pageCount);
+		
+		model.addAttribute("boardList", boardList);
+		model.addAttribute("pageDTO", pageDTO);
+		
+		return "board/lessonQna";
+	}	
 	
 	@GetMapping("/lessonQnaWrite")
 	public String lessonQnaWrite(HttpSession session, Model model, BoardDTO boardDTO) {
@@ -346,17 +353,46 @@ public class BoardController {
 	}
 	
 	@GetMapping("/lessonQnaContent")
-	public String lessonQnaContent() {
+	public String lessonQnaContent(BoardDTO boardDTO, Model model) {
 		System.out.println("BoardController lessonQnaContent()");
-		
+			
+		boardDTO = boardService.getLqna(boardDTO);
+		model.addAttribute("boardDTO", boardDTO);
 		return "board/lessonQnaContent";
 	}
 
 	@GetMapping("/lessonQnaAnswer")
-	public String lessonQnaQuestion() {
+	public String lessonQnaQuestion(HttpSession session, BoardDTO boardDTO, Model model, MemberDTO memberDTO) {
 		System.out.println("BoardController lessonQnaAnswer()");
+		memberDTO = memberService.getMember((String)session.getAttribute("id"));
+		if(memberDTO != null) {
+			if(memberDTO.getType() == 1) {
+				boardDTO = boardService.getLqna(boardDTO);
+				model.addAttribute("boardDTO", boardDTO);
+				return "board/lessonQnaAnswer";
+			} else {
+				return "redirect:/board/lessonQna";
+			}
+		}else {
+			return "redirect:/member/memberLogin";
+		}
 		
-		return "board/lessonQnaAnswer";
+	}
+	
+	@PostMapping("/lessonQnaAnswerPro")
+	public String lessonQnaAnswerPro(HttpSession session, BoardDTO boardDTO, MemberDTO memberDTO) {
+		System.out.println("BoardController lessonQnaAnswerPro()");
+		
+		memberDTO.setId((String)session.getAttribute("id"));
+		memberDTO = memberService.userCheck(memberDTO);
+
+		if(memberDTO != null) {
+			boardDTO.setUpdate(new Timestamp(System.currentTimeMillis()));
+			boardService.updateLqna(boardDTO);
+			return "redirect:/board/lessonQna";
+		} else {
+			return "redirect:/board/lessonQnaAnswer?num="+boardDTO.getNum();
+		}
 	}
 	
 	@GetMapping("/wish")

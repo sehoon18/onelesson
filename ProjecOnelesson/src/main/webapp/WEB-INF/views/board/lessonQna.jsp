@@ -56,7 +56,7 @@
 </div>
 
 <div align="center" style="margin-top: 50px;">
-
+<div style="margin: 0px auto; width: 1100px">
 <table class="table table-hover table-sm" style="width: 1000px">
 <col width="70"><col width="600"><col width="200">
 <thead>
@@ -65,11 +65,12 @@
 </tr>
 <c:forEach var="boardDTO" items="${boardList}">
 	<tr><td>${boardDTO.num}</td>
-	<td><a href="${pageContext.request.contextPath}/board/qnaContent?num=${boardDTO.num}">${boardDTO.subject}</a></td>
+	<td><a href="${pageContext.request.contextPath}/board/lessonQnaContent?num=${boardDTO.num}">${boardDTO.subject}</a></td>
 	<td>${boardDTO.update}</td></tr>
 </c:forEach>
 </thead>
 </table>
+
 <nav aria-label="Page navigation example" style="margin-top: 10px">
   <ul class="pagination justify-content-end">
   <c:if test="${pageDTO.startPage > pageDTO.pageBlock }">
@@ -85,6 +86,7 @@
   </c:if>  
   </ul>
 </nav>
+</div>
 
 <table style="margin-left: auto; margin-right: auto; margin-top: 3px; margin-bottom: 3px">
 	<tr>

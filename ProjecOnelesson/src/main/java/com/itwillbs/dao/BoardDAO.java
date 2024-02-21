@@ -100,8 +100,8 @@ public class BoardDAO {
 		return sqlSession.selectList(namespace + ".getQnaList", pageDTO);
 	}
 
-	public int getQnaCount() {
-		return sqlSession.selectOne(namespace + ".getQnaCount");
+	public int getQnaCount(PageDTO pageDTO) {
+		return sqlSession.selectOne(namespace + ".getQnaCount", pageDTO);
 	}
 
 	public BoardDTO getQna(BoardDTO boardDTO) {
@@ -110,6 +110,22 @@ public class BoardDAO {
 
 	public void insertLqna(BoardDTO boardDTO) {
 		sqlSession.insert(namespace + ".insertLqna", boardDTO);
+	}
+
+	public List<BoardDTO> getLqnaList(PageDTO pageDTO) {
+		return sqlSession.selectList(namespace + ".getLqnaList", pageDTO);
+	}
+
+	public int getLqnaCount(PageDTO pageDTO) {
+		return sqlSession.selectOne(namespace + ".getLqnaCount", pageDTO);
+	}
+
+	public BoardDTO getLqna(BoardDTO boardDTO) {
+		return sqlSession.selectOne(namespace + ".getLqna", boardDTO);
+	}
+
+	public void updateLqna(BoardDTO boardDTO) {
+		sqlSession.update(namespace + ".updateLqna", boardDTO);
 	}
 
 

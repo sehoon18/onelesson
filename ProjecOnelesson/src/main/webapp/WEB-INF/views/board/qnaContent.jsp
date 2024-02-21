@@ -68,17 +68,11 @@
   <textarea class="form-control" placeholder="Leave a comment here" id="floatingTextarea2" style="height: 200px" readonly>${boardDTO.answer }</textarea>
   <label for="floatingTextarea2">ANSWER</label>
 </div></td></tr>
-<!-- <tr><td>답변</td><td><div class="form-floating"> -->
-<!--   <textarea class="form-control" placeholder="Leave a comment here" id="floatingTextarea2" style="height: 100px"></textarea> -->
-<!--   <label for="floatingTextarea2">ANWSER</label> -->
-<!-- </div></td></tr> -->
-
 </table>
 
 </div>
 </div>
 <br>
-<button class="btn btn-info" onclick="location.href='${pageContext.request.contextPath}/board/qnaWritePro'">글쓰기</button>
 <button class="btn btn-outline-info" onclick="location.href='${pageContext.request.contextPath}/board/qnaList'">돌아가기</button>
 <hr>
 </div>
