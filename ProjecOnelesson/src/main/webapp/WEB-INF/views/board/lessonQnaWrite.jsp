@@ -55,27 +55,35 @@
 <div style="width: 1000px;">
 <div id="listDiv">
 <h3 style="margin-bottom: 30px;">👨‍🏫강사에게 문의하기</h3>
+
+<form action="${pageContext.request.contextPath}/board/lessonQnaWritePro" method="post">
+<input type="hidden" name="name" value="${sessionScope.id }">
 <table id="listTable">
+<tr><td>레슨명</td><td>
+<select name="num" class="form-select" aria-label="Default select example">
+	<c:forEach var="lessonDTO" items="${lessonList}">
+		<option value="${lessonDTO.num }">${lessonDTO.subject }</option>
+	</c:forEach>
+</select>
+</td></tr>
 <tr><td style="width: 100px;">제목</td><td style="width: 800px;"><div class="form-floating mb-3">
-  <input type="email" class="form-control" id="floatingInput" placeholder="name@example.com">
+  <input type="text" name="subject" class="form-control" id="floatingInput">
   <label for="floatingInput">SUBJECT</label>
 </div></td></tr>
 <tr><td>내용</td><td><div class="form-floating">
-  <textarea class="form-control" placeholder="Leave a comment here" id="floatingTextarea2" style="height: 300px"></textarea>
+  <textarea name="question" class="form-control" placeholder="Leave a comment here" id="floatingTextarea2" style="height: 300px"></textarea>
   <label for="floatingTextarea2">QUESTION</label>
 </div></td></tr>
-<!-- <tr><td>답변</td><td><div class="form-floating"> -->
-<!--   <textarea class="form-control" placeholder="Leave a comment here" id="floatingTextarea2" style="height: 100px"></textarea> -->
-<!--   <label for="floatingTextarea2">ANWSER</label> -->
-<!-- </div></td></tr> -->
-
+<tr><td></td><td style="text-align: center;">
+<input type="submit" class="btn btn-info" value="글쓰기">
+</td></tr>
 </table>
+</form>
 
 </div>
 </div>
 <br>
-<button class="btn btn-info" onclick="location.href='${pageContext.request.contextPath}/board/qnaWritePro'">글쓰기</button>
-<button class="btn btn-outline-info" onclick="location.href='${pageContext.request.contextPath}/board/qnaList'">돌아가기</button>
+<%-- <button class="btn btn-outline-info" onclick="location.href='${pageContext.request.contextPath}/board/qnaList'">돌아가기</button> --%>
 <hr>
 </div>
  	<jsp:include page="../inc/footer.jsp" />

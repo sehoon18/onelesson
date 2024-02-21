@@ -58,27 +58,18 @@
 <div align="center" style="margin-top: 50px;">
 
 <table class="table table-hover table-sm" style="width: 1000px">
-<col width="70"><col width="600"><col width="100"><col width="150">
+<col width="70"><col width="600"><col width="200">
 <thead>
 <tr class="bg-primary" style="color: white;">
-	<th>번호</th><th>제목</th><th>작성일</th><th>조회수</th>
+	<th>번호</th><th>제목</th><th>작성일</th>
 </tr>
-</thead>
-</table>
-<div style="width: 1000px; border: 1px solid #ccc;">
-<div id="listDiv">
-<table id="listTable" border="1">
-<tr><td style="width: 75px;">글번호</td><td style="width:650px; text-align: center;'">제목</td><td style="width: 105px;">작성일</td><td style="width: 160px;">조회수</td></tr>
 <c:forEach var="boardDTO" items="${boardList}">
 	<tr><td>${boardDTO.num}</td>
-	<td>${boardDTO.name}</td>
-	<td><a href="content.bo?num=${boardDTO.num}">${boardDTO.subject}</a></td>
-	<td>${boardDTO.readcount}</td>
-	<td>${boardDTO.date}</td></tr>
+	<td><a href="${pageContext.request.contextPath}/board/qnaContent?num=${boardDTO.num}">${boardDTO.subject}</a></td>
+	<td>${boardDTO.update}</td></tr>
 </c:forEach>
-
+</thead>
 </table>
-
 <nav aria-label="Page navigation example" style="margin-top: 10px">
   <ul class="pagination justify-content-end">
   <c:if test="${pageDTO.startPage > pageDTO.pageBlock }">
@@ -95,8 +86,6 @@
   </ul>
 </nav>
 
-</div>
-</div>
 <table style="margin-left: auto; margin-right: auto; margin-top: 3px; margin-bottom: 3px">
 	<tr>
 		<td style="padding-left: 5px">

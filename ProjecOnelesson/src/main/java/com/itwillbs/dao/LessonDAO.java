@@ -64,4 +64,8 @@ public class LessonDAO {
 	public int getWishCount(PageDTO pageDTO) {
 		return sqlSession.selectOne(namespace+".getWishCount", pageDTO);
 	}
+
+	public List<LessonDTO> getSubject(BoardDTO boardDTO) {
+		return sqlSession.selectList(namespace + ".getSubject", boardDTO);
+	}
 }

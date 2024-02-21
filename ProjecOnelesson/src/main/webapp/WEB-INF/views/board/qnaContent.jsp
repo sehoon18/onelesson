@@ -57,15 +57,15 @@
 <h3 style="margin-bottom: 30px;">👮‍♂️‍관리자에게 문의하기</h3>
 <table id="listTable">
 <tr><td style="width: 100px;">제목</td><td style="width: 800px;"><div class="form-floating mb-3">
-  <input type="email" class="form-control" id="floatingInput" placeholder="name@example.com" value="레슨 예약이 안돼요." readonly>
+  <input type="email" class="form-control" id="floatingInput" placeholder="name@example.com" value="${boardDTO.subject }" readonly>
   <label for="floatingInput">SUBJECT</label>
 </div></td></tr>
 <tr><td>내용</td><td><div class="form-floating">
-  <textarea class="form-control" placeholder="Leave a comment here" id="floatingTextarea2" style="height: 200px" readonly>예약버튼을 누르면 멈추는 현상이 있어요.</textarea>
+  <textarea class="form-control" placeholder="Leave a comment here" id="floatingTextarea2" style="height: 200px" readonly>${boardDTO.question }</textarea>
   <label for="floatingTextarea2">QUESTION</label>
 </div></td></tr>
 <tr><td>답변</td><td><div class="form-floating">
-  <textarea class="form-control" placeholder="Leave a comment here" id="floatingTextarea2" style="height: 200px" readonly>현재 고치는 중 입니다.</textarea>
+  <textarea class="form-control" placeholder="Leave a comment here" id="floatingTextarea2" style="height: 200px" readonly>${boardDTO.answer }</textarea>
   <label for="floatingTextarea2">ANSWER</label>
 </div></td></tr>
 <!-- <tr><td>답변</td><td><div class="form-floating"> -->

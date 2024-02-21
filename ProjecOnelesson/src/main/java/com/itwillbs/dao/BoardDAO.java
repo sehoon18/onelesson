@@ -90,8 +90,26 @@ public class BoardDAO {
 		sqlSession.update(namespace + ".updateQna", boardDTO);
 	}
 
+	public BoardDTO getQ(BoardDTO boardDTO) {
+		return sqlSession.selectOne(namespace + ".getQ", boardDTO);
+	}
+
+	public List<BoardDTO> getQnaList(PageDTO pageDTO) {
+		System.out.println("BoardDAO getQnaList()");
+		
+		return sqlSession.selectList(namespace + ".getQnaList", pageDTO);
+	}
+
+	public int getQnaCount() {
+		return sqlSession.selectOne(namespace + ".getQnaCount");
+	}
+
 	public BoardDTO getQna(BoardDTO boardDTO) {
 		return sqlSession.selectOne(namespace + ".getQna", boardDTO);
+	}
+
+	public void insertLqna(BoardDTO boardDTO) {
+		sqlSession.insert(namespace + ".insertLqna", boardDTO);
 	}
 
 

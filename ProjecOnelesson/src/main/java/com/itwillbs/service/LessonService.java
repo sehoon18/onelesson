@@ -1,5 +1,6 @@
 package com.itwillbs.service;
 
+import java.lang.reflect.Member;
 import java.sql.Timestamp;
 import java.util.List;
 
@@ -105,7 +106,10 @@ public class LessonService {
 
 	public int getWishCount(PageDTO pageDTO) {
 		return lessonDAO.getWishCount(pageDTO);
+	}
 
+	public List<LessonDTO> getSubject(BoardDTO boardDTO) {
+		return lessonDAO.getSubject(boardDTO);
 	}
 
 }

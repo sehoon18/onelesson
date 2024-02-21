@@ -86,4 +86,12 @@
     	where MEM_ID = #{id}
     </select>
     
+    <select id="getSubject" resultType="com.itwillbs.domain.LessonDTO">
+		select LES_NUM as "num", LES_SUBJECT as "subject"
+		from LESSON
+		where MEM_ID in (select MEM_ID
+						from LESSON
+						WHERE LES_NUM = #{num});
+    </select>
+    
 </mapper>

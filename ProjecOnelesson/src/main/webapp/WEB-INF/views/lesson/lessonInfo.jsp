@@ -173,7 +173,7 @@
     	<td rowspan="5" style="vertical-align : bottom;">
     	<div class="btn-group-vertical" role="group" aria-label="Vertical button group">
  			<button type="button" class="btn btn-success"  onclick="location.href='${pageContext.request.contextPath}/lesson/payment?num=${lessonDTO.num}'">예약하기</button>
-			<button type="button" class="btn btn-success"  onclick="">문의</button>
+			<button type="button" class="btn btn-success"  onclick="location.href='${pageContext.request.contextPath}/board/lessonQnaWrite?num=${lessonDTO.num}'">문의</button>
 			<button type="button" class="btn btn-success"  onclick="toggleHeart(this)"><i class="fas fa-heart heart"></i></button>
 		</div>
     	</td></tr>

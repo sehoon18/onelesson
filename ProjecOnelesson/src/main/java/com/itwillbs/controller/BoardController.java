@@ -9,7 +9,6 @@ import javax.servlet.http.HttpSession;
 
 import org.springframework.stereotype.Controller;
 import org.springframework.ui.Model;
-import org.springframework.validation.BindingResult;
 import org.springframework.web.bind.annotation.GetMapping;
 import org.springframework.web.bind.annotation.PostMapping;
 import org.springframework.web.bind.annotation.RequestMapping;
@@ -189,41 +188,42 @@ public class BoardController {
 	
 	// 
 	@GetMapping("/qnaList")
-	public String lessonList(HttpServletRequest request, PageDTO pageDTO, Model model, LessonDTO lessonDTO) {
+	public String lessonList(HttpServletRequest request, PageDTO pageDTO, Model model, LessonDTO lessonDTO, HttpSession session) {
 		System.out.println("LessonController qnaList()");
 		
-//		int pageSize = 3;
-//		String pageNum = request.getParameter("pageNum");
-//		if(pageNum == null) {
-//			pageNum="1";
-//		}
-//		
-//		int currentPage = Integer.parseInt(pageNum);
-//		
-//		pageDTO.setPageSize(pageSize);
-//		pageDTO.setPageNum(pageNum);
-//		pageDTO.setCurrentPage(currentPage);
-//		
-//		List<LessonDTO> lessonList = boardService.getLessonList(pageDTO);
-//		
-//		int count =  boardService.getLessonCount();
-//		int pageBlock = 10;
-//		int startPage = (currentPage - 1) / pageBlock * pageBlock + 1;
-//		int endPage = startPage + pageBlock -1;
-//		int pageCount = count / pageSize + (count % pageSize == 0 ? 0 : 1);
-//		
-//		if(endPage > pageCount) {
-//			endPage = pageCount;
-//		}
-//		
-//		pageDTO.setCount(pageCount);
-//		pageDTO.setPageBlock(pageBlock);
-//		pageDTO.setStartPage(startPage);
-//		pageDTO.setEndPage(endPage);
-//		pageDTO.setPageCount(pageCount);
-//		
-//		model.addAttribute("lessonList", lessonList);
-//		model.addAttribute("pageDTO", pageDTO);
+		int pageSize = 10;
+		String pageNum = request.getParameter("pageNum");
+		if(pageNum == null) {
+			pageNum="1";
+		}
+		
+		int currentPage = Integer.parseInt(pageNum);
+		
+		pageDTO.setPageSize(pageSize);
+		pageDTO.setPageNum(pageNum);
+		pageDTO.setCurrentPage(currentPage);
+		pageDTO.setId((String)session.getAttribute("id"));
+		
+		List<BoardDTO> boardList = boardService.getQnaList(pageDTO);
+		
+		int count =  boardService.getQnaCount();
+		int pageBlock = 10;
+		int startPage = (currentPage - 1) / pageBlock * pageBlock + 1;
+		int endPage = startPage + pageBlock -1;
+		int pageCount = count / pageSize + (count % pageSize == 0 ? 0 : 1);
+		
+		if(endPage > pageCount) {
+			endPage = pageCount;
+		}
+		
+		pageDTO.setCount(pageCount);
+		pageDTO.setPageBlock(pageBlock);
+		pageDTO.setStartPage(startPage);
+		pageDTO.setEndPage(endPage);
+		pageDTO.setPageCount(pageCount);
+		
+		model.addAttribute("boardList", boardList);
+		model.addAttribute("pageDTO", pageDTO);
 		
 		return "board/qnaList";
 	}
@@ -286,9 +286,11 @@ public class BoardController {
 	}
 
 	@GetMapping("/qnaContent")
-	public String qnaContent() {
+	public String qnaContent(BoardDTO boardDTO, Model model) {
 		System.out.println("BoardController qnaContent()");
 		
+		boardDTO = boardService.getQna(boardDTO);
+		model.addAttribute("boardDTO", boardDTO);
 		return "board/qnaContent";
 	}
 
@@ -296,7 +298,7 @@ public class BoardController {
 	public String qnaQuestion(BoardDTO boardDTO, Model model) {
 		System.out.println("BoardController qnaAnswer()");
 		
-		boardDTO = boardService.getQna(boardDTO);
+		boardDTO = boardService.getQ(boardDTO);
 		model.addAttribute("boardDTO", boardDTO);
 		return "board/qnaAnswer";
 	}
@@ -320,13 +322,27 @@ public class BoardController {
 		
 	}
 	
-
-
 	@GetMapping("/lessonQnaWrite")
-	public String lessonQnaWrite() {
+	public String lessonQnaWrite(HttpSession session, Model model, BoardDTO boardDTO) {
 		System.out.println("BoardController lessonQnaWrite()");
 		
+		boardDTO.setId((String)session.getAttribute("id"));
+		
+		List<LessonDTO> lessonList = lessonService.getSubject(boardDTO);
+		
+		model.addAttribute("lessonList", lessonList);
+		
 		return "board/lessonQnaWrite";
+	}
+	
+	@PostMapping("/lessonQnaWritePro")
+	public String lessonQnaWritePro(HttpSession session, BoardDTO boardDTO) {
+		System.out.println("BoardController lessonQnaWritePro()");
+		
+		boardDTO.setUpdate(new Timestamp(System.currentTimeMillis()));
+		boardService.insertLqna(boardDTO);
+		
+		return "redirect:/board/lessonQna";
 	}
 	
 	@GetMapping("/lessonQnaContent")

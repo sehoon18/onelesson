@@ -17,7 +17,7 @@ public class PageDTO {
 	
 	private String search;
 	private String id;
-
+	
 	public int getPageSize() {
 		return pageSize;
 	}

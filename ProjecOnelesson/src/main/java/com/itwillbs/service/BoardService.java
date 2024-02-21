@@ -91,8 +91,34 @@ public class BoardService {
 		boardDAO.updateQna(boardDTO);
 	}
 
+	public BoardDTO getQ(BoardDTO boardDTO) {
+		return boardDAO.getQ(boardDTO);
+	}
+
+	public List<BoardDTO> getQnaList(PageDTO pageDTO) {
+		System.out.println("BoardService getQnaList()");
+		
+		int currentPage = pageDTO.getCurrentPage();
+		int pageSize = pageDTO.getPageSize();
+		int startRow = (currentPage - 1) * pageSize + 1;
+		int endRow = startRow + pageSize - 1;
+		
+		pageDTO.setStartRow(startRow - 1);
+		pageDTO.setEndRow(endRow);
+		
+		return boardDAO.getQnaList(pageDTO);
+	}
+
+	public int getQnaCount() {
+		return boardDAO.getQnaCount();
+	}
+
 	public BoardDTO getQna(BoardDTO boardDTO) {
 		return boardDAO.getQna(boardDTO);
+	}
+
+	public void insertLqna(BoardDTO boardDTO) {
+		boardDAO.insertLqna(boardDTO);
 	}
 
 
