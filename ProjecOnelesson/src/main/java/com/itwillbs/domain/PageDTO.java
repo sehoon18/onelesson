@@ -17,6 +17,16 @@ public class PageDTO {
 	
 	private String search;
 	private String id;
+	
+	private int type;
+	
+	@Override
+	public String toString() {
+		return "PageDTO [pageSize=" + pageSize + ", pageNum=" + pageNum + ", CurrentPage=" + CurrentPage + ", startRow="
+				+ startRow + ", endRow=" + endRow + ", pageBlock=" + pageBlock + ", startPage=" + startPage
+				+ ", endPage=" + endPage + ", count=" + count + ", pageCount=" + pageCount + ", search=" + search
+				+ ", id=" + id + ", type=" + type + "]";
+	}
 
 	public int getPageSize() {
 		return pageSize;
@@ -114,6 +124,12 @@ public class PageDTO {
 		this.id = id;
 	}
 
+	public int getType() {
+		return type;
+	}
 
+	public void setType(int type) {
+		this.type = type;
+	}
 
 }

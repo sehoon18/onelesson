@@ -153,48 +153,41 @@
       <th scope="col">조회수</th>
     </tr>
   </thead>
-  <tbody>
-  	<c:forEach var="boardDTO" items="${boardList}">
+<tbody>
+<c:forEach var="boardDTO" items="${noticeList}">
     <tr onclick="location.href='${pageContext.request.contextPath}/board/noticeContent?num=${boardDTO.num}'">
-        <c:choose>
-            <c:when test="${boardDTO.type == '공지'}">
-                <td>${boardDTO.num}</td>
-                <td>${boardDTO.type}</td>
-                <td>${boardDTO.subject}</td>
-                <td><fmt:formatDate value="${boardDTO.date}" pattern="yyyy.MM.dd"/></td>
-                <td>${boardDTO.readcount}</td>
-            </c:when>
-            <c:when test="${boardDTO.type == '이벤트'}">
-                <td>${boardDTO.num}</td>
-                <td>${boardDTO.type}</td>
-                <td>${boardDTO.subject}</td>
-                <td><fmt:formatDate value="${boardDTO.date}" pattern="yyyy.MM.dd"/></td>
-                <td>${boardDTO.readcount}</td>
-            </c:when>
-        </c:choose>
+    	<td>${boardDTO.num}</td>
+        <c:if test="${boardDTO.type eq 0}"> <!-- type이 0인 경우 공지 -->
+            <td>공지</td>
+        </c:if>
+        <c:if test="${boardDTO.type eq 1}"> <!-- type이 1인 경우 이벤트 -->
+            <td>이벤트</td>
+        </c:if>
+        <td>${boardDTO.subject}</td>
+        <td><fmt:formatDate value="${boardDTO.date}" pattern="yyyy.MM.dd"/></td>
+        <td>${boardDTO.readcount}</td>
     </tr>
 </c:forEach>
-
-  </tbody>
+</tbody>
 </table>
 
 	<nav aria-label="Page navigation example">
     <ul class="pagination justify-content-center">
         <li class="page-item">
             <c:if test="${pageDTO.startPage > pageDTO.pageBlock}">
-                <a class="page-link" href="${pageContext.request.contextPath}/board/noticeList?pageNum=${pageDTO.startPage - pageDTO.pageBlock}" aria-label="Previous">
+                <a class="page-link" href="${pageContext.request.contextPath}/board/notice?pageNum=${pageDTO.startPage - pageDTO.pageBlock}" aria-label="Previous">
                     <span aria-hidden="true">&laquo;</span>
                 </a>
             </c:if>
         </li>
 
         <c:forEach var="i" begin="${pageDTO.startPage}" end="${pageDTO.endPage}" step="1">
-            <li class="page-item"><a class="page-link" href="${pageContext.request.contextPath}/board/noticeList?pageNum=${i}">${i}</a></li>
+            <li class="page-item"><a class="page-link" href="${pageContext.request.contextPath}/board/notice?pageNum=${i}">${i}</a></li>
         </c:forEach>
 
         <li class="page-item">
             <c:if test="${pageDTO.endPage < pageDTO.pageCount}">
-                <a class="page-link" href="${pageContext.request.contextPath}/board/noticeList?pageNum=${pageDTO.startPage + pageDTO.pageBlock}" aria-label="Next">
+                <a class="page-link" href="${pageContext.request.contextPath}/board/notice?pageNum=${pageDTO.startPage + pageDTO.pageBlock}" aria-label="Next">
                     <span aria-hidden="true">&raquo;</span>
                 </a>
             </c:if>

@@ -89,7 +89,7 @@ public class AdminBoardController {
 	public String noticeList(HttpServletRequest request, PageDTO pageDTO, Model model) {
 		System.out.println("AdminBoardController notice()");
 		
-		int pageSize = 10;
+		int pageSize = 5;
 		String pageNum = request.getParameter("pageNum");
 		
 		if(pageNum == null) {
@@ -104,7 +104,7 @@ public class AdminBoardController {
 		List<AdminNoticeDTO> noticeList = adminNoticeService.getNoticeList(pageDTO);
 		
 		int count = adminNoticeService.getNoticeCount();
-		int pageBlock = 10;
+		int pageBlock = 5;
 		int startPage = (currentPage - 1)/pageBlock * pageBlock + 1;
 		int endPage = startPage + pageBlock - 1;
 		int pageCount = count / pageSize + (count % pageSize == 0 ? 0 : 1);
@@ -192,38 +192,38 @@ public class AdminBoardController {
 	public String faqList(HttpServletRequest request, PageDTO pageDTO, Model model) {
 		System.out.println("AdminBoardController faq()");
 		
-//		int pageSize = 10;
-//		String pageNum = request.getParameter("pageNum");
-//		
-//		if(pageNum == null) {
-//			pageNum = "1";
-//		}
-//		
-//		int currentPage = Integer.parseInt(pageNum);
-//		pageDTO.setPageSize(pageSize);
-//		pageDTO.setPageNum(pageNum);
-//		pageDTO.setCurrentPage(currentPage);
-//		
-//		List<AdminFaqDTO> faqList = adminFaqService.getFaqList(pageDTO);
-//		
-//		int count = adminFaqService.getFaqCount();
-//		int pageBlock = 10;
-//		int startPage = (currentPage - 1)/pageBlock * pageBlock + 1;
-//		int endPage = startPage + pageBlock - 1;
-//		int pageCount = count / pageSize + (count % pageSize == 0 ? 0 : 1);
-//		
-//		if(endPage > pageCount) {
-//			endPage = pageCount;
-//		}
-//		
-//		pageDTO.setCount(count);
-//		pageDTO.setPageBlock(pageBlock);
-//		pageDTO.setStartPage(startPage);
-//		pageDTO.setEndPage(endPage);
-//		pageDTO.setPageCount(pageCount);
-//		
-//		model.addAttribute("pageDTO", pageDTO);
-//		model.addAttribute("faqList", faqList);
+		int pageSize = 5;
+		String pageNum = request.getParameter("pageNum");
+		
+		if(pageNum == null) {
+			pageNum = "1";
+		}
+		
+		int currentPage = Integer.parseInt(pageNum);
+		pageDTO.setPageSize(pageSize);
+		pageDTO.setPageNum(pageNum);
+		pageDTO.setCurrentPage(currentPage);
+		
+		List<AdminFaqDTO> faqList = adminFaqService.getFaqList(pageDTO);
+		
+		int count = adminFaqService.getFaqCount();
+		int pageBlock = 5;
+		int startPage = (currentPage - 1)/pageBlock * pageBlock + 1;
+		int endPage = startPage + pageBlock - 1;
+		int pageCount = count / pageSize + (count % pageSize == 0 ? 0 : 1);
+		
+		if(endPage > pageCount) {
+			endPage = pageCount;
+		}
+		
+		pageDTO.setCount(count);
+		pageDTO.setPageBlock(pageBlock);
+		pageDTO.setStartPage(startPage);
+		pageDTO.setEndPage(endPage);
+		pageDTO.setPageCount(pageCount);
+		
+		model.addAttribute("pageDTO", pageDTO);
+		model.addAttribute("faqList", faqList);
 		
 		return "admin/faqList";
 	}

@@ -8,9 +8,7 @@ import javax.inject.Inject;
 import org.springframework.stereotype.Service;
 
 import com.itwillbs.dao.AdminNoticeDAO;
-import com.itwillbs.dao.AdminDAO;
 import com.itwillbs.domain.AdminNoticeDTO;
-import com.itwillbs.domain.BoardDTO;
 import com.itwillbs.domain.PageDTO;
 
 @Service
@@ -21,7 +19,6 @@ public class AdminNoticeService {
 	public void noticeInsert(AdminNoticeDTO adminNoticeDTO) {
 		System.out.println("AdminNoticeService noticeInsert()");
 		
-		adminNoticeDTO.setNum(adminNoticeDAO.getMaxNoticeNum() + 1);
 		adminNoticeDTO.setReadcount(0);
 		adminNoticeDTO.setDate(new Timestamp(System.currentTimeMillis()));
 		

@@ -42,17 +42,7 @@
                     <ol class="breadcrumb mb-4">
                         <li class="breadcrumb-item active">자주 묻는 질문 관리 목록입니다.</li>
                     </ol>
-
-<div class="btn-group">
-  <button class="btn btn-secondary btn-sm dropdown-toggle" type="button" data-bs-toggle="dropdown" aria-expanded="false">
-    타입
-  </button>
-  <ul class="dropdown-menu">
-    <li><a class="dropdown-item" href="#">공통</a></li>
-    <li><a class="dropdown-item" href="#">학생</a></li>
-    <li><a class="dropdown-item" href="#">강사</a></li>
-  </ul>
-</div>
+                    
 
 <table class="table table-hover text-center">
   <thead class="table-dark">
@@ -63,17 +53,14 @@
     </tr>
   </thead>
 <tbody>
-    <c:forEach var="adminFaqDTO" items="${faqList}">
-        <tr onclick="location.href='${pageContext.request.contextPath}/admin/faqContent?num=${adminFaqDTO.num}'">
-            <c:if test="${selectedType eq 'all' || selectedType eq adminFaqDTO.type}">
-                <td>${adminFaqDTO.num}</td>
-                <td>${adminFaqDTO.type}</td>
-                <td>${adminFaqDTO.subject}</td>
-            </c:if>
-        </tr>
-    </c:forEach>
-</tbody>
+<c:forEach var="adminFaqDTO" items="${faqList}">
+    <tr onclick="location.href='${pageContext.request.contextPath}/admin/faqContent?num=${adminFaqDTO.num}'">
+    	<td>${adminFaqDTO.num}</td>
 
+        <td>${adminFaqDTO.subject}</td>
+    </tr>
+</c:forEach>
+</tbody>
 </table>
 
 <c:if test="${sessionScope.id eq 'admin'}">
@@ -110,8 +97,10 @@
     </ul>
 </nav>
 </div>
+</main>
 
 <jsp:include page="../admin/inc/bottom.jsp"/>
+</div>
 
 <script src="https://cdn.jsdelivr.net/npm/bootstrap@5.3.1/dist/js/bootstrap.bundle.min.js" integrity="sha384-HwwvtgBNo3bZJJLYd8oVXjrBZt8cqVSpeBNS5n7C8IVInixGAoxmnlMuBnhbgrkm" crossorigin="anonymous"></script>
 </body>

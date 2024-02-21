@@ -79,11 +79,11 @@ public class BoardController {
 		return "board/reviewList";
 	}
 	
-	@GetMapping("/noticeList")
+	@GetMapping("/notice")
 	public String noticeList(HttpServletRequest request, PageDTO pageDTO, Model model) {
 		System.out.println("BoardController noticeList()");
 		
-		int pageSize = 10;
+		int pageSize = 5;
 		String pageNum = request.getParameter("pageNum");
 		
 		if(pageNum == null) {
@@ -98,7 +98,7 @@ public class BoardController {
 		List<BoardDTO> noticeList = boardService.getNoticeList(pageDTO);
 		
 		int count = boardService.getNoticeCount();
-		int pageBlock = 10;
+		int pageBlock = 5;
 		int startPage = (currentPage - 1)/pageBlock * pageBlock + 1;
 		int endPage = startPage + pageBlock - 1;
 		int pageCount = count / pageSize + (count % pageSize == 0 ? 0 : 1);
@@ -137,7 +137,7 @@ public class BoardController {
 	public String faqList(HttpServletRequest request, PageDTO pageDTO, Model model) {
 		System.out.println("BoardController faqList()");
 		
-		int pageSize = 10;
+		int pageSize = 5;
 		String pageNum = request.getParameter("pageNum");
 		
 		if(pageNum == null) {
@@ -152,7 +152,7 @@ public class BoardController {
 		List<BoardDTO> faqList = boardService.getFaqList(pageDTO);
 		
 		int count = boardService.getFaqCount();
-		int pageBlock = 10;
+		int pageBlock = 5;
 		int startPage = (currentPage - 1)/pageBlock * pageBlock + 1;
 		int endPage = startPage + pageBlock - 1;
 		int pageCount = count / pageSize + (count % pageSize == 0 ? 0 : 1);
@@ -186,7 +186,7 @@ public class BoardController {
 	}
 	
 	// 
-	@GetMapping("/qnaList")
+	@GetMapping("/qna")
 	public String lessonList(HttpServletRequest request, PageDTO pageDTO, Model model, LessonDTO lessonDTO) {
 		System.out.println("LessonController qnaList()");
 		

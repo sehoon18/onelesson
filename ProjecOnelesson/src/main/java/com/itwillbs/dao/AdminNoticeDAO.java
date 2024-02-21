@@ -8,7 +8,6 @@ import org.apache.ibatis.session.SqlSession;
 import org.springframework.stereotype.Repository;
 
 import com.itwillbs.domain.AdminNoticeDTO;
-import com.itwillbs.domain.BoardDTO;
 import com.itwillbs.domain.PageDTO;
 
 @Repository
@@ -22,12 +21,6 @@ public class AdminNoticeDAO {
 		System.out.println(adminNoticeDTO);
 		
 		sqlSession.insert(namespace + ".noticeInsert", adminNoticeDTO);
-	}
-
-	public int getMaxNoticeNum() {
-		System.out.println("AdminNoticeDAO getMaxNoticeNum()");
-		
-		return sqlSession.selectOne(namespace + ".getMaxNoticeNum");
 	}
 
 	public List<AdminNoticeDTO> getNoticeList(PageDTO pageDTO) {

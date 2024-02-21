@@ -10,12 +10,9 @@
 		values (#{num}, #{id}, #{type}, #{subject}, #{content}, #{date}, #{readcount}, #{image})
 	</insert>
 	
-	<select id="getMaxNoticeNum" resultType="java.lang.Integer">
-		select max(NOTICE_NUM) from NOTICE
-	</select>
-	
 	<select id="getNoticeList" resultType="com.itwillbs.domain.AdminNoticeDTO">
-		select NOTICE_NUM as "num", NOTICE_TYPE as "type", NOTICE_SUBJECT as "subject", NOTICE_DATE as "date", NOTICE_READCOUNT as "readcount" from NOTICE
+		select NOTICE_NUM as "num", ADMIN_ID as "id", NOTICE_TYPE as "type", NOTICE_SUBJECT as "subject", NOTICE_CONTENT as "content", NOTICE_DATE as "date", NOTICE_READCOUNT as "readcount", NOTICE_IMAGE as "image" from NOTICE
+		where NOTICE_TYPE = #{type}
 		order by NOTICE_NUM desc
 		limit #{startRow}, #{pageSize}
 	</select>
@@ -25,7 +22,7 @@
 	</select>
 	
 	<select id="getNotice" resultType="com.itwillbs.domain.AdminNoticeDTO">
-		select NOTICE_NUM as "num", ADMIN_ID as "id", NOTICE_TYPE as "type", NOTICE_SUBJECT as "subject", NOTICE_CONTENT as "content", NOTICE_DATE as "date", NOTICE_READCOUNT as "readcount", NOTICE_IMAGE as "image" from NOTICE
+		select NOTICE_NUM as "num", NOTICE_TYPE as "type", NOTICE_SUBJECT as "subject", NOTICE_DATE as "date", NOTICE_READCOUNT as "readcount" from NOTICE
 		where NOTICE_NUM = #{num}
 	</select>
 	
