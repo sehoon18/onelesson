@@ -125,16 +125,7 @@
         <form action="${pageContext.request.contextPath}/admin/faqInsertPro" method="post"
               enctype="multipart/form-data">
             <div class="row">
-                <div class="col-md-2">
-                    <label for="category" class="form-label">타입</label>
-                    <select class="form-select mb-3" id="category">
-                        <option value="">-- 타입 선택 --</option>
-                        <option value="공통">공통</option>
-                        <option value="학생">학생</option>
-                        <option value="강사">강사</option>                        
-                    </select>
-                </div>
-                <div class="col-md-10">
+                <div class="col-12">
                     <label for="subject" class="form-label">제목</label>
                     <input type="text" name="subject" class="form-control mb-3" id="subject">
                 </div>
@@ -163,20 +154,6 @@
             lang: 'ko-KR',
         });
 
-        $('#category').change(function () {
-            var selectedType = $(this).val();
-            var typeOptions = $('#type');
-
-            typeOptions.empty(); // 기존의 옵션을 제거
-
-            if (selectedType === '공통') {
-                typeOptions.append($('<option>', {value: '공통', text: '공통'}));
-            } else if (selectedType === '학생') {
-                typeOptions.append($('<option>', {value: '학생', text: '학생'}));
-            } else {
-            	typeOptions.append($('<option>', {value: '강사', text: '강사'}));
-            }
-        });
     });
 </script>
 

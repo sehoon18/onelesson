@@ -69,12 +69,12 @@
 <div id="listDiv">
 <table id="listTable" border="1">
 <tr><td style="width: 75px;">글번호</td><td style="width:650px; text-align: center;'">제목</td><td style="width: 105px;">작성일</td><td style="width: 160px;">조회수</td></tr>
-<c:forEach var="adminBoardDTO" items="${noticeList}">
-	<tr><td>${adminBoardDTO.num}</td>
-	<td>${adminBoardDTO.name}</td>
-	<td><a href="content.bo?num=${adminBoardDTO.num}">${adminBoardDTO.subject}</a></td>
-	<td>${adminBoardDTO.readcount}</td>
-	<td>${adminBoardDTO.date}</td></tr>
+<c:forEach var="boardDTO" items="${boardList}">
+	<tr><td>${boardDTO.num}</td>
+	<td>${boardDTO.name}</td>
+	<td><a href="content.bo?num=${boardDTO.num}">${boardDTO.subject}</a></td>
+	<td>${boardDTO.readcount}</td>
+	<td>${boardDTO.date}</td></tr>
 </c:forEach>
 
 </table>
@@ -117,7 +117,7 @@
 	</tr>
 </table>
 <br>
-<button class="btn btn-info" onclick="location.href='${pageContext.request.contextPath}/admin/qnaWrite'">글쓰기</button>
+<button class="btn btn-info" onclick="location.href='${pageContext.request.contextPath}/board/qnaWrite'">글쓰기</button>
 <button class="btn btn-outline-info">돌아가기</button>
 <hr>
 </div>

@@ -1,6 +1,7 @@
 <%@ page language="java" contentType="text/html; charset=UTF-8"
     pageEncoding="UTF-8"%>
-<%@ taglib prefix="c" uri="http://java.sun.com/jsp/jstl/core" %>
+<%@ taglib prefix="c" uri="http://java.sun.com/jsp/jstl/core" %>    
+<%@ taglib prefix="fmt" uri="http://java.sun.com/jsp/jstl/fmt" %>
 <!DOCTYPE html>
 <html lang="ko">
 <head>
@@ -18,19 +19,20 @@
   <script src="https://code.jquery.com/jquery-3.3.1.slim.min.js"></script>
   <script src="https://cdn.jsdelivr.net/simplemde/latest/simplemde.min.js"></script>
 
-    <title>공지/이벤트</title>
-    <link href="https://cdn.jsdelivr.net/npm/bootstrap@5.3.1/dist/css/bootstrap.min.css" rel="stylesheet">
-    <link rel="stylesheet" href="https://cdn.jsdelivr.net/npm/summernote@0.8.18/dist/summernote-bs4.min.css">
-    <link rel="stylesheet" href="https://cdn.jsdelivr.net/npm/summernote@0.8.20/dist/summernote-lite.min.css"
-          integrity="sha256-IKhQVXDfwbVELwiR0ke6dX+pJt0RSmWky3WB2pNx9Hg=" crossorigin="anonymous">
+<title>공지/이벤트</title>
+<link href="https://cdn.jsdelivr.net/npm/bootstrap@5.3.1/dist/css/bootstrap.min.css" rel="stylesheet" integrity="sha384-4bw+/aepP/YC94hEpVNVgiZdgIC5+VKNBQNGCHeKRQN+PtmoHDEXuppvnDJzQIu9" crossorigin="anonymous">
 
+ 		<link rel="canonical" href="https://getbootstrap.kr/docs/5.3/examples/sticky-footer-navbar/">
+	    <link rel="stylesheet" href="https://cdn.jsdelivr.net/npm/@docsearch/css@3">
+		<link href="https://cdn.jsdelivr.net/npm/bootstrap@5.3.1/dist/css/bootstrap.min.css" rel="stylesheet">
+		<link rel="stylesheet" href="https://cdn.jsdelivr.net/simplemde/latest/simplemde.min.css">
 
 </head>
 <body>
 
 <jsp:include page="../admin/inc/top.jsp"/>
 
-<jsp:include page="../admin/inc/left.jsp"/> 
+<jsp:include page="../admin/inc/left.jsp" /> 
 
         <div id="layoutSidenav_content">
             <main>
@@ -39,52 +41,56 @@
                     <ol class="breadcrumb mb-4">
                         <li class="breadcrumb-item active">공지/이벤트 관리 목록입니다.</li>
                     </ol>
-        
-        <div class="row">
-            <div class="col-md-2">
-                <label for="category" class="form-label">타입</label>
-                <label>${adminNoticeDTO.type}</label>
+
+
+<div class="container-fluid">
+                <div class="row">
+                    <div class="col-12">
+                        <table class="table">
+                            <tr>
+                                <td>번호</td>
+                                <td>${adminNoticeDTO.num}</td>
+                            </tr>
+                            <tr>
+                                <td>타입</td>
+                                <td>${adminNoticeDTO.type}</td>
+                            </tr>
+                            <tr>
+                                <td>조회수</td>
+                                <td>${adminNoticeDTO.readcount}</td>
+                            </tr>
+                            <tr>
+                                <td>작성일</td>
+                                <td>${adminNoticeDTO.date}</td>
+                            </tr>
+                            <tr>
+                                <td>제목</td>
+                                <td>${adminNoticeDTO.subject}</td>
+                            </tr>
+                            <tr>
+                                <td>내용</td>
+                                <td>${adminNoticeDTO.content}</td>
+                            </tr>
+                        </table>
+                    </div>
+                </div>
             </div>
-            <div class="col-md-10">
-                <label for="subject" class="form-label">제목</label>
-                <label>${adminNoticeDTO.subject}</label>
-            </div>
-            <div class="col-12">
-                <label for="myEditor" class="form-label">상세 설명</label>
-                <textarea class="form-control" id="content" rows="10" readonly>${adminNoticeDTO.content}</textarea>
-            </div>
-        </div>
-        
-        <c:if test="${!empty sessionScope.id}">
-            <c:if test="${sessionScope.id == adminNoticeDTO.id}">
-                <input type="button" value="수정" class="btn btn-primary" onclick="location.href='${pageContext.request.contextPath}/admin/noticeUpdate?num=${adminNoticeDTO.num}'">
-                <input type="button" value="삭제" class="btn btn-primary" onclick="location.href='${pageContext.request.contextPath}/admin/noticeDelete?num=${adminNoticeDTO.num}'">
-            </c:if>
-        </c:if>
             
-        <hr>
-        <input type="button" value="목록" class="btn btn-primary" onclick="location.href='${pageContext.request.contextPath}/admin/notice'">
-    </div>
-</main>
+<c:if test="${!empty sessionScope.id}">
+	<c:if test="${sessionScope.id == adminNoticeDTO.id}">
+		<input type="button" value="수정" class="btn btn-primary" onclick="location.href='${pageContext.request.contextPath}/admin/noticeUpdate?num=${adminNoticeDTO.num}'">
+		<input type="button" value="삭제" class="btn btn-primary" onclick="location.href='${pageContext.request.contextPath}/admin/noticeDelete?num=${adminNoticeDTO.num}'">
+	</c:if>
+</c:if>
+                
+            <hr>
+            <input type="button" value="목록" class="btn btn-primary" onclick="location.href='${pageContext.request.contextPath}/admin/notice'">
+        </div>
+    </main>
 </div>
-
-<script src="https://cdn.jsdelivr.net/npm/jquery@3.6.0/dist/jquery.slim.min.js"></script>
-<script src="https://cdn.jsdelivr.net/npm/summernote@0.8.20/dist/summernote-lite.min.js"></script>
-<script src="https://cdn.jsdelivr.net/npm/bootstrap@5.3.1/dist/js/bootstrap.bundle.min.js"></script>
-
-<script>
-    $(document).ready(function () {
-        $('#myEditor').summernote({
-            placeholder: 'Summernote for Bootstrap 5',
-            tabsize: 2,
-            height: 400,
-            lang: 'ko-KR', // default: 'en-US'
-            disable: true // 수정 불가능한 상태로 설정
-        });
-    });
-</script>
 
 <jsp:include page="../admin/inc/bottom.jsp"/>
 
+<script src="https://cdn.jsdelivr.net/npm/bootstrap@5.3.1/dist/js/bootstrap.bundle.min.js" integrity="sha384-HwwvtgBNo3bZJJLYd8oVXjrBZt8cqVSpeBNS5n7C8IVInixGAoxmnlMuBnhbgrkm" crossorigin="anonymous"></script>
 </body>
 </html>

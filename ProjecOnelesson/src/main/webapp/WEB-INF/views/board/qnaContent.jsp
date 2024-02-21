@@ -5,7 +5,7 @@
 <html>
 <head>
 <meta charset="UTF-8">
-<title>faqList</title>
+<title>Q&A</title>
 
 <meta name="viewport" content="width=device-width, initial-scale=1">
 <link rel="stylesheet" href="https://cdn.jsdelivr.net/npm/bootstrap@4.6.2/dist/css/bootstrap.min.css">
@@ -44,7 +44,6 @@
   <section class="py-5 text-center container" style="height: 300px;">
     <div class="row py-lg-5">
       <div class="col-lg-6 col-md-8 mx-auto">
-<!--         <h1 class="fw-light" style="color: white;">Q&A</h1> -->
       </div>
     </div>
   </section>

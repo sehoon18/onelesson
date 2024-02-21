@@ -19,6 +19,7 @@ import com.itwillbs.domain.MemberDTO;
 import com.itwillbs.domain.PageDTO;
 import com.itwillbs.service.AdminFaqService;
 import com.itwillbs.service.AdminNoticeService;
+import com.itwillbs.service.AdminQnaService;
 import com.itwillbs.service.LessonService;
 import com.itwillbs.service.MemberService;
 
@@ -27,8 +28,13 @@ import com.itwillbs.service.MemberService;
 public class AdminBoardController {
 	@Inject
 	private AdminNoticeService adminNoticeService;
+	@Inject
 	private AdminFaqService adminFaqService;
+	@Inject
+	private AdminQnaService adminQnaService;
+	@Inject
 	private LessonService lessonService;
+	@Inject
 	private MemberService memberService;
 	
 	@Autowired

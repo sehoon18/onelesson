@@ -42,9 +42,6 @@
                     </ol>
         
             <div class="row">
-                <div class="col-md-2">
-                    <label for="category" class="form-label">타입</label>
-                </div>
                 <div class="col-md-10">
                     <label for="subject" class="form-label">제목</label>
                     <label>${adminFaqDTO.subject}</label>
@@ -81,22 +78,6 @@
             lang: 'ko-KR', // default: 'en-US'
         });
 
-        $('#category').change(function () {
-            var selectedType = $(this).val();
-            var typeOptions = $('#type');
-
-            typeOptions.empty(); // 기존의 옵션을 제거
-
-            if (selectedType === '공통') {
-                typeOptions.append($('<option>', {value: '공통', text: '공통'}));
-            } else if (selectedType === '학생') {
-                typeOptions.append($('<option>', {value: '학생', text: '학생'}));
-            } else {
-            	typeOptions.append($('<option>', {value: '강사', text: '강사'}));
-            }
-            // 추가적인 타입이 있다면 여기에 추가
-        });
-    });
 </script>
 
 <jsp:include page="../admin/inc/bottom.jsp"/>
