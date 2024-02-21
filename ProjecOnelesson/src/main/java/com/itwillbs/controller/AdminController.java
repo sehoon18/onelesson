@@ -1,22 +1,37 @@
 package com.itwillbs.controller;
 
+import java.net.http.HttpResponse;
+
 import javax.inject.Inject;
+import javax.servlet.http.HttpServletResponse;
 import javax.servlet.http.HttpSession;
 
+import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Controller;
 import org.springframework.ui.Model;
 import org.springframework.web.bind.annotation.GetMapping;
 import org.springframework.web.bind.annotation.PostMapping;
 import org.springframework.web.bind.annotation.RequestMapping;
+import org.springframework.web.bind.annotation.RequestMethod;
+import org.springframework.web.bind.annotation.RequestParam;
+import org.springframework.web.servlet.mvc.support.RedirectAttributes;
 
 import com.itwillbs.domain.AdminDTO;
+import com.itwillbs.domain.MemberDTO;
 import com.itwillbs.service.AdminService;
+import com.itwillbs.service.MemberService;
 
 @Controller
 @RequestMapping("/admin/*")
 public class AdminController {
 	@Inject
 	private AdminService adminService;
+	private MemberService memberService;
+	
+	@Autowired
+	public AdminController(MemberService memberService) {
+		this.memberService=memberService;
+	}
 	
 	@GetMapping("/adminInsert")
 	public String adminInsert() {
@@ -65,11 +80,11 @@ public class AdminController {
 	}
 	
 	@GetMapping("/adminLogout")
-	public String adminLogout(HttpSession session) {
+	public String adminLogout(HttpSession session , HttpServletResponse response) {
 		System.out.println("AdminController adminLogout()");
 		
-		session.invalidate();
-		
+	        session.invalidate();
+	        
 		return "redirect:/admin/adminLogin";
 	}
 	
@@ -100,6 +115,15 @@ public class AdminController {
 			return "admin/msg";
 		}
 	}
+	@RequestMapping(value="/changeStatus", method={RequestMethod.GET, RequestMethod.POST})
+	public String changeStatus(RedirectAttributes redirectAttributes,MemberDTO memberDTO) {
+		System.out.println("AdminController changeStatus()");
+		System.out.println(memberDTO);
+		memberService.changeStatus(memberDTO);
+		redirectAttributes.addFlashAttribute("message", "회원 상태가 변경되었습니다.");
+//		model.addAttribute("id",id);
+		return "redirect:/admin/memberAdmin";
+		
 	
-	
+}
 }

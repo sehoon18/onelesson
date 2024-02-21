@@ -68,4 +68,8 @@ public class LessonDAO {
 	public List<LessonDTO> getSubject(BoardDTO boardDTO) {
 		return sqlSession.selectList(namespace + ".getSubject", boardDTO);
 	}
+
+	public List<LessonDTO> getLessonListAll(PageDTO pageDTO) {
+		return sqlSession.selectList(namespace + ".getLessonListAll", pageDTO);
+	}
 }

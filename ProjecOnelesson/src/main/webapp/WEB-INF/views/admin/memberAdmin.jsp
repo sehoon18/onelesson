@@ -69,6 +69,7 @@
                                     	<th style="width: 10%; text-align: center;">이메일</th>
                                     	<th style="width: 10%; text-align: center;">타입</th>
                                     	<th style="width: 10%; text-align: center;">상태</th>
+                                    	<th style="width: 10%; text-align: center;">상태설정</th>
                                     </tr>
                                 </thead>
                                 <tbody>
@@ -80,8 +81,43 @@
                                             <td>${member.birth}</td>
                                             <td>${member.phone}</td>
                                             <td>${member.email}</td>
-                                            <td>${member.type}</td>
-                                            <td>${member.status}</td>
+                                            <c:choose>
+                                            <c:when test="${member.type == 0}">
+                                            <td>일반회원</td>
+                                            </c:when>
+                                            <c:when test="${member.type == 1}">
+                                           <td>강사회원</td>
+                                            </c:when>
+                                            <c:otherwise>
+                                            알 수 없는 타입
+                                            </c:otherwise>
+                                            </c:choose><c:choose>
+                                            <c:when test="${member.status == 0}">
+                                            <td>활성화</td>
+                                            </c:when>
+                                            <c:when test="${member.status == 1}">
+                                           <td>비활성화</td>
+                                            </c:when>
+                                            <c:otherwise>
+                                            알 수 없는 타입
+                                            </c:otherwise>
+                                            </c:choose>
+                                            <td> <c:choose>
+                <c:when test="${member.status == 0}">
+                    <form action="${pageContext.request.contextPath}/admin/changeStatus" method="post">
+                        <input type="hidden" name="id" value="${member.id}" />
+                        <input type="hidden" name="status" value="1" />
+                        <input type="submit" value="비활성화" />
+                    </form>
+                </c:when>
+                <c:otherwise>
+                    <form action="${pageContext.request.contextPath}/admin/changeStatus" method="post">
+                        <input type="hidden" name="id" value="${member.id}" />
+                        <input type="hidden" name="status" value="0" />
+                        <input type="submit" value="활성화" />
+                    </form>
+                </c:otherwise>
+            </c:choose></td>
                                         </tr>
                                     </c:forEach>
                                 </tbody>

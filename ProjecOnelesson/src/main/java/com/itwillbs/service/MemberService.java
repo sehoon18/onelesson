@@ -11,10 +11,10 @@ import com.itwillbs.domain.MemberDTO;
 
 
 @Service
-public class MemberService {
+public class MemberService{
 	@Inject
 	private MemberDAO memberDAO;
-
+	
 	
 	public void insertMember1(MemberDTO memberDTO) {
 		System.out.println("MemberService insertMember1()");
@@ -75,6 +75,12 @@ public class MemberService {
 		memberDAO.infoUpdate(memberDTO);
 	}
 
+	public void changeStatus(MemberDTO memberDTO) {
+		System.out.println("MemberService changeStatus()");
+		memberDAO.updateStatus(memberDTO);
+		System.out.println("Status updated successfully");
+	}
+	
 	
 	
 	

@@ -36,17 +36,17 @@ public class MemberDAO {
 	}
 
 	public MemberDTO getMember(String id) {
-		System.out.println("MemberService getMember()");
+		System.out.println("MemberDAO getMember()");
 		return sqlSession.selectOne(namespace+".getMember",id);
 	}
 
 	public List<MemberDTO> getMemberList(MemberDTO memberDTO) {
-		System.out.println("MemberService getMemberList()");
+		System.out.println("MemberDAO getMemberList()");
 		return sqlSession.selectList(namespace+".getMemberList",memberDTO);
 	}
 	
 	public void updateMember(MemberDTO memberDTO) {
-		System.out.println("MemberService updateMember()");
+		System.out.println("MemberDAO updateMember()");
 		sqlSession.update(namespace+".updateMember",memberDTO);
 	}
 
@@ -55,22 +55,30 @@ public class MemberDAO {
 		sqlSession.update(namespace+".deleteMember",memberDTO);
 	}
 	public MemberDTO getMemberByNick(String nick) {
-		System.out.println("MemberService getMemberByNick()");
+		System.out.println("MemberDAO getMemberByNick()");
 		return sqlSession.selectOne(namespace+".getMemberByNick",nick);
 	}
 	public MemberDTO getMemberByPhone(String phone) {
-		System.out.println("MemberService getMemberByPhone()");
+		System.out.println("MemberDAO getMemberByPhone()");
 		return sqlSession.selectOne(namespace+".getMemberByPhone",phone);
 	}
 	public MemberDTO getMemberByEmail(String email) {
-		System.out.println("MemberService getMemberByEmail()");
+		System.out.println("MemberDAO getMemberByEmail()");
 		return sqlSession.selectOne(namespace+".getMemberByEmail",email);
 	}
+	
 	public MemberDTO getMemberAll(String id) {
 		return sqlSession.selectOne(namespace + ".getMemberAll", id);
 	}
+	
 	public void infoUpdate(MemberDTO memberDTO) {
 		sqlSession.update(namespace + ".infoUpdate", memberDTO);
+	}
+	
+	public void updateStatus(MemberDTO memberDTO) {
+		System.out.println("MemberDAO updateStatus()");
+		System.out.println(memberDTO);
+		sqlSession.update(namespace+".updateStatus", memberDTO);
 	}
 	
 

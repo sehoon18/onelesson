@@ -59,4 +59,8 @@ select MEM_NAME as "name", MEM_ID as "id", MEM_EMAIL as "email", MEM_PHONE as "p
 update MEMBER set MEM_PASS = #{image} where MEM_ID = #{id} 
 </update>
 
+<update id="updateStatus"> 
+    update MEMBER set MEM_STATUS = #{status} where MEM_ID = #{id} 
+</update>
+
 </mapper>

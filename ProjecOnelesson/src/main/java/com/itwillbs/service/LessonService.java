@@ -112,4 +112,16 @@ public class LessonService {
 		return lessonDAO.getSubject(boardDTO);
 	}
 
+	public List<LessonDTO> getLessonListAll(PageDTO pageDTO) {
+		System.out.println("LessonService getLessonListAll()");
+		
+		int startRow = (pageDTO.getCurrentPage() - 1) * pageDTO.getPageSize() + 1;
+		int EndRow = startRow + pageDTO.getPageSize() - 1;
+		
+		pageDTO.setStartRow(startRow -1);
+		pageDTO.setEndRow(EndRow);
+		
+		return lessonDAO.getLessonListAll(pageDTO);
+	}
+
 }
