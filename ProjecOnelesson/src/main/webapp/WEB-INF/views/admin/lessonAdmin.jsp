@@ -81,7 +81,17 @@
 								            <td>${lesson.subCategory}</td>
 								            <td>${lesson.subject}</td> 
 								            <td>${lesson.date}</td>
-								            <td>${lesson.status}</td>
+								            <c:choose>
+                                            <c:when test="${lesson.status == 0}">
+                                            <td>진행중</td>
+                                            </c:when>
+                                            <c:when test="${lesson.status == 1}">
+                                           <td>종료</td>
+                                            </c:when>
+                                            <c:otherwise>
+                                            알 수 없는 타입
+                                            </c:otherwise>
+                                            </c:choose>
                                         </tr>
                                     </c:forEach>
                                 </tbody>

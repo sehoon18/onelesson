@@ -51,4 +51,10 @@ select MEM_NAME as "name", MEM_ID as "id", MEM_EMAIL as "email", MEM_NICK as "ni
 select MEM_NAME as "name", MEM_ID as "id", MEM_PHONE as "phone", MEM_NICK as "nick", MEM_ADDRESS as "address", MEM_TYPE as "type" from MEMBER where MEM_EMAIL = #{email} 
 </select>
 
+<update id="updateStatus"> 
+    update MEMBER set MEM_STATUS = #{status} where MEM_ID = #{id} 
+</update>
+
+
+
 </mapper>

@@ -86,17 +86,7 @@
         --bs-btn-active-bg: #5a23c8;
         --bs-btn-active-border-color: #5a23c8;
       }
-      .bd-mode-toggle {
-        z-index: 1500;
-      }
       
-	  .orange{
-	  color:rgb(241, 50, 107);
-	  }
-	  .blue{
-	  color:rgb(73, 71, 194)
-	  }
-	  
 	  /* 	  카테고리 밑줄    */
 	  .catecolor {
 	  color:black;
@@ -113,7 +103,7 @@
     </style>
 
     
-    <!-- Custom styles for this template -->
+  
     <link href="${pageContext.request.contextPath}/resources/css/main/main.css" rel="stylesheet">
   </head>
   <body>
@@ -132,17 +122,11 @@
       <button type="button" data-bs-target="#myCarousel" data-bs-slide-to="1" aria-label="Slide 2"></button>
     </div>
     
-    <div class="carousel-inner" >
+    <div class="carousel-inner">
 <!--     1번째 이미지  -->
       <div class="carousel-item active">
       <a href="${pageContext.request.contextPath}/lesson/lessonList" target="_blank"></a>
       	<img src="${pageContext.request.contextPath}/resources/images/main/top3.png" width="100%" height="100%" class="d-block w-100" alt="First slide" >
-<!--       	보러가기 버튼 위치 조정 -->
-      	 <div class="position-absolute bottom-50 start-0 w-100 d-flex justify-content">
-            <button class="btn btn-primary" style="margin-left: 440px;"  onclick="location.href='${pageContext.request.contextPath}/lesson/lessonList'">레슨 보러가기</button>
-            <button class="btn btn-primary" style="margin-left: 350px;"  onclick="location.href='${pageContext.request.contextPath}/lesson/lessonList'">레슨 보러가기</button>
-            <button class="btn btn-primary " style="margin-left: 340px;" onclick="location.href='${pageContext.request.contextPath}/lesson/lessonList'">레슨 보러가기</button>
-        </div>
     </div>
       	
       <!--     2번째 이미지  -->
@@ -163,15 +147,20 @@
   </div>
 </div>
 
-  <!-- Marketing messaging and featurettes
-  ================================================== -->
-  <!-- Wrap the rest of the page in another container to center all the content. -->
+<div class="position-absolute bottom-50 start-0 w-100 d-flex justify-content">
+            <button class="btn btn-primary" style="margin-left: 300px;"  onclick="location.href='${pageContext.request.contextPath}/lesson/lessonList'">GO</button>
+            <button class="btn btn-primary" style="margin-left: 340px;"  onclick="location.href='${pageContext.request.contextPath}/lesson/lessonList'">GO</button>
+            <button class="btn btn-primary " style="margin-left: 400px;" onclick="location.href='${pageContext.request.contextPath}/lesson/lessonList'">GO</button>
+        </div>
 
 
       <!-- 카테고리 -->
   <div class="container marketing">
+  
     <div class="row justify-content-center">
+    
         <div class="col-lg-4 col-md-3 col-sm-4">
+        
             <div class="text-center">
             <!--            카테고리이미지1 -->
             <a href="${pageContext.request.contextPath}/lesoon/lessonList"> 
@@ -231,8 +220,10 @@
   </div>
 </div>
 
+<!-- 자동스크롤이동 footer에 설정 		-->
+<div id="information">
     <hr class="featurette-divider">
-
+</div>
     <div class="row featurette">
       <div class="col-md-5 text-center" style="width: 2000px"> <!-- 이미지 -->
     <img src="${pageContext.request.contextPath}/resources/images/main/guide1.png" class="img-fluid" alt="Responsive image" style=" width: 100%" height="100%">
@@ -279,7 +270,7 @@
 
 
 
-  </div><!-- /.container -->
+  </div>
 
 
 <!-- 푸터 들어가는 곳 -->

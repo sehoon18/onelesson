@@ -23,12 +23,8 @@
         </div>
         <div class="col">
             <ul class="nav flex-column flex-md-row" style="margin-left: 200px; font-weight: 900;">
-                <li class="nav-item"><a href="#" class="nav-link text-body-secondary">사이트 이용안내</a></li>
-
+                <li class="nav-item"><a href="${pageContext.request.contextPath}#information" class="nav-link text-body-secondary">사이트 이용안내</a></li>
                 <li class="nav-item"><a href="${pageContext.request.contextPath}/member/memberAgreement" class="nav-link text-body-secondary">이용약관</a></li>
-
-                <li class="nav-item"><a href="#" class="nav-link text-body-secondary">이용약관</a></li>
-
                 <li class="nav-item"><a href="${pageContext.request.contextPath}/board/notice" class="nav-link text-body-secondary">공지사항/이벤트</a></li>
                 <li class="nav-item"><a href="${pageContext.request.contextPath}/board/faq" class="nav-link text-body-secondary">자주묻는질문</a></li>
                 <li class="nav-item"><a href="#" class="nav-link text-body-secondary">문의</a></li>

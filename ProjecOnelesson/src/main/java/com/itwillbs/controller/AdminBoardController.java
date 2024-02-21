@@ -4,6 +4,7 @@ import java.util.List;
 
 import javax.inject.Inject;
 import javax.servlet.http.HttpServletRequest;
+import javax.servlet.http.HttpSession;
 
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Controller;
@@ -12,6 +13,7 @@ import org.springframework.web.bind.annotation.GetMapping;
 import org.springframework.web.bind.annotation.PostMapping;
 import org.springframework.web.bind.annotation.RequestMapping;
 
+import com.itwillbs.domain.AdminDTO;
 import com.itwillbs.domain.AdminFaqDTO;
 import com.itwillbs.domain.AdminNoticeDTO;
 import com.itwillbs.domain.LessonDTO;
@@ -39,9 +41,15 @@ public class AdminBoardController {
 	
 	
 	@GetMapping("/memberAdmin")
-	public String memberAdmin( Model model , HttpServletRequest request) {
+	public String memberAdmin( Model model , HttpServletRequest request , HttpSession session) {
 		System.out.println("AdminBoardController memberAdmin()");
 		
+		String user_id = (String) session.getAttribute("id");
+	    
+	    System.out.println(user_id);
+	   if(user_id == null || !user_id.equals("admin")) {
+		   return "admin/memberAdmin";
+	   }
 		int pageSize = 10;
 		String pageNum = request.getParameter("pageNum");
 		if(pageNum == null) {
@@ -60,9 +68,14 @@ public class AdminBoardController {
 	}
 	
 	@GetMapping("/lessonAdmin")
-	public String lessonAdmin(HttpServletRequest request,  Model model) {
+	public String lessonAdmin(HttpServletRequest request,  Model model ,HttpSession session) {
 	    System.out.println("AdminBoardController lessonAdmin()" );
+	    String user_id = (String) session.getAttribute("id");
 	    
+	    System.out.println(user_id);
+	   if(user_id == null || !user_id.equals("admin")) {
+		   return "admin/lessonAdmin";
+	   }
 	    int pageSize = 10;
 		String pageNum = request.getParameter("pageNum");
 		if(pageNum == null) {
