@@ -4,6 +4,7 @@
 
 <html>
 <head>
+<title>찜 목록</title>
 <style>
 #container {
 	width: 1120px;

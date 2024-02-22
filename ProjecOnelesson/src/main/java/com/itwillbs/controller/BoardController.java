@@ -220,7 +220,7 @@ public class BoardController {
 		return "board/faqContent";
 	}
 	
-	@GetMapping("/qna")
+	@GetMapping("/qnaList")
 	public String lessonList(HttpServletRequest request, PageDTO pageDTO, Model model, LessonDTO lessonDTO, HttpSession session) {
 		System.out.println("LessonController qnaList()");
 		

@@ -303,6 +303,50 @@ public class memberController {
 		return "member/mypage";
 	}
 	
+	@GetMapping("/mypage2")
+	public String mypage2(HttpSession session, MemberDTO memberDTO, Model model, LessonDTO lessonDTO, PageDTO pageDTO, HttpServletRequest request) {
+		System.out.println("MemberController mypage2()");
+		
+		memberDTO = memberService.getMember((String)session.getAttribute("id"));
+		model.addAttribute("	memberDTO", memberDTO);
+
+		int pageSize = 3;
+		String pageNum = request.getParameter("pageNum");
+		if(pageNum == null) {
+			pageNum="1";
+		}
+		
+		int currentPage = Integer.parseInt(pageNum);
+		
+		pageDTO.setPageSize(pageSize);
+		pageDTO.setPageNum(pageNum);
+		pageDTO.setCurrentPage(currentPage);
+		pageDTO.setId((String)session.getAttribute("id"));
+		
+		List<LessonDTO> lessonList = lessonService.getMyLessonList(pageDTO);
+		
+		int count =  lessonService.getMyLessonCount(pageDTO);
+		int pageBlock = 10;
+		int startPage = (currentPage - 1) / pageBlock * pageBlock + 1;
+		int endPage = startPage + pageBlock -1;
+		int pageCount = count / pageSize + (count % pageSize == 0 ? 0 : 1);
+		
+		if(endPage > pageCount) {
+			endPage = pageCount;
+		}
+		
+		pageDTO.setCount(pageCount);
+		pageDTO.setPageBlock(pageBlock);
+		pageDTO.setStartPage(startPage);
+		pageDTO.setEndPage(endPage);
+		pageDTO.setPageCount(pageCount);
+		
+		model.addAttribute("lessonList", lessonList);
+		model.addAttribute("pageDTO", pageDTO);
+		
+		return "member/mypage2";
+	}
+	
 	@GetMapping("/resign")
 	public String resign(MemberDTO memberDTO, Model model) {
 		System.out.println("MemberController resign");

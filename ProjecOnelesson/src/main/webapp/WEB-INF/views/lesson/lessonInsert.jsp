@@ -2,31 +2,37 @@
     pageEncoding="UTF-8"%>
 <%@ taglib prefix="c" uri="http://java.sun.com/jsp/jstl/core"%>
 <!doctype html>
-<html lang="en" class="h-100" data-bs-theme="auto">
+<html lang="ko" class="h-100" data-bs-theme="auto">
   <head>
-  <script src="/docs/5.3/assets/js/color-modes.js"></script>
-  <script src="https://code.jquery.com/jquery-3.3.1.slim.min.js"></script>
-  <script src="https://cdn.jsdelivr.net/simplemde/latest/simplemde.min.js"></script>
-
+    <title>레슨 등록</title>
+	<script src="/docs/5.3/assets/js/color-modes.js"></script>
+	<script src="https://code.jquery.com/jquery-3.3.1.slim.min.js"></script>
+	<script src="https://cdn.jsdelivr.net/simplemde/latest/simplemde.min.js"></script>
+	<script src="https://cdnjs.cloudflare.com/ajax/libs/summernote/0.8.12/summernote-bs4.js"></script>
+	
+	
     <meta name="viewport" content="width=device-width, initial-scale=1">
     <meta name="description" content="">
     <meta name="author" content="Mark Otto, Jacob Thornton, 그리고 Bootstrap 기여자들">
     <meta name="generator" content="Hugo 0.115.4">
     <meta http-equiv="X-UA-Compatible" content="IE=edge">
     <meta http-equiv="Content-Type" content="text.html; charset=UTF-8">
-    <title>레슨 등록</title>
-	    <link rel="canonical" href="https://getbootstrap.kr/docs/5.3/examples/sticky-footer-navbar/">
-	    <link rel="stylesheet" href="https://cdn.jsdelivr.net/npm/@docsearch/css@3">
-		<link href="https://cdn.jsdelivr.net/npm/bootstrap@5.3.1/dist/css/bootstrap.min.css" rel="stylesheet">
-		<link rel="stylesheet" href="https://cdn.jsdelivr.net/simplemde/latest/simplemde.min.css">
+    
+    <link rel="canonical" href="https://getbootstrap.kr/docs/5.3/examples/sticky-footer-navbar/">
+    <link rel="stylesheet" href="https://cdn.jsdelivr.net/npm/@docsearch/css@3">
+	<link rel="stylesheet" href="https://cdn.jsdelivr.net/simplemde/latest/simplemde.min.css">
+	<link rel="stylesheet" href="https://uicdn.toast.com/editor/latest/toastui-editor.min.css" />
+	<link href="https://cdn.jsdelivr.net/npm/bootstrap@5.3.1/dist/css/bootstrap.min.css" rel="stylesheet">
+	<link href="https://cdnjs.cloudflare.com/ajax/libs/summernote/0.8.12/summernote-bs4.css" rel="stylesheet">
+	
 
-    <!-- Favicons -->
-<link rel="apple-touch-icon" href="/docs/5.3/assets/img/favicons/apple-touch-icon.png" sizes="180x180">
-<link rel="icon" href="/docs/5.3/assets/img/favicons/favicon-32x32.png" sizes="32x32" type="image/png">
-<link rel="icon" href="/docs/5.3/assets/img/favicons/favicon-16x16.png" sizes="16x16" type="image/png">
-<link rel="manifest" href="/docs/5.3/assets/img/favicons/manifest.json">
-<link rel="mask-icon" href="/docs/5.3/assets/img/favicons/safari-pinned-tab.svg" color="#712cf9">
-<link rel="icon" href="/docs/5.3/assets/img/favicons/favicon.ico">
+	    <!-- Favicons -->
+	<link rel="apple-touch-icon" href="/docs/5.3/assets/img/favicons/apple-touch-icon.png" sizes="180x180">
+	<link rel="icon" href="/docs/5.3/assets/img/favicons/favicon-32x32.png" sizes="32x32" type="image/png">
+	<link rel="icon" href="/docs/5.3/assets/img/favicons/favicon-16x16.png" sizes="16x16" type="image/png">
+	<link rel="manifest" href="/docs/5.3/assets/img/favicons/manifest.json">
+	<link rel="mask-icon" href="/docs/5.3/assets/img/favicons/safari-pinned-tab.svg" color="#712cf9">
+	<link rel="icon" href="/docs/5.3/assets/img/favicons/favicon.ico">
 
 <meta name="theme-color" content="#712cf9">
 
@@ -149,7 +155,7 @@ window.location.href = "${pageContext.request.contextPath}/member/memberLogin";
     <h1 class="mt-5">레슨 등록</h1>
     <p class="lead">레슨 등록 페이지입니다.</p>
     <hr>
-	<form action="${pageContext.request.contextPath}/lesson/lessonInsertPro" method="post" enctype="multipart/form-data">
+	<form id="lessonForm" action="${pageContext.request.contextPath}/lesson/lessonInsertPro" method="post" enctype="multipart/form-data">
 <div id="topinfo" style="display: inline; ">
     <div class="imagespace">
 	<div id="image_container"></div>
@@ -212,8 +218,14 @@ window.location.href = "${pageContext.request.contextPath}/member/memberLogin";
 	</div>
 	
 	<div class="form-group">
-<!-- 	<label for="text">상세 설명</label> -->
- 	<textarea id="myEditor" name="content">${lessonDTO.content }</textarea>
+	<!-- 	<label for="text">상세 설명</label> -->
+<!-- 	<div id="content"></div> -->
+<!-- 	  <input type="hidden" id="contentInput" name="content"> -->
+		<div class="col-12">
+		    <label for="myEditor" class="form-label">상세 설명</label>
+		    <textarea id="myEditor" name="content" class="form-control mb-3"></textarea>
+		</div>
+<%--  	<textarea id="myEditor" name="content">${lessonDTO.content }</textarea> --%>
     </div>	
 	<hr>
 	<div class="mb-3 row">
@@ -229,9 +241,13 @@ window.location.href = "${pageContext.request.contextPath}/member/memberLogin";
 	</div>
     </form>
     </div>
-    <script>
-    var simplemde = new SimpleMDE({ element: document.getElementById("myEditor") });
-    </script>
+	<script src="https://cdn.ckeditor.com/ckeditor5/29.0.0/classic/ckeditor.js"></script>
+	<script>
+	  ClassicEditor
+	    .create(document.querySelector('#myEditor'))
+	    .catch(error => console.error(error));
+	</script>
+	
 	<script>
 	  $(document).ready(function(){
 	    var subCategories = {
@@ -310,7 +326,7 @@ window.location.href = "${pageContext.request.contextPath}/member/memberLogin";
 </main>
 
 <jsp:include page="../inc/footer.jsp" />
-
+<script src="https://uicdn.toast.com/editor/latest/toastui-editor-all.min.js"></script>
 <script src="https://cdn.jsdelivr.net/npm/bootstrap@5.3.1/dist/js/bootstrap.bundle.min.js"></script>
 <script src="https://cdn.jsdelivr.net/npm/marked/marked.min.js"></script>
     </body>

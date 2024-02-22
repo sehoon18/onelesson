@@ -4,7 +4,7 @@
 <html>
 <head xmlns:th="http://www.thymeleaf.org">
 <meta charset="UTF-8">
-<title>lesson/login.jsp</title>
+<title>로그인</title>
 
     <link rel="canonical" href="https://getbootstrap.com/docs/5.3/examples/carousel/">
 
