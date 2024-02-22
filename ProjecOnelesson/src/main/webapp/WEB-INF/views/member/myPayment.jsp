@@ -1,10 +1,12 @@
 <%@ page language="java" contentType="text/html; charset=UTF-8"
     pageEncoding="UTF-8"%>
+<%@ taglib prefix="c" uri="http://java.sun.com/jsp/jstl/core" %>
+<%@ taglib prefix="fmt" uri="http://java.sun.com/jsp/jstl/fmt" %>
 <!DOCTYPE html>
 <html>
 <head>
 <meta charset="UTF-8">
-<title>나의 결제 목록 확인</title>
+<title>마이페이지</title>
   <link rel="canonical" href="https://getbootstrap.com/docs/5.3/examples/album/">
 
     
@@ -15,6 +17,14 @@
 
 
 <style>
+      .b-example-divider {
+        width: 100%;
+        height: 3rem;
+        background-color: rgba(0, 0, 0, .1);
+        border: solid rgba(0, 0, 0, .15);
+        border-width: 1px 0;
+        box-shadow: inset 0 .5em 1.5em rgba(0, 0, 0, .1), inset 0 .125em .5em rgba(0, 0, 0, .15);
+      }
 .head-Boxleft{
 	display: inline-block;
 	float : left;
@@ -23,18 +33,17 @@
 }
 .head-Box-center{
 	display: inline-block;
+	width:1100px;
 	height: 100px;
 	flex: em;
-	padding-left: 25%;
 }
 .head-Box-right{
 	display: inline-block;
-	height: 130px;
+	height: 150px;
 	flex: em;
 	float: right;
-	padding: 1.5em;
-	border: solid skyblue;
-	
+	padding: 1.2em;
+	vertical-align: bottom;
 }
 
 .myinfoA1{
@@ -166,14 +175,17 @@ display: inline-block;
 	color: white;
 	
 }
-.myName{
-	margin-left: 70px;
-	
+.myPageT{
+	display : inline-block;
+	background-color: green;
+	width: 100%;
+	height: 10px;
+	position: relative;
+	margin-top: 10px;
 }
-
 .myPageT2{
 	display : inline-block;
-	background-color: orange;
+	background-color: green;
 	width: 100%;
 	height: 10px;
 	position: relative;
@@ -185,7 +197,7 @@ display: inline-block;
 }
 .myLessonInfo{
 	display : inline-block;
-	width: 1500px;
+	width: 100%;
 	height: 10px;
 	position: relative;
 	padding-left: 10px;
@@ -205,227 +217,115 @@ display: inline-block;
 	padding-left: calc(var(1.5em) * .5);
 	margin-right: auto;
 	margin-left: auto;
+	height: 200px;
 }
 .top-margin{
 	display : inline-block;
-	width : 100%;
-	height: 150px;
+	height: 100px;
 
 }
 .topView{
 	display: inline-block;
 }
-.paymentVeiw{
-	display: inline-block;
-}
-tr{
-	display: grid;
+.pageMargin{
 	width: 100%;
-	position: relative;
-	height: 20px;
-	margin-top: auto;
-	float: left;
+	height: 50px;
+}
+}
 }
 
-td{
-	display: inline-block;
-	margin-left: 100px;
-	
+.myPayment{
+	width: 100%;
+	height: 300px;
 }
-.payment-box1{
-	position: static;
-	width: 1500px;
-	margin-top: 10px;
-	border: solid black;
-}
-.payment-box2{
-	position: static;
-	width: 1500px;
-	border: solid;
-	border-color: silver;
+.paymentIn-text{
+	width: 200px;
 	height: 30px;
 }
-.payment-text1{
-	margin-left: 70px;
-	margin-right : 70px;
-	position: static;
-}
-.payment-text1 > .payment-text2{
-	float : left;
-}
-.payment-text2{
-	margin-left: 70px;
-	margin-right : 70px;
-	position: static;
-	text-align: center;
-}
-.payment-text2 > .payment-text3{
-	float : left;
-}
-.payment-text3{
-	margin-left: 70px;
-	margin-right : 70px;
-	position: static;
-	text-align: center;
-}
-.payment-text3 > .payment-text4{
-	float : left;
-}
-.payment-text4{
-	margin-left: 70px;
-	margin-right : 70px;
-	position: static;
-	text-align: center;
-}
-.payment-text4 > .payment-text5{
-	float : left;
-}
-.payment-text5{
-	margin-left: 70px;
-	margin-right : 70px;
-	position: static;
-	text-align: center;
-}
-.payment-text5 > .payment-text6{
-	float : left;
-}
-.payment-text6{
-	margin-left: 70px;
-	margin-right : 70px;
-	position: static;
-	text-align: center;
-}
-.payment-inBox{
-	position: static;
-	width: 1500px;
-}
-.bottom-margin{
-	display : inline-block;
-	width : 100%;
-	height: 150px;
-
-}
-.paymentIn-text1{
-	position: static;
-	width: 180px;
-	text-align: center;
-	float: left;
-}
-.paymentIn-text2{
-	position: static;
-	width: 200px;
-	text-align: center;
-	float: left;
-}
-.paymentIn-text3{
-	position: static;
-	width: 200px;
-	text-align: center;
-	float: left;
-}
-.paymentIn-text4{
-	position: static;
-	width: 200px;
-	text-align: center;
-	float: left;
-}
-.paymentIn-text5{
-	position: static;
-	width: 200px;
-	text-align: center;
-	float: left;
-}
-.paymentIn-text6{
-	position: static;
-	width: 200px;
-	text-align: center;
-	float: left;
-}
-
 </style>
 </head>
 <!-- 헤더 넣는 곳 -->
-<jsp:include page="../inc/header.jsp" />
+ <jsp:include page="../inc/header.jsp" />
 <!-- 헤더 넣는 곳 -->
 <body>
-	<div class="top-margin"> </div>
-	<div class="head-Boxleft"><button type="button" class="backPage" onclick="backPage()"><img src="${pageContext.request.contextPath}/resources/images/backArroy.jpg" style="width: 50px; height: 50px;"></button></div>
-      
-    <span class="head-Box-center"><h2 class="topView">나의 결제 목록</h2></span>
-    <span class="head-Box-right">
-    <span class="myinfoA1"><img src="" class="myProImg" style="width: 80px; height: 80px;">
-    <span class="myName">  000 회원
-         </span>           
+<main  style="height: 100%;">
+	<div class="top-margin"></div>
+
+    
+    
+    <div id="container" style="width: 1100px; margin: 0px auto;">
+    	<table>
+	<tr><td style="width: 300px;"></td><td style="width: 500px; text-align: center;"><h2 class="topView">마이페이지</h2></td><td style="width: 300px;">
+	<span class="head-Box-right" style="text-align: center;">
+	<img src="${pageContext.request.contextPath}/resources/images/default.png" class="myProImg" style="width: 80px; height: 80px; margin: 0px auto;"><br>
+    <span class="myName">${memberDTO.name } 회원</span>           
     </span>
-    </span>
-      <div class="myMenu">              
-     <span class="userInfo"><a><input type="button" value="나의 정보 수정" onclick="location.href='${pageContext.request.contextPath}/member/myInfo'"></a></span>    
-     <span class="userlesson"><a><input type="button" value="나의 레슨 확인" onclick="location.href='${pageContext.request.contextPath}/member/myLessonList'"></a></span>
-     <span class="userPayment"><a><input type="button" value="나의 결제 확인" onclick="myPaymentInfo"></a></span>
-	 <span class="userReview"><a><input type="button" value="나의 후기 확인" onclick="location.href='${pageContext.request.contextPath}/board/review'"></a></span>
-	 <span class="userQnA"><a><input type="button" value="나의 문의 확인" onclick="myQnAInfo"></a></span>
-	 <span class="mainPage"><a><input type="button" value="메인 페이지" onclick="location.href='${pageContext.request.contextPath}/lesson/main'"></a></span>
-	 <span class="JJimList"><a><input type="button" value="찜 리스트 확인" onclick=""></a></span>
-	 <span class="userCenter"><a><input type="button" value="고객 센터" onclick=""></a></span>
-	 </div>
-<div class="myPageT2"></div>
-	 		<div class="myLessonInfo"><b>결제 내역 </b><br>
-	 				<div class="payment-box1">
-	 				</div>
-	 					<span class="payment-text1">no</span>
-	 					<span class="payment-text2">주문번호</span>
-	 					<span class="payment-text3">결제일자</span>
-	 					<span class="payment-text4">결제레슨</span>
-	 					<span class="payment-text5">가격</span>
+	</td></tr>
+	</table>
+    
+    <div class="btn-group" role="group" aria-label="Basic example" style="display: flex; justify-content : center;">
+	  <button type="button" class="btn btn-outline-success btn-lg" onclick="location.href='${pageContext.request.contextPath}/member/mypage'">내 정보</button>
+	  <button type="button" class="btn btn-outline-success btn-lg" onclick="location.href='${pageContext.request.contextPath}/member/myPayment'">결제내역</button>
+	  <button type="button" class="btn btn-outline-success btn-lg" onclick="location.href='${pageContext.request.contextPath}/board/reviewList'">후기</button>
+	  <button type="button" class="btn btn-outline-success btn-lg" onclick="location.href='${pageContext.request.contextPath}/board/wish'">찜리스트</button>
+	  <button type="button" class="btn btn-outline-success btn-lg" onclick="location.href='${pageContext.request.contextPath}/member/main'">메인페이지</button>
+	  <button type="button" class="btn btn-outline-success btn-lg" onclick="location.href='${pageContext.request.contextPath}/board/lessonQna'">레슨 문의</button>
+	  <button type="button" class="btn btn-outline-success btn-lg" onclick="location.href='${pageContext.request.contextPath}/board/qnaList'">관리자에게 문의</button>
+	</div>
+<div class="myPageT"></div>
+	 		<h4 style="text-align: center;">나의 결제 정보 내역 보기</h4>	</div>
+     			</div>
+					<div class="myPayment">
+	 					<span class="payment-text1">결제 번호</span>
+	 					<span class="payment-text2">레슨 번호</span>
+	 					<span class="payment-text3">결제 일자</span>
+	 					<span class="payment-text4">가격</span>
+	 					<span class="payment-text5">결제 방법</span>
+	 					<span class="payment-text5">구매자 이름</span>
 	 					<span class="payment-text6">결제상태</span>
 	 					</div>
-	 		<div class="payment-box2">
-	 			<div class="payment-inBox">
-	 				<span class="paymentIn-text1">7</span>
-	 				<span class="paymentIn-text2">7</span>
-	 				<span class="paymentIn-text3">7</span>
-	 				<span class="paymentIn-text4">7</span>
-	 				<span class="paymentIn-text5">7</span>
-	 				<span class="paymentIn-text6">7</span>
+ 	 			
+	 			<div class="payment-inBox7">
+  				<c:forEach var="orderDTO" items="${orderList }">
+ 				<span class="paymentIn-text">${orderDTO.ORDER_NUM }</span> 
+  	 				<span class="paymentIn-text">${orderDTO.LES_SUBJECT }</span>
+ 	 				<span class="paymentIn-text">${orderDTO.LES_PRICE }</span>
+					<span class="paymentIn-text">${orderDTO.MEM_NAME }</span>
+					<span class="paymentIn-text">${orderDTO.ORDER_DATE }</span> 
+	 				<span class="paymentIn-text">${orderDTO.ORDER_METHOD }</span> 
+	 					<c:if test="${ 0 eq orderDTO.ORDER_STATUS }">
+	 				<span class="paymentIn-text">결제 완료</span>
+	 					</c:if><br>
+				</c:forEach>
 	 			</div>
-	 		</div>
-	 			<div class="payment-box2">
-	 				<span class="paymentIn-text1">7</span>
-	 				<span class="paymentIn-text2">7</span>
-	 				<span class="paymentIn-text3">7</span>
-	 				<span class="paymentIn-text4">7</span>
-	 				<span class="paymentIn-text5">7</span>
-	 				<span class="paymentIn-text6">7</span>
-	 			</div>
-	 			<div class="payment-box2">
-	 				<span class="paymentIn-text1">7</span>
-	 				<span class="paymentIn-text2">7</span>
-	 				<span class="paymentIn-text3">7</span>
-	 				<span class="paymentIn-text4">7</span>
-	 				<span class="paymentIn-text5">7</span>
-	 				<span class="paymentIn-text6">7</span>
-	 			</div>
-	 			<div class="payment-box2">
-	 				<span class="paymentIn-text1">7</span>
-	 				<span class="paymentIn-text2">7</span>
-	 				<span class="paymentIn-text3">7</span>
-	 				<span class="paymentIn-text4">7</span>
-	 				<span class="paymentIn-text5">7</span>
-	 				<span class="paymentIn-text6">7</span>
-	 			</div>
-	 			<div class="payment-box2">
-	 				<span class="paymentIn-text1">7</span>
-	 				<span class="paymentIn-text2">7</span>
-	 				<span class="paymentIn-text3">7</span>
-	 				<span class="paymentIn-text4">7</span>
-	 				<span class="paymentIn-text5">7</span>
-	 				<span class="paymentIn-text6">7</span>
-	 			</div>		
-	 		<div class="bottom-margin"></div>
+	 			
+	 			 <script>
+        function toggleHeart(el) {
+            var heartIcon = el.querySelector('.heart');
+            heartIcon.classList.toggle('filled');
+        }
+    </script>
+      
+      </div>
+	<nav aria-label="Page navigation example" style="margin-top: 10px">
+	  <ul class="pagination justify-content-end">
+	  <c:if test="${pageDTO.startPage > pageDTO.pageBlock }">
+	    <li class="page-item"><a class="page-link" href="${pageContext.request.contextPath}/member/myPayment?pageNum=${pageDTO.startPage - pageDTO.pageBlock}">Previous</a></li>
+	  </c:if>
+	  
+	  <c:forEach var="i" begin="${pageDTO.startPage }" end="${pageDTO.endPage }" step="1">
+	    <li class="page-item"><a class="page-link" href="${pageContext.request.contextPath}/member/myPayment?pageNum=${i}">${i }</a></li>
+	  </c:forEach>
+	  
+	  <c:if test="${pageDTO.endPage < pageDTO.pageCount }">
+	    <li class="page-item"><a class="page-link" href="${pageContext.request.contextPath}/lesson/lessonList?pageNum=${pageDTO.startPage + pageDTO.pageBlock}">Next</a></li>
+	  </c:if>  
+	  </ul>
+	</nav>
+    </div>
+  </div>
   
-<!-- 푸터 넣는곳 -->
-<jsp:include page="../inc/footer.jsp" />
-<!-- 푸터 넣는곳 --> 
+</main>
 <script>
  function backPage(){
 		history.back();
@@ -437,5 +337,21 @@ td{
 	 location.href="../lesson/myLesson_Page";
  }
  </script>
+ <!-- 푸터 넣는곳 -->
+<jsp:include page="../inc/footer.jsp" />
+<!-- 푸터 넣는곳 --> 
+<script>
+var ProDisplay = true;
+function openDisplay(){
+    var onP = document.getElementById("myProfil");
+    if(onP.style.display=='none'){
+        onP.style.display = 'inline-block';
+    }else{
+        onP.style.display = 'none';
+    }
+}
+
+ </script>
+
 </body>
 </html>

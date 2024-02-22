@@ -250,6 +250,14 @@ display: inline-block;
 	text-align: center;
 	float: left;
 }
+.myProfil{
+	width : 100%;
+	margin-top: 30px;
+	padding-left: 25%;
+	padding-right: 25%;
+	text-align: center;
+	display : none;
+}
 
 </style>
 </head>
@@ -257,7 +265,7 @@ display: inline-block;
  <jsp:include page="../inc/header.jsp" />
 <!-- 헤더 넣는 곳 -->
 <body>
-<main  style="height: 1200px;">
+<main  style="height: 100%;">
 	<div class="top-margin"></div>
 
     
@@ -273,7 +281,7 @@ display: inline-block;
 	</table>
     
     <div class="btn-group" role="group" aria-label="Basic example" style="display: flex; justify-content : center;">
-	  <button type="button" class="btn btn-outline-success btn-lg" onclick="location.href='${pageContext.request.contextPath}/member/myInfo'">내 정보</button>
+	  <button type="button" class="btn btn-outline-success btn-lg" onclick="location.href='${pageContext.request.contextPath}/member/mypage'">내 정보</button>
 	  <button type="button" class="btn btn-outline-success btn-lg" onclick="location.href='${pageContext.request.contextPath}/member/myPayment'">결제내역</button>
 	  <button type="button" class="btn btn-outline-success btn-lg" onclick="location.href='${pageContext.request.contextPath}/board/reviewList'">후기</button>
 	  <button type="button" class="btn btn-outline-success btn-lg" onclick="location.href='${pageContext.request.contextPath}/board/wish'">찜리스트</button>
@@ -281,10 +289,24 @@ display: inline-block;
 	  <button type="button" class="btn btn-outline-success btn-lg" onclick="location.href='${pageContext.request.contextPath}/board/lessonQna'">레슨 문의</button>
 	  <button type="button" class="btn btn-outline-success btn-lg" onclick="location.href='${pageContext.request.contextPath}/board/qnaList'">관리자에게 문의</button>
 	</div>
+<div class="myPageT"></div>
+	 		<h4 style="text-align: center;"><a href="javascript:openDisplay();">나의 회원 정보 간단히 보기/닫기</a></h4>	
+					<div id="myProfil" class="myProfil">
+	 						<span class="UserProfil">${memberDTO.nick } 회원님</span><br>
+	 						<span class="UserProImg"><img src="${pageContext.request.contextPath}/resources/upload/${memberDTO.image }" width="100px" height="100px"></span><br>
+	 						<span class="UserProfil">회원 이름 : ${memberDTO.name }</span><br>
+	 						<span class="UserProfil">전화 번호 : ${memberDTO.phone }</span><br>
+	 						<span class="UserProfil">email : ${memberDTO.email }</span><br>
+	 						<span class="UserProfil">주소 : ${memberDTO.address }</span><br>
+	 						<c:if test="${ 0 eq memberDTO.type }">	 							
+	 							<span class="UserProfil1">회원 속성 : 학생</span><br></c:if>
+	 				</div>
+	
  <div class="myPageT"></div>
-	 		<h4 style="text-align: center;">최근 수강한 강의</h4>
+	 		<h4 style="text-align: center;">최근 수강한 강의 보기</h4>
 <!--   <div class="album py-5 bg-body-tertiary"> -->
-<div class="container">
+<div id="MyControll_Box" class="MyControll_Box">
+	<div class="container">
 	<div class="container marketing">
       <div class="row row-cols-1 row-cols-sm-2 row-cols-md-3 g-3">
       <c:forEach var="lessonDTO" items="${lessonList }">
@@ -307,6 +329,7 @@ display: inline-block;
               </div>
             </div>
           </div>
+        </div>
         </div>
       </c:forEach>
       </div>
@@ -334,15 +357,7 @@ display: inline-block;
 	  </ul>
 	</nav>
     </div>	
-      <div class="myPageT2"></div>
-	 		<div class="myLessonInfo">나의 후기 간단히 보기<br>
-				<div class="form-group" >
-					<div style="border: 1px solid #ccc; width: 1080px; height: 100px; margin: 2px auto;">리뷰 칸1</div>
-					<div style="border: 1px solid #ccc; width: 1080px; height: 100px; margin: 2px auto;">리뷰 칸2</div>
-					<div style="border: 1px solid #ccc; width: 1080px; height: 100px; margin: 2px auto;">리뷰 칸3</div>
-			    </div>	
-  			</div>
-  			</div>
+     
 </main>
 <script>
  function backPage(){
@@ -358,5 +373,18 @@ display: inline-block;
  <!-- 푸터 넣는곳 -->
 <jsp:include page="../inc/footer.jsp" />
 <!-- 푸터 넣는곳 --> 
+<script>
+var ProDisplay = true;
+function openDisplay(){
+    var onP = document.getElementById("myProfil");
+    if(onP.style.display=='none'){
+        onP.style.display = 'inline-block';
+    }else{
+        onP.style.display = 'none';
+    }
+}
+
+ </script>
+
 </body>
 </html>

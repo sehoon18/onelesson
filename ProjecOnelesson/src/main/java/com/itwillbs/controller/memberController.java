@@ -10,12 +10,15 @@ import javax.servlet.http.HttpSession;
 import org.springframework.stereotype.Controller;
 import org.springframework.ui.Model;
 import org.springframework.web.bind.annotation.GetMapping;
+import org.springframework.web.bind.annotation.ModelAttribute;
 import org.springframework.web.bind.annotation.PostMapping;
 import org.springframework.web.bind.annotation.RequestMapping;
+import org.springframework.web.bind.annotation.ResponseBody;
 
 import com.itwillbs.domain.BoardDTO;
 import com.itwillbs.domain.LessonDTO;
 import com.itwillbs.domain.MemberDTO;
+import com.itwillbs.domain.OrderDTO;
 import com.itwillbs.domain.PageDTO;
 import com.itwillbs.service.LessonService;
 import com.itwillbs.service.MemberService;
@@ -201,7 +204,7 @@ public class memberController {
 		return "member/myInfo";
 	}
 	@GetMapping("/mypage")
-	public String mypage(HttpSession session, MemberDTO memberDTO, Model model, LessonDTO lessonDTO, PageDTO pageDTO, HttpServletRequest request) {
+	public String mypage(HttpSession session, MemberDTO memberDTO, Model model, LessonDTO lessonDTO, PageDTO pageDTO ,HttpServletRequest request) {
 		System.out.println("MemberController mypage()");
 		
 		memberDTO = memberService.getMember((String)session.getAttribute("id"));
@@ -240,8 +243,8 @@ public class memberController {
 		
 		model.addAttribute("lessonList", lessonList);
 		model.addAttribute("pageDTO", pageDTO);
-		
-		
+		System.out.println(memberDTO);
+		System.out.println(lessonList);
 		return "member/mypage";
 	}
 
@@ -251,11 +254,58 @@ public class memberController {
 		return "member/myLessonList";
 	}
 	@GetMapping("/myPayment")
-	public String Payment() {
-		System.out.println("");
+	public String myPayment(HttpSession session, MemberDTO memberDTO, Model model, LessonDTO lessonDTO, PageDTO pageDTO ,HttpServletRequest request) {
+		System.out.println("MemberController myPayment()");
+		System.out.println(session.getAttribute("id"));
+		
+		memberDTO = memberService.getMember((String)session.getAttribute("id"));
+		System.out.println(memberDTO);
+		
+		model.addAttribute("memberDTO", memberDTO);
+		
+//		int pageSize = 7;
+//		
+//		String pageNum = request.getParameter("pageNum");
+//		if(pageNum == null) {
+//			pageNum="1";
+//		}
+//		
+//		int currentPage = Integer.parseInt(pageNum);
+//		
+//		pageDTO.setPageSize(pageSize);
+//		pageDTO.setPageNum(pageNum);
+//		pageDTO.setCurrentPage(currentPage);
+//		pageDTO.setId((String)session.getAttribute("id"));
+		
+//		List<LessonDTO> lessonList = lessonService.getMyLessonList(pageDTO);
+//		
+//		int count =  lessonService.getMyLessonCount(pageDTO);
+//		int pageBlock = 10;
+//		int startPage = (currentPage - 1) / pageBlock * pageBlock + 1;
+//		int endPage = startPage + pageBlock -1;
+//		int pageCount = count / pageSize + (count % pageSize == 0 ? 0 : 1);
+//		
+//		if(endPage > pageCount) {
+//			endPage = pageCount;
+//		}
+//		
+//		pageDTO.setCount(pageCount);
+//		pageDTO.setPageBlock(pageBlock);
+//		pageDTO.setStartPage(startPage);
+//		pageDTO.setEndPage(endPage);
+//		pageDTO.setPageCount(pageCount);
+
+		List<OrderDTO> orderList = memberService.getMyOrder(memberDTO);
+	//	model.addAttribute("lessonList", lessonList);
+		model.addAttribute("orderList" , orderList);	
+	//	model.addAttribute("pageDTO", pageDTO);
+		
+		System.out.println(lessonDTO);
+		System.out.println(memberDTO);
+		System.out.println(orderList.size());
+		System.out.println(orderList.get(0).getLES_SUBJECT());
 		return "member/myPayment";
 	}
-
 // ----------------- TEST ------------------------------
 	
 

@@ -1,11 +1,15 @@
 package com.itwillbs.dao;
 
+import java.util.List;
+
 import javax.inject.Inject;
 
 import org.apache.ibatis.session.SqlSession;
 import org.springframework.stereotype.Repository;
 
 import com.itwillbs.domain.MemberDTO;
+import com.itwillbs.domain.OrderDTO;
+import com.itwillbs.domain.PageDTO;
 
 
 @Repository
@@ -34,7 +38,7 @@ public class MemberDAO {
 	}
 
 	public MemberDTO getMember(String id) {
-		System.out.println("MemberService getMember()");
+		System.out.println("MemberDAO getMember()");
 		return sqlSession.selectOne(namespace+".getMember",id);
 	}
 
@@ -47,6 +51,11 @@ public class MemberDAO {
 		System.out.println("MemberService deleteMember()");
 		sqlSession.delete(namespace+".deleteMember",memberDTO);
 	}
+	public List<OrderDTO> getMyOrder(MemberDTO memberDTO) {
+		System.out.println("MemberDAO getMyOrder()");
+		return sqlSession.selectList(namespace + ".getMyOrder" , memberDTO);
+	}
+
 
 
 

@@ -54,7 +54,7 @@
 	</insert>
    
 	<select id="getMyLessonList" resultType="com.itwillbs.domain.LessonDTO">
-    	SELECT LES_SUBJECT as "subject", LES_PREVIEW as "preview"
+    	SELECT LES_SUBJECT as "subject", LES_PREVIEW as "preview" , LES_PRICE as "price"
 		from LESSON
 		where LES_NUM IN (SELECT LES_NUM
 							from ORDERS
@@ -70,6 +70,7 @@
     	where MEM_ID = #{id}
     </select>
    
+		
 	<select id="getWishList" resultType="com.itwillbs.domain.LessonDTO">
     	SELECT LES_SUBJECT as "subject", LES_PREVIEW as "preview", LES_CATEGORY as "category", LES_SUBCATEGORY as "subCategory", LES_PRICE as "price", LES_LOCATION as "location"
 		from LESSON

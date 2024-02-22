@@ -1,11 +1,17 @@
 package com.itwillbs.service;
 
-import javax.inject.Inject;
+import java.util.List;
 
+import javax.inject.Inject;
+import javax.xml.stream.events.Namespace;
+
+import org.apache.ibatis.session.SqlSession;
 import org.springframework.stereotype.Service;
 
 import com.itwillbs.dao.MemberDAO;
 import com.itwillbs.domain.MemberDTO;
+import com.itwillbs.domain.OrderDTO;
+import com.itwillbs.domain.PageDTO;
 
 
 @Service
@@ -44,6 +50,16 @@ public class MemberService {
 		System.out.println("MemberService deleteMember()");
 		memberDAO.deleteMember(memberDTO);
 	}
+
+	public List<OrderDTO> getMyOrder(MemberDTO memberDTO) {
+		System.out.println("MemberService getMyOrder()");
+		return memberDAO.getMyOrder(memberDTO);
+	}
+
+
+	
+
+
 	
 	
 	
