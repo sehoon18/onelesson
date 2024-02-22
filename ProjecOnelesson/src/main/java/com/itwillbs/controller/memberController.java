@@ -20,7 +20,7 @@ import com.itwillbs.domain.MemberDTO;
 import com.itwillbs.domain.PageDTO;
 import com.itwillbs.service.BoardService;
 import com.itwillbs.service.LessonService;
-import com.itwillbs.service.MemberService;import com.mysql.cj.Session;
+import com.itwillbs.service.MemberService;
 
 @Controller
 @RequestMapping("/member/*")
@@ -114,18 +114,20 @@ public class memberController {
 	
 	//로그인 Pro
 	@PostMapping("/memberLoginPro")
-	public String memberLoginPro(MemberDTO memberDTO , HttpSession session) {
+	public String memberLoginPro(MemberDTO memberDTO , HttpSession session, RedirectAttributes redirectAttributes) {
 		System.out.println("MemberController memberLoginPro()");
 		System.out.println(memberDTO);	
 		MemberDTO memberDTO2 = memberService.userCheck(memberDTO);
 		if(memberDTO2 != null) {
 			if(memberDTO2.getStatus() == 0) {
 				session.setAttribute("id", memberDTO2.getId());
+
 				return "redirect:/member/main";
 			} else {
 				return "redirect:/member/inactive";
 			}
 		} else {
+			redirectAttributes.addFlashAttribute("message", "아이디/비밀번호가 일치하지 않습니다.");
 			return "redirect:/member/memberLogin";
 		}
 	}
@@ -150,6 +152,8 @@ public class memberController {
 
 	        return "redirect:/member/main";
 		}else {
+	        redirectAttributes.addFlashAttribute("message", "아이디/전화번호가 일치하지 않습니다.");
+
 			return "redirect:/member/inactive";
 		}
 	}
@@ -238,7 +242,7 @@ public class memberController {
 	}
 	
 	@PostMapping("/infoUpdate")
-	public String infoUpdate(HttpServletRequest request ,HttpSession session, MemberDTO memberDTO, Model model) {
+	public String infoUpdate(HttpServletRequest request ,HttpSession session, MemberDTO memberDTO, Model model, RedirectAttributes redirectAttributes) {
 		System.out.println("MemberController infoUpdate()");
 		memberDTO.setId((String)session.getAttribute("id"));
 		memberDTO = memberService.userCheck(memberDTO);
@@ -246,10 +250,10 @@ public class memberController {
 			memberDTO.setImage(request.getParameter("npass"));
 			memberService.infoUpdate(memberDTO);
 			model.addAttribute("memberDTO", memberDTO);
-			System.out.println("비밀번호 변경 성공");
+			
+	        redirectAttributes.addFlashAttribute("message", "변경이 완료되었습니다.");
 			return "redirect:/member/myInfo";
 		} else {
-			System.out.println("비밀번호 변경 실패");
 			return "redirect:/member/myInfo";
 		}
 		

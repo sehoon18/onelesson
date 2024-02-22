@@ -2,7 +2,7 @@
     pageEncoding="UTF-8"%>
 
 <!doctype html>
-<html lang="ko" data-bs-theme="auto"  xmlns:th="http://www.thymeleaf.org">
+<html lang="ko" data-bs-theme="auto" xmlns:th="http://www.thymeleaf.org">
   <head>
   <title>메인페이지</title>
   <script src="../assets/js/color-modes.js"></script>

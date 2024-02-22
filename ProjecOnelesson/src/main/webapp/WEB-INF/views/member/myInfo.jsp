@@ -2,7 +2,7 @@
     pageEncoding="UTF-8"%>
 
 <!DOCTYPE html>
-<html lang="ko">
+<html lang="ko" xmlns:th="http://www.thymeleaf.org">
 <head>
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
@@ -373,6 +373,14 @@ integrity="sha384-HwwvtgBNo3bZJJLYd8oVXjrBZt8cqVSpeBNS5n7C8IVInixGAoxmnlMuBnhbgr
     
     
     
+<script th:inline="javascript">
+    /* 메시지 데이터 가져오기 */
+    var message = '${message}';
     
+    /* 메시지가 존재하는 경우에만 알림창 표시 */
+    if (message) {
+        alert(message);
+    }
+</script>   
 </body>
 </html>

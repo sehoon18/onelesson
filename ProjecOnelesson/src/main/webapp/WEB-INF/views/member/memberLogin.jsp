@@ -2,7 +2,7 @@
     pageEncoding="UTF-8"%>
 <!DOCTYPE html>
 <html>
-<head>
+<head xmlns:th="http://www.thymeleaf.org">
 <meta charset="UTF-8">
 <title>lesson/login.jsp</title>
 
@@ -137,6 +137,12 @@
 
 
 
-
+<script th:inline="javascript">
+    var message = '${message}';
+    
+    if (message) {
+        alert(message);
+    }
+</script> 
 </body>
 </html>
