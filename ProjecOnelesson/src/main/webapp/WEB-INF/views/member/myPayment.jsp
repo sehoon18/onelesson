@@ -231,16 +231,141 @@ display: inline-block;
 	width: 100%;
 	height: 50px;
 }
+.myPayment{
+	width: 2000px;
+	height: 40px;
+	border-bottom: 3px solid;
+	border-color: gray;
+	position: static;
 }
+.payment-text1{
+	position : static;
+	width: 120px;
+	float: left;
+	margin-left: 1px;
+	text-align: center;
+	}
+.payment-text2{
+	position : static;
+	width: 90px;
+	float: left;
+	margin-left: 1px;
+	text-align: center;
+	}
+.payment-text3{
+	position : static;
+	width: 80px;
+	float: left;
+	margin-left: 30px;
+	text-align: center;
+	}
+.payment-text4{
+	position : static;
+	width: 100px;
+	float: left;
+	margin-left: 1px;
+	text-align: center;
+	}
+.payment-text5{
+	position : static;
+	width: 80px;
+	float: left;
+	margin-left: 50px;
+	text-align: center;
+	}
+	
+.payment-text6{
+	position : static;
+	width: 80px;
+	float: left;
+	margin-left: 70px;
+	text-align: center;
+	}
+.payment-text7{
+	position : static;
+	width: 80px;
+	float: left;
+	margin-left: 40px;
+	text-align: center;
+	}	
+.payment-inBox7{
+	width: 1500px;
+	border-bottom: 3px solid;
+	border-bottom-color: green;
+	position: static;
+	display: inline-block;
+	padding: 10px;
 }
 
-.myPayment{
-	width: 100%;
-	height: 300px;
-}
-.paymentIn-text{
-	width: 200px;
+.paymentIn-text1{
+	width: 40px;
 	height: 30px;
+	border-bottom: 2px solid;
+	border-bottom-color: black;
+	position: static;
+	display: inline-block;
+	text-align: center;
+	margin-left: 30px;
+}
+.paymentIn-text2{
+	width: 120px;
+	height: 30px;
+	border-bottom: 2px solid;
+	border-bottom-color: black;
+	position: static;
+	display: inline-block;
+	text-align: center;
+	margin-left: 20px;
+}
+.paymentIn-text3{
+	width: 70px;
+	height: 30px;
+	border-bottom: 2px solid;
+	border-bottom-color: black;
+	position: static;
+	display: inline-block;
+	text-align: center;
+	margin-left: 10px;
+}
+.paymentIn-text4{
+	width: 90px;
+	height: 30px;
+	border-bottom: 2px solid;
+	border-bottom-color: black;
+	position: static;
+	display: inline-block;
+	text-align: center;
+	margin-left: 10px;
+}
+.paymentIn-text5{
+	width: 170px;
+	height: 30px;
+	border-bottom: 2px solid;
+	border-bottom-color: black;
+	position: static;
+	display: inline-block;
+	text-align: center;
+	margin-left: 10px;
+}
+.paymentIn-text6{
+	width: 100px;
+	height: 30px;
+	border-bottom: 2px solid;
+	border-bottom-color: black;
+	position: static;
+	display: inline-block;
+	text-align: center;
+	margin-left: 10px;
+}
+.paymentIn-text7{
+	width: 100px;
+	height: 30px;
+	border-bottom: 2px solid;
+	border-bottom-color: black;
+	position: static;
+	display: inline-block;
+	text-align: center;
+	margin-left: 10px;
 }
 </style>
 </head>
@@ -275,26 +400,31 @@ display: inline-block;
 <div class="myPageT"></div>
 	 		<h4 style="text-align: center;">나의 결제 정보 내역 보기</h4>	</div>
      			</div>
+     				</div>
+     				 </div>
+  </div>
+</main>
 					<div class="myPayment">
 	 					<span class="payment-text1">결제 번호</span>
-	 					<span class="payment-text2">레슨 번호</span>
-	 					<span class="payment-text3">결제 일자</span>
-	 					<span class="payment-text4">가격</span>
-	 					<span class="payment-text5">결제 방법</span>
-	 					<span class="payment-text5">구매자 이름</span>
-	 					<span class="payment-text6">결제상태</span>
+	 					<span class="payment-text2">레슨 제목</span>
+	 					<span class="payment-text3">레슨 가격</span>
+	 					<span class="payment-text4">구매자 이름</span>
+	 					<span class="payment-text5">결제 시간</span>
+	 					<span class="payment-text6">결제 방법</span>
+	 					<span class="payment-text7">결제 상태</span>
 	 					</div>
- 	 			
+ 	 						
 	 			<div class="payment-inBox7">
   				<c:forEach var="orderDTO" items="${orderList }">
- 				<span class="paymentIn-text">${orderDTO.ORDER_NUM }</span> 
-  	 				<span class="paymentIn-text">${orderDTO.LES_SUBJECT }</span>
- 	 				<span class="paymentIn-text">${orderDTO.LES_PRICE }</span>
-					<span class="paymentIn-text">${orderDTO.MEM_NAME }</span>
-					<span class="paymentIn-text">${orderDTO.ORDER_DATE }</span> 
-	 				<span class="paymentIn-text">${orderDTO.ORDER_METHOD }</span> 
+ 				<span class="paymentIn-text1">${orderDTO.ORDER_NUM }</span> 
+  	 				<span class="paymentIn-text2">${orderDTO.LES_SUBJECT }</span>
+ 	 				<span class="paymentIn-text3">${orderDTO.LES_PRICE }</span>
+					<span class="paymentIn-text4">${orderDTO.MEM_NAME }</span>
+					<span class="paymentIn-text5">${orderDTO.ORDER_DATE }</span>
+						<c:if test="${ 'kg_inicis' eq orderDTO.ORDER_METHOD }"></c:if> 
+	 				<span class="paymentIn-text6">kg이니시스</span> 
 	 					<c:if test="${ 0 eq orderDTO.ORDER_STATUS }">
-	 				<span class="paymentIn-text">결제 완료</span>
+	 				<span class="paymentIn-text7">결제 완료</span>
 	 					</c:if><br>
 				</c:forEach>
 	 			</div>
@@ -306,7 +436,7 @@ display: inline-block;
         }
     </script>
       
-      </div>
+      
 	<nav aria-label="Page navigation example" style="margin-top: 10px">
 	  <ul class="pagination justify-content-end">
 	  <c:if test="${pageDTO.startPage > pageDTO.pageBlock }">
@@ -322,10 +452,8 @@ display: inline-block;
 	  </c:if>  
 	  </ul>
 	</nav>
-    </div>
-  </div>
+   
   
-</main>
 <script>
  function backPage(){
 		history.back();

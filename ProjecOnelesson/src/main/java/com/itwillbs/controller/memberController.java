@@ -263,42 +263,40 @@ public class memberController {
 		
 		model.addAttribute("memberDTO", memberDTO);
 		
-//		int pageSize = 7;
-//		
-//		String pageNum = request.getParameter("pageNum");
-//		if(pageNum == null) {
-//			pageNum="1";
-//		}
-//		
-//		int currentPage = Integer.parseInt(pageNum);
-//		
-//		pageDTO.setPageSize(pageSize);
-//		pageDTO.setPageNum(pageNum);
-//		pageDTO.setCurrentPage(currentPage);
-//		pageDTO.setId((String)session.getAttribute("id"));
+		int pageSize = 2;
 		
-//		List<LessonDTO> lessonList = lessonService.getMyLessonList(pageDTO);
-//		
-//		int count =  lessonService.getMyLessonCount(pageDTO);
-//		int pageBlock = 10;
-//		int startPage = (currentPage - 1) / pageBlock * pageBlock + 1;
-//		int endPage = startPage + pageBlock -1;
-//		int pageCount = count / pageSize + (count % pageSize == 0 ? 0 : 1);
-//		
-//		if(endPage > pageCount) {
-//			endPage = pageCount;
-//		}
-//		
-//		pageDTO.setCount(pageCount);
-//		pageDTO.setPageBlock(pageBlock);
-//		pageDTO.setStartPage(startPage);
-//		pageDTO.setEndPage(endPage);
-//		pageDTO.setPageCount(pageCount);
+		String pageNum = request.getParameter("pageNum");
+		if(pageNum == null) {
+			pageNum="1";
+		}
+		
+		int currentPage = Integer.parseInt(pageNum);
+		
+		pageDTO.setPageSize(pageSize);
+		pageDTO.setPageNum(pageNum);
+		pageDTO.setCurrentPage(currentPage);
+		pageDTO.setId((String)session.getAttribute("id"));
+		
+		//고쳐야 할 부분
+		int count =  lessonService.getMyLessonCount(pageDTO);
+		int pageBlock = 10;
+		int startPage = (currentPage - 1) / pageBlock * pageBlock + 1;
+		int endPage = startPage + pageBlock -1;
+		int pageCount = count / pageSize + (count % pageSize == 0 ? 0 : 1);
+		
+		if(endPage > pageCount) {
+			endPage = pageCount;
+		}
+		
+		pageDTO.setCount(pageCount);
+		pageDTO.setPageBlock(pageBlock);
+		pageDTO.setStartPage(startPage);
+		pageDTO.setEndPage(endPage);
+		pageDTO.setPageCount(pageCount);
 
 		List<OrderDTO> orderList = memberService.getMyOrder(memberDTO);
-	//	model.addAttribute("lessonList", lessonList);
 		model.addAttribute("orderList" , orderList);	
-	//	model.addAttribute("pageDTO", pageDTO);
+		model.addAttribute("pageDTO", pageDTO);
 		
 		System.out.println(lessonDTO);
 		System.out.println(memberDTO);
