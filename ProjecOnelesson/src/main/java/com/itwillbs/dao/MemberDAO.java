@@ -80,6 +80,9 @@ public class MemberDAO {
 		System.out.println(memberDTO);
 		sqlSession.update(namespace+".updateStatus", memberDTO);
 	}
+	public MemberDTO inactiveCheck(MemberDTO memberDTO) {
+		return sqlSession.selectOne(namespace + ".inactiveCheck", memberDTO);
+	}
 	
 
 

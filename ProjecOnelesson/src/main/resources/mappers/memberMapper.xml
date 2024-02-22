@@ -63,4 +63,8 @@ update MEMBER set MEM_PASS = #{image} where MEM_ID = #{id}
     update MEMBER set MEM_STATUS = #{status} where MEM_ID = #{id} 
 </update>
 
+<select id="inactiveCheck" resultType="com.itwillbs.domain.MemberDTO"> 
+select MEM_ID as "id" from MEMBER where MEM_ID = #{id} AND MEM_PHONE = #{phone}
+</select>
+
 </mapper>

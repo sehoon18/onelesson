@@ -194,10 +194,11 @@ public class LessonController {
 		pageDTO.setPageSize(pageSize);
 		pageDTO.setPageNum(pageNum);
 		pageDTO.setCurrentPage(currentPage);
+		pageDTO.setSearch(request.getParameter("search"));
 		
 		List<LessonDTO> lessonList = lessonService.getlessonSearch(pageDTO);
 
-		int count =  lessonService.getLessonCount();
+		int count =  lessonService.getLSearchCount(pageDTO);
 		int pageBlock = 10;
 		int startPage = (currentPage - 1) / pageBlock * pageBlock + 1;
 		int endPage = startPage + pageBlock -1;

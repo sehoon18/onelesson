@@ -53,7 +53,7 @@
 <ul>
 <li>고객센터 문의: 비활성 계정을 활성화하기 위해 고객센터로 전화 문의해 주세요. 아래 고객센터 연락처를 이용하여 직접 문의하실 수 있습니다. 고객센터 전화번호: 010-1234-5678 고객센터 운영시간: 월요일부터 금요일까지 09:00 ~ 18:00
 </li>
-<li>계정 활성화 신청 링크: 아래 링크를 클릭하여 계정 활성화 절차를 진행해 주세요. 링크를 클릭하면 회원님의 계정이 활성화되고, 로그인이 가능해집니다.
+<li>계정 활성화 신청: 아래 신청 버튼을 클릭하여 계정 활성화 절차를 진행해 주세요. 안내에 따라 신청을 완료해 주시면 회원님의 계정이 활성화되고, 로그인이 가능해집니다.
 </li>
 </ul>
 <p>계정 활성화 절차를 완료하신 후에는 정상적으로 로그인하여 회원님의 서비스를 이용하실 수 있습니다.</p>
@@ -61,15 +61,17 @@
     <button onclick="showContent()" class="btn btn-outline-secondary btn-sm">계정 활성화 신청</button>
     <div id="content" class="content" style="padding-top: 30px;">
         <h5>계정 활성화 신청</h5>
-        <p>회원님의 계정을 활성화하기 위해 신청 페이지로 안내해 드립니다. 아래 안내에 따라 생년월일과 전화번호를 확인하여 신청해주시기 바랍니다.</p>
+        <p>회원님의 계정을 활성화하기 위해 신청 페이지로 안내해 드립니다. 아래 안내에 따라 아이디와 전화번호를 입력하여 신청해주시기 바랍니다.</p>
 
+<form style="padding-bottom: 50px;" action="${pageContext.request.contextPath}/member/inactivePro" method="post">
 <!-- id -->
+<div style="padding: 10px 0px;">
     <div class="col">
 			<div class="input-group">
 				<span class="form-floating">
-					<input type="text" name="member_user_id"
+					<input type="text" name="id"
 						class="form-control input-cc inputId" id="floatingId"
-						maxlength="40" value="${memberDTO.id }" readonly><label for="floatingId">아이디</label>
+						maxlength="40"><label for="floatingId">아이디</label>
 					<font id="checkId" size="2"
 						class="position-absolute top-50 start-20 translate-middle-y"
 						style="right: 9px; margin-top: 2px"></font>
@@ -77,7 +79,6 @@
 			</div>
 	</div>
 <!-- 			1. 생년월일 확인 -->
-<form style="padding-bottom: 50px;">
         		 <div class="col">			
         			<div class="input-group">
 							<div class="form-floating">
@@ -88,18 +89,11 @@
 								style="right: 9px; margin-top: 2px"></font>
 						     </div>
 						</div>
-					</div>   
-					<!-- 			2. 전화번호 확인  -->
-					<div class="form-floating d-flex mt-2">
-						<input type="date" name="birth" class="form-control input-cc inputName" id="floatingbirth" >
-						<label for="floatingbirth">생년월일</label>
-						<font id="nameError" size="2" 
-						class="position-absolute top-50 start-20 translate-middle-y" 
-						style="right: 9px; margin-top: 2px"></font>
-					</div> <!-- 			3. 신청 완료 --><br>
+					</div>
+					</div>
 					<input type="submit" value="신청" class="btn btn-outline-secondary btn-sm">
 </form>						
-			<p>생년월일과 전화번호를 확인한 후, 신청을 완료해 주세요. 신청이 완료되면 관리자 승인 후 회원님의 계정이 활성화되어 로그인이 가능해집니다.
+			<p>아이디와 전화번호를 입력한 후, 신청을 완료해 주세요. 신청이 완료되면 관리자 승인 후 회원님의 계정이 활성화되어 로그인이 가능해집니다.
 			신청 시 입력한 정보는 회원님의 개인 정보 보호를 위해 안전하게 처리되며, 본인 확인 및 계정 보안을 위한 목적으로만 사용됩니다.</p>
     </div>
 

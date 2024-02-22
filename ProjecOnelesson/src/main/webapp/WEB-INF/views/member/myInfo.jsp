@@ -12,9 +12,6 @@
 <link href="https://cdn.jsdelivr.net/npm/bootstrap@5.3.1/dist/css/bootstrap.min.css" rel="stylesheet" 
 integrity="sha384-4bw+/aepP/YC94hEpVNVgiZdgIC5+VKNBQNGCHeKRQN+PtmoHDEXuppvnDJzQIu9" crossorigin="anonymous">
     
-    
-    
-    
     <style>
     
         body {
@@ -28,7 +25,7 @@ integrity="sha384-4bw+/aepP/YC94hEpVNVgiZdgIC5+VKNBQNGCHeKRQN+PtmoHDEXuppvnDJzQI
             height: auto;
         }
 
-        form {
+        #formstyle {
             background-color: #fff;
             padding: 70px;
             border-radius: 8px;
@@ -121,9 +118,10 @@ option {
     </style>
 </head>
 <body>
+<jsp:include page="../inc/header.jsp" />
 
-<div style="width: 800px;">
-    <form action="${pageContext.request.contextPath}/member/infoUpdate" method="POST">
+<div style="width: 800px; margin: 100px auto;">
+    <form id="formstyle" action="${pageContext.request.contextPath}/member/infoUpdate" method="POST">
     <h1 class="h3 mb-3 fw-normal" style="text-align: left;">회원 정보 수정</h1>
        
     <div class="col">
@@ -152,37 +150,34 @@ option {
 				</div>
 			</div>
 					
- 					<div class="col">
-						<div class="input-group">
-							<div class="form-floating">
-								<input type="password" name="npass"
-									class="form-control input-cc inputPw" 
-									id="floatingPassword" maxlength="40" placeholder=""> 
-								<label for="floatingPassword">새로운 비밀번호</label>
-								<font id="pwCheck" size="2" color="red"
-									class="position-absolute top-50 start-20 translate-middle-y"
-									style="right: 9px; margin-top: 2px"></font>
-							</div>
-						</div>
+			<div class="col">
+				<div class="input-group">
+					<div class="form-floating">
+						<input type="password" name="npass"
+							class="form-control input-cc inputPw" 
+							id="floatingPassword" maxlength="40" placeholder=""> 
+						<label for="floatingPassword">새로운 비밀번호</label>
+						<font id="pwCheck" size="2" color="red"
+							class="position-absolute top-50 start-20 translate-middle-y"
+							style="right: 9px; margin-top: 2px"></font>
 					</div>
-					
-					
+				</div>
+			</div>
 
-					<div class="col">
-						<div class="input-group">
-							<div class="form-floating">
-								<input type="password" name="npass2"
-									class="form-control input-cc inputPw2"
-									id="floatingCheckPassword" maxlength="40" placeholder="">
-								<label for="floatinCheckPassword">새로운 비밀번호 확인</label> <font
-									id="pwDoubleCheck" size="2" color="red"
-									class="position-absolute top-50 start-20 translate-middle-y"
-									style="right: 9px; margin-top: 2px"></font>
-							</div>
-						</div>
+			<div class="col">
+				<div class="input-group">
+					<div class="form-floating">
+						<input type="password" name="npass2"
+							class="form-control input-cc inputPw2"
+							id="floatingCheckPassword" maxlength="40" placeholder="">
+						<label for="floatinCheckPassword">새로운 비밀번호 확인</label> <font
+							id="pwDoubleCheck" size="2" color="red"
+							class="position-absolute top-50 start-20 translate-middle-y"
+							style="right: 9px; margin-top: 2px"></font>
 					</div>
-					
-					  <div style="text-align: center"><button type="submit" class="backPage">수정하기</button></div>
+				</div>
+			</div>
+		  <div style="text-align: center"><button type="submit" class="backPage">수정하기</button></div>
    		<hr>
     <br>
 

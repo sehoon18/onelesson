@@ -2,9 +2,10 @@
     pageEncoding="UTF-8"%>
 
 <!doctype html>
-<html lang="ko" data-bs-theme="auto">
-  <head><script src="../assets/js/color-modes.js"></script>
-
+<html lang="ko" data-bs-theme="auto"  xmlns:th="http://www.thymeleaf.org">
+  <head>
+  <title>메인페이지</title>
+  <script src="../assets/js/color-modes.js"></script>
     <meta charset="utf-8">
     <meta name="viewport" content="width=device-width, initial-scale=1">
     <meta name="description" content="">
@@ -220,15 +221,10 @@
   </div>
 </div>
 
-<<<<<<< HEAD
-    <hr class="featurette-divider" name="info">
-
-=======
 <!-- 자동스크롤이동 footer에 설정 		-->
 <div id="information">
     <hr class="featurette-divider">
 </div>
->>>>>>> refs/remotes/origin/jo
     <div class="row featurette">
       <div class="col-md-5 text-center" style="width: 2000px"> <!-- 이미지 -->
     <img src="${pageContext.request.contextPath}/resources/images/main/guide1.png" class="img-fluid" alt="Responsive image" style=" width: 100%" height="100%">
@@ -286,6 +282,15 @@
 </main>
 <!-- 필수 -->
 <script src="https://cdn.jsdelivr.net/npm/bootstrap@5.3.1/dist/js/bootstrap.bundle.min.js"></script>
-
+<!-- 메인 페이지 내부의 스크립트 부분 -->
+<script th:inline="javascript">
+    /* 메시지 데이터 가져오기 */
+    var message = '${message}';
+    
+    /* 메시지가 존재하는 경우에만 알림창 표시 */
+    if (message) {
+        alert(message);
+    }
+</script>
     </body>
 </html>

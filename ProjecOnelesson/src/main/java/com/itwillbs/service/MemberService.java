@@ -80,6 +80,10 @@ public class MemberService{
 		memberDAO.updateStatus(memberDTO);
 		System.out.println("Status updated successfully");
 	}
+
+	public MemberDTO inactiveCheck(MemberDTO memberDTO) {
+		return memberDAO.inactiveCheck(memberDTO);
+	}
 	
 	
 	

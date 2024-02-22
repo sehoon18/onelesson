@@ -171,12 +171,49 @@
     <hr>
     <div id="pay_container">
     <table>
-    <tr><td style="width: 1100px; height: 450px; vertical-align: top; padding: 10px;">내용</td>
+    <tr><td style="width: 1100px; height: 50px; vertical-align: top; padding: 6px;">주문자 정보</td>
     </tr>
+    <tr><td style="height: 60px; vertical-align: top; padding: 10px;">
+    	<div class="mb-3 row">
+ 		<label for="staticEmail" class="col-sm-2 col-form-label">아이디</label>
+    	<div class="col-sm-4">
+      		<input type="text" readonly class="form-control" id="staticEmail" value="${sessionScope.id }">
+    	</div>
+	</div>
+    </td></tr>
+    
+    <tr><td style="height: 60px; vertical-align: top; padding: 10px;">
+	<div class="mb-3 row">
+ 		<label for="staticEmail" class="col-sm-2 col-form-label">이름</label>
+    	<div class="col-sm-4">
+      		<input type="text" readonly class="form-control" id="staticEmail" value="${memberDTO.name }">
+    	</div>
+    </div>
+    </td></tr>
+    
+    <tr><td style="height: 60px; vertical-align: top; padding: 10px;">
+	<div class="mb-3 row">
+ 		<label for="staticEmail" class="col-sm-2 col-form-label">이메일</label>
+    	<div class="col-sm-4">
+      		<input type="text" readonly class="form-control" id="staticEmail" value="${memberDTO.email }">
+    	</div>
+    </div>
+    </td></tr>
+
+    <tr><td style="height: 60px; vertical-align: top; padding: 10px;">
+	<div class="mb-3 row">
+ 		<label for="staticEmail" class="col-sm-2 col-form-label">전화번호</label>
+    	<div class="col-sm-4">
+      		<input type="text" readonly class="form-control" id="staticEmail" value="${memberDTO.phone }">
+    	</div>
+    </div>
+    </td></tr>
+    
     <tr><td style="height: 50px;"><div style="text-align: right;"><button id="payment-button" class="btn btn-success">결제하기</button>
 		<button class="btn btn-outline-success" onclick="location.href=">뒤로가기</button></div></td>
     </tr>
     </table>
+    <hr>
     </div>
 
 <script>

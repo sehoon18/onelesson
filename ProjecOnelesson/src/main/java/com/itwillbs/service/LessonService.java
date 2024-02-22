@@ -1,18 +1,14 @@
 package com.itwillbs.service;
 
-import java.lang.reflect.Member;
-import java.sql.Timestamp;
 import java.util.List;
 
 import javax.inject.Inject;
 
 import org.springframework.stereotype.Service;
-import org.springframework.transaction.annotation.Transactional;
 
 import com.itwillbs.dao.LessonDAO;
 import com.itwillbs.domain.BoardDTO;
 import com.itwillbs.domain.LessonDTO;
-import com.itwillbs.domain.MemberDTO;
 import com.itwillbs.domain.PageDTO;
 
 @Service
@@ -122,6 +118,10 @@ public class LessonService {
 		pageDTO.setEndRow(EndRow);
 		
 		return lessonDAO.getLessonListAll(pageDTO);
+	}
+
+	public int getLSearchCount(PageDTO pageDTO) {
+		return lessonDAO.getLSearchCount(pageDTO);
 	}
 
 }

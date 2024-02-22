@@ -72,4 +72,8 @@ public class LessonDAO {
 	public List<LessonDTO> getLessonListAll(PageDTO pageDTO) {
 		return sqlSession.selectList(namespace + ".getLessonListAll", pageDTO);
 	}
+
+	public int getLSearchCount(PageDTO pageDTO) {
+		return sqlSession.selectOne(namespace + "getLSearchCount", pageDTO);
+	}
 }

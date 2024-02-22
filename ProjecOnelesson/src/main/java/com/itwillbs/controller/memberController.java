@@ -12,11 +12,13 @@ import org.springframework.ui.Model;
 import org.springframework.web.bind.annotation.GetMapping;
 import org.springframework.web.bind.annotation.PostMapping;
 import org.springframework.web.bind.annotation.RequestMapping;
+import org.springframework.web.servlet.mvc.support.RedirectAttributes;
 
 import com.itwillbs.domain.BoardDTO;
 import com.itwillbs.domain.LessonDTO;
 import com.itwillbs.domain.MemberDTO;
 import com.itwillbs.domain.PageDTO;
+import com.itwillbs.service.BoardService;
 import com.itwillbs.service.LessonService;
 import com.itwillbs.service.MemberService;import com.mysql.cj.Session;
 
@@ -27,6 +29,8 @@ public class memberController {
 	private MemberService memberService;
 	@Inject
 	private LessonService lessonService; 
+	@Inject
+	private BoardService boardService;
 	
 //	메인페이지
 	@GetMapping("/main")
@@ -130,6 +134,24 @@ public class memberController {
 	public String inactive(HttpSession session, Model model) {
 		System.out.println("MemberController inactive()");
 		return "member/inactive";
+	}
+	
+	@PostMapping("/inactivePro")
+	public String inactivePro(MemberDTO memberDTO, BoardDTO boardDTO, RedirectAttributes redirectAttributes){
+		System.out.println("MemberController inactivePro()");
+		memberDTO = memberService.inactiveCheck(memberDTO);
+		if(memberDTO !=null) {
+			boardDTO.setName(memberDTO.getId());
+			boardDTO.setSubject("비활성 계정 활성화 신청");
+			boardDTO.setContent("비활성 계정 활성화 신청");
+			boardDTO.setUpdate(new Timestamp(System.currentTimeMillis()));
+			boardService.insertQna(boardDTO);
+	        redirectAttributes.addFlashAttribute("message", "신청이 완료되었습니다.");
+
+	        return "redirect:/member/main";
+		}else {
+			return "redirect:/member/inactive";
+		}
 	}
 	
 	@GetMapping("/memberUpdate")
@@ -286,7 +308,7 @@ public class memberController {
 	}
 	
 	@PostMapping("/resignPro")
-	public String resignPro(HttpSession session, MemberDTO memberDTO, Model model) {
+	public String resignPro(HttpSession session, MemberDTO memberDTO, Model model, RedirectAttributes redirectAttributes) {
 		System.out.println("MemberController resignPro");
 		
 		memberDTO.setId((String)session.getAttribute("id"));
@@ -295,6 +317,7 @@ public class memberController {
 		if(memberDTO != null) {
 			memberService.deleteMember(memberDTO);
 			session.invalidate();
+	        redirectAttributes.addFlashAttribute("message", "회원탈퇴가 완료되었습니다.");
 			return "redirect:/member/main";
 		} else {
 			return "redirect:/member/resign";
