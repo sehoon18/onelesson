@@ -159,6 +159,7 @@ window.location.href = "${pageContext.request.contextPath}/member/memberLogin";
     <p class="lead">레슨 등록 페이지입니다.</p>
     <hr>
 	<form id="lessonForm" action="${pageContext.request.contextPath}/lesson/lessonUpdatePro" method="post" enctype="multipart/form-data">
+	<input type="hidden" name="num" value="${lessonDTO.num }">
 <div id="topinfo" style="display: inline; ">
     <div class="imagespace">
 	<div id="image_container"></div>

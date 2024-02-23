@@ -209,4 +209,10 @@
 						WHERE MEM_ID = #{id})
 	</select>
 	
+	<select id="ReviewCheck" resultType="com.itwillbs.domain.BoardDTO">
+		select REVIEW_NUM as "num"
+		from REVIEW
+		where LES_NUM = #{num} and MEM_ID = #{id}
+	</select>
+	
 </mapper>

@@ -52,6 +52,8 @@ public class LessonController {
 	public String lessonList(HttpServletRequest request, PageDTO pageDTO, Model model, LessonDTO lessonDTO) {
 		System.out.println("LessonController lessonList()");
 		
+		String search = request.getParameter("search");
+		
 		int pageSize = 9;
 		String pageNum = request.getParameter("pageNum");
 		if(pageNum == null) {
@@ -63,6 +65,7 @@ public class LessonController {
 		pageDTO.setPageSize(pageSize);
 		pageDTO.setPageNum(pageNum);
 		pageDTO.setCurrentPage(currentPage);
+		pageDTO.setSearch(search);
 		
 		List<LessonDTO> lessonList = lessonService.getLessonList(pageDTO);
 		
@@ -181,6 +184,7 @@ public class LessonController {
 		FileCopyUtils.copy(preview.getBytes(), new File(uploadPath, filename));
 		
 		LessonDTO lessonDTO = new LessonDTO();
+		lessonDTO.setNum(Integer.parseInt(request.getParameter("num")));
 		lessonDTO.setCategory(request.getParameter("category"));
 		lessonDTO.setSubCategory(request.getParameter("subCategory"));
 		lessonDTO.setSubject(request.getParameter("subject"));
@@ -197,11 +201,10 @@ public class LessonController {
 	        model.addAttribute("lessonDTO", lessonDTO); 
 	        return "lesson/lessonUpdate";
 		} else if(userCheck == true) {
-			System.out.println("유저체크 성공");
 			lessonService.updateLesson(lessonDTO);
+			System.out.println(lessonDTO);
 			return "redirect:/member/mypage";
 		} else {
-			System.out.println("유저체크 null");
 	        return "lesson/lessonUpdate";
 		}
 		

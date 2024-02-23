@@ -18,13 +18,15 @@ public class LessonDTO {
 	private String id;
 	private String method;
 		
+	
 	@Override
 	public String toString() {
-		return "LessonDTO [subject=" + subject + ", content=" + content + ", preview=" + preview + ", date=" + date
-				+ ", price=" + price + ", location=" + location + ", update=" + update + ", subCategory=" + subCategory
-				+ ", status=" + status + "]";
+		return "LessonDTO [num=" + num + ", subject=" + subject + ", content=" + content + ", preview=" + preview
+				+ ", date=" + date + ", price=" + price + ", location=" + location + ", update=" + update
+				+ ", subCategory=" + subCategory + ", category=" + category + ", status=" + status + ", id=" + id
+				+ ", method=" + method + "]";
 	}
-	
+
 	public LessonDTO() {}
 	
 	public int getNum() {

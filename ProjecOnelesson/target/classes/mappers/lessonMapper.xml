@@ -13,6 +13,9 @@
     	select LES_SUBJECT as "subject", LES_UPDATE as "update", LES_NUM as "num", LES_STATUS as "status", LES_PREVIEW as "preview", LES_PRICE as "price",LES_SUBCATEGORY as "subCategory" , LES_DATE as "date" , MEM_ID as "id"
     	from LESSON
     	where LES_STATUS = 0
+    	<if test="search != null">
+    	and LES_SUBJECT like concat('%',#{search},'%')
+    	</if>
     	order by LES_NUM desc
     	limit #{startRow}, #{pageSize}
     </select>
@@ -20,6 +23,9 @@
     <select id="getLessonCount" resultType="java.lang.Integer">
     	select count(*)
     	from LESSON
+    	<if test="search != null">
+    	and LES_SUBJECT like concat('%',#{search},'%')
+    	</if>
     	where LES_STATUS = 0
     </select>
     
@@ -119,7 +125,7 @@
 
     <update id="updateLesson">
     	update LESSON
-		SET LES_SUBJECT = #{subject}, LES_CONTENT = #{content}, LES_PREVIEW = #{preview}, LES_UPDATE = #{update}, LES_DATE = #{date}, LES_PRICE = #{price}, LES_CATEGORY = #{category}, LES_SUBCATEGORY = #{subCategory}, LES_LOCATION = #{location}
-		WHERE LES_NUM = #{num}
+		set LES_SUBJECT = #{subject}, LES_CONTENT = #{content}, LES_PREVIEW = #{preview}, LES_UPDATE = #{update}, LES_DATE = #{date}, LES_PRICE = #{price}, LES_CATEGORY = #{category}, LES_SUBCATEGORY = #{subCategory}, LES_LOCATION = #{location}
+		where LES_NUM = #{num}
     </update>
 </mapper>

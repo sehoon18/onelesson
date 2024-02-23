@@ -18,6 +18,7 @@ import org.springframework.web.bind.annotation.PostMapping;
 import org.springframework.web.bind.annotation.RequestMapping;
 import org.springframework.web.bind.annotation.ResponseBody;
 import org.springframework.web.multipart.MultipartFile;
+import org.springframework.web.servlet.mvc.support.RedirectAttributes;
 
 import com.itwillbs.dao.BoardDAO;
 import com.itwillbs.domain.AdminDTO;
@@ -45,13 +46,22 @@ public class BoardController {
 	private String uploadPath;
 	
 	@GetMapping("/reviewWrite")
-	public String review(LessonDTO lessonDTO, Model model) {
+	public String review(LessonDTO lessonDTO, Model model, BoardDTO boardDTO, HttpSession session, RedirectAttributes redirectAttributes) {
 		System.out.println("BoardController reviewWrite()");
 		
-		lessonDTO = lessonService.getLesson(lessonDTO);
-		model.addAttribute("lessonDTO", lessonDTO);
+		boardDTO.setId((String)session.getAttribute("id"));
+		boardDTO = boardService.ReviewCheck(boardDTO);
 		
-		return "board/reviewWrite";
+		if(boardDTO == null) {
+			lessonDTO = lessonService.getLesson(lessonDTO);
+			model.addAttribute("lessonDTO", lessonDTO);
+			return "board/reviewWrite";
+		} else {
+			redirectAttributes.addFlashAttribute("message", "이미 리뷰를 작성하셨습니다.");
+			return "redirect:/member/mypage";
+		}
+		
+		
 	}
 	
 	@PostMapping("/reviewWritePro")

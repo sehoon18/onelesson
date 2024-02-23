@@ -75,7 +75,7 @@ background-color: #ccc;
 <%--           <a class="nav-link active" aria-current="page" href="${pageContext.request.contextPath}/board/reviewList" style="color: black; padding: 15px 8px;">리뷰</a> --%>
 <!--         </li> -->
       </ul>
-      <form class="d-flex me-auto" action="${pageContext.request.contextPath}/lesson/lessonSearch" method="get" style="margin: 0px auto;">
+      <form class="d-flex me-auto" action="${pageContext.request.contextPath}/lesson/lessonList" method="get" style="margin: 0px auto;">
         <input class="form-control me-2" type="text" name="search" placeholder="검색어를 입력하세요" aria-label="Search" style="width: 300px;">
         <button class="btn btn-outline-success" type="submit">검색</button>
       </form>
@@ -83,8 +83,8 @@ background-color: #ccc;
       <!-- 비로그인시 -->
       <c:if test="${empty sessionScope.id}">
         <div class="login">
-          <button type="button" class="btn btn-outline-primary me-2" onclick="location.href='${pageContext.request.contextPath}/member/memberLogin'">로그인</button>
-          <button type="button" class="btn btn-outline-primary" onclick="location.href='${pageContext.request.contextPath}/member/memberSelectPage'">회원가입</button>
+          <button type="button" class="btn btn-outline-success me-2" onclick="location.href='${pageContext.request.contextPath}/member/memberLogin'">로그인</button>
+          <button type="button" class="btn btn-outline-success" onclick="location.href='${pageContext.request.contextPath}/member/memberSelectPage'">회원가입</button>
         </div>
       </c:if>
 
@@ -92,8 +92,8 @@ background-color: #ccc;
       <c:if test="${!empty sessionScope.id}">
         <div class="login">
           ${sessionScope.id }님
-          <button type="button" class="btn btn-outline-primary me-2" onclick="location.href='${pageContext.request.contextPath}/member/logout'">로그아웃</button>
-          <button type="button" class="btn btn-outline-primary" onclick="location.href='${pageContext.request.contextPath}/member/mypage'">마이페이지</button>
+          <button type="button" class="btn btn-outline-success me-2" onclick="location.href='${pageContext.request.contextPath}/member/logout'">로그아웃</button>
+          <button type="button" class="btn btn-outline-success" onclick="location.href='${pageContext.request.contextPath}/member/mypage'">마이페이지</button>
         </div>
       </c:if>
 

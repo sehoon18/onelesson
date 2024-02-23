@@ -160,6 +160,10 @@ public class BoardDAO {
 		return sqlSession.selectOne(namespace + ".getLessonReviewCount", lessonDTO);
 	}
 
+	public BoardDTO ReviewCheck(BoardDTO boardDTO) {
+		return sqlSession.selectOne(namespace + ".ReviewCheck", boardDTO);
+	}
+
 
 
 }

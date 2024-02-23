@@ -231,4 +231,8 @@ public class BoardService {
 		return boardDAO.getLessonReviewCount(lessonDTO);
 	}
 
+	public BoardDTO ReviewCheck(BoardDTO boardDTO) {
+		return boardDAO.ReviewCheck(boardDTO);
+	}
+
 }
