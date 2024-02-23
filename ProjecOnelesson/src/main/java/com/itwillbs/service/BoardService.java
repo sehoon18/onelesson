@@ -1,6 +1,5 @@
 package com.itwillbs.service;
 
-import java.sql.Timestamp;
 import java.util.List;
 
 import javax.inject.Inject;
@@ -169,5 +168,67 @@ public class BoardService {
 		return boardDAO.getMyReviewCount(pageDTO);
 	}
 
+	public List<BoardDAO> getWishList(PageDTO pageDTO) {
+		System.out.println("BoardService getWishList()");
+		
+		int currentPage = pageDTO.getCurrentPage();
+		int pageSize = pageDTO.getPageSize();
+		int startRow = (currentPage - 1) * pageSize + 1;
+		int endRow = startRow + pageSize - 1;
+		
+		pageDTO.setStartRow(startRow - 1);
+		pageDTO.setEndRow(endRow);
+		
+		return boardDAO.getWishList(pageDTO);
+	}
+
+	public int getWishCount(PageDTO pageDTO) {
+		return boardDAO.getWishCount(pageDTO);
+	}
+
+	public List<BoardDTO> getMyreceiveReviewList(PageDTO pageDTO) {
+		int currentPage = pageDTO.getCurrentPage();
+		int pageSize = pageDTO.getPageSize();
+		int startRow = (currentPage - 1) * pageSize + 1;
+		int endRow = startRow + pageSize - 1;
+		
+		pageDTO.setStartRow(startRow - 1);
+		pageDTO.setEndRow(endRow);
+		return boardDAO.getMyreceiveReviewList(pageDTO);
+	}
+
+	public int getMyreceiveReviewCount(PageDTO pageDTO) {
+		return boardDAO.getMyreceiveReviewCount(pageDTO);
+	}
+
+	public List<BoardDTO> getreceiveLqnaList(PageDTO pageDTO) {
+		int currentPage = pageDTO.getCurrentPage();
+		int pageSize = pageDTO.getPageSize();
+		int startRow = (currentPage - 1) * pageSize + 1;
+		int endRow = startRow + pageSize - 1;
+		
+		pageDTO.setStartRow(startRow - 1);
+		pageDTO.setEndRow(endRow);
+		return boardDAO.getreceiveLqnaList(pageDTO);
+	}
+
+	public int getreceiveLqnaCount(PageDTO pageDTO) {
+		return boardDAO.getreceiveLqnaCount(pageDTO);
+	}
+
+	public List<BoardDTO> getLessonReview(PageDTO pageDTO) {
+		int currentPage = pageDTO.getCurrentPage();
+		int pageSize = pageDTO.getPageSize();
+		int startRow = (currentPage - 1) * pageSize + 1;
+		int endRow = startRow + pageSize - 1;
+		
+		pageDTO.setStartRow(startRow - 1);
+		pageDTO.setEndRow(endRow);
+		return boardDAO.getLessonReview(pageDTO);
+	}
+
+	public int getLessonReviewCount(LessonDTO lessonDTO) {
+		return boardDAO.getLessonReviewCount(lessonDTO);
+	}
 
 }

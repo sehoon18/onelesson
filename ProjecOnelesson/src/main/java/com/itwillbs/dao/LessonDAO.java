@@ -57,14 +57,6 @@ public class LessonDAO {
 		return sqlSession.selectOne(namespace+".getMyLessonCount", pageDTO);
 	}
 
-	public List<LessonDTO> getWishList(PageDTO pageDTO) {
-		return sqlSession.selectList(namespace + ".getWishList", pageDTO);
-	}
-
-	public int getWishCount(PageDTO pageDTO) {
-		return sqlSession.selectOne(namespace+".getWishCount", pageDTO);
-	}
-
 	public List<LessonDTO> getSubject(BoardDTO boardDTO) {
 		return sqlSession.selectList(namespace + ".getSubject", boardDTO);
 	}
@@ -75,5 +67,26 @@ public class LessonDAO {
 
 	public int getLSearchCount(PageDTO pageDTO) {
 		return sqlSession.selectOne(namespace + "getLSearchCount", pageDTO);
+	}
+
+	public List<LessonDTO> getMyinsertLessonList(PageDTO pageDTO) {
+		return sqlSession.selectList(namespace + ".getMyinsertLessonList", pageDTO);
+	}
+
+	public int getMyinsertLessonCount(PageDTO pageDTO) {
+		return sqlSession.selectOne(namespace + ".getMyinsertLessonCount", pageDTO);
+	}
+
+	public void updateStatus0(LessonDTO lessonDTO) {
+		sqlSession.update(namespace + ".updateStatus0", lessonDTO);
+	}
+
+	public void updateStatus1(LessonDTO lessonDTO) {
+		sqlSession.update(namespace + ".updateStatus1", lessonDTO);
+		
+	}
+
+	public void updateLesson(LessonDTO lessonDTO) {
+		sqlSession.update(namespace + ".updateLesson", lessonDTO);
 	}
 }

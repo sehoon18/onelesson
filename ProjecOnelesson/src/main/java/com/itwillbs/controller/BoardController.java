@@ -19,6 +19,7 @@ import org.springframework.web.bind.annotation.RequestMapping;
 import org.springframework.web.bind.annotation.ResponseBody;
 import org.springframework.web.multipart.MultipartFile;
 
+import com.itwillbs.dao.BoardDAO;
 import com.itwillbs.domain.AdminDTO;
 import com.itwillbs.domain.BoardDTO;
 import com.itwillbs.domain.LessonDTO;
@@ -74,8 +75,12 @@ public class BoardController {
 	}
 	
 	@GetMapping("/reviewList")
-	public String reviewList(HttpServletRequest request, PageDTO pageDTO, HttpSession session, Model model) {
+	public String reviewList(HttpServletRequest request, PageDTO pageDTO, HttpSession session, Model model, MemberDTO memberDTO) {
 		System.out.println("BoardController reviewList()");
+		
+		String id = (String)session.getAttribute("id");
+		memberDTO = memberService.getMember(id);
+		model.addAttribute("memberDTO", memberDTO);
 		
 		int pageSize = 10;
 		String pageNum = request.getParameter("pageNum");
@@ -88,11 +93,24 @@ public class BoardController {
 		pageDTO.setPageSize(pageSize);
 		pageDTO.setPageNum(pageNum);
 		pageDTO.setCurrentPage(currentPage);
-		pageDTO.setId((String)session.getAttribute("id"));
+		pageDTO.setId(id);
 		
-		List<BoardDTO> boardList = boardService.getMyReviewList(pageDTO);
+		memberDTO = memberService.getMember(id);
+
+		int count = 0;
+		if(memberDTO.getType() == 0) {
+			List<BoardDTO> boardList = boardService.getMyReviewList(pageDTO); // 일반회원
+			model.addAttribute("boardList", boardList);
+			count = boardService.getMyReviewCount(pageDTO);
+		} else if(memberDTO.getType() == 1) {
+			List<BoardDTO> boardList = boardService.getMyreceiveReviewList(pageDTO); // 강사
+			model.addAttribute("boardList", boardList);
+			count = boardService.getMyreceiveReviewCount(pageDTO);
+		} else {
+			return "member/memberLogin";
+		}
 		
-		int count = boardService.getMyReviewCount(pageDTO);
+		
 		int pageBlock = 10;
 		int startPage = (currentPage - 1)/pageBlock * pageBlock + 1;
 		int endPage = startPage + pageBlock - 1;
@@ -109,7 +127,6 @@ public class BoardController {
 		pageDTO.setPageCount(pageCount);
 		
 		model.addAttribute("pageDTO", pageDTO);
-		model.addAttribute("boardList", boardList);
 		
 		return "board/reviewList";
 	}
@@ -221,8 +238,11 @@ public class BoardController {
 	}
 	
 	@GetMapping("/qnaList")
-	public String lessonList(HttpServletRequest request, PageDTO pageDTO, Model model, LessonDTO lessonDTO, HttpSession session) {
+	public String lessonList(HttpServletRequest request, PageDTO pageDTO, Model model, LessonDTO lessonDTO, HttpSession session, MemberDTO memberDTO) {
 		System.out.println("LessonController qnaList()");
+		
+		String id = (String)session.getAttribute("id");
+		memberDTO = memberService.getMember(id);
 		
 		int pageSize = 10;
 		String pageNum = request.getParameter("pageNum");
@@ -238,8 +258,10 @@ public class BoardController {
 		pageDTO.setId((String)session.getAttribute("id"));
 		
 		List<BoardDTO> boardList = boardService.getQnaList(pageDTO);
-		
+		model.addAttribute("boardList", boardList);
 		int count =  boardService.getQnaCount(pageDTO);
+		
+		
 		int pageBlock = 10;
 		int startPage = (currentPage - 1) / pageBlock * pageBlock + 1;
 		int endPage = startPage + pageBlock -1;
@@ -255,7 +277,6 @@ public class BoardController {
 		pageDTO.setEndPage(endPage);
 		pageDTO.setPageCount(pageCount);
 		
-		model.addAttribute("boardList", boardList);
 		model.addAttribute("pageDTO", pageDTO);
 		
 		return "board/qnaList";
@@ -319,8 +340,11 @@ public class BoardController {
 	}
 
 	@GetMapping("/lessonQna")
-	public String lessonQna(HttpServletRequest request, PageDTO pageDTO, Model model, LessonDTO lessonDTO, HttpSession session) {
+	public String lessonQna(HttpServletRequest request, PageDTO pageDTO, Model model, LessonDTO lessonDTO, HttpSession session, MemberDTO memberDTO) {
 		System.out.println("LessonController lessonQna()");
+		
+		String id = (String)session.getAttribute("id");
+		memberDTO = memberService.getMember(id);
 		
 		int pageSize = 3;
 		String pageNum = request.getParameter("pageNum");
@@ -335,9 +359,18 @@ public class BoardController {
 		pageDTO.setCurrentPage(currentPage);
 		pageDTO.setId((String)session.getAttribute("id"));
 
-		List<BoardDTO> boardList = boardService.getLqnaList(pageDTO);
+		int count = 0;
+		if(memberDTO.getType() == 0) {
+			List<BoardDTO> boardList = boardService.getLqnaList(pageDTO);
+			model.addAttribute("boardList", boardList);
+		} else if(memberDTO.getType() == 1) {
+			List<BoardDTO> boardList = boardService.getreceiveLqnaList(pageDTO);
+			model.addAttribute("boardList", boardList);
+			count =  boardService.getreceiveLqnaCount(pageDTO);
+		} else {
+			return "member/memberLogin";
+		}
 		
-		int count =  boardService.getLqnaCount(pageDTO);
 		int pageBlock = 10;
 		int startPage = (currentPage - 1) / pageBlock * pageBlock + 1;
 		int endPage = startPage + pageBlock -1;
@@ -353,7 +386,6 @@ public class BoardController {
 		pageDTO.setEndPage(endPage);
 		pageDTO.setPageCount(pageCount);
 		
-		model.addAttribute("boardList", boardList);
 		model.addAttribute("pageDTO", pageDTO);
 		
 		return "board/lessonQna";
@@ -426,10 +458,11 @@ public class BoardController {
 	}
 	
 	@GetMapping("/wish")
-	public String wish(HttpServletRequest request, Model model, PageDTO pageDTO, HttpSession session) {
-		System.out.println("");
-		
-		
+	public String wish(HttpServletRequest request, Model model, PageDTO pageDTO, HttpSession session, BoardDTO boardDTO, MemberDTO memberDTO) {
+		System.out.println("BoardController wish()");
+		String id = (String)session.getAttribute("id");
+		memberDTO = memberService.getMember(id);
+		model.addAttribute("memberDTO", memberDTO);
 		
 		int pageSize = 3;
 		String pageNum = request.getParameter("pageNum");
@@ -442,11 +475,11 @@ public class BoardController {
 		pageDTO.setPageSize(pageSize);
 		pageDTO.setPageNum(pageNum);
 		pageDTO.setCurrentPage(currentPage);
-		pageDTO.setId((String)session.getAttribute("id"));
+		pageDTO.setId(id);
 		
-		List<LessonDTO> lessonList = lessonService.getWishList(pageDTO);
+		List<BoardDAO> boardList = boardService.getWishList(pageDTO);
 		
-		int count =  lessonService.getWishCount(pageDTO);
+		int count =  boardService.getWishCount(pageDTO);
 		int pageBlock = 10;
 		int startPage = (currentPage - 1) / pageBlock * pageBlock + 1;
 		int endPage = startPage + pageBlock -1;
@@ -462,7 +495,7 @@ public class BoardController {
 		pageDTO.setEndPage(endPage);
 		pageDTO.setPageCount(pageCount);
 		
-		model.addAttribute("lessonList", lessonList);
+		model.addAttribute("boardList", boardList);
 		model.addAttribute("pageDTO", pageDTO);
 		
 		return "board/wish";

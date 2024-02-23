@@ -196,10 +196,32 @@
 	<div class="form-group">
 	<div style="width: 1080px; height: 1000px; word-wrap: break-word; padding: 10px;">${lessonDTO.content }</div>
 	<hr>
-	<label>리뷰</label>
-	<div style="border: 1px solid #ccc; width: 1080px; height: 100px; margin-bottom: 5px;">리뷰 칸1</div>
-	<div style="border: 1px solid #ccc; width: 1080px; height: 100px; margin-bottom: 5px;">리뷰 칸2</div>
-	<div style="border: 1px solid #ccc; width: 1080px; height: 100px; margin-bottom: 5px;">리뷰 칸3</div>
+<!-- 	<h4 style="margin: 0px 30px;">리뷰</h4> -->
+	<c:if test="${not empty boardList }">
+	<table class="table" >
+		<tr style="text-align: center;"><th style="width: 100px;">리뷰번호</th><th style="width: 200px;">이미지</th><th style="width: 400px;">내용</th><th style="width: 180px;">별점</th><th style="width: 100px;">등록일</th></tr>
+     	<c:forEach var="boardDTO" items="${boardList }">
+		<tr style="height: 120px;"><td style="text-align: center;">${boardDTO.num }</td><td>${boardDTO.image}</td><td>${boardDTO.content }</td>
+		<td style="text-align: center;">
+		<script>
+			var rating = ${boardDTO.rating};
+			var stars = '';
+			for (var i = 1; i <= 5; i++) {
+			    if (i <= rating) {
+			        stars += '<span style="color: yellow;">★</span>';
+			    } else {
+			        stars += '<span style="color: #ccc;">☆</span>';
+			    }
+			}
+			document.write(stars);
+		</script></td>
+		<td style="text-align: center;"><fmt:formatDate value="${boardDTO.update }" pattern="yyyy-MM-dd"/></td></tr>
+		</c:forEach>
+	</table>
+	</c:if>
+   	<c:if test="${empty boardList }">
+	<p>등록된 리뷰가 없습니다.</p>
+   	</c:if>
     </div>	
     </div>
     

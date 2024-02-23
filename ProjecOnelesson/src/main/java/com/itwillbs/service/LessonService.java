@@ -86,24 +86,6 @@ public class LessonService {
 		return lessonDAO.getMyLessonCount(pageDTO);
 	}
 
-	public List<LessonDTO> getWishList(PageDTO pageDTO) {
-		System.out.println("BoardService getWishList()");
-		
-		int currentPage = pageDTO.getCurrentPage();
-		int pageSize = pageDTO.getPageSize();
-		int startRow = (currentPage - 1) * pageSize + 1;
-		int endRow = startRow + pageSize - 1;
-		
-		pageDTO.setStartRow(startRow - 1);
-		pageDTO.setEndRow(endRow);
-		
-		return lessonDAO.getWishList(pageDTO);
-	}
-
-	public int getWishCount(PageDTO pageDTO) {
-		return lessonDAO.getWishCount(pageDTO);
-	}
-
 	public List<LessonDTO> getSubject(BoardDTO boardDTO) {
 		return lessonDAO.getSubject(boardDTO);
 	}
@@ -122,6 +104,34 @@ public class LessonService {
 
 	public int getLSearchCount(PageDTO pageDTO) {
 		return lessonDAO.getLSearchCount(pageDTO);
+	}
+
+	public List<LessonDTO> getMyinsertLessonList(PageDTO pageDTO) {
+		System.out.println("LessonService getMyinsertLessonList()");
+		
+		int startRow = (pageDTO.getCurrentPage() - 1) * pageDTO.getPageSize() + 1;
+		int EndRow = startRow + pageDTO.getPageSize() - 1;
+		
+		pageDTO.setStartRow(startRow -1);
+		pageDTO.setEndRow(EndRow);
+		
+		return lessonDAO.getMyinsertLessonList(pageDTO);
+		}
+
+	public int getMyinsertLessonCount(PageDTO pageDTO) {
+		return lessonDAO.getMyinsertLessonCount(pageDTO);
+	}
+
+	public void updateStatus0(LessonDTO lessonDTO) {
+		lessonDAO.updateStatus0(lessonDTO);
+	}
+
+	public void updateStatus1(LessonDTO lessonDTO) {
+		lessonDAO.updateStatus1(lessonDTO);
+	}
+
+	public void updateLesson(LessonDTO lessonDTO) {
+		lessonDAO.updateLesson(lessonDTO);
 	}
 
 }

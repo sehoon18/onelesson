@@ -8,6 +8,8 @@ import org.apache.ibatis.session.SqlSession;
 import org.springframework.stereotype.Repository;
 
 import com.itwillbs.domain.MemberDTO;
+import com.itwillbs.domain.OrderDTO;
+import com.itwillbs.domain.PageDTO;
 
 
 @Repository
@@ -84,10 +86,9 @@ public class MemberDAO {
 		return sqlSession.selectOne(namespace + ".inactiveCheck", memberDTO);
 	}
 	
-
-
-
-
-
+	public List<OrderDTO> getMyOrder(MemberDTO memberDTO) {
+		System.out.println("MemberDAO getMyOrder()");
+		return sqlSession.selectList(namespace + ".getMyOrder" , memberDTO);
+	}
 
 }

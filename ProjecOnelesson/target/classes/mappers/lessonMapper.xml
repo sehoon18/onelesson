@@ -43,7 +43,7 @@
     </select>
     
 	<select id="getLesson" resultType="com.itwillbs.domain.LessonDTO">
-		select LES_NUM as "num", LES_SUBJECT as "subject", LES_CONTENT as "content", LES_CATEGORY as "category", LES_SUBCATEGORY as "subCategory", LES_UPDATE as "update", LES_DATE as "date", LES_LOCATION as "location", LES_PRICE as "price", LES_PREVIEW as "preview", MEM_ID as "id" 
+		select LES_NUM as "num", LES_SUBJECT as "subject", LES_CONTENT as "content", LES_CATEGORY as "category", LES_SUBCATEGORY as "subCategory", LES_UPDATE as "update", LES_DATE as "date", LES_LOCATION as "location", LES_PRICE as "price", LES_PREVIEW as "preview", MEM_ID as "id", LES_STATUS as "status" 
 		from LESSON
 		where LES_NUM = #{num}
 	</select>
@@ -54,7 +54,7 @@
 	</insert>
    
 	<select id="getMyLessonList" resultType="com.itwillbs.domain.LessonDTO">
-    	SELECT LES_SUBJECT as "subject", LES_PREVIEW as "preview", LES_NUM as "num"
+    	SELECT LES_SUBJECT as "subject", LES_PREVIEW as "preview" , LES_PRICE as "price", LES_NUM as "num"
 		from LESSON
 		where LES_NUM IN (SELECT LES_NUM
 							from ORDERS
@@ -70,22 +70,6 @@
     	where MEM_ID = #{id}
     </select>
    
-	<select id="getWishList" resultType="com.itwillbs.domain.LessonDTO">
-    	SELECT LES_SUBJECT as "subject", LES_PREVIEW as "preview", LES_CATEGORY as "category", LES_SUBCATEGORY as "subCategory", LES_PRICE as "price", LES_LOCATION as "location"
-		from LESSON
-		where LES_NUM IN (SELECT LES_NUM
-							from WISH
-							WHERE MEM_ID = #{id})
-    	order by LES_NUM desc
-    	limit #{startRow}, #{pageSize}
-    </select>
-    
-	<select id="getWishCount" resultType="java.lang.Integer">
-    	select count(*)
-    	from WISH
-    	where MEM_ID = #{id}
-    </select>
-    
     <select id="getSubject" resultType="com.itwillbs.domain.LessonDTO">
 		select LES_NUM as "num", LES_SUBJECT as "subject"
 		from LESSON
@@ -107,4 +91,35 @@
     	where LES_SUBJECT like CONCAT('%',#{search},'%')
     </select>
     
+    <select id="getMyinsertLessonList" resultType="com.itwillbs.domain.LessonDTO">
+    	select LES_SUBJECT as "subject", LES_UPDATE as "update", LES_NUM as "num", LES_STATUS as "status", LES_PREVIEW as "preview", LES_PRICE as "price",LES_SUBCATEGORY as "subCategory" , LES_DATE as "date" , MEM_ID as "id"
+    	from LESSON
+    	where MEM_ID = #{id}
+    	order by LES_NUM desc
+    	limit #{startRow}, #{pageSize}
+    </select>
+    
+    <select id="getMyinsertLessonCount" resultType="java.lang.Integer">
+    	select count(*)
+    	from LESSON
+    	where MEM_ID = #{id}
+    </select>
+    
+    <update id="updateStatus0">
+    	update LESSON
+    	SET LES_STATUS = 1
+    	WHERE LES_NUM = #{num}
+    </update>
+        
+	<update id="updateStatus1">
+    	update LESSON
+    	SET LES_STATUS = 0
+    	WHERE LES_NUM = #{num}
+    </update>
+
+    <update id="updateLesson">
+    	update LESSON
+		SET LES_SUBJECT = #{subject}, LES_CONTENT = #{content}, LES_PREVIEW = #{preview}, LES_UPDATE = #{update}, LES_DATE = #{date}, LES_PRICE = #{price}, LES_CATEGORY = #{category}, LES_SUBCATEGORY = #{subCategory}, LES_LOCATION = #{location}
+		WHERE LES_NUM = #{num}
+    </update>
 </mapper>

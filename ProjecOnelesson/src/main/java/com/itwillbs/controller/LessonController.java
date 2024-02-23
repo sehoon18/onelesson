@@ -20,9 +20,11 @@ import org.springframework.web.bind.annotation.RequestMapping;
 import org.springframework.web.bind.annotation.ResponseBody;
 import org.springframework.web.multipart.MultipartFile;
 
+import com.itwillbs.domain.BoardDTO;
 import com.itwillbs.domain.LessonDTO;
 import com.itwillbs.domain.MemberDTO;
 import com.itwillbs.domain.PageDTO;
+import com.itwillbs.service.BoardService;
 import com.itwillbs.service.LessonService;
 import com.itwillbs.service.MemberService;
 
@@ -34,6 +36,9 @@ public class LessonController {
 	private LessonService lessonService;
 	@Inject
 	private MemberService memberService;
+	@Inject
+	private BoardService boardService;
+	
 	@Resource(name = "uploadPath")
 	private String uploadPath;
 	
@@ -99,6 +104,25 @@ public class LessonController {
 		}
 	}
 	
+	@GetMapping("/lessonUpdate")
+	public String lessonUpdate(MemberDTO memberDTO, HttpSession session, LessonDTO lessonDTO, Model model) {
+		System.out.println("LessonController lessonInsert()");
+        
+		lessonDTO = lessonService.getLesson(lessonDTO);
+		model.addAttribute("lessonDTO", lessonDTO); 
+		
+		memberDTO = memberService.getMember((String)session.getAttribute("id"));
+		if(memberDTO != null) {
+			if(memberDTO.getType() == 1) {
+				return "lesson/lessonUpdate";
+			} else {
+				return "redirect:/member/main";
+			}
+		} else {
+			return "redirect:/member/main";
+		}
+	}
+	
 	@PostMapping("/lessonInsertPro")
 	public String lessonInsertPro(MultipartFile preview, HttpServletRequest request, Model model, MemberDTO memberDTO) throws Exception{
 		System.out.println("LessonController lessonInsertPro()");
@@ -136,17 +160,92 @@ public class LessonController {
 		
 		lessonService.insertLesson(lessonDTO);
 		
-		return "redirect:/lesson/lessonList";
+		return "redirect:/member/mypage";
 	}
 	
+	@PostMapping("/lessonUpdatePro")
+	public String lessonUpdatePro(MultipartFile preview, HttpServletRequest request, Model model, MemberDTO memberDTO) throws Exception{
+		System.out.println("LessonController lessonUpdatePro()");
+        
+		boolean userCheck = false;
+		if(memberService.userCheck(memberDTO) != null) {
+			userCheck = true;
+		} else {
+			userCheck = false;
+		}
+		
+		UUID uuid = UUID.randomUUID();
+		String filename = uuid.toString() + "_" + preview.getOriginalFilename();
+		System.out.println(filename);
+		System.out.println(uploadPath);
+		FileCopyUtils.copy(preview.getBytes(), new File(uploadPath, filename));
+		
+		LessonDTO lessonDTO = new LessonDTO();
+		lessonDTO.setCategory(request.getParameter("category"));
+		lessonDTO.setSubCategory(request.getParameter("subCategory"));
+		lessonDTO.setSubject(request.getParameter("subject"));
+		lessonDTO.setContent(request.getParameter("content"));
+		lessonDTO.setLocation(request.getParameter("location"));
+		lessonDTO.setDate(request.getParameter("date"));
+		lessonDTO.setPrice(Integer.parseInt(request.getParameter("price")));
+		lessonDTO.setUpdate(new Timestamp(System.currentTimeMillis()));
+		lessonDTO.setPreview(filename);
+		lessonDTO.setId(request.getParameter("id"));
+		System.out.println(lessonDTO);
+		if(userCheck == false) {
+	        model.addAttribute("errorMessage", "비밀번호가 틀렸습니다.");
+	        model.addAttribute("lessonDTO", lessonDTO); 
+	        return "lesson/lessonUpdate";
+		} else if(userCheck == true) {
+			System.out.println("유저체크 성공");
+			lessonService.updateLesson(lessonDTO);
+			return "redirect:/member/mypage";
+		} else {
+			System.out.println("유저체크 null");
+	        return "lesson/lessonUpdate";
+		}
+		
+	}	
+	
 	@GetMapping("/lessonInfo")
-	public String lessonInfo(LessonDTO lessonDTO, Model model) {
+	public String lessonInfo(LessonDTO lessonDTO, Model model, BoardDTO boardDTO, HttpServletRequest request, PageDTO pageDTO) {
 		System.out.println("LessonController lessonInfo()");
 		
 		lessonDTO = lessonService.getLesson(lessonDTO);
-		
 		model.addAttribute("lessonDTO", lessonDTO);
+
+		int pageSize = 3;
+		String pageNum = request.getParameter("pageNum");
+		if(pageNum == null) {
+			pageNum="1";
+		}
 		
+		int currentPage = Integer.parseInt(pageNum);
+		pageDTO.setPageSize(pageSize);
+		pageDTO.setPageNum(pageNum);
+		pageDTO.setCurrentPage(currentPage);
+		pageDTO.setType(lessonDTO.getNum());
+		
+		List<BoardDTO> boardList = boardService.getLessonReview(pageDTO);
+		
+		int count =  boardService.getLessonReviewCount(lessonDTO);
+		int pageBlock = 5;
+		int startPage = (currentPage - 1) / pageBlock * pageBlock + 1;
+		int endPage = startPage + pageBlock -1;
+		int pageCount = count / pageSize + (count % pageSize == 0 ? 0 : 1);
+		
+		if(endPage > pageCount) {
+			endPage = pageCount;
+		}
+		
+		pageDTO.setCount(pageCount);
+		pageDTO.setPageBlock(pageBlock);
+		pageDTO.setStartPage(startPage);
+		pageDTO.setEndPage(endPage);
+		pageDTO.setPageCount(pageCount);
+		
+		model.addAttribute("boardList", boardList);
+		model.addAttribute("pageDTO", pageDTO);
 		return "lesson/lessonInfo";
 	}
 	
@@ -260,4 +359,20 @@ public class LessonController {
 		return "lesson/categorySearch";
 	}
 	
+	@GetMapping("/activeSwitch")
+	public String activeSwitch(LessonDTO lessonDTO) {
+		System.out.println("LessonController activeSwitch()");
+		
+		lessonDTO = lessonService.getLesson(lessonDTO);
+		
+		if(lessonDTO.getStatus() == 0) {
+			lessonService.updateStatus0(lessonDTO);
+			return "redirect:/member/mypage";
+		} else if(lessonDTO.getStatus() ==1) {
+			lessonService.updateStatus1(lessonDTO);
+			return "redirect:/member/mypage";
+		} else {
+			return "redirect:/member/mypage";
+		}
+	}
 }

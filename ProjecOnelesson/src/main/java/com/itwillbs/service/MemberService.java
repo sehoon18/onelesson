@@ -3,11 +3,11 @@ package com.itwillbs.service;
 import java.util.List;
 
 import javax.inject.Inject;
-
 import org.springframework.stereotype.Service;
 
 import com.itwillbs.dao.MemberDAO;
 import com.itwillbs.domain.MemberDTO;
+import com.itwillbs.domain.OrderDTO;
 
 
 @Service
@@ -85,9 +85,11 @@ public class MemberService{
 		return memberDAO.inactiveCheck(memberDTO);
 	}
 	
-	
-	
-	
+	public List<OrderDTO> getMyOrder(MemberDTO memberDTO) {
+		System.out.println("MemberService getMyOrder()");
+		return memberDAO.getMyOrder(memberDTO);
+	}
+
 	
 }
 

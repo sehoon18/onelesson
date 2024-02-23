@@ -126,9 +126,10 @@
     </insert>
     
 	<select id="getMyReviewList" resultType="com.itwillbs.domain.BoardDTO">
-		select REVIEW_NUM as "num", REVIEW_CONTENT as "content", REVIEW_UPDATE as "update", REVIEW_RATING as "rating"
-		from REVIEW
-		WHERE MEM_ID = #{id}
+		select l.LES_SUBJECT as "subject", r.REVIEW_NUM as "num", r.REVIEW_CONTENT as "content", r.REVIEW_UPDATE as "update", r.REVIEW_RATING as "rating"
+		from REVIEW r join LESSON l
+		on l.LES_NUM = r.LES_NUM
+		WHERE r.MEM_ID = #{id}
 		order by REVIEW_NUM desc
 		limit #{startRow}, #{pageSize}
 	</select>
@@ -137,6 +138,75 @@
 		select count(*)
 		from REVIEW
 		WHERE MEM_ID = #{id}
+	</select>
+	
+	<select id="getWishList" resultType="com.itwillbs.domain.LessonDTO">
+    	SELECT LES_SUBJECT as "subject", LES_PREVIEW as "preview", LES_CATEGORY as "category", LES_SUBCATEGORY as "subCategory", LES_PRICE as "price", LES_LOCATION as "location"
+		from LESSON
+		where LES_NUM IN (SELECT LES_NUM
+							from WISH
+							WHERE MEM_ID = #{id})
+    	order by LES_NUM desc
+    	limit #{startRow}, #{pageSize}
+    </select>
+    
+	<select id="getWishCount" resultType="java.lang.Integer">
+    	select count(*)
+    	from WISH
+    	where MEM_ID = #{id}
+    </select>
+    
+	<select id="getMyreceiveReviewList" resultType="com.itwillbs.domain.BoardDTO">
+		SELECT l.LES_SUBJECT as "subject", r.REVIEW_NUM as "num", r.REVIEW_CONTENT as "content", r.REVIEW_UPDATE as "update", r.REVIEW_RATING as "rating"
+		FROM REVIEW r JOIN LESSON l
+		on l.LES_NUM = r.LES_NUM
+		WHERE r.LES_NUM in (select LES_NUM
+							FROM LESSON
+							WHERE MEM_ID = #{id})
+		order by REVIEW_NUM desc
+		limit #{startRow}, #{pageSize}
+	</select>
+	
+    <select id="getMyreceiveReviewCount" resultType="java.lang.Integer">
+		select count(*)
+		from REVIEW
+		where LES_NUM IN (SELECT LES_NUM
+						FROM LESSON
+						WHERE MEM_ID = #{id})
+	</select>	
+	
+	<select id="getreceiveLqnaList" resultType="com.itwillbs.domain.BoardDTO">
+		select LQNA_QUESTION as "question", LQNA_ANSWER as "answer", LQNA_SUBJECT as "subject", LQNA_NUM as "num"
+		from LESSON_QNA
+		where LES_NUM IN (SELECT LES_NUM
+						FROM LESSON
+						WHERE MEM_ID = #{id})
+		order by LQNA_NUM desc
+		limit #{startRow}, #{pageSize}
+	</select>
+	
+    <select id="getreceiveLqnaCount" resultType="java.lang.Integer">
+		select count(*)
+		from LESSON_QNA
+		where LES_NUM IN (SELECT LES_NUM
+						FROM LESSON
+						WHERE MEM_ID = #{id})
+	</select>
+	
+	<select id="getLessonReview" resultType="com.itwillbs.domain.BoardDTO">
+		select REVIEW_NUM as "num", REVIEW_CONTENT as "content", REVIEW_UPDATE as "update", REVIEW_RATING as "rating"
+		from REVIEW
+		where LES_NUM = #{type}
+		order by REVIEW_NUM desc
+		limit #{startRow}, #{pageSize}
+	</select>
+	
+	<select id="getLessonReviewCount" resultType="java.lang.Integer">
+		select count(*)
+		from REVIEW
+		where LES_NUM IN (SELECT LES_NUM
+						FROM LESSON
+						WHERE MEM_ID = #{id})
 	</select>
 	
 </mapper>

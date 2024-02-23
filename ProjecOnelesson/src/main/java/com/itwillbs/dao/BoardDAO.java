@@ -128,4 +128,38 @@ public class BoardDAO {
 	}
 
 
+	public List<BoardDAO> getWishList(PageDTO pageDTO) {
+		return sqlSession.selectList(namespace + ".getWishList", pageDTO);
+	}
+
+	public int getWishCount(PageDTO pageDTO) {
+		return sqlSession.selectOne(namespace+".getWishCount", pageDTO);
+	}
+
+	public List<BoardDTO> getMyreceiveReviewList(PageDTO pageDTO) {
+		return sqlSession.selectList(namespace + ".getMyreceiveReviewList", pageDTO);
+	}
+
+	public int getMyreceiveReviewCount(PageDTO pageDTO) {
+		return sqlSession.selectOne(namespace + ".getMyreceiveReviewCount", pageDTO);
+	}
+
+	public List<BoardDTO> getreceiveLqnaList(PageDTO pageDTO) {
+		return sqlSession.selectList(namespace + ".getreceiveLqnaList", pageDTO);
+	}
+
+	public int getreceiveLqnaCount(PageDTO pageDTO) {
+		return sqlSession.selectOne(namespace + ".getreceiveLqnaCount", pageDTO);
+	}
+
+	public List<BoardDTO> getLessonReview(PageDTO pageDTO) {
+		return sqlSession.selectList(namespace + ".getLessonReview", pageDTO);
+	}
+
+	public int getLessonReviewCount(LessonDTO lessonDTO) {
+		return sqlSession.selectOne(namespace + ".getLessonReviewCount", lessonDTO);
+	}
+
+
+
 }

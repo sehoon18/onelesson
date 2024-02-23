@@ -86,25 +86,25 @@
   </ul>
 </nav>
 
-<table style="margin-left: auto; margin-right: auto; margin-top: 3px; margin-bottom: 3px">
-	<tr>
-		<td style="padding-left: 5px">
-			<select class="custom-select" id="choice" name="choice">
-				<option selected>검색</option>
-				<option value="title">제목</option>
-				<option value="content">내용</option>
-			</select>
+<!-- <table style="margin-left: auto; margin-right: auto; margin-top: 3px; margin-bottom: 3px"> -->
+<!-- 	<tr> -->
+<!-- 		<td style="padding-left: 5px"> -->
+<!-- 			<select class="custom-select" id="choice" name="choice"> -->
+<!-- 				<option selected>검색</option> -->
+<!-- 				<option value="title">제목</option> -->
+<!-- 				<option value="content">내용</option> -->
+<!-- 			</select> -->
 			
-		</td>
-		<td style="padding-left: 5px" class="align-middle">
-			<input type="text" class="form-control" id="search" name="search" placeholder="검색어" value="">
-		<td style="padding-left: 5px">
-			<span>
-				<button type="button" class="btn btn-info" onclick="searchBtn()">검색</button>
-			</span>
-		</td>
-	</tr>
-</table>
+<!-- 		</td> -->
+<!-- 		<td style="padding-left: 5px" class="align-middle"> -->
+<!-- 			<input type="text" class="form-control" id="search" name="search" placeholder="검색어" value=""> -->
+<!-- 		<td style="padding-left: 5px"> -->
+<!-- 			<span> -->
+<!-- 				<button type="button" class="btn btn-info" onclick="searchBtn()">검색</button> -->
+<!-- 			</span> -->
+<!-- 		</td> -->
+<!-- 	</tr> -->
+<!-- </table> -->
 <br>
 <button class="btn btn-info" onclick="location.href='${pageContext.request.contextPath}/board/qnaWrite'">글쓰기</button>
 <button class="btn btn-outline-info">돌아가기</button>

@@ -130,6 +130,9 @@
             max-width: 100%;
             max-height: 100%;
         }
+		.ck-editor__editable {
+        	min-height: 500px;
+    	}
     </style>
 
     <!-- Custom styles for this template -->

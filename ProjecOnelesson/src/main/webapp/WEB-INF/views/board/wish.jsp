@@ -5,7 +5,220 @@
 <html>
 <head>
 <title>찜 목록</title>
+	<link rel="canonical" href="https://getbootstrap.com/docs/5.3/examples/album/">
+	<link rel="stylesheet" href="https://cdn.jsdelivr.net/npm/@docsearch/css@3">
+	<link href="https://cdn.jsdelivr.net/npm/bootstrap@5.3.1/dist/css/bootstrap.min.css" rel="stylesheet">
 <style>
+      .b-example-divider {
+        width: 100%;
+        height: 3rem;
+        background-color: rgba(0, 0, 0, .1);
+        border: solid rgba(0, 0, 0, .15);
+        border-width: 1px 0;
+        box-shadow: inset 0 .5em 1.5em rgba(0, 0, 0, .1), inset 0 .125em .5em rgba(0, 0, 0, .15);
+      }
+.head-Boxleft{
+	display: inline-block;
+	float : left;
+	width: 100px;
+	height : 100px;
+}
+.head-Box-center{
+	display: inline-block;
+	width:1100px;
+	height: 100px;
+	flex: em;
+}
+.head-Box-right{
+	display: inline-block;
+	height: 150px;
+	flex: em;
+	float: right;
+	padding: 1.2em;
+	vertical-align: bottom;
+}
+
+.myinfoA1{
+	margin: 50px;
+	padding : 1.5rem;
+	align-items: center;
+	justify-content: center;
+}
+.myMenu{
+display: inline-block;
+	position: relative;
+	width: 100%;
+	height: 50px;
+	padding-top: 30px;
+}
+
+
+.userInfo{
+	display: inline-block;
+	padding: 1rem 0;
+	font-size: 2em;
+	text-align: center;
+	border: solid black;
+	background-color : gray;
+	width: 120px;
+	height : 60px;
+	position: relative;
+	font-size: 15px;
+	color: white;
+
+}
+.userlesson{
+	display: inline-block;
+	padding: 1rem 0;
+	font-size: 2em;
+	text-align: center;
+	border: solid black;
+	background-color : gray;
+	width: 120px;
+	height : 60px;
+	position: relative;
+	font-size: 15px;
+	color: white;
+	
+}	
+.userPayment{
+	display: inline-block;
+	padding: 1rem 0;
+	font-size: 2em;
+	text-align: center;
+	border: solid black;
+	background-color : gray;
+	width: 120px;
+	height : 60px;
+	position: relative;
+	font-size: 15px;
+	color: white;
+	
+}
+.userReview{
+	display: inline-block;
+	padding: 1rem 0;
+	font-size: 2em;
+	text-align: center;
+	border: solid black;
+	background-color : gray;
+	width: 120px;
+	height : 60px;
+	position: relative;
+	font-size: 15px;
+	color: white;
+	
+}
+.mainPage {
+	display: inline-block;
+	padding: 1rem 0;
+	font-size: 2em;
+	text-align: center;
+	border: solid black;
+	background-color : gray;
+	width: 120px;
+	height : 60px;
+	position: relative;
+	font-size: 15px;
+	color: white;
+	
+}
+.userQnA {
+	display: inline-block;
+	padding: 1rem 0;
+	font-size: 2em;
+	text-align: center;
+	border: solid black;
+	background-color : gray;
+	width: 120px;
+	height : 60px;
+	position: relative;
+	font-size: 15px;
+	color: white;
+	
+}
+
+.JJimList {
+	display: inline-block;
+	padding: 1rem 0;
+	font-size: 2em;
+	text-align: center;
+	border: solid black;
+	background-color : gray;
+	width: 120px;
+	height : 60px;
+	position: relative;
+	font-size: 15px;
+	color: white;
+	
+}
+
+.userCenter {
+	display: inline-block;
+	padding: 1rem 0;
+	font-size: 2em;
+	text-align: center;
+	border: solid black;
+	background-color : gray;
+	width: 120px;
+	height : 60px;
+	position: relative;
+	font-size: 15px;
+	color: white;
+	
+}
+.myPageT{
+	display : inline-block;
+	background-color: green;
+	width: 100%;
+	height: 10px;
+	position: relative;
+	margin-top: 10px;
+}
+.myPageT2{
+	display : inline-block;
+	background-color: green;
+	width: 100%;
+	height: 10px;
+	position: relative;
+	margin-top: auto;
+}
+
+.myLessonInfoB{
+	float: right;
+}
+.myLessonInfo{
+	display : inline-block;
+	width: 100%;
+	height: 10px;
+	position: relative;
+	padding-left: 10px;
+	
+}
+
+.backPage{
+	display : inline-block;
+	float : left;
+	width: 50px;
+	height: 50px;
+	
+}
+.container{
+	width: 100%;
+	padding-right: calc(var(1.5em) * .5);
+	padding-left: calc(var(1.5em) * .5);
+	margin-right: auto;
+	margin-left: auto;
+	height: 200px;
+}
+.top-margin{
+	display : inline-block;
+	height: 100px;
+
+}
+.topView{
+	display: inline-block;
+}
 #container {
 	width: 1120px;
 	margin: 10px auto;
@@ -13,30 +226,62 @@
 }
 </style>
 </head>
+<!-- 헤더 넣는 곳 -->
+<jsp:include page="../inc/header.jsp" />
+<!-- 헤더 넣는 곳 -->
 <body>
-	<jsp:include page="../inc/header.jsp" />
-<div style="background-size: cover; background-position: center; background-image: url('https://images.unsplash.com/photo-1553532435-93d532a45f15?q=80&w=1974&auto=format&fit=crop&ixlib=rb-4.0.3&ixid=M3wxMjA3fDB8MHxwaG90by1wYWdlfHx8fGVufDB8fHx8fA%3D%3D'); ">
-  <section class="py-5 text-center container" style="height: 300px;">
-    <div class="row py-lg-5">
-      <div class="col-lg-6 col-md-8 mx-auto">
-<!--         <h1 class="fw-light" style="color: white;">찜한 레슨</h1> -->
-<!--         <p class="lead text-body-secondary"><b style="color: white;">"새로 업데이트된 레슨을 지금 바로 확인하고 예약하세요!"</b></p> -->
-      </div>
-    </div>
-  </section>
-</div>
-	<div id="container">
+<main  style="height: 100%;">
+	<div class="top-margin"></div>
+
+    
+    
+    <div id="container" style="width: 1100px; margin: 0px auto;">
+    	<table>
+	<tr><td style="width: 300px;"></td><td style="width: 500px; text-align: center;"><h2 class="topView">마이페이지</h2></td><td style="width: 300px;">
+	<span class="head-Box-right" style="text-align: center;">
+	<img src="${pageContext.request.contextPath}/resources/images/default.png" class="myProImg" style="width: 80px; height: 80px; margin: 0px auto;"><br>
+    <span class="myName">${memberDTO.name } 회원</span>           
+    </span>
+	</td></tr>
+	</table>
+    <c:if test="${memberDTO.type == 0 }">
+    <div class="btn-group" role="group" aria-label="Basic example" style="display: flex; justify-content : center;">
+	  <button type="button" class="btn btn-outline-success btn-lg" onclick="location.href='${pageContext.request.contextPath}/member/mypage'">내 정보</button>
+	  <button type="button" class="btn btn-outline-success btn-lg" onclick="location.href='${pageContext.request.contextPath}/member/myPayment'">결제내역</button>
+	  <button type="button" class="btn btn-outline-success btn-lg" onclick="location.href='${pageContext.request.contextPath}/board/reviewList'">후기</button>
+	  <button type="button" class="btn btn-outline-success btn-lg" onclick="location.href='${pageContext.request.contextPath}/board/wish'">찜리스트</button>
+	  <button type="button" class="btn btn-outline-success btn-lg" onclick="location.href='${pageContext.request.contextPath}/member/main'">메인페이지</button>
+	  <button type="button" class="btn btn-outline-success btn-lg" onclick="location.href='${pageContext.request.contextPath}/board/lessonQna'">레슨 문의</button>
+	  <button type="button" class="btn btn-outline-success btn-lg" onclick="location.href='${pageContext.request.contextPath}/board/qnaList'">관리자에게 문의</button>
+	</div>
+    </c:if>
+    
+    <c:if test="${memberDTO.type == 1 }">
+	<div class="btn-group" role="group" aria-label="Basic example" style="display: flex; justify-content : center;">
+	  <button type="button" class="btn btn-outline-success btn-lg" onclick="location.href='${pageContext.request.contextPath}/member/myInfo'">내 정보</button>
+	  <button type="button" class="btn btn-outline-success btn-lg" onclick="location.href='${pageContext.request.contextPath}/lesson/lessonInsert'">레슨등록</button>
+	  <button type="button" class="btn btn-outline-success btn-lg" onclick="location.href='${pageContext.request.contextPath}/member/myPayment'">정산내역</button>
+	  <button type="button" class="btn btn-outline-success btn-lg" onclick="location.href='${pageContext.request.contextPath}/board/reviewList'">받은 후기</button>
+	  <button type="button" class="btn btn-outline-success btn-lg" onclick="location.href='${pageContext.request.contextPath}/member/main'">메인페이지</button>
+	  <button type="button" class="btn btn-outline-success btn-lg" onclick="location.href='${pageContext.request.contextPath}/board/lessonQna'">레슨 문의</button>
+	  <button type="button" class="btn btn-outline-success btn-lg" onclick="location.href='${pageContext.request.contextPath}/board/qnaList'">관리자에게 문의</button>
+	</div>
+	</c:if>	
+<div class="myPageT"></div>
+	 		</div>
+	 		
+	 			<div id="container">
 	<div class="my-3 p-3 bg-body rounded shadow-sm">
     <h6 class="border-bottom pb-2 mb-0">찜한 목록</h6>
 
-<c:forEach var="lessonDTO" items="${lessonList }">
+<c:forEach var="boardDTO" items="${boardList }">
     <div class="d-flex text-body-secondary pt-3">
       <svg class="bd-placeholder-img flex-shrink-0 me-2 rounded" width="200" height="150" xmlns="http://www.w3.org/2000/svg" role="img" aria-label="Placeholder: 32x32" preserveAspectRatio="xMidYMid slice" focusable="false"><title>Placeholder</title><image href="${pageContext.request.contextPath}/resources/upload/${lessonDTO.preview}" x="0" y="0" width="100%" height="100%"></svg>
       <p class="pb-3 mb-0 small lh-sm border-bottom">
-        <strong class="d-block text-gray-dark">${lessonDTO.subject }</strong>
-        카테고리 : ${lessonDTO.category } / ${lessonDTO.subCategory }<br>
-        위치 : ${lessonDTO.location }<br>
-        가격 : ${lessonDTO.price }<br>
+        <strong class="d-block text-gray-dark">${boardDTO.subject }</strong>
+        카테고리 : ${boardDTO.category } / ${boardDTO.subCategory }<br>
+        위치 : ${boardDTO.location }<br>
+        가격 : ${boardDTO.price }<br>
       </p>
     </div>
 </c:forEach>
@@ -46,9 +291,10 @@
     </small>
   </div>
 	</div>
+	 		
+	 		
+</main>
+<jsp:include page="../inc/footer.jsp" />
 
-
-	<hr>
-	<jsp:include page="../inc/footer.jsp" />
 </body>
 </html>

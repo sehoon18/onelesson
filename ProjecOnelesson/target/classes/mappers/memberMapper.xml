@@ -22,9 +22,9 @@ value(#{id},#{pass},#{nick},#{name},#{gender},#{birth},#{phone},#{address},#{ema
 select MEM_ID as "id", MEM_PASS as "pass", MEM_STATUS as "status" from MEMBER where MEM_ID = #{id} and MEM_PASS = #{pass} 
 </select>
 
-<select id="getMember" resultType="com.itwillbs.domain.MemberDTO"> 
-select MEM_NAME as "name", MEM_EMAIL as "email", MEM_PHONE as "phone", MEM_ADDRESS as "address", MEM_TYPE as "type" from MEMBER where MEM_ID = #{id} 
-</select>
+<!-- <select id="getMember" resultType="com.itwillbs.domain.MemberDTO">  -->
+<!-- select MEM_NAME as "name", MEM_EMAIL as "email", MEM_PHONE as "phone", MEM_ADDRESS as "address", MEM_TYPE as "type" from MEMBER where MEM_ID = #{id}  -->
+<!-- </select> -->
 
 <select id="getMemberList" resultType="com.itwillbs.domain.MemberDTO">
  select  MEM_ID as "id" ,  MEM_NAME as "name", MEM_NICK as "nick", MEM_BIRTH as "birth", MEM_PHONE as "phone", MEM_EMAIL as "email" , MEM_TYPE as "type" , MEM_STATUS as "status" from MEMBER 
@@ -67,4 +67,26 @@ update MEMBER set MEM_PASS = #{image} where MEM_ID = #{id}
 select MEM_ID as "id" from MEMBER where MEM_ID = #{id} AND MEM_PHONE = #{phone}
 </select>
 
+<select id="getMyOrder" resultType="com.itwillbs.domain.OrderDTO">
+	SELECT o.ORDER_NUM AS "ORDER_NUM",
+       o.ORDER_DATE AS "ORDER_DATE",
+       o.ORDER_METHOD AS "ORDER_METHOD",
+       o.ORDER_STATUS AS "ORDER_STATUS",
+       l.LES_SUBJECT AS "LES_SUBJECT",
+       l.LES_PRICE AS "LES_PRICE",
+       m.MEM_NAME AS "MEM_NAME"
+FROM ORDERS o
+INNER JOIN LESSON l ON o.LES_NUM = l.LES_NUM
+INNER JOIN MEMBER m ON o.MEM_ID = m.MEM_ID
+WHERE o.ORDER_NUM IN (
+        SELECT ORDER_NUM
+        FROM ORDERS
+        WHERE MEM_ID = #{id}
+        GROUP BY ORDER_NUM
+    )
+ORDER BY o.ORDER_NUM DESC;
+</select>
+
+<select id="userCheck" resultType="com.itwillbs.domain.MemberDTO"> select MEM_ID as "id", MEM_PASS as "pass" from MEMBER where MEM_ID = #{id} and MEM_PASS = #{pass} </select>
+<select id="getMember" resultType="com.itwillbs.domain.MemberDTO"> select MEM_ID as "id", MEM_NAME as "name", MEM_NICK as "nick", MEM_EMAIL as "email", MEM_PHONE as "phone", MEM_ADDRESS as "address", MEM_TYPE as "type" from MEMBER where MEM_ID = #{id} </select>
 </mapper>
