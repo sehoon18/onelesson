@@ -39,18 +39,19 @@
         <hr>
         <form action="${pageContext.request.contextPath}/admin/noticeInsertPro" method="post"
               enctype="multipart/form-data">
+            <input type="hidden" name="id" value="${sessionScope.id}">
             <div class="row">
                 <div class="col-md-2">
                     <label for="category" class="form-label">타입</label>
-                    <select class="form-select mb-3" id="category">
+                    <select class="form-select mb-3" id="category" name="type">
                         <option value="">-- 타입 선택 --</option>
-                        <option value="공지">공지</option>
-                        <option value="이벤트">이벤트</option>
+                        <option value="0">공지</option>
+                        <option value="1">이벤트</option>
                     </select>
                 </div>
                 <div class="col-md-10">
                     <label for="subject" class="form-label">제목</label>
-                    <input type="text" name="subject" class="form-control mb-3" id="subject">
+                    <input type="text" name="subject" class="form-control mb-3">
                 </div>
                 <div class="col-12">
                     <label for="myEditor" class="form-label">상세 설명</label>
@@ -94,6 +95,14 @@
 
 <jsp:include page="../admin/inc/bottom.jsp"/>
 </div>
+
+    <script src="https://cdn.jsdelivr.net/npm/bootstrap@5.2.3/dist/js/bootstrap.bundle.min.js" crossorigin="anonymous"></script>
+    <script src="../resources/js/admin/scripts.js"></script>
+    <script src="https://cdnjs.cloudflare.com/ajax/libs/Chart.js/2.8.0/Chart.min.js" crossorigin="anonymous"></script>
+    <script src="../resources/assets/admin/demo/chart-area-demo.js"></script>
+    <script src="../resources/assets/admin/demo/chart-bar-demo.js"></script>
+    <script src="https://cdn.jsdelivr.net/npm/simple-datatables@7.1.2/dist/umd/simple-datatables.min.js" crossorigin="anonymous"></script>
+    <script src="../resources/js/admin/datatables-simple-demo.js"></script>
 
 </body>
 </html>

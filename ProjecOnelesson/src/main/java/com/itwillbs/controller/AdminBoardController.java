@@ -95,6 +95,8 @@ public class AdminBoardController {
 	public String noticeList(HttpServletRequest request, PageDTO pageDTO, Model model) {
 		System.out.println("AdminBoardController notice()");
 		
+		String search = request.getParameter("search");
+		
 		int pageSize = 5;
 		String pageNum = request.getParameter("pageNum");
 		
@@ -106,6 +108,9 @@ public class AdminBoardController {
 		pageDTO.setPageSize(pageSize);
 		pageDTO.setPageNum(pageNum);
 		pageDTO.setCurrentPage(currentPage);
+		pageDTO.setSearch(search);
+		
+		System.out.println(pageDTO);
 		
 		List<AdminNoticeDTO> noticeList = adminNoticeService.getNoticeList(pageDTO);
 		
@@ -198,6 +203,8 @@ public class AdminBoardController {
 	public String faqList(HttpServletRequest request, PageDTO pageDTO, Model model) {
 		System.out.println("AdminBoardController faq()");
 		
+		String search = request.getParameter("search");
+		
 		int pageSize = 5;
 		String pageNum = request.getParameter("pageNum");
 		
@@ -209,6 +216,7 @@ public class AdminBoardController {
 		pageDTO.setPageSize(pageSize);
 		pageDTO.setPageNum(pageNum);
 		pageDTO.setCurrentPage(currentPage);
+		pageDTO.setSearch(search);
 		
 		List<AdminFaqDTO> faqList = adminFaqService.getFaqList(pageDTO);
 		

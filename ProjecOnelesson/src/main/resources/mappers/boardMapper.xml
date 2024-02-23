@@ -7,13 +7,22 @@
 	
 	<select id="getNoticeList" resultType="com.itwillbs.domain.BoardDTO">
 		select NOTICE_NUM as "num", ADMIN_ID as "id", NOTICE_TYPE as "type", NOTICE_SUBJECT as "subject", NOTICE_CONTENT as "content", NOTICE_DATE as "date", NOTICE_READCOUNT as "readcount", NOTICE_IMAGE as "image" from NOTICE
-		where NOTICE_TYPE = #{type}
+		
+		<if test="search != null">
+        where NOTICE_SUBJECT like CONCAT('%', #{search}, '%')
+         or NOTICE_CONTENT like CONCAT('%', #{search}, '%')
+    	</if>
+<!-- 		NOTICE_TYPE = #{type} -->
 		order by NOTICE_NUM desc
 		limit #{startRow}, #{pageSize}
 	</select>
 	
 	<select id="getNoticeCount" resultType="java.lang.Integer">
 		select count(*) from NOTICE
+		<if test="search != null">
+			where NOTICE_SUBJECT like CONCAT('%',#{search},'%')
+			or NOTICE_CONTENT like CONCAT('%', #{search}, '%')
+		</if>
 	</select>
 	
 	<select id="getNotice" resultType="com.itwillbs.domain.BoardDTO">
@@ -28,13 +37,22 @@
 	</update>
 	
 	<select id="getFaqList" resultType="com.itwillbs.domain.BoardDTO">
-		select FAQ_NUM as "num", FAQ_SUBJECT as "subject" from FAQ
+		select FAQ_NUM as "num", ADMIN_ID as "id", FAQ_SUBJECT as "subject", FAQ_CONTENT as "content" from FAQ
+		
+		<if test="search != null">
+       		where FAQ_SUBJECT like CONCAT('%', #{search}, '%')
+         	or FAQ_CONTENT like CONCAT('%', #{search}, '%')
+    	</if>
 		order by FAQ_NUM desc
 		limit #{startRow}, #{pageSize}
 	</select>
 	
 	<select id="getFaqCount" resultType="java.lang.Integer">
 		select count(*) from FAQ
+		<if test="search != null">
+       		where FAQ_SUBJECT like CONCAT('%', #{search}, '%')
+         	or FAQ_CONTENT like CONCAT('%', #{search}, '%')
+    	</if>
 	</select>
 	
 	<select id="getFaq" resultType="com.itwillbs.domain.BoardDTO">

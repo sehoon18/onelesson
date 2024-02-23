@@ -54,16 +54,15 @@
 <div style="width: 1000px;">
 <div id="listDiv">
 <h3 style="margin-bottom: 30px;">👮‍♂️‍자주 묻는 질문</h3>
-<table id="listTable">
-<tr><td style="width: 100px;">번호</td><td style="width: 800px;"><div class="form-floating mb-3">
-  <label for="floatingInput">${boardDTO.num}</label>
+<table id="listTable" class="table table-bordered">
+<tr><td style="width: 100px;">번호</td><td style="width: 800px;"><div>
+  <label>${boardDTO.num}</label>
 </div></td></tr>
-<tr><td style="width: 100px;">제목</td><td style="width: 800px;"><div class="form-floating mb-3">
-  <label for="floatingInput">${boardDTO.subject}</label>
+<tr><td style="width: 100px;">제목</td><td style="width: 800px;"><div>
+  <label>${boardDTO.subject}</label>
 </div></td></tr>
-<tr><td>내용</td><td><div class="form-floating">
-  <textarea class="form-control" id="floatingTextarea2" style="height: 200px" readonly></textarea>
-  <label for="floatingTextarea2">${boardDTO.content}</label>
+<tr><td style="height: 200px;">내용</td><td><div>
+  <label>${boardDTO.content}</label>
 </div></td></tr>
 </table>
 

@@ -54,25 +54,29 @@
 <div style="width: 1000px;">
 <div id="listDiv">
 <h3 style="margin-bottom: 30px;">👮‍♂️‍공지/이벤트</h3>
-<table id="listTable">
-<tr><td style="width: 100px;">번호</td><td style="width: 800px;"><div class="form-floating mb-3">
-  <label for="floatingInput">${boardDTO.num}</label>
+<table id="listTable" class="table table-bordered">
+<tr><td style="width: 100px;">번호</td><td style="width: 800px;"><div>
+  <label>${boardDTO.num}</label>
 </div></td></tr>
-<tr><td style="width: 100px;">타입</td><td style="width: 800px;"><div class="form-floating mb-3">
-  <label for="floatingInput">${boardDTO.type}</label>
+<tr><td style="width: 100px;">타입</td><td style="width: 800px;"><div>
+  <c:if test="${boardDTO.type == 0}">
+  <label>공지</label>
+  </c:if>
+  <c:if test="${boardDTO.type == 1}">
+  <label>이벤트</label>
+  </c:if>
 </div></td></tr>
-<tr><td style="width: 100px;">조회수</td><td style="width: 800px;"><div class="form-floating mb-3">
-  <label for="floatingInput">${boardDTO.readcount}</label>
+<tr><td style="width: 100px;">조회수</td><td style="width: 800px;"><div>
+  <label>${boardDTO.readcount}</label>
 </div></td></tr>
-<tr><td style="width: 100px;">작성일</td><td style="width: 800px;"><div class="form-floating mb-3">
-  <label for="floatingInput">${boardDTO.date}</label>
+<tr><td style="width: 100px;">작성일</td><td style="width: 800px;"><div>
+  <label>${boardDTO.date}</label>
 </div></td></tr>
-<tr><td style="width: 100px;">제목</td><td style="width: 800px;"><div class="form-floating mb-3">
-  <label for="floatingInput">${boardDTO.subject}</label>
+<tr><td style="width: 100px;">제목</td><td style="width: 800px;"><div>
+  <label>${boardDTO.subject}</label>
 </div></td></tr>
-<tr><td>내용</td><td><div class="form-floating">
-  <textarea class="form-control" id="floatingTextarea2" style="height: 200px" readonly></textarea>
-  <label for="floatingTextarea2">${boardDTO.content}</label>
+<tr><td style="height: 200px;">내용</td><td><div>
+  <label>${boardDTO.content}</label>
 </div></td></tr>
 </table>
 

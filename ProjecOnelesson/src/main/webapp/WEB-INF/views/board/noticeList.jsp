@@ -41,6 +41,11 @@
 	border-left : inherit;
 	border-right: inherit;
 	}
+	
+	a.title-link {
+    text-decoration: none;
+    color: black;
+    }
 </style>
 
 </head>
@@ -66,15 +71,21 @@
 </tr>
 <c:forEach var="boardDTO" items="${noticeList}">
 	<tr><td>${boardDTO.num}</td>
-	<td>${boardDTO.type}</td>
-	<td><a href="${pageContext.request.contextPath}/board/noticeContent?num=${boardDTO.num}">${boardDTO.subject}</a></td>
+	<c:if test="${boardDTO.type == 0}">
+    <td>공지</td>
+    </c:if>
+    <c:if test="${boardDTO.type == 1}">
+    <td>이벤트</td>
+    </c:if>
+	<td><a class="title-link" href="${pageContext.request.contextPath}/board/noticeContent?num=${boardDTO.num}">${boardDTO.subject}</a></td>
 	<td><fmt:formatDate value="${boardDTO.date}" pattern="yyyy-MM-dd"/></td>
 	<td>${boardDTO.readcount}</td></tr>
 </c:forEach>
 </thead>
 </table>
+
 <nav aria-label="Page navigation example" style="margin-top: 10px">
-  <ul class="pagination justify-content-end">
+  <ul class="pagination justify-content-center">
   <c:if test="${pageDTO.startPage > pageDTO.pageBlock }">
     <li class="page-item"><a class="page-link" href="${pageContext.request.contextPath}/board/notice?pageNum=${pageDTO.startPage - pageDTO.pageBlock}">Previous</a></li>
   </c:if>
@@ -89,25 +100,26 @@
   </ul>
 </nav>
 
+<form action="${pageContext.request.contextPath}/board/notice" method="get">
 <table style="margin-left: auto; margin-right: auto; margin-top: 3px; margin-bottom: 3px">
 	<tr>
-		<td style="padding-left: 5px">
-			<select class="custom-select" id="choice" name="choice">
-				<option selected>검색</option>
-				<option value="title">제목</option>
-				<option value="content">내용</option>
-			</select>
-			
-		</td>
+<!-- 		<td style="padding-left: 5px"> -->
+<!-- 			<select class="custom-select" id="choice" name="choice"> -->
+<!-- 				<option selected>검색</option> -->
+<!-- 				<option value="subject">제목</option> -->
+<!-- 				<option value="content">내용</option> -->
+<!-- 			</select> -->
+<!-- 		</td> -->
 		<td style="padding-left: 5px" class="align-middle">
 			<input type="text" class="form-control" id="search" name="search" placeholder="검색어" value="">
 		<td style="padding-left: 5px">
 			<span>
-				<button type="button" class="btn btn-info" onclick="searchBtn()">검색</button>
+				<button type="submit" class="btn btn-info">검색</button>
 			</span>
 		</td>
 	</tr>
 </table>
+</form>
 <br>
 <button class="btn btn-outline-info">돌아가기</button>
 <hr>

@@ -83,6 +83,8 @@ public class BoardController {
 	public String noticeList(HttpServletRequest request, PageDTO pageDTO, Model model) {
 		System.out.println("BoardController noticeList()");
 		
+		String search = request.getParameter("search");
+		
 		int pageSize = 5;
 		String pageNum = request.getParameter("pageNum");
 		
@@ -94,6 +96,9 @@ public class BoardController {
 		pageDTO.setPageSize(pageSize);
 		pageDTO.setPageNum(pageNum);
 		pageDTO.setCurrentPage(currentPage);
+		pageDTO.setSearch(search);
+		
+		System.out.println(pageDTO);
 		
 		List<BoardDTO> noticeList = boardService.getNoticeList(pageDTO);
 		
@@ -137,6 +142,8 @@ public class BoardController {
 	public String faqList(HttpServletRequest request, PageDTO pageDTO, Model model) {
 		System.out.println("BoardController faqList()");
 		
+		String search = request.getParameter("search");
+		
 		int pageSize = 5;
 		String pageNum = request.getParameter("pageNum");
 		
@@ -148,6 +155,7 @@ public class BoardController {
 		pageDTO.setPageSize(pageSize);
 		pageDTO.setPageNum(pageNum);
 		pageDTO.setCurrentPage(currentPage);
+		pageDTO.setSearch(search);
 		
 		List<BoardDTO> faqList = boardService.getFaqList(pageDTO);
 		
