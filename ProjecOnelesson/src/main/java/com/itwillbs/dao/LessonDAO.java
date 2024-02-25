@@ -1,5 +1,6 @@
 package com.itwillbs.dao;
 
+import java.sql.Date;
 import java.util.List;
 
 import javax.inject.Inject;
@@ -29,16 +30,8 @@ public class LessonDAO {
 		return sqlSession.selectList(namespace + ".getLessonList", pageDTO);
 	}
 
-	public int getLessonCount() {
-		return sqlSession.selectOne(namespace+".getLessonCount");
-	}
-
-	public List<LessonDTO> getlessonSearch(PageDTO pageDTO) {
-		return sqlSession.selectList(namespace + ".getlessonSearch", pageDTO);
-	}
-
-	public List<LessonDTO> getcategorySearch(PageDTO pageDTO) {
-		return sqlSession.selectList(namespace + ".getcategorySearch", pageDTO);
+	public int getLessonCount(PageDTO pageDTO) {
+		return sqlSession.selectOne(namespace+".getLessonCount", pageDTO);
 	}
 
 	public LessonDTO getLesson(LessonDTO lessonDTO) {
@@ -65,10 +58,6 @@ public class LessonDAO {
 		return sqlSession.selectList(namespace + ".getLessonListAll", pageDTO);
 	}
 
-	public int getLSearchCount(PageDTO pageDTO) {
-		return sqlSession.selectOne(namespace + "getLSearchCount", pageDTO);
-	}
-
 	public List<LessonDTO> getMyinsertLessonList(PageDTO pageDTO) {
 		return sqlSession.selectList(namespace + ".getMyinsertLessonList", pageDTO);
 	}
@@ -89,4 +78,9 @@ public class LessonDAO {
 	public void updateLesson(LessonDTO lessonDTO) {
 		sqlSession.update(namespace + ".updateLesson", lessonDTO);
 	}
+
+	public String infoCheck(LessonDTO lessonDTO) {
+		return sqlSession.selectOne(namespace + ".infoCheck", lessonDTO);
+	}
+
 }

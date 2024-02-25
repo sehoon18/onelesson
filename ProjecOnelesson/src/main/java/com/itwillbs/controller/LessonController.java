@@ -1,7 +1,9 @@
 package com.itwillbs.controller;
 
 import java.io.File;
+import java.sql.Date;
 import java.sql.Timestamp;
+import java.time.LocalDate;
 import java.util.ArrayList;
 import java.util.Arrays;
 import java.util.List;
@@ -21,6 +23,7 @@ import org.springframework.web.bind.annotation.PostMapping;
 import org.springframework.web.bind.annotation.RequestMapping;
 import org.springframework.web.bind.annotation.ResponseBody;
 import org.springframework.web.multipart.MultipartFile;
+import org.springframework.web.servlet.mvc.support.RedirectAttributes;
 
 import com.itwillbs.domain.BoardDTO;
 import com.itwillbs.domain.LessonDTO;
@@ -55,6 +58,7 @@ public class LessonController {
 		System.out.println("LessonController lessonList()");
 		
 		String search = request.getParameter("search");
+		String category = request.getParameter("category");
 
 		int pageSize = 9;
 		String pageNum = request.getParameter("pageNum");
@@ -68,10 +72,11 @@ public class LessonController {
 		pageDTO.setPageNum(pageNum);
 		pageDTO.setCurrentPage(currentPage);
 		pageDTO.setSearch(search);
+		pageDTO.setCategory(category);
 		
 		List<LessonDTO> lessonList = lessonService.getLessonList(pageDTO);
 		
-		int count =  lessonService.getLessonCount();
+		int count =  lessonService.getLessonCount(pageDTO);
 		int pageBlock = 10;
 		int startPage = (currentPage - 1) / pageBlock * pageBlock + 1;
 		int endPage = startPage + pageBlock -1;
@@ -208,7 +213,6 @@ public class LessonController {
 	        return "lesson/lessonUpdate";
 		} else if(userCheck == true) {
 			lessonService.updateLesson(lessonDTO);
-			System.out.println(lessonDTO);
 			return "redirect:/member/mypage";
 		} else {
 	        return "lesson/lessonUpdate";
@@ -262,17 +266,32 @@ public class LessonController {
 	}
 	
 	@GetMapping("/payment")
-	public String payment(LessonDTO lessonDTO, Model model, MemberDTO memberDTO, HttpSession session) {
+	public String payment(LessonDTO lessonDTO, Model model, MemberDTO memberDTO, HttpSession session, RedirectAttributes redirectAttributes) {
 		System.out.println("LessonController payment()");
 		
-		if(session.getAttribute("id") != null) {
+		String id = (String)session.getAttribute("id");
+		if(id != null) {
 			lessonDTO = lessonService.getLesson(lessonDTO);
-			model.addAttribute("lessonDTO", lessonDTO);
 			
-			memberDTO = memberService.getMember((String)session.getAttribute("id"));
-			model.addAttribute("memberDTO", memberDTO);
+			LocalDate today = LocalDate.now();
+			String date =  lessonService.infoCheck(lessonDTO);
+			LocalDate lessonDate = LocalDate.parse(date);
 			
-			return "lesson/payment";
+			if(lessonDate.isAfter(today)) {
+				// 레슨 날짜 남음
+				model.addAttribute("lessonDTO", lessonDTO);
+				
+				memberDTO = memberService.getMember(id);
+				model.addAttribute("memberDTO", memberDTO);
+				System.out.println("a");
+				return "lesson/payment";
+			} else {
+				// 레슨 날짜 지남
+				 redirectAttributes.addFlashAttribute("message", "이미 종료된 레슨입니다.");
+				 System.out.println("b");
+				return "redirect:/lesson/lessonInfo?num=" + lessonDTO.getNum();
+			}
+			
 		} else {
 			return "redirect:/member/memberLogin";
 		}
@@ -288,87 +307,6 @@ public class LessonController {
 		lessonService.insertOrders(lessonDTO);
 		
 		return null;
-	}
-	
-	@GetMapping("/lessonSearch")
-	public String lessonSearch(HttpServletRequest request, PageDTO pageDTO, Model model, LessonDTO lessonDTO) {
-		System.out.println("LessonController lessonSearch()");
-		
-		int pageSize = 9;
-		String pageNum = request.getParameter("pageNum");
-		if(pageNum == null) {
-			pageNum="1";
-		}
-		
-		int currentPage = Integer.parseInt(pageNum);
-		
-		pageDTO.setPageSize(pageSize);
-		pageDTO.setPageNum(pageNum);
-		pageDTO.setCurrentPage(currentPage);
-		pageDTO.setSearch(request.getParameter("search"));
-		
-		List<LessonDTO> lessonList = lessonService.getlessonSearch(pageDTO);
-
-		int count =  lessonService.getLSearchCount(pageDTO);
-		int pageBlock = 10;
-		int startPage = (currentPage - 1) / pageBlock * pageBlock + 1;
-		int endPage = startPage + pageBlock -1;
-		int pageCount = count / pageSize + (count % pageSize == 0 ? 0 : 1);
-		
-		if(endPage > pageCount) {
-			endPage = pageCount;
-		}
-		
-		pageDTO.setCount(count);
-		pageDTO.setPageBlock(pageBlock);
-		pageDTO.setStartPage(startPage);
-		pageDTO.setEndPage(endPage);
-		pageDTO.setPageCount(pageCount);
-		
-		model.addAttribute("lessonList", lessonList);
-		model.addAttribute("pageDTO", pageDTO);
-		
-		return "lesson/lessonSearch";
-	}
-	
-	@GetMapping("/categorySearch")
-	public String categorySearch(HttpServletRequest request, PageDTO pageDTO, Model model, LessonDTO lessonDTO) {
-		System.out.println("LessonController categorySearch()");
-		
-		int pageSize = 9;
-		String pageNum = request.getParameter("pageNum");
-		if(pageNum == null) {
-			pageNum="1";
-		}
-		
-		int currentPage = Integer.parseInt(pageNum);
-		
-		pageDTO.setPageSize(pageSize);
-		pageDTO.setPageNum(pageNum);
-		pageDTO.setCurrentPage(currentPage);
-		
-		List<LessonDTO> lessonList = lessonService.getcategorySearch(pageDTO);
-
-		int count =  lessonService.getLessonCount();
-		int pageBlock = 10;
-		int startPage = (currentPage - 1) / pageBlock * pageBlock + 1;
-		int endPage = startPage + pageBlock -1;
-		int pageCount = count / pageSize + (count % pageSize == 0 ? 0 : 1);
-		
-		if(endPage > pageCount) {
-			endPage = pageCount;
-		}
-		
-		pageDTO.setCount(count);
-		pageDTO.setPageBlock(pageBlock);
-		pageDTO.setStartPage(startPage);
-		pageDTO.setEndPage(endPage);
-		pageDTO.setPageCount(pageCount);
-		
-		model.addAttribute("lessonList", lessonList);
-		model.addAttribute("pageDTO", pageDTO);
-		
-		return "lesson/categorySearch";
 	}
 	
 	@GetMapping("/activeSwitch")

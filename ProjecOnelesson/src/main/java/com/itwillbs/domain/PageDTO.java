@@ -16,6 +16,7 @@ public class PageDTO {
 	private int pageCount;
 	
 	private String search;
+	private String category;
 	private String id;
 	
 	private int type;
@@ -114,6 +115,14 @@ public class PageDTO {
 
 	public void setSearch(String search) {
 		this.search = search;
+	}
+
+	public String getCategory() {
+		return category;
+	}
+
+	public void setCategory(String category) {
+		this.category = category;
 	}
 
 	public String getId() {

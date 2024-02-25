@@ -3,7 +3,7 @@
 <%@ taglib prefix="c" uri="http://java.sun.com/jsp/jstl/core"%>
 <%@ taglib prefix="fmt" uri="http://java.sun.com/jsp/jstl/fmt"%>
 <!doctype html>
-<html lang="en" class="h-100" data-bs-theme="auto">
+<html lang="ko" class="h-100" data-bs-theme="auto" xmlns:th="http://www.thymeleaf.org">
   <head>
   <script src="/docs/5.3/assets/js/color-modes.js"></script>
   <script src="https://code.jquery.com/jquery-3.3.1.slim.min.js"></script>
@@ -256,7 +256,13 @@
         });
     }
 </script>
+<script th:inline="javascript">
+    var message = '${message}';
     
+    if (message) {
+        alert(message);
+    }
+</script>    
 </main>
 
 <jsp:include page="../inc/footer.jsp" />

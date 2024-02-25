@@ -63,11 +63,11 @@ background-color: #ccc;
 		<li class="nav-item ms-5 dropdown">
 		  <a class="nav-link active dropdown-toggle" href="${pageContext.request.contextPath}/lesson/lessonList" id="lessonDropdown" role="button" style="color: black; padding: 15px 8px;">레슨</a>
 		  <div class="dropdown-content" aria-labelledby="lessonDropdown"> <!-- 드롭다운 메뉴 -->
-		    <a class="dropdown-item" href="${pageContext.request.contextPath}/lesson/categorySearch?search=요리">요리</a>
-		    <a class="dropdown-item" href="${pageContext.request.contextPath}/lesson/categorySearch?search=스포츠">스포츠</a>
-		    <a class="dropdown-item" href="${pageContext.request.contextPath}/lesson/categorySearch?search=예술">예술</a>
-		    <a class="dropdown-item" href="${pageContext.request.contextPath}/lesson/categorySearch?search=공예">공예</a>
-		    <a class="dropdown-item" href="${pageContext.request.contextPath}/lesson/categorySearch?search=기타">기타</a>
+		    <a class="dropdown-item" href="${pageContext.request.contextPath}/lesson/lessonList?category=요리">요리</a>
+		    <a class="dropdown-item" href="${pageContext.request.contextPath}/lesson/lessonList?category=스포츠">스포츠</a>
+		    <a class="dropdown-item" href="${pageContext.request.contextPath}/lesson/lessonList?category=예술">예술</a>
+		    <a class="dropdown-item" href="${pageContext.request.contextPath}/lesson/lessonList?category=공예">공예</a>
+		    <a class="dropdown-item" href="${pageContext.request.contextPath}/lesson/lessonList?category=기타">기타</a>
 		    <!-- 필요한 드롭다운 메뉴 항목 추가 -->
 		  </div>
 		</li>

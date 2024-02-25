@@ -164,46 +164,46 @@
         
             <div class="text-center">
             <!--            카테고리이미지1 -->
-            <a href="${pageContext.request.contextPath}/lesoon/lessonList"> 
+            <a href="${pageContext.request.contextPath}/lesson/lessonList?category=요리"> 
                 <img src="${pageContext.request.contextPath}/resources/images/main/cooking.png" class="rounded-circle" alt="category Image" width="140" height="140">
              </a>
-			 <h2 class="fw-normal"><a class="catecolor" href="${pageContext.request.contextPath}/lesoon/lessonList">요리</a></h2>
+			 <h2 class="fw-normal"><a class="catecolor" href="${pageContext.request.contextPath}/lesson/lessonList?category=요리">요리</a></h2>
             </div>
         </div>
         <div class="col-lg-4 col-md-3 col-sm-4">
             <div class="text-center">
             <!--            카테고리이미지2 -->
-            <a href="${pageContext.request.contextPath}/lesoon/lessonList"> 
+            <a href="${pageContext.request.contextPath}/lesson/lessonList?category=스포츠"> 
                 <img src="${pageContext.request.contextPath}/resources/images/main/sports.png" class="rounded-circle" alt="Profile Image" width="140" height="140">
                 </a>
-                <h2 class="fw-normal"><a class="catecolor" href="${pageContext.request.contextPath}/lesoon/lessonList">스포츠</a></h2>
+                <h2 class="fw-normal"><a class="catecolor" href="${pageContext.request.contextPath}/lesson/lessonList?category=스포츠">스포츠</a></h2>
             </div>
         </div>
         <div class="col-lg-4 col-md-3 col-sm-4">
             <div class="text-center">
             <!--            카테고리이미지3 -->
-            <a href="${pageContext.request.contextPath}/lesoon/lessonList"> 
+            <a href="${pageContext.request.contextPath}/lesson/lessonList?category=공예"> 
                 <img src="${pageContext.request.contextPath}/resources/images/main/craft.png" class="rounded-circle" alt="Profile Image" width="140" height="140">
                 </a>
-                <h2 class="fw-normal"><a class="catecolor" href="${pageContext.request.contextPath}/lesoon/lessonList">공예</a></h2>
+                <h2 class="fw-normal"><a class="catecolor" href="${pageContext.request.contextPath}/lesson/lessonList?category=공예">공예</a></h2>
             </div>
         </div>
         <div class="col-lg-4 col-md-3 col-sm-4">
             <div class="text-center">
             <!--            카테고리이미지4 -->
-            <a href="${pageContext.request.contextPath}/lesoon/lessonList">
+            <a href="${pageContext.request.contextPath}/lesson/lessonList?category=예술">
                 <img src="${pageContext.request.contextPath}/resources/images/main/art.png" class="rounded-circle" alt="Profile Image" width="140" height="140">
                 </a>
-                <h2 class="fw-normal"><a class="catecolor" href="${pageContext.request.contextPath}/lesoon/lessonList">예술</a></h2>
+                <h2 class="fw-normal"><a class="catecolor" href="${pageContext.request.contextPath}/lesson/lessonList?category=예술">예술</a></h2>
             </div>
         </div>
         <div class="col-lg-4 col-md-3 col-sm-4">
             <div class="text-center">
 <!--           			    카테고리이미지5 -->
-			<a href="${pageContext.request.contextPath}/lesoon/lesoonlist"> 
+			<a href="${pageContext.request.contextPath}/lesson/lessonList?category=기타"> 
                 <img src="${pageContext.request.contextPath}/resources/images/main/etc.png" class="rounded-circle" alt="Profile Image" width="140" height="140">
                 </a>
-                <h2 class="fw-normal"><a class="catecolor" href="${pageContext.request.contextPath}/lesoon/lessonList">기타</a></h2>
+                <h2 class="fw-normal"><a class="catecolor" href="${pageContext.request.contextPath}/lesson/lessonList?category=기타">기타</a></h2>
             </div>
         </div>
     </div>

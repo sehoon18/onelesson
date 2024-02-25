@@ -117,11 +117,9 @@
   <section class="py-5 text-center container" style="height: 300px;">
     <div class="row py-lg-5">
       <div class="col-lg-6 col-md-8 mx-auto">
-      <c:if test="${empty pageDTO.search }">
+      <c:if test="${empty pageDTO.search && empty pageDTO.category}">
         <h1 class="fw-light" style="color: white;">새로 등록된 레슨</h1>
         <p class="lead text-body-secondary"><b style="color: white;">"새로 업데이트된 레슨을 지금 바로 확인하고 예약하세요!"</b></p>
-      </c:if>
-      <c:if test="${empty pageDTO.search }">
       </c:if>
       </div>
     </div>
@@ -135,13 +133,14 @@
       <c:forEach var="lessonDTO" items="${lessonList }">
    		<div class="col">
           <div class="card shadow-sm">
+<%--           <fmt:formatDate value="${lessonDTO.update }" pattern="yyyy.MM.dd"/> --%>
             <svg class="bd-placeholder-img card-img-top" width="100%" height="225" xmlns="http://www.w3.org/2000/svg" preserveAspectRatio="xMidYMid slice" role="img" aria-label="Placeholder: Thumbnail" focusable="false">
 			    <image xlink:href="${pageContext.request.contextPath}/resources/upload/${lessonDTO.preview}" x="0" y="0" width="100%" height="225"/>
 			</svg>
             <div class="card-body">
             <div class="d-flex justify-content-between align-items-center" style="margin: 5px;">
               <div>${lessonDTO.subject }</div>
-                <small class="text-body-secondary"><fmt:formatDate value="${lessonDTO.update }" pattern="yyyy.MM.dd"/></small>
+                <small class="text-body-secondary">레슨일 : ${lessonDTO.date }</small>
             </div>
               <div class="d-flex justify-content-between align-items-center">
               	<small class="text-body-secondary"><fmt:formatNumber value="${lessonDTO.price }" type="currency"/></small>

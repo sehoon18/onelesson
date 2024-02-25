@@ -13,9 +13,13 @@
     	select LES_SUBJECT as "subject", LES_UPDATE as "update", LES_NUM as "num", LES_STATUS as "status", LES_PREVIEW as "preview", LES_PRICE as "price",LES_SUBCATEGORY as "subCategory" , LES_DATE as "date" , MEM_ID as "id"
     	from LESSON
     	where LES_STATUS = 0
+    	and LES_DATE > NOW()
     	<if test="search != null">
     	and LES_SUBJECT like concat('%',#{search},'%')
     	</if>
+		<if test="category != null">
+    	and LES_CATEGORY = #{category}
+		</if>
     	order by LES_NUM desc
     	limit #{startRow}, #{pageSize}
     </select>
@@ -23,29 +27,14 @@
     <select id="getLessonCount" resultType="java.lang.Integer">
     	select count(*)
     	from LESSON
+    	where LES_STATUS = 0
+		and LES_DATE > NOW()
     	<if test="search != null">
     	and LES_SUBJECT like concat('%',#{search},'%')
     	</if>
-    	where LES_STATUS = 0
-    </select>
-    
-    <select id="getlessonSearch" resultType="com.itwillbs.domain.LessonDTO">
-    	select LES_SUBJECT as "subject", LES_UPDATE as "update", LES_NUM as "num", LES_STATUS as "status", LES_PREVIEW as "preview", LES_PRICE as "price"
-    	from LESSON
-    	where LES_SUBJECT like CONCAT('%',#{search},'%')
-    	and   LES_STATUS = 0
-    	order by LES_NUM desc
-    	limit #{startRow}, #{pageSize}
-    </select>
-    
-    
-	<select id="getcategorySearch" resultType="com.itwillbs.domain.LessonDTO">
-    	select LES_SUBJECT as "subject", LES_UPDATE as "update", LES_NUM as "num", LES_STATUS as "status", LES_PREVIEW as "preview", LES_PRICE as "price"
-    	from LESSON
-    	where LES_CATEGORY = #{search}
-    	and   LES_STATUS = 0
-    	order by LES_NUM desc
-    	limit #{startRow}, #{pageSize}
+    	<if test="category != null">
+    	and LES_CATEGORY = #{category}
+		</if>
     </select>
     
 	<select id="getLesson" resultType="com.itwillbs.domain.LessonDTO">
@@ -91,12 +80,6 @@
     	limit #{startRow}, #{pageSize}
     </select>
     
-	<select id="getLSearchCount" resultType="java.lang.Integer">
-    	select count(*)
-    	from LESSON
-    	where LES_SUBJECT like CONCAT('%',#{search},'%')
-    </select>
-    
     <select id="getMyinsertLessonList" resultType="com.itwillbs.domain.LessonDTO">
     	select LES_SUBJECT as "subject", LES_UPDATE as "update", LES_NUM as "num", LES_STATUS as "status", LES_PREVIEW as "preview", LES_PRICE as "price",LES_SUBCATEGORY as "subCategory" , LES_DATE as "date" , MEM_ID as "id"
     	from LESSON
@@ -128,4 +111,10 @@
 		set LES_SUBJECT = #{subject}, LES_CONTENT = #{content}, LES_PREVIEW = #{preview}, LES_UPDATE = #{update}, LES_DATE = #{date}, LES_PRICE = #{price}, LES_CATEGORY = #{category}, LES_SUBCATEGORY = #{subCategory}, LES_LOCATION = #{location}
 		where LES_NUM = #{num}
     </update>
+    
+	<select id="infoCheck" resultType="java.lang.String">
+    	select LES_DATE as "date"
+    	from LESSON
+    	where LES_NUM = #{num}
+    </select>
 </mapper>

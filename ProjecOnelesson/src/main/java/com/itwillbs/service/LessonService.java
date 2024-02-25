@@ -1,5 +1,6 @@
 package com.itwillbs.service;
 
+import java.sql.Date;
 import java.util.List;
 
 import javax.inject.Inject;
@@ -34,32 +35,8 @@ public class LessonService {
 		return lessonDAO.getLessonList(pageDTO);
 	}
 
-	public int getLessonCount() {
-		return lessonDAO.getLessonCount();
-	}
-
-	public List<LessonDTO> getlessonSearch(PageDTO pageDTO) {
-		System.out.println("LessonService getlessonSearch()");
-		
-		int startRow = (pageDTO.getCurrentPage() - 1) * pageDTO.getPageSize() + 1;
-		int EndRow = startRow + pageDTO.getPageSize() - 1;
-		
-		pageDTO.setStartRow(startRow -1);
-		pageDTO.setEndRow(EndRow);
-		
-		return lessonDAO.getlessonSearch(pageDTO);
-	}
-
-	public List<LessonDTO> getcategorySearch(PageDTO pageDTO) {
-		System.out.println("LessonService getcategorySearch()");
-		
-		int startRow = (pageDTO.getCurrentPage() - 1) * pageDTO.getPageSize() + 1;
-		int EndRow = startRow + pageDTO.getPageSize() - 1;
-		
-		pageDTO.setStartRow(startRow -1);
-		pageDTO.setEndRow(EndRow);
-		
-		return lessonDAO.getcategorySearch(pageDTO);
+	public int getLessonCount(PageDTO pageDTO) {
+		return lessonDAO.getLessonCount(pageDTO);
 	}
 
 	public LessonDTO getLesson(LessonDTO lessonDTO) {
@@ -102,10 +79,6 @@ public class LessonService {
 		return lessonDAO.getLessonListAll(pageDTO);
 	}
 
-	public int getLSearchCount(PageDTO pageDTO) {
-		return lessonDAO.getLSearchCount(pageDTO);
-	}
-
 	public List<LessonDTO> getMyinsertLessonList(PageDTO pageDTO) {
 		System.out.println("LessonService getMyinsertLessonList()");
 		
@@ -133,5 +106,10 @@ public class LessonService {
 	public void updateLesson(LessonDTO lessonDTO) {
 		lessonDAO.updateLesson(lessonDTO);
 	}
+
+	public String infoCheck(LessonDTO lessonDTO) {
+		return lessonDAO.infoCheck(lessonDTO);
+	}
+
 
 }
