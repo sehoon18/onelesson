@@ -12,6 +12,7 @@ import com.itwillbs.dao.LessonDAO;
 import com.itwillbs.domain.BoardDTO;
 import com.itwillbs.domain.LessonDTO;
 import com.itwillbs.domain.MemberDTO;
+import com.itwillbs.domain.OrderDTO;
 import com.itwillbs.domain.PageDTO;
 
 @Service
@@ -107,5 +108,5 @@ public class LessonService {
 		return lessonDAO.getWishCount(pageDTO);
 
 	}
-
+	
 }

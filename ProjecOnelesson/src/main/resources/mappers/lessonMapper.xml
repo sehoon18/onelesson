@@ -54,7 +54,7 @@
 	</insert>
    
 	<select id="getMyLessonList" resultType="com.itwillbs.domain.LessonDTO">
-    	SELECT LES_SUBJECT as "subject", LES_PREVIEW as "preview" , LES_PRICE as "price"
+    	SELECT LES_NUM as "LES_NUM" , LES_SUBJECT as "subject", LES_PREVIEW as "preview" , LES_PRICE as "price"
 		from LESSON
 		where LES_NUM IN (SELECT LES_NUM
 							from ORDERS
@@ -63,7 +63,7 @@
     	order by LES_NUM desc
     	limit #{startRow}, #{pageSize}
     </select>
-   
+  
 	<select id="getMyLessonCount" resultType="java.lang.Integer">
     	select count(*)
     	from ORDERS
@@ -86,5 +86,5 @@
     	from WISH
     	where MEM_ID = #{id}
     </select>
-    
+
 </mapper>

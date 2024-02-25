@@ -388,9 +388,19 @@ display: inline-block;
 	</td></tr>
 	</table>
     
-    <div class="btn-group" role="group" aria-label="Basic example" style="display: flex; justify-content : center;">
+     <div class="btn-group" role="group" aria-label="Basic example" style="display: flex; justify-content : center;">
+    	<c:if test="${ 0 eq memberDTO.status }">
 	  <button type="button" class="btn btn-outline-success btn-lg" onclick="location.href='${pageContext.request.contextPath}/member/mypage'">내 정보</button>
+	  		</c:if>
+	  	<c:if test="${ 1 eq memberDTO.status }">
+	  <button type="button" class="btn btn-outline-success btn-lg" onclick="location.href='${pageContext.request.contextPath}/member/mypage'">내 정보(강사)</button>		
+	  		</c:if>
+	  	<c:if test="${ 0 eq memberDTO.status }">
 	  <button type="button" class="btn btn-outline-success btn-lg" onclick="location.href='${pageContext.request.contextPath}/member/myPayment'">결제내역</button>
+	  		</c:if>
+	  	<c:if test="${ 1 eq memberDTO.status }">
+	  	<button type="button" class="btn btn-outline-success btn-lg" onclick="location.href='${pageContext.request.contextPath}/member/myPayment'">정산내역</button>
+	  		</c:if>
 	  <button type="button" class="btn btn-outline-success btn-lg" onclick="location.href='${pageContext.request.contextPath}/board/reviewList'">후기</button>
 	  <button type="button" class="btn btn-outline-success btn-lg" onclick="location.href='${pageContext.request.contextPath}/board/wish'">찜리스트</button>
 	  <button type="button" class="btn btn-outline-success btn-lg" onclick="location.href='${pageContext.request.contextPath}/member/main'">메인페이지</button>
@@ -398,7 +408,13 @@ display: inline-block;
 	  <button type="button" class="btn btn-outline-success btn-lg" onclick="location.href='${pageContext.request.contextPath}/board/qnaList'">관리자에게 문의</button>
 	</div>
 <div class="myPageT"></div>
-	 		<h4 style="text-align: center;">나의 결제 정보 내역 보기</h4>	</div>
+				<c:if test="${ 0 eq memberDTO.status }">
+	 		<h4 style="text-align: center;">나의 결제 정보 내역 보기</h4>
+	 			</c:if>
+	 			<c:if test="${ 1 eq memberDTO.status }">
+	 		<h4 style="text-align: center;">나의 정산 정보 내역 보기</h4>
+	 			</c:if>
+	 				</div>
      			</div>
      				</div>
      				 </div>

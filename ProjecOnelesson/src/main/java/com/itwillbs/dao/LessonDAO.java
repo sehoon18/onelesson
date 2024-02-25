@@ -11,6 +11,7 @@ import org.springframework.transaction.annotation.Transactional;
 import com.itwillbs.domain.BoardDTO;
 import com.itwillbs.domain.LessonDTO;
 import com.itwillbs.domain.MemberDTO;
+import com.itwillbs.domain.OrderDTO;
 import com.itwillbs.domain.PageDTO;
 
 @Repository
@@ -64,4 +65,5 @@ public class LessonDAO {
 	public int getWishCount(PageDTO pageDTO) {
 		return sqlSession.selectOne(namespace+".getWishCount", pageDTO);
 	}
+
 }

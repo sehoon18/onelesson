@@ -19,13 +19,20 @@ public class MemberDTO {
 	private Timestamp join;
 	private int type;
 	private int status;
+	private int num;
 	
+	public int getNum() {
+		return num;
+	}
+	public void setNum(int num) {
+		this.num = num;
+	}
 	@Override
 	public String toString() {
-		return "MemberDTO [id=" + id + ", pass=" + pass + ", nick=" + nick + ", name=" + name + ", birth=" + birth
-				+ ", phone=" + phone + ", address=" + address + ", email=" + email + ", gender=" + gender + ", point="
+		return "MemberDTO [id=" + id + ", pass=" + pass + ", nick=" + nick + ", name=" + name + ", gender=" + gender
+				+ ", birth=" + birth + ", phone=" + phone + ", address=" + address + ", email=" + email + ", point="
 				+ point + ", businessNum=" + businessNum + ", mailOrderNum=" + mailOrderNum + ", image=" + image
-				+ ", join=" + join + ", type=" + type + ", status=" + status + "]";
+				+ ", join=" + join + ", type=" + type + ", status=" + status + ", num=" + num + "]";
 	}
 	public String getId() {
 		return id;

@@ -9,6 +9,7 @@ import org.apache.ibatis.session.SqlSession;
 import org.springframework.stereotype.Service;
 
 import com.itwillbs.dao.MemberDAO;
+import com.itwillbs.domain.LessonDTO;
 import com.itwillbs.domain.MemberDTO;
 import com.itwillbs.domain.OrderDTO;
 import com.itwillbs.domain.PageDTO;
@@ -56,6 +57,18 @@ public class MemberService {
 		return memberDAO.getMyOrder(memberDTO);
 	}
 
+	public List<OrderDTO> getMyOrder2(MemberDTO memberDTO) {
+		System.out.println("MemberService getMyOrder2()");
+		return memberDAO.getMyOrder2(memberDTO);
+	}
+
+	public MemberDTO getMemberLessonNum(Object attribute) {
+		System.out.println("MemberService getMemberLessonNum()");
+		return memberDAO.getMemberLessonNum(attribute);
+	}
+
+
+	
 
 	
 
