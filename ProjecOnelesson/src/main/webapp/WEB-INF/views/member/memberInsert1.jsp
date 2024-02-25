@@ -390,15 +390,21 @@ style="right: 9px; margin-top: 2px"></font>
 <script type="text/javascript">
     $(function () {
         // 아이디 입력란에 변화가 생길 때마다 실행
-        $(".form-control.input-cc.inputId").on('input', function () {
+        $(".form-control.input-cc.inputId").on('blur', function () {
             // 입력된 아이디 가져오기
             var username = $(this).val().toLowerCase(); // 대소문자 구분 없이 체크하기 위해 소문자로 변환
 
-            if((username) == "admin" || (/admin/.test(username) || /[a-zA-Z0-9]+admin/.test(username) || /admin[a-zA-Z0-9]+$/.test(username))){
-            	alert("admin은 입력되지 않습니다.")
+            if((username) == "admin" 
+            		|| username.includes("admin")
+            		/*
+            		|| (/admin/.test(username) 
+            		|| /[a-zA-Z0-9]+admin/.test(username) 
+            		|| /admin[a-zA-Z0-9]+$/.test(username)) 베
+            		*/
+            		){
             	$('#checkId').css('color', 'red');
                 $('#checkId').text('"admin"은 사용할 수 없는 아이디입니다.');
-            	return false;
+                $(".form-control.input-cc.inputId").focus();
             //}
       
             // 아이디에 "admin"이 포함되어 있는지 확인

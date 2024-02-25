@@ -353,6 +353,7 @@ $(function(){
 
 
 <script>
+
 $(function(){
 //	alert("불러오기");
 		$('.find_Id2').click(function(){
@@ -371,7 +372,7 @@ $(function(){
 					url:'${pageContext.request.contextPath}/member/getMemberFindIdInstructorEmail',
 					data:{ 'name' : $('#instructorName').val() ,
 						  'phone' : $('#instructorPhone').val() ,
-						  'email' : $('#instructorEmail').val() },
+						  'email' : $('#instructorEmail').val() ,
 						  'businessNumber' : $('#instructorBusinessNumber').val()},
 				 success: function (result) {
 	                 alert("아이디 : " + result);
@@ -444,7 +445,11 @@ $(function(){
 	                 }
 	             }
 	         });
-	     });
+	     }
+	 });
+}); // $(function
+		
+		
 </script>
     
 </body>
