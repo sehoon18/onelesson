@@ -6,7 +6,7 @@
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
     <title>아이디 찾기</title>
-    <link rel="stylesheet" href="styles.css">
+
 
  <!-- CSS only -->
 <link href="https://cdn.jsdelivr.net/npm/bootstrap@5.3.1/dist/css/bootstrap.min.css" rel="stylesheet" 
@@ -117,11 +117,15 @@ integrity="sha384-4bw+/aepP/YC94hEpVNVgiZdgIC5+VKNBQNGCHeKRQN+PtmoHDEXuppvnDJzQI
             
         }
     </style>
+    
+    <script type="text/javascript" src="${pageContext.request.contextPath }/resources/script/jquery-3.7.1.min.js"></script>
 </head>
 
 <body>
 
 
+
+ 
     <div class="container">
         <h2>아이디 찾기</h2>
         <form id="findUsernameForm">
@@ -148,14 +152,15 @@ integrity="sha384-4bw+/aepP/YC94hEpVNVgiZdgIC5+VKNBQNGCHeKRQN+PtmoHDEXuppvnDJzQI
 
                 <div id="normalPhoneFields" style="display: none;">
                     <label for="normalName">이름:</label>
-                    <input type="text" id="normalName" name="normalName" required>
+                    <input type="text" id="normalName1" name="normalName" required>
 
                     <label for="normalPhone">휴대폰번호:</label>
                     <input type="tel" id="normalPhone" name="normalPhone" required>
                     <!-- 휴대폰번호 인증을 받는 로직을 추가할 수 있습니다. -->
                 </div>
-
-                <button type="button" onclick="findUsername()">아이디 찾기</button>
+                
+<button type="button" class="find_Id1">아이디 찾기(일반)</button>
+                <div id="find_id1_div"></div>
             </div>
 
             <div id="instructorFields" style="display: none;">
@@ -177,7 +182,7 @@ integrity="sha384-4bw+/aepP/YC94hEpVNVgiZdgIC5+VKNBQNGCHeKRQN+PtmoHDEXuppvnDJzQI
 
                 <div id="instructorPhoneFields" style="display: none;">
                     <label for="instructorName">이름:</label>
-                    <input type="text" id="instructorName" name="instructorName" required>
+                    <input type="text" id="instructorName1" name="instructorName" required>
 
                     <label for="instructorPhone">휴대폰번호:</label>
                     <input type="tel" id="instructorPhone" name="instructorPhone" required>
@@ -186,22 +191,18 @@ integrity="sha384-4bw+/aepP/YC94hEpVNVgiZdgIC5+VKNBQNGCHeKRQN+PtmoHDEXuppvnDJzQI
 
                 <div id="instructorBusinessFields" style="display: none;">
                     <label for="instructorName">이름:</label>
-                    <input type="text" id="instructorName" name="instructorName" required>
+                    <input type="text" id="instructorName2" name="instructorName" required>
 
                     <label for="instructorBusinessNumber">사업자번호:</label>
                     <input type="text" id="instructorBusinessNumber" name="instructorBusinessNumber" required>
                     <!-- 사업자번호 인증을 받는 로직을 추가할 수 있습니다. -->
                 </div>
 				
-                <button type="button" 
-                onclick= "location.href='${pageContext.request.contextPath}/member/memberFindId'">아이디 찾기</button>
-            </div>
-        </form>
-        <p id="resultMessage"></p>
-    </div>
+      <button class="find_Id2" type="button">아이디 찾기(강사)</button>
+                <div id="find_id2_div"></div>
 
-    <script src="script.js"></script>
-    
+
+
     
     <script>
     function updateFields() {
@@ -263,60 +264,188 @@ integrity="sha384-4bw+/aepP/YC94hEpVNVgiZdgIC5+VKNBQNGCHeKRQN+PtmoHDEXuppvnDJzQI
             var email = document.getElementById('normalEmail').value;
             var phone = document.getElementById('normalPhone').value;
 
-//             resultMessage.innerHTML = "가상의 결과: 이름 " + name + ", 이메일 " + email + ", 휴대폰번호 " + phone;
+
         } else if (userType === 'instructor') {
             var name = document.getElementById('instructorName').value;
             var email = document.getElementById('instructorEmail').value;
             var phone = document.getElementById('instructorPhone').value;
             var businessNumber = document.getElementById('instructorBusinessNumber').value;
 
-//             resultMessage.innerHTML = "가상의 결과: 이름 " + name + ", 이메일 " + email + ", 휴대폰번호 " + phone + ", 사업자번호 " + businessNumber;
         }
     }
-
-
-    function findUsername() {
-        var userType = document.getElementById('userType').value;
-        var resultMessage = document.getElementById('resultMessage');
-
-        if (userType === 'normal') {
-            var name = document.getElementById('normalName').value;
-            var email = document.getElementById('normalEmail').value;
-            var phone = document.getElementById('normalPhone').value;
-
-            // 서버에 대한 AJAX 요청 작성
-            var xhr = new XMLHttpRequest();
-            xhr.open('POST', '/path/to/server/script', true);
-            xhr.setRequestHeader('Content-Type', 'application/json');
-
-            xhr.onreadystatechange = function () {
-                if (xhr.readyState === 4 && xhr.status === 200) {
-                    var response = JSON.parse(xhr.responseText);
-                    if (response.success) {
-                        alert('아이디 찾기 성공: ' + response.username);
-                    } else {
-                        alert('일치하는 아이디가 없습니다.');
-                    }
-                }
-            };
-
-            // 서버로 데이터 전송
-            xhr.send(JSON.stringify({
-                userType: userType,
-                name: name,
-                email: email,
-                phone: phone
-            }));
-        } else if (userType === 'instructor') {
-            // 강사의 경우에 대한 유사한 로직 작성
-        }
-    }
-   
-    
-    
     </script>
     
+<!-- Ajax(Asynchronous JavaScript and XML, 에이잭스)
+ 비동기적인 웹 애플리케이션의 제작을 위해 아래와 같은 조합을 이용하는 웹 개발 기법이다. -->
+   <!-- ... 기존의 HTML 코드 ... -->
   
+<script>
+$(function(){
+//	alert("불러오기");
+	$('.find_Id1').click(function(){
+//		alert("클릭");
+		var name = $('#normalName').val();
+		var name1 = $('#normalName1').val();
+		var phone = $('#normalPhone').val();
+		var email = $('#normalEmail').val();
+//		alert(name);
+// 		alert($('#normalEmailRadio').is(':checked'));
+		if( $('#normalEmailRadio').is(':checked') == true){
+			$.ajax({
+				url:'${pageContext.request.contextPath}/member/getMemberFindIdMailVersion',
+				data:{ 'name' : $('#normalName').val() ,
+					  'phone' : $('#normalPhone').val() ,
+					  'email' : $('#normalEmail').val() },
+				success:function(result){
+					alert("아이디 : " + result);
+					if( result != "try again"){
+						result = "<br>아이디는 " + result + " 입니다.";
+						$('#find_id1_div').html(result);
+					}else{
+						alert("찾는 아이디가 없습니다.");
+						
+					}
+					},
+					error: function(){
+						if(name == "" && phone =="" && email == ""){
+							alert('정보를 입력해주세요.');
+						}else{
+							alert("입력하신 정보가 일치하지 않거나 존재하지 않습니다.");
+						}
+						//$('#find_id1_div').html(result);
+					}
+				});
+		}else{
+			$.ajax({
+				url:'${pageContext.request.contextPath}/member/getMemberFindIdPhoneVersion',
+				data:{ 'name' : $('#normalName1').val() ,
+					  'phone' : $('#normalPhone').val() ,
+					  'email' : $('#normalEmail').val() },
+				success:function(result){
+					alert("아이디 : " + result);
+					if( result != "try again"){
+						result = "<br>아이디는 " + result + " 입니다.";
+						$('#find_id1_div').html(result);
+					}else{
+						alert("찾는 아이디가 없습니다.");
+						
+					}				
+//	 				alert(result);
+//	 				result = "<br>아이디는 " + result + " 입니다.";
+//	 				$('#find_id1_div').html(result);
+					},
+					error: function(){
+						alert('error');
+	 					if(name1 == "" && phone =="" && email == ""){
+	 						alert('정보를 입력해주세요.');
+	 					}else{
+	 						alert("입력하신 정보가 일치하지 않거나 존재하지 않습니다.");
+	 					}
+// 						$('#find_id1_div').html(result);
+					}
+				});
+			
+		}			
+	})
+		
+	});
+</script>
+
+
+<script>
+$(function(){
+//	alert("불러오기");
+		$('.find_Id2').click(function(){
+//			alert("클릭");
+			var name2 = $('#instructorName').val();
+			var name3 = $('#instructorName1').val();
+			var name4 = $('#instructorName2').val();
+			var phone1 = $('#instructorPhone').val();
+			var email1 = $('#instructorEmail').val();
+			var businessNumber = $('#instructorBusinessNumber').val();
+			
+//			alert(name);
+//	 		alert($('#instructorEmailRadio').is(':checked'));
+			if( $('#instructorEmailRadio').is(':checked') == true){
+				$.ajax({
+					url:'${pageContext.request.contextPath}/member/getMemberFindIdInstructorEmail',
+					data:{ 'name' : $('#instructorName').val() ,
+						  'phone' : $('#instructorPhone').val() ,
+						  'email' : $('#instructorEmail').val() },
+						  'businessNumber' : $('#instructorBusinessNumber').val()},
+				 success: function (result) {
+	                 alert("아이디 : " + result);
+	                 if (result != "try again"){
+	                     result = "<br>아이디는 " + result + " 입니다.";
+	                     $('#find_id2_div').html(result);
+	                 } else {
+	                     alert("찾는 아이디가 없습니다.");
+	                 }
+	             },
+	             error: function(){
+	                 if (name == "" && phone == "" && email == "" && businessNumber == ""){
+	                     alert('정보를 입력해주세요.');
+	                 } else {
+	                     alert("입력하신 정보가 일치하지 않거나 존재하지 않습니다.");
+	                 }
+	             }
+	         });
+	     } else if ($('#instructorPhoneRadio').is(':checked') == true) {
+	         $.ajax({
+	             url:'${pageContext.request.contextPath}/member/getMemberFindIdInstructorPhone',
+	             data: {
+	                 'name': $('#instructorName1').val(),
+	                 'phone': $('#instructorPhone').val(),
+	                 'email': $('#instructorEmail').val(),
+	                 'businessNumber': $('#instructorBusinessNumber').val()
+	             },
+	             success: function (result) {
+	                 alert("아이디 : " + result);
+	                 if (result != "try again"){
+	                     result = "<br>아이디는 " + result + " 입니다.";
+	                     $('#find_id2_div').html(result);
+	                 } else {
+	                     alert("찾는 아이디가 없습니다.");
+	                 }
+	             },
+	             error: function(){
+	                 alert('error');
+	                 if (name == "" && phone == "" && email == "" && businessNumber == ""){
+	                     alert('정보를 입력해주세요.');
+	                 } else {
+	                     alert("입력하신 정보가 일치하지 않거나 존재하지 않습니다.");
+	                 }
+	             }
+	         });
+	     } else {
+	         $.ajax({
+	             url:'${pageContext.request.contextPath}/member/getMemberFindIdInstructorBusiness',
+	             data: {
+	                 'name': $('#instructorName2').val(),
+	                 'phone': $('#instructorPhone').val(),
+	                 'email': $('#instructorEmail').val(),
+	                 'businessNumber': $('#instructorBusinessNumber').val()
+	             },
+	             success: function (result) {
+	                 alert("아이디 : " + result);
+	                 if (result != "try again"){
+	                     result = "<br>아이디는 " + result + " 입니다.";
+	                     $('#find_id2_div').html(result);
+	                 } else {
+	                     alert("찾는 아이디가 없습니다.");
+	                 }
+	             },
+	             error: function(){
+	                 alert('error');
+	                 if (name == "" && phone == "" && email == "" && businessNumber == ""){
+	                     alert('정보를 입력해주세요.');
+	                 } else {
+	                     alert("입력하신 정보가 일치하지 않거나 존재하지 않습니다.");
+	                 }
+	             }
+	         });
+	     });
+</script>
     
 </body>
 </html>

@@ -388,50 +388,54 @@ style="right: 9px; margin-top: 2px"></font>
    <!-- ... 기존의 HTML 코드 ... -->
 
 <script type="text/javascript">
-$(function(){
-    // 아이디 입력란에 변화가 생길 때마다 실행
-    $(".form-control.input-cc.inputId").on('input', function(){
-        // Get the entered username
-        var username = $(this).val();
-        
-     // Check if the username is 'admin'
-        if (username.toLowerCase() === 'admin') {
-            // Display error message
-            $('#checkId').css('color', 'red');
-            $('#checkId').text('사용할 수 없는 아이디입니다.');
-            return;
-        }
-        
-        // Check the username validity
-        if (username.length < 6 || username.length > 20 || !/^[a-zA-Z0-9]+$/.test(username)) {
-            // Display error message
-            $('#checkId').css('color', 'red');
-            $('#checkId').text('영문, 숫자 포함 6~20자를 입력해주세요.');
-        } else {
-            // If the username is valid, perform AJAX request for duplication check
-            $.ajax({
-                url: "${pageContext.request.contextPath}/member/checkId",
-                data: {'id': username},
-                success: function(result){
-                    // 서버에서의 응답 처리
-                    if(result == "iddup"){
-                        result = "이미 존재하는 아이디입니다.";
-                        $('#checkId').css('color', 'red');
-                    } else {
-                        result = "사용 가능한 아이디입니다.";
-                        $('#checkId').css('color', 'green');
+    $(function () {
+        // 아이디 입력란에 변화가 생길 때마다 실행
+        $(".form-control.input-cc.inputId").on('input', function () {
+            // 입력된 아이디 가져오기
+            var username = $(this).val().toLowerCase(); // 대소문자 구분 없이 체크하기 위해 소문자로 변환
+
+            if((username) == "admin" || (/admin/.test(username) || /[a-zA-Z0-9]+admin/.test(username) || /admin[a-zA-Z0-9]+$/.test(username))){
+            	alert("admin은 입력되지 않습니다.")
+            	$('#checkId').css('color', 'red');
+                $('#checkId').text('"admin"은 사용할 수 없는 아이디입니다.');
+            	return false;
+            //}
+      
+            // 아이디에 "admin"이 포함되어 있는지 확인
+//             if (/admin/.test(username) || /[a-zA-Z0-9]+admin/.test(username) || /admin[a-zA-Z0-9]+$/.test(username)) {
+//                 // 에러 메시지 표시
+//                 $('#checkId').css('color', 'red');
+//                 $('#checkId').text('"admin"은 사용할 수 없는 아이디입니다.');
+            } else if (username.length < 6 || username.length > 20 || !/^[a-zA-Z0-9]+$/.test(username)) {
+                // 아이디 유효성 확인
+                // 에러 메시지 표시
+                $('#checkId').css('color', 'red');
+                $('#checkId').text('영문, 숫자 포함 6~20자를 입력해주세요.');
+            } else {
+                // 유효한 경우, 아이디 중복 확인을 위한 AJAX 요청
+                $.ajax({
+                    url: "${pageContext.request.contextPath}/member/checkId",
+                    data: { 'id': username },
+                    success: function (result) {
+                        // 서버에서의 응답 처리
+                        if (result == "iddup") {
+                            result = "이미 존재하는 아이디입니다.";
+                            $('#checkId').css('color', 'red');
+                        } else{
+                            result = "사용 가능한 아이디입니다.";
+                            $('#checkId').css('color', 'green');                      
+                        } 
+                        // 결과를 해당 위치에 동적으로 표시
+                        $('#checkId').html(result);
+                    },
+                    error: function () {
+                        // AJAX 요청 중 에러 발생 시 처리
+                        $('#checkId').text("서버 오류가 발생했습니다.");
                     }
-                    // 결과를 해당 위치에 동적으로 표시
-                    $('#checkId').html(result);
-                },
-                error: function(){
-                    // AJAX 요청 중 에러 발생 시 처리
-                    $('#checkId').text("서버 오류가 발생했습니다.");
-                }
-            });
-        }
+                });
+            }
+        });
     });
-});
 </script>
 
 
@@ -554,6 +558,10 @@ $(function () {
             // 빈 문자열일 경우 에러 메시지 표시
             $('#nameError').css('color', 'red');
             $('#nameError').text('이름은 필수입니다.');
+        } else if (!/^[가-힣]+$/.test(name)) {
+            // 이름이 한글이 아닌 경우 에러 메시지 표시
+            $('#nameError').css('color', 'red');
+            $('#nameError').text('이름은 한글만 입력 가능합니다.');
         } else {
             // 이름이 입력되었을 경우 에러 메시지 초기화
             $('#nameError').text('');
@@ -561,6 +569,7 @@ $(function () {
     });
 });
 </script>
+
 <script>
 $(function(){
     // 전화번호 입력란에 변화가 생길 때마다 실행

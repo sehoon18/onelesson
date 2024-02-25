@@ -60,7 +60,49 @@ public class MemberService {
 		return memberDAO.getMemberByEmail(email);
 	}
 	
+	public MemberDTO getMemberByLogin(MemberDTO memberDTO) {
+		System.out.println("MemberService getMemberByLogin()");
+		return memberDAO.getMemberByLogin(memberDTO);
+	}
+
+	public MemberDTO getMemberFindIdPhoneVersion(MemberDTO memberDTO) {
+		System.out.println("MemberService getMemberFindIdPhoneVersion()");
+		return memberDAO.getMemberFindIdPhoneVersion(memberDTO);
+	}
+
+
+	public MemberDTO getMemberFindIdMailVersion(MemberDTO memberDTO) {
+		System.out.println("MemberService getMemberFindIdMailVersion()");
+		return memberDAO.getMemberFindIdMailVersion(memberDTO);
+	}
+
+	public MemberDTO getMemberFindIdInstructorEmail(MemberDTO memberDTO) {
+		System.out.println("MemberService getMemberFindIdInstructorEmail()");
+		return memberDAO.getMemberFindIdInstructorEmail(memberDTO);
+	}
+
+	public MemberDTO getMemberFindIdInstructorPhone(MemberDTO memberDTO) {
+		System.out.println("MemberService getMemberFindIdInstructorPhone()");
+		return memberDAO.getMemberFindIdInstructorPhone(memberDTO);
+	}
+
+	public MemberDTO getMemberFindIdInstructorBusiness(MemberDTO memberDTO) {
+		System.out.println("MemberService getMemberFindIdInstructorBusiness()");
+		return memberDAO.getMemberFindIdInstructorBusiness(memberDTO);
+	}
+
+	public MemberDTO memberFIndPassEmailVersion(MemberDTO memberDTO) {
+		System.out.println("MemberService memberFIndPassEmailVersion()");
+		return memberDAO.memberFIndPassEmailVersion(memberDTO);
+	}
+
+	public MemberDTO memberFIndPassPhoneVersion(MemberDTO memberDTO) {
+		System.out.println("MemberService memberFIndPassPhoneVersion()");
+		return memberDAO.memberFIndPassPhoneVersion(memberDTO);
+	}
 	
+	
+
 	
 }
 

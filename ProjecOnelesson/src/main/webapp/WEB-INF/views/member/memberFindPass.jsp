@@ -96,6 +96,8 @@
 
      
     </style>
+    
+    <script type="text/javascript" src="${pageContext.request.contextPath }/resources/script/jquery-3.7.1.min.js"></script>
 </head>
 
 <body>
@@ -129,18 +131,18 @@
                 </div>
 
                 <div id="normalPhoneFields" style="display: none;">
-                    <label for="normalId">아이디:</label>
-                    <input type="text" id="normalId" name="normalId" required>
+                    <label for="normalId1">아이디:</label>
+                    <input type="text" id="normalId1" name="normalId" required>
 
-                    <label for="normalName">이름:</label>
-                    <input type="text" id="normalName" name="normalName" required>
+                    <label for="normalName2">이름:</label>
+                    <input type="text" id="normalName1" name="normalName" required>
 
                     <label for="normalPhone">휴대폰번호:</label>
                     <input type="tel" id="normalPhone" name="normalPhone" required>
                     <!-- 휴대폰번호 인증을 받는 로직을 추가할 수 있습니다. -->
                 </div>
 
-                <button type="button" onclick="findPassword()">비밀번호 찾기</button>
+                <button type="button" class="find_Id1">비밀번호 찾기(일반)</button>
             </div>
 
             <div id="instructorFields" style="display: none;">
@@ -187,8 +189,7 @@
                     <!-- 사업자번호 인증을 받는 로직을 추가할 수 있습니다. -->
                 </div>
 
-                <button type="button" 
-                onclick= "location.href='${pageContext.request.contextPath}/member/memberFindPass'">비밀번호 찾기</button>
+                <button type="button" class="find_Id2" >비밀번호 찾기</button>
             </div>
         </form>
         <p id="resultMessage"></p>
@@ -260,12 +261,10 @@
 
                 if (document.getElementById('normalEmailRadio').checked) {
                     var email = document.getElementById('normalEmail').value;
-                    // 이메일 인증 로직 추가
-                    resultMessage.innerHTML = "가상의 결과: 아이디 " + id + ", 이름 " + name + ", 이메일 " + email;
+
                 } else if (document.getElementById('normalPhoneRadio').checked) {
                     var phone = document.getElementById('normalPhone').value;
-                    // 휴대폰 인증 로직 추가
-                    resultMessage.innerHTML = "가상의 결과: 아이디 " + id + ", 이름 " + name + ", 휴대폰번호 " + phone;
+
                 }
             } else if (userType === 'instructor') {
                 var id = document.getElementById('instructorId').value;
@@ -281,13 +280,89 @@
                     resultMessage.innerHTML = "가상의 결과: 아이디 " + id + ", 이름 " + name + ", 휴대폰번호 " + phone;
                 } else if (document.getElementById('instructorBusinessRadio').checked) {
                     var businessNumber = document.getElementById('instructorBusinessNumber').value;
-                    // 사업자번호 인증 로직 추가
-                    resultMessage.innerHTML = "가상의 결과: 아이디 " + id + ", 이름 " + name + ", 사업자번호 " + businessNumber;
+                    
                 }
             }
         }
     </script>
     
-     
+    
+ <!-- Ajax(Asynchronous JavaScript and XML, 에이잭스)
+ 비동기적인 웹 애플리케이션의 제작을 위해 아래와 같은 조합을 이용하는 웹 개발 기법이다. -->
+   <!-- ... 기존의 HTML 코드 ... -->
+  
+<script>
+$(function(){
+//	alert("불러오기");
+	$('.find_Id1').click(function(){
+//		alert("클릭");
+		var id = $('#normalId').val();
+		var id1 = $('#normalId1').val();
+		var name = $('#normalName').val();
+		var name1 = $('#normalName1').val();
+		var phone = $('#normalPhone').val();
+		var email = $('#normalEmail').val();
+//		alert(name);
+// 		alert($('#normalEmailRadio').is(':checked'));
+		if( $('#normalEmailRadio').is(':checked') == true){
+			$.ajax({
+				url:'${pageContext.request.contextPath}/member/memberFIndPassEmailVersion',
+				data:{   'id' : $('#normalId').val(),
+					   'name' : $('#normalName').val() ,
+					  'email' : $('#normalEmail').val() },
+				success:function(result){
+					alert("정보 일치");
+					if( result != "try again"){
+						// 정보 일치 시 비밀번호 재설정 페이지로 이동
+                        window.location.href = '${pageContext.request.contextPath}/member/memberResetPass';
+					}else{
+						alert("비밀번호를 재설정할 수 없습니다.");
+						
+					}
+					},
+					error: function(){
+						if(id == "" && name =="" && email == ""){
+							alert('정보를 입력해주세요.');
+						}else{
+							alert("입력하신 정보가 일치하지 않거나 존재하지 않습니다.");
+						}
+						//$('#find_id1_div').html(result);
+					}
+				});
+		}else{
+			$.ajax({
+				url:'${pageContext.request.contextPath}/member/memberFIndPassPhoneVersion',
+				data:{   'id' : $('#normalId1').val(),
+					   'name' : $('#normalName1').val(),
+					  'phone' : $('#normalPhone').val() },
+				success:function(result){
+					alert("정보 일치");
+					if( result != "try again"){
+						// 정보 일치 시 비밀번호 재설정 페이지로 이동
+                        window.location.href = '${pageContext.request.contextPath}/member/memberResetPass';
+					}else{
+						alert("비밀번호를 재설정할 수 없습니다.");
+						
+					}				
+//	 				alert(result);
+//	 				result = "<br>아이디는 " + result + " 입니다.";
+//	 				$('#find_id1_div').html(result);
+					},
+					error: function(){
+						alert('error');
+	 					if(id1 == "" && name1 =="" && phone == ""){
+	 						alert('정보를 입력해주세요.');
+	 					}else{
+	 						alert("입력하신 정보가 일치하지 않거나 존재하지 않습니다.");
+	 					}
+// 						$('#find_id1_div').html(result);
+					}
+				});			
+		}					
+	})
+	
+});
+</script>   
+       
 </body>
 </html>
