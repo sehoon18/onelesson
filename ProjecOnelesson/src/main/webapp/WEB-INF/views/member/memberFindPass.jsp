@@ -352,7 +352,6 @@ $(function(){
 	 					}else{
 	 						alert("입력하신 정보가 일치하지 않거나 존재하지 않습니다.");
 	 					}
-// 						$('#find_id1_div').html(result);
 					}
 				});			
 		}					

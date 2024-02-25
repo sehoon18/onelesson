@@ -75,7 +75,7 @@
     </form>
     
     <script>
-        // 세션에서 저장된 id 값을 가져와서 아이디 입력란에 설정
+        // 세션에서 저장된 id 값을 가져와서 아이디 입력란에 설정.
         var sessionId = '<%= session.getAttribute("foundUserId") %>';
         document.getElementById('id').value = sessionId;
     </script>

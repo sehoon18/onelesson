@@ -103,11 +103,7 @@ public class MemberDAO {
 		System.out.println(memberDTO);
 		return sqlSession.selectOne(namespace+".memberFindPassPhoneVersion",memberDTO);
 	}
-	public MemberDTO foundUserIdSession(MemberDTO memberDTO) {
-		System.out.println("MemberDAO foundUserIdSession()");
-		System.out.println(memberDTO);
-		return sqlSession.selectOne(namespace+".foundUserIdSession",memberDTO);
-	}
+	
 	public MemberDTO memberFindPassInstructorEmail(MemberDTO memberDTO) {
 		System.out.println("MemberDAO memberFindPassInstructorEmail()");
 		System.out.println(memberDTO);
@@ -124,5 +120,9 @@ public class MemberDAO {
 		return sqlSession.selectOne(namespace+".memberFindPassInstructorBusiness",memberDTO);
 	}
 
-
+	public MemberDTO foundUserIdSession(MemberDTO memberDTO) {
+		System.out.println("MemberDAO foundUserIdSession()");
+		System.out.println(memberDTO);
+		return sqlSession.selectOne(namespace+".foundUserIdSession",memberDTO);
+	}
 }

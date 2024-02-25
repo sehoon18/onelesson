@@ -446,7 +446,7 @@ $(function(){
 	         });
 	     }
 	 });
-}); // $(function
+}); // $(function)
 		
 		
 </script>

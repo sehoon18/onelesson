@@ -101,11 +101,6 @@ public class MemberService {
 		return memberDAO.memberFindPassPhoneVersion(memberDTO);
 	}
 
-	public MemberDTO foundUserIdSession(MemberDTO memberDTO) {
-		System.out.println("MemberService foundUserIdSession()");
-		return memberDAO.foundUserIdSession(memberDTO);
-	}
-
 	public MemberDTO memberFindPassInstructorEmail(MemberDTO memberDTO) {
 		System.out.println("MemberService memberFindPassInstructorEmail()");
 		return memberDAO.memberFindPassInstructorEmail(memberDTO);
@@ -121,7 +116,10 @@ public class MemberService {
 		return memberDAO.memberFindPassInstructorBusiness(memberDTO);
 	}
 	
-	
+	public MemberDTO foundUserIdSession(MemberDTO memberDTO) {
+		System.out.println("MemberService foundUserIdSession()");
+		return memberDAO.foundUserIdSession(memberDTO);
+	}	
 
 	
 }

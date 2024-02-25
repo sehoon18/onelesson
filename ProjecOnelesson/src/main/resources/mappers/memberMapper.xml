@@ -101,7 +101,6 @@ select MEM_NAME as "name", MEM_BUSINESS_NUM as "businessNum", MEM_ID as "id" fro
 where MEM_ID = #{id} and MEM_NAME = #{name} and MEM_BUSINESS_NUM = #{businessNum} 
 </select>
 
-
 <select id="foundUserIdSession" resultType="com.itwillbs.domain.MemberDTO"> 
 select MEM_ID as "id", MEM_PASS as "pass" from MEMBER
 where MEM_ID = #{id} and MEM_PASS = #{pass}

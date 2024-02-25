@@ -260,8 +260,6 @@ public class AjaxController {
 
 	    if (memberDTO2 != null) {
 	        result = memberDTO2.getId();  
-//	        result = memberDTO2.getId();
-//	        session.setAttribute("id", memberDTO2.getId());
 	        
 	    } else {
 	        result = "try again"; 
