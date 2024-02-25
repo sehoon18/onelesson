@@ -34,7 +34,7 @@ public class MemberDAO {
 
 	public MemberDTO usercheck(MemberDTO memberDTO) {
 		System.out.println("MemberDAO userCheck()");
-		return sqlSession.selectOne(namespace+".usercheck",memberDTO);
+		return sqlSession.selectOne(namespace+".userCheck",memberDTO);
 	}
 
 	public MemberDTO getMember(String id) {
@@ -53,8 +53,8 @@ public class MemberDAO {
 	}
 
 	public void deleteMember(MemberDTO memberDTO) {
-		System.out.println("MemberService deleteMember()");
-		sqlSession.update(namespace+".deleteMember",memberDTO);
+		System.out.println("MemberDAO deleteMember()");
+		sqlSession.delete(namespace+".deleteMember",memberDTO);
 	}
 	public MemberDTO getMemberByNick(String nick) {
 		System.out.println("MemberDAO getMemberByNick()");
@@ -90,5 +90,50 @@ public class MemberDAO {
 		System.out.println("MemberDAO getMyOrder()");
 		return sqlSession.selectList(namespace + ".getMyOrder" , memberDTO);
 	}
+
+	public MemberDTO getMemberByLogin(MemberDTO memberDTO) {
+		System.out.println("MemberDAO getMemberByLogin()");
+		System.out.println(memberDTO);
+		return sqlSession.selectOne(namespace+".getMemberByLogin",memberDTO);
+	}
+	
+	public MemberDTO getMemberFindIdPhoneVersion(MemberDTO memberDTO) {
+		System.out.println("MemberDAO getMemberFindIdPhoneVersion()");
+		System.out.println(memberDTO);
+		return sqlSession.selectOne(namespace+".getMemberFindIdPhoneVersion",memberDTO);
+	}
+	
+	public MemberDTO getMemberFindIdMailVersion(MemberDTO memberDTO) {
+		System.out.println("MemberDAO getMemberFindIdMailVersion()");
+		System.out.println(memberDTO);
+		return sqlSession.selectOne(namespace+".getMemberFindIdMailVersion",memberDTO);
+	}	
+
+	public MemberDTO getMemberFindIdInstructorEmail(MemberDTO memberDTO) {
+		System.out.println("MemberDAO getMemberFindIdInstructorEmail()");
+		System.out.println(memberDTO);
+		return sqlSession.selectOne(namespace+".getMemberFindIdInstructorEmail",memberDTO);
+	}
+	public MemberDTO getMemberFindIdInstructorPhone(MemberDTO memberDTO) {
+		System.out.println("MemberDAO getMemberFindIdInstructorPhone()");
+		System.out.println(memberDTO);
+		return sqlSession.selectOne(namespace+".getMemberFindIdInstructorPhone",memberDTO);
+	}
+	public MemberDTO getMemberFindIdInstructorBusiness(MemberDTO memberDTO) {
+		System.out.println("MemberDAO getMemberFindIdInstructorBusiness()");
+		System.out.println(memberDTO);
+		return sqlSession.selectOne(namespace+".getMemberFindIdInstructorBusiness",memberDTO);
+	}
+	public MemberDTO memberFIndPassEmailVersion(MemberDTO memberDTO) {
+		System.out.println("MemberDAO memberFIndPassEmailVersion()");
+		System.out.println(memberDTO);
+		return sqlSession.selectOne(namespace+".memberFIndPassEmailVersion",memberDTO);
+	}
+	public MemberDTO memberFIndPassPhoneVersion(MemberDTO memberDTO) {
+		System.out.println("MemberDAO memberFIndPassPhoneVersion()");
+		System.out.println(memberDTO);
+		return sqlSession.selectOne(namespace+".memberFIndPassPhoneVersion",memberDTO);
+	}
+
 
 }

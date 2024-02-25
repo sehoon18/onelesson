@@ -89,4 +89,44 @@ ORDER BY o.ORDER_NUM DESC;
 
 <select id="userCheck" resultType="com.itwillbs.domain.MemberDTO"> select MEM_ID as "id", MEM_PASS as "pass" from MEMBER where MEM_ID = #{id} and MEM_PASS = #{pass} </select>
 <select id="getMember" resultType="com.itwillbs.domain.MemberDTO"> select MEM_ID as "id", MEM_NAME as "name", MEM_NICK as "nick", MEM_EMAIL as "email", MEM_PHONE as "phone", MEM_ADDRESS as "address", MEM_TYPE as "type" from MEMBER where MEM_ID = #{id} </select>
+<select id="getMemberByLogin" resultType="com.itwillbs.domain.MemberDTO"> 
+select MEM_ID as "id", MEM_PASS as "pass" from MEMBER where MEM_ID = #{id} and MEM_PASS = #{pass} 
+</select>
+
+<select id="getMemberFindIdMailVersion" resultType="com.itwillbs.domain.MemberDTO"> 
+select MEM_NAME as "name", MEM_EMAIL as "email", MEM_ID as "id" from MEMBER
+where MEM_NAME = #{name} and MEM_EMAIL = #{email} 
+</select>
+
+<select id="getMemberFindIdPhoneVersion" resultType="com.itwillbs.domain.MemberDTO"> 
+select MEM_NAME as "name", MEM_PHONE as "phone", MEM_ID as "id" from MEMBER
+where MEM_NAME = #{name} and MEM_PHONE = #{phone} 
+</select>
+
+<select id="getMemberFindIdInstructorEmail" resultType="com.itwillbs.domain.MemberDTO"> 
+select MEM_NAME as "name", MEM_EMAIL as "email", MEM_ID as "id" from MEMBER
+where MEM_NAME = #{name} and MEM_EMAIL = #{email} 
+</select>
+
+<select id="getMemberFindIdInstructorPhone" resultType="com.itwillbs.domain.MemberDTO"> 
+select MEM_NAME as "name", MEM_PHONE as "phone", MEM_ID as "id" from MEMBER
+where MEM_NAME = #{name} and MEM_PHONE = #{phone} 
+</select>
+
+<select id="getMemberFindIdInstructorBusiness" resultType="com.itwillbs.domain.MemberDTO"> 
+select MEM_NAME as "name", MEM_BUSINESS_NUM as "businessNum", MEM_ID as "id" from MEMBER
+where MEM_NAME = #{name} and MEM_BUSINESS_NUM = #{businessNum} 
+</select>
+
+<select id="memberFIndPassEmailVersion" resultType="com.itwillbs.domain.MemberDTO"> 
+select MEM_NAME as "name", MEM_EMAIL as "email", MEM_ID as "id" from MEMBER
+where MEM_ID = #{id} and MEM_NAME = #{name} and MEM_EMAIL = #{email} 
+</select>
+
+<select id="memberFIndPassPhoneVersion" resultType="com.itwillbs.domain.MemberDTO"> 
+select MEM_NAME as "name", MEM_PHONE as "phone", MEM_ID as "id" from MEMBER
+where MEM_ID = #{id} and MEM_NAME = #{name} and MEM_PHONE = #{phone} 
+</select>
+
+
 </mapper>

@@ -33,7 +33,7 @@ public class memberController {
 	@Inject
 	private BoardService boardService;
 	
-//	메인페이지
+	//	메인페이지
 	@GetMapping("/main")
 	public String main() {
 		System.out.println("MemberController main()");
@@ -75,7 +75,7 @@ public class memberController {
 		return "member/memberInsert1";
 	}
 	
-	//	일반회원 회원가입	Pro
+	//	일반회원 회원가입 Pro
 	@PostMapping("/memberInsertPro1")
 	public String memberInsertPro1(MemberDTO memberDTO) {
 		System.out.println("MemberController memberInsertPro1()");
@@ -94,7 +94,7 @@ public class memberController {
 		return "member/memberInsert2";
 	}
 	
-	//	강사회원 회원가입	Pro
+	//	강사회원 회원가입 Pro
 	@PostMapping("/memberInsertPro2")
 	public String memberInsertPro2(MemberDTO memberDTO) {
 		System.out.println("MemberController memberInsertPro2()");
@@ -106,14 +106,14 @@ public class memberController {
 		return "redirect:/member/memberLogin";	
 	}
 	
-	//로그인
+	//	로그인
 	@GetMapping("/memberLogin")
 	public String memberLogin() {
 		System.out.println("MemberController memberLogin()");
 		return "member/memberLogin";
 	}
 	
-	//로그인 Pro
+	//	로그인 Pro
 	@PostMapping("/memberLoginPro")
 	public String memberLoginPro(MemberDTO memberDTO , HttpSession session, RedirectAttributes redirectAttributes) {
 		System.out.println("MemberController memberLoginPro()");
@@ -159,6 +159,7 @@ public class memberController {
 		}
 	}
 	
+	// 회원정보수정
 	@GetMapping("/memberUpdate")
 	public String memberUpdate(HttpSession session, Model model) {
 		System.out.println("MemberController memberUpdate()");
@@ -168,7 +169,7 @@ public class memberController {
 		return "member/memberUpdate";
 	}
 	
-	//	회원정보수정Pro
+	//	회원정보수정 Pro
 	@PostMapping("/memberUpdatePro")
 	public String memberUpdatePro(MemberDTO memberDTO){
 		System.out.println("MemberController memberUpdatePro()");
@@ -218,20 +219,31 @@ public class memberController {
 		return "member/memberFindId";
 	}
 	
-	// -----------------------[myPage]------------------------------
-	
-	@GetMapping("/adminInsert")
-	public String adminInsert() {
-		System.out.println("MemberController adminInsert()");
-		return "member/adminInsert";
-	}
-
+	//	비밀번호찾기
 	@GetMapping("/memberFindPass")
 	public String memberFindPass() {
 		System.out.println("MemberController memberFindPass()");
 		return "member/memberFindPass";
+	}	
+	
+	//	비밀번호찾기Pro
+	@PostMapping("/memberFindPassPro")
+	public String memberFindPassPro() {
+		System.out.println("MemberController memberFindPassPro()");
+		return "member/memberFindPassPro";
 	}
 	
+	//	비밀번호재설정
+	@GetMapping("/memberResetPass")
+	public String memberResetPass() {
+		System.out.println("MemberController memberResetPass()");
+		return "member/memberResetPass";
+	}
+	
+	
+	// -----------------------[myPage]------------------------------
+	
+
 	@GetMapping("/myInfo")
 	public String myInfo(HttpSession session, MemberDTO memberDTO, Model model) {
 		System.out.println("MemberController myInfo()");
