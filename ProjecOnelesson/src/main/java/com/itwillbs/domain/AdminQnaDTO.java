@@ -5,15 +5,15 @@ import java.sql.Timestamp;
 public class AdminQnaDTO {
 	
 	private int num;
-	private String mId;
+	private String id;
 	private String subject; //글 제목
 	private String question; //문의/신고 내용
 	private String answer; //문의/신고 답변
 	private Timestamp update; //문의/신고 답변일
-	
+
 	@Override
 	public String toString() {
-		return "AdminQnaDTO [num=" + num + ", mId=" + mId + ", subject=" + subject + ", question=" + question
+		return "AdminQnaDTO [num=" + num + ", id=" + id + ", subject=" + subject + ", question=" + question
 				+ ", answer=" + answer + ", update=" + update + "]";
 	}
 
@@ -25,12 +25,12 @@ public class AdminQnaDTO {
 		this.num = num;
 	}
 
-	public String getmId() {
-		return mId;
+	public String getId() {
+		return id;
 	}
 
-	public void setmId(String mId) {
-		this.mId = mId;
+	public void setId(String id) {
+		this.id = id;
 	}
 
 	public String getSubject() {

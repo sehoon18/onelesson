@@ -15,6 +15,7 @@ import org.springframework.web.bind.annotation.RequestMapping;
 import com.itwillbs.domain.AdminDTO;
 import com.itwillbs.domain.AdminFaqDTO;
 import com.itwillbs.domain.AdminNoticeDTO;
+import com.itwillbs.domain.AdminQnaDTO;
 import com.itwillbs.domain.LessonDTO;
 import com.itwillbs.domain.MemberDTO;
 import com.itwillbs.domain.PageDTO;
@@ -310,10 +311,82 @@ public class AdminBoardController {
 	}
 	
 	@GetMapping("/qna")
-	public String qnaList() {
-		System.out.println("AdminBoardController qnaList()");
+	public String qna(HttpServletRequest request, PageDTO pageDTO, Model model) {
+		System.out.println("AdminBoardController qna()");
+		
+		String search = request.getParameter("search");
+		
+		int pageSize = 5;
+		String pageNum = request.getParameter("pageNum");
+		
+		if(pageNum == null) {
+			pageNum = "1";
+		}
+		
+		int currentPage = Integer.parseInt(pageNum);
+		pageDTO.setPageSize(pageSize);
+		pageDTO.setPageNum(pageNum);
+		pageDTO.setCurrentPage(currentPage);
+		pageDTO.setSearch(search);
+		
+		List<AdminQnaDTO> qnaList = adminQnaService.getQnaList(pageDTO);
+		
+		int count = adminQnaService.getQnaCount();
+		int pageBlock = 5;
+		int startPage = (currentPage - 1)/pageBlock * pageBlock + 1;
+		int endPage = startPage + pageBlock - 1;
+		int pageCount = count / pageSize + (count % pageSize == 0 ? 0 : 1);
+		
+		if(endPage > pageCount) {
+			endPage = pageCount;
+		}
+		
+		pageDTO.setCount(count);
+		pageDTO.setPageBlock(pageBlock);
+		pageDTO.setStartPage(startPage);
+		pageDTO.setEndPage(endPage);
+		pageDTO.setPageCount(pageCount);
+		
+		model.addAttribute("pageDTO", pageDTO);
+		model.addAttribute("qnaList", qnaList);
 		
 		return "admin/qnaList";
 	}
+	
+	@GetMapping("/qnaContent")
+	public String qnaContent(AdminQnaDTO adminQnaDTO, Model model) {
+		System.out.println("AdminBoardController qnaContent()");
+		System.out.println(adminQnaDTO);
+		
+		adminQnaDTO = adminQnaService.getQna(adminQnaDTO);
+		
+		model.addAttribute("adminQnaDTO", adminQnaDTO);
+		
+		return "admin/qnaContent";
+	}
+	
+	@GetMapping("/qnaAnswer")
+	public String qnaAnswer(AdminQnaDTO adminQnaDTO, Model model) {
+		System.out.println("AdminBoardController qnaAnswer()");
+		System.out.println(adminQnaDTO);
+		
+		adminQnaDTO = adminQnaService.getQna(adminQnaDTO);
+		
+		model.addAttribute("adminQnaDTO", adminQnaDTO);
+		
+		return "admin/qnaAnswer";
+	}
+	
+	@PostMapping("/qnaAnswerPro")
+	public String qnaAnswerPro(AdminQnaDTO adminQnaDTO) {
+		System.out.println("AdminBoardController qnaAnswerPro()");
+//		System.out.println(adminQnaDTO);
+//		
+//		adminFaqService.qnaAnswer(adminQnaDTO);
+		
+		return "redirect:/admin/qna";
+	}
+	
+	
 	
 }
