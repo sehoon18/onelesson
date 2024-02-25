@@ -274,21 +274,25 @@ display: inline-block;
 	<div class="my-3 p-3 bg-body rounded shadow-sm">
     <h6 class="border-bottom pb-2 mb-0">찜한 목록</h6>
 
+	<div class="row row-cols-1 row-cols-sm-2 row-cols-md-3 g-3">
 <c:forEach var="boardDTO" items="${boardList }">
+	<div class="col">
+	<div class="card shadow-sm">
     <div class="d-flex text-body-secondary pt-3">
-      <svg class="bd-placeholder-img flex-shrink-0 me-2 rounded" width="200" height="150" xmlns="http://www.w3.org/2000/svg" role="img" aria-label="Placeholder: 32x32" preserveAspectRatio="xMidYMid slice" focusable="false"><title>Placeholder</title><image xlink:href="${pageContext.request.contextPath}/resources/upload/${boardDTO.preview}" x="0" y="0" width="100%" height="100%"></svg>
+      <svg class="bd-placeholder-img flex-shrink-0 me-2 rounded" width="160" height="100" xmlns="http://www.w3.org/2000/svg" role="img" aria-label="Placeholder: 32x32" preserveAspectRatio="xMidYMid slice" focusable="false"><title>Placeholder</title><image xlink:href="${pageContext.request.contextPath}/resources/upload/${boardDTO.preview}" x="0" y="0" width="100%" height="100%"></svg>
       <p class="pb-3 mb-0 small lh-sm border-bottom">
         <strong class="d-block text-gray-dark">${boardDTO.subject }</strong>
         카테고리 : ${boardDTO.category } / ${boardDTO.subCategory }<br>
+        날짜 : ${boardDTO.date}<br>
         위치 : ${boardDTO.location }<br>
         가격 : ${boardDTO.price }<br>
       </p>
     </div>
+    </div>
+    </div>
 </c:forEach>
+    </div>
 
-    <small class="d-block text-end mt-3">
-      <a href="#">All updates</a>
-    </small>
   </div>
 	</div>
 	 		

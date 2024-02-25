@@ -160,7 +160,7 @@
 	</select>
 	
 	<select id="getWishList" resultType="com.itwillbs.domain.LessonDTO">
-    	SELECT LES_SUBJECT as "subject", LES_PREVIEW as "preview", LES_CATEGORY as "category", LES_SUBCATEGORY as "subCategory", LES_PRICE as "price", LES_LOCATION as "location"
+    	SELECT LES_SUBJECT as "subject", LES_PREVIEW as "preview", LES_CATEGORY as "category", LES_SUBCATEGORY as "subCategory", LES_PRICE as "price", LES_LOCATION as "location", LES_DATE as "date"
 		from LESSON
 		where LES_NUM IN (SELECT LES_NUM
 							from WISH
@@ -235,6 +235,7 @@
 		where LES_NUM = #{num} and MEM_ID = #{id}
 	</select>
 	
+<!-- 	찜하기 로직용 -->
 	<select id="getwishList" resultType="java.lang.Integer">
 		select LES_NUM as "num"
 		from WISH

@@ -7,14 +7,9 @@
 <head >
 <meta charset="UTF-8">
 <title>마이페이지</title>
-  <link rel="canonical" href="https://getbootstrap.com/docs/5.3/examples/album/">
-
-    
-
-    <link rel="stylesheet" href="https://cdn.jsdelivr.net/npm/@docsearch/css@3">
-
-<link href="https://cdn.jsdelivr.net/npm/bootstrap@5.3.1/dist/css/bootstrap.min.css" rel="stylesheet">
-
+	<link rel="canonical" href="https://getbootstrap.com/docs/5.3/examples/album/">
+	<link rel="stylesheet" href="https://cdn.jsdelivr.net/npm/@docsearch/css@3">
+	<link href="https://cdn.jsdelivr.net/npm/bootstrap@5.3.1/dist/css/bootstrap.min.css" rel="stylesheet">
 
 <style>
       .b-example-divider {
@@ -212,9 +207,9 @@ display: inline-block;
 	
 }
 .container{
-	width: 100%;
-	padding-right: calc(var(1.5em) * .5);
-	padding-left: calc(var(1.5em) * .5);
+/* 	width: 100%; */
+/* 	padding-right: calc(var(1.5em) * .5); */
+/* 	padding-left: calc(var(1.5em) * .5); */
 	margin-right: auto;
 	margin-left: auto;
 }
@@ -259,20 +254,17 @@ display: inline-block;
 	text-align: center;
 	display : none;
 }
-
 </style>
 </head>
+
 <!-- 헤더 넣는 곳 -->
  <jsp:include page="../inc/header.jsp" />
 <!-- 헤더 넣는 곳 -->
 <body>
 <main  style="height: 100%;">
 	<div class="top-margin"></div>
-
-    
-    
     <div id="container" style="width: 1100px; margin: 0px auto;">
-    	<table>
+    <table>
 	<tr><td style="width: 300px;"></td><td style="width: 500px; text-align: center;"><h2 class="topView">마이페이지</h2></td><td style="width: 300px;">
 	<span class="head-Box-right" style="text-align: center;">
 	<img src="${pageContext.request.contextPath}/resources/images/default.png" class="myProImg" style="width: 80px; height: 80px; margin: 0px auto;"><br>
@@ -304,6 +296,8 @@ display: inline-block;
 	</div>
     </c:if>
 	</div>
+	<div id="MyControll_Box" class="MyControll_Box">
+	<div class="container" style="width: 1120px;">
 <div class="myPageT"></div>
 	 		<h4 style="text-align: center;"><a href="javascript:openDisplay();">나의 회원 정보 간단히 보기/닫기</a></h4>	
 					<div id="myProfil" class="myProfil">
@@ -326,8 +320,7 @@ display: inline-block;
 	<h4 style="text-align: center;">등록한 강의 보기</h4>
  </c:if>
 <!--   <div class="album py-5 bg-body-tertiary"> -->
-<div id="MyControll_Box" class="MyControll_Box">
-	<div class="container">
+
 	<div class="container marketing">
       <div class="row row-cols-1 row-cols-sm-2 row-cols-md-3 g-3">
       <c:forEach var="lessonDTO" items="${lessonList }">
@@ -365,32 +358,31 @@ display: inline-block;
       </c:forEach>
       </div>
       </div>
-    <script>
-        function toggleHeart(el) {
-            var heartIcon = el.querySelector('.heart');
-            heartIcon.classList.toggle('filled');
-        }
-    </script>
-      
+		<nav aria-label="Page navigation example" style="margin-top: 10px">
+		  <ul class="pagination justify-content-end">
+		  <c:if test="${pageDTO.startPage > pageDTO.pageBlock }">
+		    <li class="page-item"><a class="page-link" href="${pageContext.request.contextPath}/member/mypage?pageNum=${pageDTO.startPage - pageDTO.pageBlock}">Previous</a></li>
+		  </c:if>
+		  
+		  <c:forEach var="i" begin="${pageDTO.startPage }" end="${pageDTO.endPage }" step="1">
+		    <li class="page-item"><a class="page-link" href="${pageContext.request.contextPath}/member/mypage?pageNum=${i}">${i }</a></li>
+		  </c:forEach>
+		  
+		  <c:if test="${pageDTO.endPage < pageDTO.pageCount }">
+		    <li class="page-item"><a class="page-link" href="${pageContext.request.contextPath}/member/mypage?pageNum=${pageDTO.startPage + pageDTO.pageBlock}">Next</a></li>
+		  </c:if>  
+		  </ul>
+		</nav>
       </div>
-	<nav aria-label="Page navigation example" style="margin-top: 10px">
-	  <ul class="pagination justify-content-end">
-	  <c:if test="${pageDTO.startPage > pageDTO.pageBlock }">
-	    <li class="page-item"><a class="page-link" href="${pageContext.request.contextPath}/member/mypage?pageNum=${pageDTO.startPage - pageDTO.pageBlock}">Previous</a></li>
-	  </c:if>
-	  
-	  <c:forEach var="i" begin="${pageDTO.startPage }" end="${pageDTO.endPage }" step="1">
-	    <li class="page-item"><a class="page-link" href="${pageContext.request.contextPath}/member/mypage?pageNum=${i}">${i }</a></li>
-	  </c:forEach>
-	  
-	  <c:if test="${pageDTO.endPage < pageDTO.pageCount }">
-	    <li class="page-item"><a class="page-link" href="${pageContext.request.contextPath}/member/mypage?pageNum=${pageDTO.startPage + pageDTO.pageBlock}">Next</a></li>
-	  </c:if>  
-	  </ul>
-	</nav>
     </div>	
      
 </main>
+<script>
+	function toggleHeart(el) {
+	    var heartIcon = el.querySelector('.heart');
+	    heartIcon.classList.toggle('filled');
+	}
+</script>
 <script>
  function backPage(){
 		history.back();
