@@ -7,13 +7,22 @@
 	
 	<select id="getNoticeList" resultType="com.itwillbs.domain.BoardDTO">
 		select NOTICE_NUM as "num", ADMIN_ID as "id", NOTICE_TYPE as "type", NOTICE_SUBJECT as "subject", NOTICE_CONTENT as "content", NOTICE_DATE as "date", NOTICE_READCOUNT as "readcount", NOTICE_IMAGE as "image" from NOTICE
-		where NOTICE_TYPE = #{type}
+		
+		<if test="search != null">
+        where NOTICE_SUBJECT like CONCAT('%', #{search}, '%')
+         or NOTICE_CONTENT like CONCAT('%', #{search}, '%')
+    	</if>
+<!-- 		NOTICE_TYPE = #{type} -->
 		order by NOTICE_NUM desc
 		limit #{startRow}, #{pageSize}
 	</select>
 	
 	<select id="getNoticeCount" resultType="java.lang.Integer">
 		select count(*) from NOTICE
+		<if test="search != null">
+			where NOTICE_SUBJECT like CONCAT('%',#{search},'%')
+			or NOTICE_CONTENT like CONCAT('%', #{search}, '%')
+		</if>
 	</select>
 	
 	<select id="getNotice" resultType="com.itwillbs.domain.BoardDTO">
@@ -28,13 +37,22 @@
 	</update>
 	
 	<select id="getFaqList" resultType="com.itwillbs.domain.BoardDTO">
-		select FAQ_NUM as "num", FAQ_SUBJECT as "subject" from FAQ
+		select FAQ_NUM as "num", ADMIN_ID as "id", FAQ_SUBJECT as "subject", FAQ_CONTENT as "content" from FAQ
+		
+		<if test="search != null">
+       		where FAQ_SUBJECT like CONCAT('%', #{search}, '%')
+         	or FAQ_CONTENT like CONCAT('%', #{search}, '%')
+    	</if>
 		order by FAQ_NUM desc
 		limit #{startRow}, #{pageSize}
 	</select>
 	
 	<select id="getFaqCount" resultType="java.lang.Integer">
 		select count(*) from FAQ
+		<if test="search != null">
+       		where FAQ_SUBJECT like CONCAT('%', #{search}, '%')
+         	or FAQ_CONTENT like CONCAT('%', #{search}, '%')
+    	</if>
 	</select>
 	
 	<select id="getFaq" resultType="com.itwillbs.domain.BoardDTO">
@@ -95,9 +113,10 @@
     </insert>
     
     <select id="getLqnaList" resultType="com.itwillbs.domain.BoardDTO">
-		select LQNA_SUBJECT as "subject", LQNA_QUESTION as "question", LQNA_NUM as "num", LQNA_UPDATE as "update"
-		from LESSON_QNA
-		WHERE MEM_ID = #{id}
+		select q.LQNA_QUESTION as "question", q.LQNA_ANSWER as "answer", q.LQNA_SUBJECT as "subject", q.LQNA_NUM as "num", q.LQNA_UPDATE as "update", l.LES_SUBJECT as "image"
+		from LESSON_QNA q join LESSON l
+		ON q.LES_NUM = l.LES_NUM
+		where q.MEM_ID = #{id}
 		order by LQNA_NUM desc
 		limit #{startRow}, #{pageSize}
 	</select>
@@ -176,11 +195,12 @@
 	</select>	
 	
 	<select id="getreceiveLqnaList" resultType="com.itwillbs.domain.BoardDTO">
-		select LQNA_QUESTION as "question", LQNA_ANSWER as "answer", LQNA_SUBJECT as "subject", LQNA_NUM as "num"
-		from LESSON_QNA
-		where LES_NUM IN (SELECT LES_NUM
-						FROM LESSON
-						WHERE MEM_ID = #{id})
+		select q.LQNA_QUESTION as "question", q.LQNA_ANSWER as "answer", q.LQNA_SUBJECT as "subject", q.LQNA_NUM as "num", q.LQNA_UPDATE as "update", l.LES_SUBJECT as "image"
+		from LESSON_QNA q join LESSON l
+		on q.LES_NUM = l.LES_NUM
+		where q.LES_NUM IN (SELECT LES_NUM
+							FROM LESSON
+							WHERE MEM_ID = #{id})
 		order by LQNA_NUM desc
 		limit #{startRow}, #{pageSize}
 	</select>
@@ -214,5 +234,12 @@
 		from REVIEW
 		where LES_NUM = #{num} and MEM_ID = #{id}
 	</select>
+	
+	<select id="getwishList" resultType="java.lang.Integer">
+		select LES_NUM as "num"
+		from WISH
+		where MEM_ID = #{id}
+	</select>
+	
 	
 </mapper>

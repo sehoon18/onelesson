@@ -1,181 +1,91 @@
 <%@ page language="java" contentType="text/html; charset=UTF-8"
     pageEncoding="UTF-8"%>
-    <%@ taglib prefix="c" uri="http://java.sun.com/jsp/jstl/core" %>
+<%@ taglib prefix="c" uri="http://java.sun.com/jsp/jstl/core"%>
 <!DOCTYPE html>
-<html lang="ko">
+<html>
 <head>
-    <meta charset="UTF-8">
-    <title>공지/이벤트</title>
-    <link href="https://cdn.jsdelivr.net/npm/bootstrap@5.3.1/dist/css/bootstrap.min.css" rel="stylesheet">
-    <link rel="stylesheet" href="https://cdn.jsdelivr.net/npm/summernote@0.8.18/dist/summernote-bs4.min.css">
-    <link rel="stylesheet" href="https://cdn.jsdelivr.net/npm/summernote@0.8.20/dist/summernote-lite.min.css"
-          integrity="sha256-IKhQVXDfwbVELwiR0ke6dX+pJt0RSmWky3WB2pNx9Hg=" crossorigin="anonymous">
+<meta charset="UTF-8">
+<title>NOTICE</title>
 
+<meta name="viewport" content="width=device-width, initial-scale=1">
+<link rel="stylesheet" href="https://cdn.jsdelivr.net/npm/bootstrap@4.6.2/dist/css/bootstrap.min.css">
+<script src="https://cdn.jsdelivr.net/npm/jquery@3.6.3/dist/jquery.slim.min.js"></script>
+<script src="https://cdn.jsdelivr.net/npm/popper.js@1.16.1/dist/umd/popper.min.js"></script>
+<script src="https://cdn.jsdelivr.net/npm/bootstrap@4.6.2/dist/js/bootstrap.bundle.min.js"></script>
+<script src="https://ajax.googleapis.com/ajax/libs/jquery/3.6.3/jquery.min.js"></script>
+<script type="text/javascript" src="./jquery/jquery.twbsPagination.min.js"></script>
 
-<style>
-      .bd-placeholder-img {
-        font-size: 1.125rem;
-        text-anchor: middle;
-        -webkit-user-select: none;
-        -moz-user-select: none;
-        user-select: none;
-      }
+<style type="text/css">
+.table th, .table td {
+	text-align: center;
+	vertical-align: middle!important;
+}
 
-      @media (min-width: 768px) {
-        .bd-placeholder-img-lg {
-          font-size: 3.5rem;
-        }
-      }
-
-      .b-example-divider {
-        width: 100%;
-        height: 3rem;
-        background-color: rgba(0, 0, 0, .1);
-        border: solid rgba(0, 0, 0, .15);
-        border-width: 1px 0;
-        box-shadow: inset 0 .5em 1.5em rgba(0, 0, 0, .1), inset 0 .125em .5em rgba(0, 0, 0, .15);
-      }
-
-      .b-example-vr {
-        flex-shrink: 0;
-        width: 1.5rem;
-        height: 100vh;
-      }
-
-      .bi {
-        vertical-align: -.125em;
-        fill: currentColor;
-      }
-
-      .nav-scroller {
-        position: relative;
-        z-index: 2;
-        height: 2.75rem;
-        overflow-y: hidden;
-      }
-
-      .nav-scroller .nav {
-        display: flex;
-        flex-wrap: nowrap;
-        padding-bottom: 1rem;
-        margin-top: -1px;
-        overflow-x: auto;
-        text-align: center;
-        white-space: nowrap;
-        -webkit-overflow-scrolling: touch;
-      }
-
-      .btn-bd-primary {
-        --bd-violet-bg: #712cf9;
-        --bd-violet-rgb: 112.520718, 44.062154, 249.437846;
-
-        --bs-btn-font-weight: 600;
-        --bs-btn-color: var(--bs-white);
-        --bs-btn-bg: var(--bd-violet-bg);
-        --bs-btn-border-color: var(--bd-violet-bg);
-        --bs-btn-hover-color: var(--bs-white);
-        --bs-btn-hover-bg: #6528e0;
-        --bs-btn-hover-border-color: #6528e0;
-        --bs-btn-focus-shadow-rgb: var(--bd-violet-rgb);
-        --bs-btn-active-color: var(--bs-btn-hover-color);
-        --bs-btn-active-bg: #5a23c8;
-        --bs-btn-active-border-color: #5a23c8;
-      }
-      .bd-mode-toggle {
-        z-index: 1500;
-      }
-      
-      #image_container {
-	    width: 400px;
-	    height: 250px;
-	    display: flex;
-		border: 1px solid #ccc; 
-	    justify-content: center;
-	    align-items: center;
-	  }
-	.imagespace{
-	  float: left;
-	  padding: 0px 50px 10px 10px;
-  	}
-	  hr{
-	  clear: both;
-  	}   
-	  .select-wrapper {
-	      display: flex;
-	      width: 100%;
-	      max-width: 600px;
-    	}
-      .select-wrapper select {
-	      width: 48%;
-	    }
-        #image_container img {
-            max-width: 100%;
-            max-height: 100%;
-        }
-    </style>
-
+	#listDiv{
+	width=980px;
+	margin: auto;
+	}
+	a{
+	text-decoration : none;
+	color: black;
+ 	margin:auto; 
+	
+	}
+	#listTable{
+	margin:auto;
+	border-collapse :collapse;
+	}
+</style>
 
 </head>
-<body>
-
-<jsp:include page="../inc/header.jsp"/>
-
-<main class="flex-shrink-0" style="padding-top: 100px">
-    <div class="container">
-        <h1 class="mt-5">공지/이벤트</h1>
-        <p class="lead">공지/이벤트 페이지입니다.</p>
-        <hr>
-        <form action="${pageContext.request.contextPath}/board/noticeInsertPro" method="post"
-              enctype="multipart/form-data">
-            <div class="row">
-                <div class="col-md-2">
-                    <label for="category" class="form-label">타입</label>
-                </div>
-                <div class="col-md-10">
-                    <label for="subject" class="form-label">제목</label>
-                    <input type="text" name="subject" class="form-control mb-3" id="subject">
-                </div>
-                <div class="col-12">
-                    <label for="myEditor" class="form-label">상세 설명</label>
-                </div>
-            </div>
-            
-            <hr>
-            <button type="submit" class="btn btn-primary" onclick="href='${pageContext.request.contextPath}/board/noticeList'">목록</button>
-        </form>
+<body bgcolor="#e9e9e9">
+	<jsp:include page="../inc/header.jsp" />
+<div style="background-size: cover; background-position: center; background-image: url('${pageContext.request.contextPath}/resources/images/qnaimage.jpg');">
+  <section class="py-5 text-center container" style="height: 300px;">
+    <div class="row py-lg-5">
+      <div class="col-lg-6 col-md-8 mx-auto">
+      </div>
     </div>
-</main>
+  </section>
+</div>
 
-<script src="https://cdn.jsdelivr.net/npm/jquery@3.6.0/dist/jquery.slim.min.js"></script>
-<script src="https://cdn.jsdelivr.net/npm/summernote@0.8.20/dist/summernote-lite.min.js"></script>
-<script src="https://cdn.jsdelivr.net/npm/bootstrap@5.3.1/dist/js/bootstrap.bundle.min.js"></script>
+<div align="center" style="margin-top: 50px;">
 
-<script>
-    $(document).ready(function () {
-        $('#myEditor').summernote({
-            placeholder: 'Summernote for Bootstrap 5',
-            tabsize: 2,
-            height: 400,
-            lang: 'ko-KR', // default: 'en-US'
-        });
+<div style="width: 1000px;">
+<div id="listDiv">
+<h3 style="margin-bottom: 30px;">👮‍♂️‍공지/이벤트</h3>
+<table id="listTable" class="table table-bordered">
+<tr><td style="width: 100px;">번호</td><td style="width: 800px;"><div>
+  <label>${boardDTO.num}</label>
+</div></td></tr>
+<tr><td style="width: 100px;">타입</td><td style="width: 800px;"><div>
+  <c:if test="${boardDTO.type == 0}">
+  <label>공지</label>
+  </c:if>
+  <c:if test="${boardDTO.type == 1}">
+  <label>이벤트</label>
+  </c:if>
+</div></td></tr>
+<tr><td style="width: 100px;">조회수</td><td style="width: 800px;"><div>
+  <label>${boardDTO.readcount}</label>
+</div></td></tr>
+<tr><td style="width: 100px;">작성일</td><td style="width: 800px;"><div>
+  <label>${boardDTO.date}</label>
+</div></td></tr>
+<tr><td style="width: 100px;">제목</td><td style="width: 800px;"><div>
+  <label>${boardDTO.subject}</label>
+</div></td></tr>
+<tr><td style="height: 200px;">내용</td><td><div>
+  <label>${boardDTO.content}</label>
+</div></td></tr>
+</table>
 
-        $('#category').change(function () {
-            var selectedType = $(this).val();
-            var typeOptions = $('#type');
-
-            typeOptions.empty(); // 기존의 옵션을 제거
-
-            if (selectedType === '공지') {
-                typeOptions.append($('<option>', {value: '공지', text: '공지'}));
-            } else if (selectedType === '이벤트') {
-                typeOptions.append($('<option>', {value: '이벤트', text: '이벤트'}));
-            }
-            // 추가적인 타입이 있다면 여기에 추가
-        });
-    });
-</script>
-
-<jsp:include page="../inc/footer.jsp"/>
-
+</div>
+</div>
+<br>
+<button class="btn btn-outline-info" onclick="location.href='${pageContext.request.contextPath}/board/notice'">돌아가기</button>
+<hr>
+</div>
+ 	<jsp:include page="../inc/footer.jsp" />
 </body>
 </html>

@@ -12,16 +12,24 @@
 	
 	<select id="getFaqCount" resultType="java.lang.Integer">
 		select count(*) from FAQ
+		<if test="search != null">
+       		where FAQ_SUBJECT LIKE CONCAT('%', #{search}, '%')
+         	or FAQ_CONTENT LIKE CONCAT('%', #{search}, '%')
+    	</if>
 	</select>
 	
 	<select id="getFaqList" resultType="com.itwillbs.domain.AdminFaqDTO">
 		select FAQ_NUM as "num", ADMIN_ID as "id", FAQ_SUBJECT as "subject", FAQ_CONTENT as "content" from FAQ
+		<if test="search != null">
+       		where FAQ_SUBJECT LIKE CONCAT('%', #{search}, '%')
+         	or FAQ_CONTENT LIKE CONCAT('%', #{search}, '%')
+    	</if>
 		order by FAQ_NUM desc
 		limit #{startRow}, #{pageSize}
 	</select>
 	
 	<select id="getFaq" resultType="com.itwillbs.domain.AdminFaqDTO">
-		select FAQ_NUM as "num", FAQ_SUBJECT as "subject" from FAQ
+		select FAQ_NUM as "num", ADMIN_ID as "id", FAQ_SUBJECT as "subject", FAQ_CONTENT as "content" from FAQ
 		where FAQ_NUM = #{num}
 	</select>
 	

@@ -1,9 +1,24 @@
 <%@ page language="java" contentType="text/html; charset=UTF-8"
     pageEncoding="UTF-8"%>
+<%@ taglib prefix="c" uri="http://java.sun.com/jsp/jstl/core" %>
+<%@ taglib prefix="fmt" uri="http://java.sun.com/jsp/jstl/fmt" %>
+
 <!DOCTYPE html>
 <html lang="ko">
 <head>
-    <meta charset="UTF-8">
+	<meta charset="utf-8" />
+    <meta http-equiv="X-UA-Compatible" content="IE=edge" />
+    <meta name="viewport" content="width=device-width, initial-scale=1, shrink-to-fit=no" />
+    <meta name="description" content="" />
+    <meta name="author" content="" />
+    <title>회원 관리 - SB Admin</title>
+    <link href="https://cdn.jsdelivr.net/npm/simple-datatables@7.1.2/dist/style.min.css" rel="stylesheet" />
+    <link href="../resources/css/admin/styles.css" rel="stylesheet" />
+    <script src="https://use.fontawesome.com/releases/v6.3.0/js/all.js" crossorigin="anonymous"></script>
+    
+  <script src="/docs/5.3/assets/js/color-modes.js"></script>
+  <script src="https://code.jquery.com/jquery-3.3.1.slim.min.js"></script>
+  <script src="https://cdn.jsdelivr.net/simplemde/latest/simplemde.min.js"></script>
     <title>공지/이벤트 수정</title>
     <link href="https://cdn.jsdelivr.net/npm/bootstrap@5.3.1/dist/css/bootstrap.min.css" rel="stylesheet">
     <link rel="stylesheet" href="https://cdn.jsdelivr.net/npm/summernote@0.8.18/dist/summernote-bs4.min.css">
@@ -12,142 +27,53 @@
 
 
 <style>
-      .bd-placeholder-img {
-        font-size: 1.125rem;
-        text-anchor: middle;
-        -webkit-user-select: none;
-        -moz-user-select: none;
-        user-select: none;
-      }
-
-      @media (min-width: 768px) {
-        .bd-placeholder-img-lg {
-          font-size: 3.5rem;
-        }
-      }
-
-      .b-example-divider {
-        width: 100%;
-        height: 3rem;
-        background-color: rgba(0, 0, 0, .1);
-        border: solid rgba(0, 0, 0, .15);
-        border-width: 1px 0;
-        box-shadow: inset 0 .5em 1.5em rgba(0, 0, 0, .1), inset 0 .125em .5em rgba(0, 0, 0, .15);
-      }
-
-      .b-example-vr {
-        flex-shrink: 0;
-        width: 1.5rem;
-        height: 100vh;
-      }
-
-      .bi {
-        vertical-align: -.125em;
-        fill: currentColor;
-      }
-
-      .nav-scroller {
-        position: relative;
-        z-index: 2;
-        height: 2.75rem;
-        overflow-y: hidden;
-      }
-
-      .nav-scroller .nav {
-        display: flex;
-        flex-wrap: nowrap;
-        padding-bottom: 1rem;
-        margin-top: -1px;
-        overflow-x: auto;
+    .table th,
+    .table td {
         text-align: center;
-        white-space: nowrap;
-        -webkit-overflow-scrolling: touch;
-      }
-
-      .btn-bd-primary {
-        --bd-violet-bg: #712cf9;
-        --bd-violet-rgb: 112.520718, 44.062154, 249.437846;
-
-        --bs-btn-font-weight: 600;
-        --bs-btn-color: var(--bs-white);
-        --bs-btn-bg: var(--bd-violet-bg);
-        --bs-btn-border-color: var(--bd-violet-bg);
-        --bs-btn-hover-color: var(--bs-white);
-        --bs-btn-hover-bg: #6528e0;
-        --bs-btn-hover-border-color: #6528e0;
-        --bs-btn-focus-shadow-rgb: var(--bd-violet-rgb);
-        --bs-btn-active-color: var(--bs-btn-hover-color);
-        --bs-btn-active-bg: #5a23c8;
-        --bs-btn-active-border-color: #5a23c8;
-      }
-      .bd-mode-toggle {
-        z-index: 1500;
-      }
-      
-      #image_container {
-	    width: 400px;
-	    height: 250px;
-	    display: flex;
-		border: 1px solid #ccc; 
-	    justify-content: center;
-	    align-items: center;
-	  }
-	.imagespace{
-	  float: left;
-	  padding: 0px 50px 10px 10px;
-  	}
-	  hr{
-	  clear: both;
-  	}   
-	  .select-wrapper {
-	      display: flex;
-	      width: 100%;
-	      max-width: 600px;
-    	}
-      .select-wrapper select {
-	      width: 48%;
-	    }
-        #image_container img {
-            max-width: 100%;
-            max-height: 100%;
-        }
-    </style>
-
+    }
+</style>
 
 </head>
-<body>
+<body class="sb-nav-fixed">
 
-<jsp:include page="../inc/header.jsp"/>
-
-<main class="flex-shrink-0" style="padding-top: 100px">
-    <div class="container">
-        <h1 class="mt-5">공지/이벤트 수정</h1>
-        <p class="lead">공지/이벤트 수정 페이지입니다.</p>
-        <hr>
+	<jsp:include page="inc/top.jsp" />
+        
+    <jsp:include page="inc/left.jsp" />    
+        
+        <div id="layoutSidenav_content">
+            <main>
+                <div class="container-fluid px-4">
+                    <h1 class="mt-4">공지 / 이벤트</h1>
+                    <ol class="breadcrumb mb-4">
+                        <li class="breadcrumb-item active">공지 / 이벤트 관리 목록입니다.</li>
+                    </ol>
+<hr>
         <form action="${pageContext.request.contextPath}/admin/noticeUpdatePro" method="post"
               enctype="multipart/form-data">
-            <input type="hidden" name="num" value="${adminBoardDTO.num}">  
+            <input type="hidden" name="id" value="${adminNoticeDTO.id}">
+<!-- 			<input type="hidden" name="id" value="admin"> -->
+            <input type="hidden" name="num" value="${adminNoticeDTO.num}">
             <div class="row">
                 <div class="col-md-2">
                     <label for="category" class="form-label">타입</label>
-                    <select class="form-select mb-3" id="category">
+                    <select class="form-select mb-3" id="category" name="type">
                         <option value="">-- 타입 선택 --</option>
-                        <option value="공지">공지</option>
-                        <option value="이벤트">이벤트</option>
+                		<option value="0" ${adminNoticeDTO.type == 0 ? 'selected' : ''}>공지</option>
+                		<option value="1" ${adminNoticeDTO.type == 1 ? 'selected' : ''}>이벤트</option>
                     </select>
                 </div>
                 <div class="col-md-10">
                     <label for="subject" class="form-label">제목</label>
-                    <input type="text" name="subject" class="form-control mb-3" id="subject">
+                    <input type="text" name="subject" class="form-control mb-3" value="${adminNoticeDTO.subject}">
                 </div>
                 <div class="col-12">
                     <label for="myEditor" class="form-label">상세 설명</label>
-                    <textarea id="myEditor" name="content" class="form-control mb-3"></textarea>
+                    <textarea id="myEditor" name="content" class="form-control mb-3">${adminNoticeDTO.content}</textarea>
                 </div>
             </div>
             <hr>
-            <input type="sumbit" value="수정" class="btn btn-primary">
-            <input type="button" value="목록" class="btn btn-primary" onclick="location.href='${pageContext.request.contextPath}/admin/noticeList'">
+            <input type="submit" value="수정" class="btn btn-primary">
+            <input type="button" value="목록" class="btn btn-primary" onclick="location.href='${pageContext.request.contextPath}/admin/notice'">
         </form>
     </div>
 </main>
@@ -179,8 +105,19 @@
         });
     });
 </script>
+            
+<jsp:include page="inc/bottom.jsp" />
+            
+        </div>
 
-<jsp:include page="../inc/footer.jsp"/>
-
+    
+    
+    <script src="https://cdn.jsdelivr.net/npm/bootstrap@5.2.3/dist/js/bootstrap.bundle.min.js" crossorigin="anonymous"></script>
+    <script src="../resources/js/admin/scripts.js"></script>
+    <script src="https://cdnjs.cloudflare.com/ajax/libs/Chart.js/2.8.0/Chart.min.js" crossorigin="anonymous"></script>
+    <script src="../resources/assets/admin/demo/chart-area-demo.js"></script>
+    <script src="../resources/assets/admin/demo/chart-bar-demo.js"></script>
+    <script src="https://cdn.jsdelivr.net/npm/simple-datatables@7.1.2/dist/umd/simple-datatables.min.js" crossorigin="anonymous"></script>
+    <script src="../resources/js/admin/datatables-simple-demo.js"></script>
 </body>
 </html>

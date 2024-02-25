@@ -107,7 +107,7 @@
 <!-- </table> -->
 <br>
 <button class="btn btn-info" onclick="location.href='${pageContext.request.contextPath}/board/qnaWrite'">글쓰기</button>
-<button class="btn btn-outline-info">돌아가기</button>
+<button class="btn btn-outline-info" onclick="location.href='${pageContext.request.contextPath}/member/mypage'">돌아가기</button>
 <hr>
 </div>
  	<jsp:include page="../inc/footer.jsp" />

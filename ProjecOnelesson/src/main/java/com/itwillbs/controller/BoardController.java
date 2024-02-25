@@ -142,8 +142,10 @@ public class BoardController {
 	}
 	
 	@GetMapping("/notice")
-	public String noticeList(HttpServletRequest request, PageDTO pageDTO, Model model) {
+	public String noticeList(HttpServletRequest request, PageDTO pageDTO, Model model) { 
 		System.out.println("BoardController noticeList()");
+		
+		String search = request.getParameter("search");
 		
 		int pageSize = 5;
 		String pageNum = request.getParameter("pageNum");
@@ -156,6 +158,9 @@ public class BoardController {
 		pageDTO.setPageSize(pageSize);
 		pageDTO.setPageNum(pageNum);
 		pageDTO.setCurrentPage(currentPage);
+		pageDTO.setSearch(search);
+		
+		System.out.println(pageDTO);
 		
 		List<BoardDTO> noticeList = boardService.getNoticeList(pageDTO);
 		
@@ -199,6 +204,8 @@ public class BoardController {
 	public String faqList(HttpServletRequest request, PageDTO pageDTO, Model model) {
 		System.out.println("BoardController faqList()");
 		
+		String search = request.getParameter("search");
+		
 		int pageSize = 5;
 		String pageNum = request.getParameter("pageNum");
 		
@@ -210,6 +217,7 @@ public class BoardController {
 		pageDTO.setPageSize(pageSize);
 		pageDTO.setPageNum(pageNum);
 		pageDTO.setCurrentPage(currentPage);
+		pageDTO.setSearch(search);
 		
 		List<BoardDTO> faqList = boardService.getFaqList(pageDTO);
 		
@@ -367,7 +375,7 @@ public class BoardController {
 		pageDTO.setPageSize(pageSize);
 		pageDTO.setPageNum(pageNum);
 		pageDTO.setCurrentPage(currentPage);
-		pageDTO.setId((String)session.getAttribute("id"));
+		pageDTO.setId(id);
 
 		int count = 0;
 		if(memberDTO.getType() == 0) {
@@ -396,6 +404,7 @@ public class BoardController {
 		pageDTO.setEndPage(endPage);
 		pageDTO.setPageCount(pageCount);
 		
+		model.addAttribute("memberDTO", memberDTO);
 		model.addAttribute("pageDTO", pageDTO);
 		
 		return "board/lessonQna";

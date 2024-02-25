@@ -1,6 +1,8 @@
 <%@ page language="java" contentType="text/html; charset=UTF-8"
     pageEncoding="UTF-8"%>
 <%@ taglib prefix="c" uri="http://java.sun.com/jsp/jstl/core" %>
+<%@ taglib prefix="fmt" uri="http://java.sun.com/jsp/jstl/fmt" %>
+
 <!DOCTYPE html>
 <html lang="ko">
 <head>
@@ -13,78 +15,78 @@
     <link href="https://cdn.jsdelivr.net/npm/simple-datatables@7.1.2/dist/style.min.css" rel="stylesheet" />
     <link href="../resources/css/admin/styles.css" rel="stylesheet" />
     <script src="https://use.fontawesome.com/releases/v6.3.0/js/all.js" crossorigin="anonymous"></script>
-    
-  <script src="/docs/5.3/assets/js/color-modes.js"></script>
-  <script src="https://code.jquery.com/jquery-3.3.1.slim.min.js"></script>
-  <script src="https://cdn.jsdelivr.net/simplemde/latest/simplemde.min.js"></script>
 
-    <title>공지/이벤트</title>
-    <link href="https://cdn.jsdelivr.net/npm/bootstrap@5.3.1/dist/css/bootstrap.min.css" rel="stylesheet">
-    <link rel="stylesheet" href="https://cdn.jsdelivr.net/npm/summernote@0.8.18/dist/summernote-bs4.min.css">
-    <link rel="stylesheet" href="https://cdn.jsdelivr.net/npm/summernote@0.8.20/dist/summernote-lite.min.css"
-          integrity="sha256-IKhQVXDfwbVELwiR0ke6dX+pJt0RSmWky3WB2pNx9Hg=" crossorigin="anonymous">
-
+<style>
+    .table th,
+    .table td {
+        text-align: center;
+    }
+</style>
 
 </head>
-<body>
+<body class="sb-nav-fixed">
 
-<jsp:include page="../admin/inc/top.jsp"/>
-
-<jsp:include page="../admin/inc/left.jsp"/> 
-
+	<jsp:include page="inc/top.jsp" />
+        
+    <jsp:include page="inc/left.jsp" />    
+        
         <div id="layoutSidenav_content">
             <main>
                 <div class="container-fluid px-4">
-                    <h1 class="mt-4">공지/이벤트</h1>
+                    <h1 class="mt-4">공지 / 이벤트</h1>
                     <ol class="breadcrumb mb-4">
-                        <li class="breadcrumb-item active">공지/이벤트 관리 목록입니다.</li>
+                        <li class="breadcrumb-item active">공지 / 이벤트 관리 목록입니다.</li>
                     </ol>
-        
-        <div class="row">
-            <div class="col-md-2">
-                <label for="category" class="form-label">타입</label>
-                <label>${adminNoticeDTO.type}</label>
-            </div>
-            <div class="col-md-10">
-                <label for="subject" class="form-label">제목</label>
-                <label>${adminNoticeDTO.subject}</label>
-            </div>
-            <div class="col-12">
-                <label for="myEditor" class="form-label">상세 설명</label>
-                <textarea class="form-control" id="content" rows="10" readonly>${adminNoticeDTO.content}</textarea>
-            </div>
-        </div>
-        
-        <c:if test="${!empty sessionScope.id}">
-            <c:if test="${sessionScope.id == adminNoticeDTO.id}">
-                <input type="button" value="수정" class="btn btn-primary" onclick="location.href='${pageContext.request.contextPath}/admin/noticeUpdate?num=${adminNoticeDTO.num}'">
-                <input type="button" value="삭제" class="btn btn-primary" onclick="location.href='${pageContext.request.contextPath}/admin/noticeDelete?num=${adminNoticeDTO.num}'">
-            </c:if>
-        </c:if>
-            
-        <hr>
-        <input type="button" value="목록" class="btn btn-primary" onclick="location.href='${pageContext.request.contextPath}/admin/notice'">
-    </div>
-</main>
+                    
+<table class="table table-bordered">
+<tr><td style="width: 150px;">번호</td><td><div>
+  <label>${adminNoticeDTO.num}</label>
+</div></td></tr>
+<tr><td style="width: 150px;">타입</td><td><div>
+  <c:if test="${adminNoticeDTO.type == 0}">
+  <label>공지</label>
+  </c:if>
+  <c:if test="${adminNoticeDTO.type == 1}">
+  <label>이벤트</label>
+  </c:if>
+</div></td></tr>
+<tr><td style="width: 150px;">조회수</td><td><div>
+  <label>${adminNoticeDTO.readcount}</label>
+</div></td></tr>
+<tr><td style="width: 150px;">작성일</td><td><div>
+  <label>${adminNoticeDTO.date}</label>
+</div></td></tr>
+<tr><td style="width: 150px;">제목</td><td><div>
+  <label>${adminNoticeDTO.subject}</label>
+</div></td></tr>
+<tr><td style="height: 200px;">내용</td><td><div>
+  <label>${adminNoticeDTO.content}</label>
+</div></td></tr>
+</table>
+
+<br>
+<c:if test="${! empty sessionScope.id}">
+	<c:if test="${sessionScope.id eq adminNoticeDTO.id}">
+		<input type="button" value="수정" class="btn btn-primary" onclick="location.href='${pageContext.request.contextPath}/admin/noticeUpdate?num=${adminNoticeDTO.num}'">
+		<input type="button" value="삭제" class="btn btn-primary" onclick="location.href='${pageContext.request.contextPath}/admin/noticeDelete?num=${adminNoticeDTO.num}'">
+	</c:if>
+</c:if>
+<input type="button" value="목록" class="btn btn-primary" onclick="location.href='${pageContext.request.contextPath}/admin/notice'">
 </div>
+            </main>
+            
+            <jsp:include page="inc/bottom.jsp" />
+            
+        </div>
 
-<script src="https://cdn.jsdelivr.net/npm/jquery@3.6.0/dist/jquery.slim.min.js"></script>
-<script src="https://cdn.jsdelivr.net/npm/summernote@0.8.20/dist/summernote-lite.min.js"></script>
-<script src="https://cdn.jsdelivr.net/npm/bootstrap@5.3.1/dist/js/bootstrap.bundle.min.js"></script>
-
-<script>
-    $(document).ready(function () {
-        $('#myEditor').summernote({
-            placeholder: 'Summernote for Bootstrap 5',
-            tabsize: 2,
-            height: 400,
-            lang: 'ko-KR', // default: 'en-US'
-            disable: true // 수정 불가능한 상태로 설정
-        });
-    });
-</script>
-
-<jsp:include page="../admin/inc/bottom.jsp"/>
-
+    
+    
+    <script src="https://cdn.jsdelivr.net/npm/bootstrap@5.2.3/dist/js/bootstrap.bundle.min.js" crossorigin="anonymous"></script>
+    <script src="../resources/js/admin/scripts.js"></script>
+    <script src="https://cdnjs.cloudflare.com/ajax/libs/Chart.js/2.8.0/Chart.min.js" crossorigin="anonymous"></script>
+    <script src="../resources/assets/admin/demo/chart-area-demo.js"></script>
+    <script src="../resources/assets/admin/demo/chart-bar-demo.js"></script>
+    <script src="https://cdn.jsdelivr.net/npm/simple-datatables@7.1.2/dist/umd/simple-datatables.min.js" crossorigin="anonymous"></script>
+    <script src="../resources/js/admin/datatables-simple-demo.js"></script>
 </body>
 </html>

@@ -235,4 +235,8 @@ public class BoardService {
 		return boardDAO.ReviewCheck(boardDTO);
 	}
 
+	public List<Integer> getwishList(String id) {
+		return boardDAO.getwishList(id);
+	}
+
 }

@@ -73,7 +73,7 @@
 </div>
 </div>
 <br>
-<button class="btn btn-outline-info" onclick="location.href='${pageContext.request.contextPath}/board/qnaList'">돌아가기</button>
+<button class="btn btn-outline-info" onclick="location.href='${pageContext.request.contextPath}/board/lessonQna'">돌아가기</button>
 <hr>
 </div>
  	<jsp:include page="../inc/footer.jsp" />

@@ -276,7 +276,7 @@ display: inline-block;
 
 <c:forEach var="boardDTO" items="${boardList }">
     <div class="d-flex text-body-secondary pt-3">
-      <svg class="bd-placeholder-img flex-shrink-0 me-2 rounded" width="200" height="150" xmlns="http://www.w3.org/2000/svg" role="img" aria-label="Placeholder: 32x32" preserveAspectRatio="xMidYMid slice" focusable="false"><title>Placeholder</title><image href="${pageContext.request.contextPath}/resources/upload/${lessonDTO.preview}" x="0" y="0" width="100%" height="100%"></svg>
+      <svg class="bd-placeholder-img flex-shrink-0 me-2 rounded" width="200" height="150" xmlns="http://www.w3.org/2000/svg" role="img" aria-label="Placeholder: 32x32" preserveAspectRatio="xMidYMid slice" focusable="false"><title>Placeholder</title><image xlink:href="${pageContext.request.contextPath}/resources/upload/${boardDTO.preview}" x="0" y="0" width="100%" height="100%"></svg>
       <p class="pb-3 mb-0 small lh-sm border-bottom">
         <strong class="d-block text-gray-dark">${boardDTO.subject }</strong>
         카테고리 : ${boardDTO.category } / ${boardDTO.subCategory }<br>

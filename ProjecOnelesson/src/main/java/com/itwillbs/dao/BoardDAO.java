@@ -164,6 +164,10 @@ public class BoardDAO {
 		return sqlSession.selectOne(namespace + ".ReviewCheck", boardDTO);
 	}
 
+	public List<Integer> getwishList(String id) {
+		return sqlSession.selectList(namespace + ".getwishList", id);
+	}
+
 
 
 }

@@ -1,7 +1,8 @@
 <%@ page language="java" contentType="text/html; charset=UTF-8"
     pageEncoding="UTF-8"%>
-<%@ taglib prefix="c" uri="http://java.sun.com/jsp/jstl/core" %>    
+<%@ taglib prefix="c" uri="http://java.sun.com/jsp/jstl/core" %>
 <%@ taglib prefix="fmt" uri="http://java.sun.com/jsp/jstl/fmt" %>
+
 <!DOCTYPE html>
 <html lang="ko">
 <head>
@@ -14,27 +15,26 @@
     <link href="https://cdn.jsdelivr.net/npm/simple-datatables@7.1.2/dist/style.min.css" rel="stylesheet" />
     <link href="../resources/css/admin/styles.css" rel="stylesheet" />
     <script src="https://use.fontawesome.com/releases/v6.3.0/js/all.js" crossorigin="anonymous"></script>
-    
-  <script src="/docs/5.3/assets/js/color-modes.js"></script>
-  <script src="https://code.jquery.com/jquery-3.3.1.slim.min.js"></script>
-  <script src="https://cdn.jsdelivr.net/simplemde/latest/simplemde.min.js"></script>
 
-<meta charset="UTF-8">
-<title>자주 묻는 질문</title>
-<link href="https://cdn.jsdelivr.net/npm/bootstrap@5.3.1/dist/css/bootstrap.min.css" rel="stylesheet" integrity="sha384-4bw+/aepP/YC94hEpVNVgiZdgIC5+VKNBQNGCHeKRQN+PtmoHDEXuppvnDJzQIu9" crossorigin="anonymous">
-
- 		<link rel="canonical" href="https://getbootstrap.kr/docs/5.3/examples/sticky-footer-navbar/">
-	    <link rel="stylesheet" href="https://cdn.jsdelivr.net/npm/@docsearch/css@3">
-		<link href="https://cdn.jsdelivr.net/npm/bootstrap@5.3.1/dist/css/bootstrap.min.css" rel="stylesheet">
-		<link rel="stylesheet" href="https://cdn.jsdelivr.net/simplemde/latest/simplemde.min.css">
+<style>
+    .table th,
+    .table td {
+        text-align: center;
+    	!important;
+    }
+    a.title-link {
+    text-decoration: none;
+    color: black;
+    }
+</style>
 
 </head>
-<body>
+<body class="sb-nav-fixed">
 
-<jsp:include page="../admin/inc/top.jsp"/>
-
-<jsp:include page="../admin/inc/left.jsp" /> 
-
+	<jsp:include page="inc/top.jsp" />
+        
+    <jsp:include page="inc/left.jsp" />    
+        
         <div id="layoutSidenav_content">
             <main>
                 <div class="container-fluid px-4">
@@ -43,65 +43,73 @@
                         <li class="breadcrumb-item active">자주 묻는 질문 관리 목록입니다.</li>
                     </ol>
                     
-
-<table class="table table-hover text-center">
-  <thead class="table-dark">
-    <tr>
-      <th scope="col">번호</th>
-      <th scope="col">타입</th>
-      <th scope="col">제목</th>
-    </tr>
-  </thead>
-<tbody>
+<table class="table table-hover table-sm" >
+<col width="70"><col width="600">
+<thead>
+<tr class="bg-primary" style="color: white;">
+	<th style="text-align: center;">번호</th><th style="text-align: center;">제목</th>
+</tr>
 <c:forEach var="adminFaqDTO" items="${faqList}">
-    <tr onclick="location.href='${pageContext.request.contextPath}/admin/faqContent?num=${adminFaqDTO.num}'">
-    	<td>${adminFaqDTO.num}</td>
-
-        <td>${adminFaqDTO.subject}</td>
-    </tr>
+	<tr><td>${adminFaqDTO.num}</td>
+	<td><a class="title-link" href="${pageContext.request.contextPath}/admin/faqContent?num=${adminFaqDTO.num}">${adminFaqDTO.subject}</a></td>
 </c:forEach>
-</tbody>
+</thead>
 </table>
-
-<c:if test="${sessionScope.id eq 'admin'}">
-        <div class="row">
-            <div class="col text-end">
-                <input type="button" name="btn" value="작성" class="btn btn-primary"
-                onclick="location.href='${pageContext.request.contextPath}/admin/faqInsert'">
-            </div>
-        </div>
-</c:if>
-
-
-	<nav aria-label="Page navigation example">
-    <ul class="pagination justify-content-center">
-        <li class="page-item">
-            <c:if test="${pageDTO.startPage > pageDTO.pageBlock}">
-                <a class="page-link" href="${pageContext.request.contextPath}/admin/faqList?pageNum=${pageDTO.startPage - pageDTO.pageBlock}" aria-label="Previous">
-                    <span aria-hidden="true">&laquo;</span>
-                </a>
-            </c:if>
-        </li>
-
-        <c:forEach var="i" begin="${pageDTO.startPage}" end="${pageDTO.endPage}" step="1">
-            <li class="page-item"><a class="page-link" href="${pageContext.request.contextPath}/admin/faqList?pageNum=${i}">${i}</a></li>
-        </c:forEach>
-
-        <li class="page-item">
-            <c:if test="${pageDTO.endPage < pageDTO.pageCount}">
-                <a class="page-link" href="${pageContext.request.contextPath}/admin/faqList?pageNum=${pageDTO.startPage + pageDTO.pageBlock}" aria-label="Next">
-                    <span aria-hidden="true">&raquo;</span>
-                </a>
-            </c:if>
-        </li>
-    </ul>
+<nav aria-label="Page navigation example" style="margin-top: 10px;">
+  <ul class="pagination justify-content-center">
+  <c:if test="${pageDTO.startPage > pageDTO.pageBlock }">
+    <li class="page-item"><a class="page-link" href="${pageContext.request.contextPath}/admin/faq?pageNum=${pageDTO.startPage - pageDTO.pageBlock}">Previous</a></li>
+  </c:if>
+  
+  <c:forEach var="i" begin="${pageDTO.startPage }" end="${pageDTO.endPage }" step="1">
+    <li class="page-item"><a class="page-link" href="${pageContext.request.contextPath}/admin/faq?pageNum=${i}">${i }</a></li>
+  </c:forEach>
+  
+  <c:if test="${pageDTO.endPage < pageDTO.pageCount }">
+    <li class="page-item"><a class="page-link" href="${pageContext.request.contextPath}/admin/faq?pageNum=${pageDTO.startPage + pageDTO.pageBlock}">Next</a></li>
+  </c:if>  
+  </ul>
 </nav>
-</div>
-</main>
 
-<jsp:include page="../admin/inc/bottom.jsp"/>
+<form action="${pageContext.request.contextPath}/admin/faq" method="get">
+<table style="margin-left: auto; margin-right: auto; margin-top: 3px; margin-bottom: 3px">
+	<tr>
+<!-- 		<td style="padding-left: 5px"> -->
+<!-- 			<select class="custom-select" id="choice" name="choice"> -->
+<!-- 				<option selected>검색</option> -->
+<!-- 				<option value="subject">제목</option> -->
+<!-- 				<option value="content">내용</option> -->
+<!-- 			</select> -->
+<!-- 		</td> -->
+		<td style="padding-left: 5px" class="align-middle">
+			<input type="text" class="form-control" id="search" name="search" placeholder="검색어" value="">
+		<td style="padding-left: 5px">
+			<span>
+				<button type="button" class="btn btn-info">검색</button>
+			</span>
+		</td>
+	</tr>
+</table>
+</form>
+<br>
+<button class="btn btn-info" onclick="location.href='${pageContext.request.contextPath}/admin/faqInsert'">글쓰기</button>
+<button class="btn btn-outline-info">돌아가기</button>
+<hr>
 </div>
+            </main>
+            
+            <jsp:include page="inc/bottom.jsp" />
+            
+        </div>
 
-<script src="https://cdn.jsdelivr.net/npm/bootstrap@5.3.1/dist/js/bootstrap.bundle.min.js" integrity="sha384-HwwvtgBNo3bZJJLYd8oVXjrBZt8cqVSpeBNS5n7C8IVInixGAoxmnlMuBnhbgrkm" crossorigin="anonymous"></script>
+    
+    
+    <script src="https://cdn.jsdelivr.net/npm/bootstrap@5.2.3/dist/js/bootstrap.bundle.min.js" crossorigin="anonymous"></script>
+    <script src="../resources/js/admin/scripts.js"></script>
+    <script src="https://cdnjs.cloudflare.com/ajax/libs/Chart.js/2.8.0/Chart.min.js" crossorigin="anonymous"></script>
+    <script src="../resources/assets/admin/demo/chart-area-demo.js"></script>
+    <script src="../resources/assets/admin/demo/chart-bar-demo.js"></script>
+    <script src="https://cdn.jsdelivr.net/npm/simple-datatables@7.1.2/dist/umd/simple-datatables.min.js" crossorigin="anonymous"></script>
+    <script src="../resources/js/admin/datatables-simple-demo.js"></script>
 </body>
 </html>

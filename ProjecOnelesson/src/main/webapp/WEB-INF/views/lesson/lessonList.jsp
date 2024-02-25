@@ -147,8 +147,9 @@
               	<small class="text-body-secondary"><fmt:formatNumber value="${lessonDTO.price }" type="currency"/></small>
                 <div class="btn-group">
 					<button type="button" class="btn btn-outline-success" onclick="location.href='${pageContext.request.contextPath}/lesson/lessonInfo?num=${lessonDTO.num}'">상세정보</button>
-					<button type="button" class="btn btn-outline-success" onclick="toggleHeart(this)" name="num" value="${lessonDTO.num }"><i class="far fa-heart heart"></i></button>
-                </div>
+					<c:set var="isFilled" value="${wishList.contains(lessonDTO.num) ? 'filled' : ''}" />
+					<button type="button" class="btn btn-outline-success" onclick="toggleHeart(this)" name="num" value="${lessonDTO.num }"><i class="${isFilled == 'filled' ? 'fas' : 'far'} fa-heart heart"></i></button>
+				</div>
               </div>
             </div>
           </div>

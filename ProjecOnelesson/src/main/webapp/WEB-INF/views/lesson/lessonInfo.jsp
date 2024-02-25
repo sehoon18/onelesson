@@ -10,6 +10,7 @@
   <script src="https://cdn.jsdelivr.net/simplemde/latest/simplemde.min.js"></script>
   <script src="https://cdn.jsdelivr.net/npm/bootstrap@5.3.1/dist/js/bootstrap.bundle.min.js"></script>
   <script src="https://cdn.jsdelivr.net/npm/marked/marked.min.js"></script>
+  <script src="https://ajax.googleapis.com/ajax/libs/jquery/3.5.1/jquery.min.js"></script>
 
     <meta name="viewport" content="width=device-width, initial-scale=1">
     <meta name="description" content="">
@@ -131,14 +132,12 @@
 	    #info{
 		margin-right: 50px;
 	    }
-		.heart {
-            cursor: pointer;
-            font-size: 24px;
-            color: #fff;
-        }
-        .heart.filled {
-            color: #ff0000;
-        }
+	.heart {
+    color: gray;
+	}
+	.fas.fa-heart {
+    color: red;
+	}
     </style>
 
     <!-- Custom styles for this template -->
@@ -174,7 +173,7 @@
     	<div class="btn-group-vertical" role="group" aria-label="Vertical button group">
  			<button type="button" class="btn btn-success"  onclick="location.href='${pageContext.request.contextPath}/lesson/payment?num=${lessonDTO.num}'">예약하기</button>
 			<button type="button" class="btn btn-success"  onclick="location.href='${pageContext.request.contextPath}/board/lessonQnaWrite?num=${lessonDTO.num}'">문의</button>
-			<button type="button" class="btn btn-success"  onclick="toggleHeart(this)"><i class="fas fa-heart heart"></i></button>
+			<button type="button" class="btn btn-outline-success" onclick="toggleHeart(this)" name="num" value="${lessonDTO.num }"><i class="${isFilled == 'filled' ? 'fas' : 'far'} fa-heart heart"></i></button>
 		</div>
     	</td></tr>
     	<tr><td>
@@ -225,12 +224,38 @@
     </div>	
     </div>
     
-    <script>
-        function toggleHeart(el) {
-            var heartIcon = el.querySelector('.heart');
-            heartIcon.classList.toggle('filled');
+<script>
+    function toggleHeart(el) {
+        var id = '${sessionScope.id}';
+        if(id == null || id == '') {
+            alert('로그인이 필요합니다.');
+            return;
         }
-    </script>
+        var heartIcon = el.querySelector('.heart');
+        var filled = heartIcon.classList.contains('fas');  // 현재 하트 아이콘의 상태 확인
+        heartIcon.classList.toggle('fas'); 
+        heartIcon.classList.toggle('far');
+        
+        var num = el.value;
+        
+
+        $.ajax({
+            url: '${pageContext.request.contextPath}/board/wishToggle',
+            type: 'POST',
+            data: {
+                'id' : id,
+                'wish' : filled ? 'remove' : 'add',  // 현재 상태에 따라 'add' 또는 'remove'
+                'num' : num
+            },
+            success: function(result) {
+                alert(result.message);
+            },
+            error: function(request, status, error) {
+                alert('오류가 발생했습니다');
+            }
+        });
+    }
+</script>
     
 </main>
 

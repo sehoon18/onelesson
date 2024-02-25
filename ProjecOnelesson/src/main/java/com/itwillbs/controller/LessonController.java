@@ -2,6 +2,8 @@ package com.itwillbs.controller;
 
 import java.io.File;
 import java.sql.Timestamp;
+import java.util.ArrayList;
+import java.util.Arrays;
 import java.util.List;
 import java.util.UUID;
 
@@ -49,11 +51,11 @@ public class LessonController {
 	}
 	
 	@GetMapping("/lessonList")
-	public String lessonList(HttpServletRequest request, PageDTO pageDTO, Model model, LessonDTO lessonDTO) {
+	public String lessonList(HttpSession session, HttpServletRequest request, PageDTO pageDTO, Model model, BoardDTO boardDTO) {
 		System.out.println("LessonController lessonList()");
 		
 		String search = request.getParameter("search");
-		
+
 		int pageSize = 9;
 		String pageNum = request.getParameter("pageNum");
 		if(pageNum == null) {
@@ -85,8 +87,12 @@ public class LessonController {
 		pageDTO.setEndPage(endPage);
 		pageDTO.setPageCount(pageCount);
 		
+		List<Integer> wishList = boardService.getwishList((String)session.getAttribute("id"));
+		
+		model.addAttribute("wishList", wishList);
 		model.addAttribute("lessonList", lessonList);
 		model.addAttribute("pageDTO", pageDTO);
+		
 		
 		return "lesson/lessonList";
 	}
@@ -211,7 +217,7 @@ public class LessonController {
 	}	
 	
 	@GetMapping("/lessonInfo")
-	public String lessonInfo(LessonDTO lessonDTO, Model model, BoardDTO boardDTO, HttpServletRequest request, PageDTO pageDTO) {
+	public String lessonInfo(HttpSession session, LessonDTO lessonDTO, Model model, BoardDTO boardDTO, HttpServletRequest request, PageDTO pageDTO) {
 		System.out.println("LessonController lessonInfo()");
 		
 		lessonDTO = lessonService.getLesson(lessonDTO);
@@ -247,6 +253,9 @@ public class LessonController {
 		pageDTO.setEndPage(endPage);
 		pageDTO.setPageCount(pageCount);
 		
+		List<Integer> wishList = boardService.getwishList((String)session.getAttribute("id"));
+		
+		model.addAttribute("wishList", wishList);
 		model.addAttribute("boardList", boardList);
 		model.addAttribute("pageDTO", pageDTO);
 		return "lesson/lessonInfo";

@@ -58,15 +58,21 @@
 <div align="center" style="margin-top: 50px;">
 <div style="margin: 0px auto; width: 1000px">
 <table class="table table-hover table-sm" style="width: 1000px">
-<col width="70"><col width="600"><col width="200">
+<col width="70"><col width="250"><col width="400"><col width="200"><c:if test="${memberDTO.type == 1 }"><col width="100"></c:if>
 <thead>
 <tr class="bg-primary" style="color: white;">
-	<th>번호</th><th>제목</th><th>작성일</th>
+	<th>번호</th>
+	<th><c:if test="${memberDTO.type == 1 }">문의받은 레슨</c:if><c:if test="${memberDTO.type == 0 }">문의한 레슨</c:if></th>
+	<th>제목</th>
+	<th>작성일</th>
+	<c:if test="${memberDTO.type == 1 }"><th>답변</th></c:if>
 </tr>
 <c:forEach var="boardDTO" items="${boardList}">
-	<tr><td>${boardDTO.num}</td>
+	<tr><td>${boardDTO.num }</td>
+	<td>${boardDTO.image}</td>
 	<td><a href="${pageContext.request.contextPath}/board/lessonQnaContent?num=${boardDTO.num}">${boardDTO.subject}</a></td>
-	<td>${boardDTO.update}</td></tr>
+	<td>${boardDTO.update}</td>
+	<c:if test="${memberDTO.type == 1 }"><td><button class="btn btn-info btn-sm" onclick="location.href='${pageContext.request.contextPath}/board/lessonQnaAnswer?num=${boardDTO.num}'">답변하기</button></td></c:if></tr>
 </c:forEach>
 </thead>
 </table>
@@ -109,7 +115,7 @@
 <!-- </table> -->
 <br>
 <%-- <button class="btn btn-info" onclick="location.href='${pageContext.request.contextPath}/board/lessonQnaWrite'">글쓰기</button> --%>
-<button class="btn btn-outline-info">돌아가기</button>
+<button class="btn btn-outline-info" onclick="location.href='${pageContext.request.contextPath}/member/mypage'">돌아가기</button>
 <hr>
 </div>
  	<jsp:include page="../inc/footer.jsp" />
