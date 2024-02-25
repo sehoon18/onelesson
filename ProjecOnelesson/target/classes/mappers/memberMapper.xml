@@ -118,14 +118,35 @@ select MEM_NAME as "name", MEM_BUSINESS_NUM as "businessNum", MEM_ID as "id" fro
 where MEM_NAME = #{name} and MEM_BUSINESS_NUM = #{businessNum} 
 </select>
 
-<select id="memberFIndPassEmailVersion" resultType="com.itwillbs.domain.MemberDTO"> 
+<select id="memberFindPassEmailVersion" resultType="com.itwillbs.domain.MemberDTO"> 
 select MEM_NAME as "name", MEM_EMAIL as "email", MEM_ID as "id" from MEMBER
 where MEM_ID = #{id} and MEM_NAME = #{name} and MEM_EMAIL = #{email} 
 </select>
 
-<select id="memberFIndPassPhoneVersion" resultType="com.itwillbs.domain.MemberDTO"> 
+<select id="memberFindPassPhoneVersion" resultType="com.itwillbs.domain.MemberDTO"> 
 select MEM_NAME as "name", MEM_PHONE as "phone", MEM_ID as "id" from MEMBER
 where MEM_ID = #{id} and MEM_NAME = #{name} and MEM_PHONE = #{phone} 
+</select>
+
+<select id="memberFindPassInstructorEmail" resultType="com.itwillbs.domain.MemberDTO"> 
+select MEM_NAME as "name", MEM_EMAIL as "email", MEM_ID as "id" from MEMBER
+where MEM_ID = #{id} and MEM_NAME = #{name} and MEM_EMAIL = #{email} 
+</select>
+
+
+<select id="memberFindPassInstructorPhone" resultType="com.itwillbs.domain.MemberDTO"> 
+select MEM_NAME as "name", MEM_PHONE as "phone", MEM_ID as "id" from MEMBER
+where MEM_ID = #{id} and MEM_NAME = #{name} and MEM_PHONE = #{phone} 
+</select>
+
+<select id="memberFindPassInstructorBusiness" resultType="com.itwillbs.domain.MemberDTO"> 
+select MEM_NAME as "name", MEM_BUSINESS_NUM as "businessNum", MEM_ID as "id" from MEMBER
+where MEM_ID = #{id} and MEM_NAME = #{name} and MEM_BUSINESS_NUM = #{businessNum} 
+</select>
+
+<select id="foundUserIdSession" resultType="com.itwillbs.domain.MemberDTO"> 
+select MEM_ID as "id", MEM_PASS as "pass" from MEMBER
+where MEM_ID = #{id} and MEM_PASS = #{pass}
 </select>
 
 

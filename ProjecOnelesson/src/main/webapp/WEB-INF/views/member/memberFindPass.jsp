@@ -6,7 +6,7 @@
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
     <title>비밀번호 찾기</title>
-    <link rel="stylesheet" href="styles.css">
+
 
     <!-- CSS only -->
     <link href="https://cdn.jsdelivr.net/npm/bootstrap@5.3.1/dist/css/bootstrap.min.css" rel="stylesheet" 
@@ -166,11 +166,11 @@
                 </div>
 
                 <div id="instructorPhoneFields" style="display: none;">
-                    <label for="instructorId">아이디:</label>
-                    <input type="text" id="instructorId" name="instructorId" required>
+                    <label for="instructorId1">아이디:</label>
+                    <input type="text" id="instructorId1" name="instructorId" required>
 
-                    <label for="instructorName">이름:</label>
-                    <input type="text" id="instructorName" name="instructorName" required>
+                    <label for="instructorName1">이름:</label>
+                    <input type="text" id="instructorName1" name="instructorName" required>
 
                     <label for="instructorPhone">휴대폰번호:</label>
                     <input type="tel" id="instructorPhone" name="instructorPhone" required>
@@ -178,11 +178,11 @@
                 </div>
 
                 <div id="instructorBusinessFields" style="display: none;">
-                    <label for="instructorId">아이디:</label>
-                    <input type="text" id="instructorId" name="instructorId" required>
+                    <label for="instructorId2">아이디:</label>
+                    <input type="text" id="instructorId2" name="instructorId" required>
 
-                    <label for="instructorName">이름:</label>
-                    <input type="text" id="instructorName" name="instructorName" required>
+                    <label for="instructorName2">이름:</label>
+                    <input type="text" id="instructorName2" name="instructorName" required>
 
                     <label for="instructorBusinessNumber">사업자번호:</label>
                     <input type="text" id="instructorBusinessNumber" name="instructorBusinessNumber" required>
@@ -195,7 +195,6 @@
         <p id="resultMessage"></p>
     </div>
 
-    <script src="script.js"></script>
 
     <script>
         function updateFields() {
@@ -273,11 +272,9 @@
                 if (document.getElementById('instructorEmailRadio').checked) {
                     var email = document.getElementById('instructorEmail').value;
                     // 이메일 인증 로직 추가
-                    resultMessage.innerHTML = "가상의 결과: 아이디 " + id + ", 이름 " + name + ", 이메일 " + email;
                 } else if (document.getElementById('instructorPhoneRadio').checked) {
                     var phone = document.getElementById('instructorPhone').value;
-                    // 휴대폰 인증 로직 추가
-                    resultMessage.innerHTML = "가상의 결과: 아이디 " + id + ", 이름 " + name + ", 휴대폰번호 " + phone;
+                    // 휴대폰 인증 로직 추가  
                 } else if (document.getElementById('instructorBusinessRadio').checked) {
                     var businessNumber = document.getElementById('instructorBusinessNumber').value;
                     
@@ -306,7 +303,7 @@ $(function(){
 // 		alert($('#normalEmailRadio').is(':checked'));
 		if( $('#normalEmailRadio').is(':checked') == true){
 			$.ajax({
-				url:'${pageContext.request.contextPath}/member/memberFIndPassEmailVersion',
+				url:'${pageContext.request.contextPath}/member/memberFindPassEmailVersion',
 				data:{   'id' : $('#normalId').val(),
 					   'name' : $('#normalName').val() ,
 					  'email' : $('#normalEmail').val() },
@@ -331,7 +328,7 @@ $(function(){
 				});
 		}else{
 			$.ajax({
-				url:'${pageContext.request.contextPath}/member/memberFIndPassPhoneVersion',
+				url:'${pageContext.request.contextPath}/member/memberFindPassPhoneVersion',
 				data:{   'id' : $('#normalId1').val(),
 					   'name' : $('#normalName1').val(),
 					  'phone' : $('#normalPhone').val() },
@@ -350,18 +347,122 @@ $(function(){
 					},
 					error: function(){
 						alert('error');
-	 					if(id1 == "" && name1 =="" && phone == ""){
+	 					if(id == "" && name =="" && phone == ""){
 	 						alert('정보를 입력해주세요.');
 	 					}else{
 	 						alert("입력하신 정보가 일치하지 않거나 존재하지 않습니다.");
 	 					}
-// 						$('#find_id1_div').html(result);
 					}
 				});			
 		}					
 	})
 	
 });
+</script>
+
+<script>
+$(function(){
+//	alert("불러오기");
+		$('.find_Id2').click(function(){
+//			alert("클릭");
+			var id2 = $('#instructorid').val();
+			var id3 = $('#instructorid1').val();
+			var id4 = $('#instructorid2').val();
+			var name2 = $('#instructorName').val();
+			var name3 = $('#instructorName1').val();
+			var name4 = $('#instructorName2').val();
+			var phone1 = $('#instructorPhone').val();
+			var email1 = $('#instructorEmail').val();
+			var businessNum = $('#instructorBusinessNumber').val();
+			
+//			alert(name);
+//	 		alert($('#instructorEmailRadio').is(':checked'));
+			if( $('#instructorEmailRadio').is(':checked') == true){
+				$.ajax({
+					url:'${pageContext.request.contextPath}/member/memberFindPassInstructorEmail',
+					data:{ 'id' : $('#instructorId').val(),
+						  'name' : $('#instructorName').val() ,
+						  'phone' : $('#instructorPhone').val() ,
+						  'email' : $('#instructorEmail').val() ,
+						  'businessNum' : $('#instructorBusinessNumber').val()},
+					success:function(result){
+						alert("정보 일치");
+						if( result != "try again"){
+							// 정보 일치 시 비밀번호 재설정 페이지로 이동
+			                window.location.href = '${pageContext.request.contextPath}/member/memberResetPass';
+							}else{
+								alert("비밀번호를 재설정할 수 없습니다.");	
+						}
+					},
+	             error: function(){
+	                 if (id == "" && name == "" && email == ""){
+	                     alert('정보를 입력해주세요.');
+	                 } else {
+	                     alert("입력하신 정보가 일치하지 않거나 존재하지 않습니다.");
+	                 }
+	             }
+	         });
+	     } else if ($('#instructorPhoneRadio').is(':checked') == true) {
+	         $.ajax({
+	             url:'${pageContext.request.contextPath}/member/memberFindPassInstructorPhone',
+	             data: {
+	            	 'id' : $('#instructorId1').val(),
+	                 'name': $('#instructorName1').val(),
+	                 'phone': $('#instructorPhone').val(),
+	                 'email': $('#instructorEmail').val(),
+	                 'businessNum': $('#instructorBusinessNumber').val()
+	             },
+	             success:function(result){
+						alert("정보 일치");
+						if( result != "try again"){
+							// 정보 일치 시 비밀번호 재설정 페이지로 이동
+			                window.location.href = '${pageContext.request.contextPath}/member/memberResetPass';
+							}else{
+								alert("비밀번호를 재설정할 수 없습니다.");	
+						}
+					},
+	             error: function(){
+	                 alert('error');
+	                 if (id == "" && name == "" && phone == ""){
+	                     alert('정보를 입력해주세요.');
+	                 } else {
+	                     alert("입력하신 정보가 일치하지 않거나 존재하지 않습니다.");
+	                 }
+	             }
+	         });
+	     } else {
+	         $.ajax({
+	             url:'${pageContext.request.contextPath}/member/memberFindPassInstructorBusiness',
+	             data: {
+	            	 'id' : $('#instructorId2').val(),
+	                 'name': $('#instructorName2').val(),
+	                 'phone': $('#instructorPhone').val(),
+	                 'email': $('#instructorEmail').val(),
+	                 'businessNum': $('#instructorBusinessNumber').val()
+	             },
+	             success:function(result){
+					alert("정보 일치");
+					if( result != "try again"){
+						// 정보 일치 시 비밀번호 재설정 페이지로 이동
+				        window.location.href = '${pageContext.request.contextPath}/member/memberResetPass';
+					}else{
+						alert("비밀번호를 재설정할 수 없습니다.");	
+					}
+				},
+	             error: function(){
+	                 alert('error');
+	                 if (id == "" && name == "" && businessNum == ""){
+	                     alert('정보를 입력해주세요.');
+	                 } else {
+	                     alert("입력하신 정보가 일치하지 않거나 존재하지 않습니다.");
+	                 }
+	             }
+	         });
+	     }
+	 });
+}); // $(function
+		
+		
 </script>   
        
 </body>

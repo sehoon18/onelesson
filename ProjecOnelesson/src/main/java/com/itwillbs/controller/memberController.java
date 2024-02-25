@@ -223,21 +223,30 @@ public class memberController {
 	@GetMapping("/memberFindPass")
 	public String memberFindPass() {
 		System.out.println("MemberController memberFindPass()");
-		return "member/memberFindPass";
+	    return "member/memberFindPass";
 	}	
 	
 	//	비밀번호찾기Pro
 	@PostMapping("/memberFindPassPro")
 	public String memberFindPassPro() {
 		System.out.println("MemberController memberFindPassPro()");
+		
+		
 		return "member/memberFindPassPro";
 	}
 	
 	//	비밀번호재설정
 	@GetMapping("/memberResetPass")
-	public String memberResetPass() {
+	public String memberResetPass(MemberDTO memberDTO, HttpSession session, Model model) {
 		System.out.println("MemberController memberResetPass()");
-		return "member/memberResetPass";
+		// 세션에서 아이디를 읽어옴
+	    MemberDTO memberDTO2 = memberService.foundUserIdSession(memberDTO);
+
+
+	    // 아이디를 모델에 추가하여 뷰로 전달
+	    model.addAttribute("foundUserId", memberDTO2);
+
+	    return "member/memberResetPass";
 	}
 	
 	

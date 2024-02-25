@@ -362,7 +362,7 @@ $(function(){
 			var name4 = $('#instructorName2').val();
 			var phone1 = $('#instructorPhone').val();
 			var email1 = $('#instructorEmail').val();
-			var businessNumber = $('#instructorBusinessNumber').val();
+			var businessNum = $('#instructorBusinessNumber').val();
 			
 //			alert(name);
 //	 		alert($('#instructorEmailRadio').is(':checked'));
@@ -371,8 +371,8 @@ $(function(){
 					url:'${pageContext.request.contextPath}/member/getMemberFindIdInstructorEmail',
 					data:{ 'name' : $('#instructorName').val() ,
 						  'phone' : $('#instructorPhone').val() ,
-						  'email' : $('#instructorEmail').val() },
-						  'businessNumber' : $('#instructorBusinessNumber').val()},
+						  'email' : $('#instructorEmail').val() ,
+						  'businessNum' : $('#instructorBusinessNumber').val()},
 				 success: function (result) {
 	                 alert("아이디 : " + result);
 	                 if (result != "try again"){
@@ -383,7 +383,7 @@ $(function(){
 	                 }
 	             },
 	             error: function(){
-	                 if (name == "" && phone == "" && email == "" && businessNumber == ""){
+	                 if (name == "" && phone == "" && email == "" && businessNum == ""){
 	                     alert('정보를 입력해주세요.');
 	                 } else {
 	                     alert("입력하신 정보가 일치하지 않거나 존재하지 않습니다.");
@@ -397,7 +397,7 @@ $(function(){
 	                 'name': $('#instructorName1').val(),
 	                 'phone': $('#instructorPhone').val(),
 	                 'email': $('#instructorEmail').val(),
-	                 'businessNumber': $('#instructorBusinessNumber').val()
+	                 'businessNum': $('#instructorBusinessNumber').val()
 	             },
 	             success: function (result) {
 	                 alert("아이디 : " + result);
@@ -410,7 +410,7 @@ $(function(){
 	             },
 	             error: function(){
 	                 alert('error');
-	                 if (name == "" && phone == "" && email == "" && businessNumber == ""){
+	                 if (name == "" && phone == "" && email == "" && businessNum == ""){
 	                     alert('정보를 입력해주세요.');
 	                 } else {
 	                     alert("입력하신 정보가 일치하지 않거나 존재하지 않습니다.");
@@ -424,7 +424,7 @@ $(function(){
 	                 'name': $('#instructorName2').val(),
 	                 'phone': $('#instructorPhone').val(),
 	                 'email': $('#instructorEmail').val(),
-	                 'businessNumber': $('#instructorBusinessNumber').val()
+	                 'businessNum': $('#instructorBusinessNumber').val()
 	             },
 	             success: function (result) {
 	                 alert("아이디 : " + result);
@@ -437,14 +437,18 @@ $(function(){
 	             },
 	             error: function(){
 	                 alert('error');
-	                 if (name == "" && phone == "" && email == "" && businessNumber == ""){
+	                 if (name == "" && phone == "" && email == "" && businessNum == ""){
 	                     alert('정보를 입력해주세요.');
 	                 } else {
 	                     alert("입력하신 정보가 일치하지 않거나 존재하지 않습니다.");
 	                 }
 	             }
 	         });
-	     });
+	     }
+	 });
+}); // $(function)
+		
+		
 </script>
     
 </body>
