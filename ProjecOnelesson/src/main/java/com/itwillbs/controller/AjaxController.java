@@ -11,7 +11,6 @@ import org.springframework.http.ResponseEntity;
 import org.springframework.web.bind.annotation.GetMapping;
 import org.springframework.web.bind.annotation.PostMapping;
 import org.springframework.web.bind.annotation.RequestParam;
-import org.springframework.web.bind.annotation.ResponseBody;
 import org.springframework.web.bind.annotation.RestController;
 
 import com.itwillbs.domain.AdminDTO;
@@ -361,13 +360,13 @@ public class AjaxController {
 	
 	
 	//비밀번호 찾기 일반회원 이메일로 찾기
-	@GetMapping("/member/memberFIndPassEmailVersion")
-	public String memberFIndPassEmailVersion(MemberDTO memberDTO, HttpSession session) {
-		System.out.println("AjaxController memberFIndPassEmailVersion()");
+	@GetMapping("/member/memberFindPassEmailVersion")
+	public String memberFindPassEmailVersion(MemberDTO memberDTO, HttpSession session) {
+		System.out.println("AjaxController memberFindPassEmailVersion()");
 	    System.out.println(memberDTO);
 
 	    // 제공된 사용자 이름을 기반으로 회원 정보 가져오기
-	    MemberDTO memberDTO2 = memberService.memberFIndPassEmailVersion(memberDTO);
+	    MemberDTO memberDTO2 = memberService.memberFindPassEmailVersion(memberDTO);
 
 	    System.out.println(memberDTO2);
 
@@ -388,13 +387,13 @@ public class AjaxController {
 	}	
 	
 	//비밀번호 찾기 일반회원 연락처로 찾기
-	@GetMapping("/member/memberFIndPassPhoneVersion")
-	public String memberFIndPassPhoneVersion(MemberDTO memberDTO, HttpSession session) {
-		System.out.println("AjaxController memberFIndPassPhoneVersion()");
+	@GetMapping("/member/memberFindPassPhoneVersion")
+	public String memberFindPassPhoneVersion(MemberDTO memberDTO, HttpSession session) {
+		System.out.println("AjaxController memberFindPassPhoneVersion()");
 	    System.out.println(memberDTO);
 
 	    // 제공된 사용자 이름을 기반으로 회원 정보 가져오기
-	    MemberDTO memberDTO2 = memberService.memberFIndPassPhoneVersion(memberDTO);
+	    MemberDTO memberDTO2 = memberService.memberFindPassPhoneVersion(memberDTO);
 
 	    System.out.println(memberDTO2);
 
@@ -415,6 +414,88 @@ public class AjaxController {
 	}	
 	
 	
+	//비밀번호 찾기 강사회원 이메일로 찾기
+	@GetMapping("/member/memberFindPassInstructorEmail")
+	public String memberFindPassInstructorEmail(MemberDTO memberDTO, HttpSession session) {
+		System.out.println("AjaxController memberFindPassInstructorEmail()");
+	    System.out.println(memberDTO);
+
+	    // 제공된 사용자 이름을 기반으로 회원 정보 가져오기
+	    MemberDTO memberDTO2 = memberService.memberFindPassInstructorEmail(memberDTO);
+
+	    System.out.println(memberDTO2);
+
+	    String result = "";
+
+	    if (memberDTO2 != null) {
+	        result = memberDTO2.getId();  
+//	        result = memberDTO2.getId();
+//	        session.setAttribute("id", memberDTO2.getId());
+	        
+	    } else {
+	        result = "try again"; 
+	    }
+
+	    System.out.println(result);
+
+	    return result;
+	}
+	
+	
+	//비밀번호 찾기 강사회원 연락처로 찾기
+	@GetMapping("/member/memberFindPassInstructorPhone")
+	public String memberFindPassInstructorPhone(MemberDTO memberDTO, HttpSession session) {
+		System.out.println("AjaxController memberFindPassInstructorPhone()");
+	    System.out.println(memberDTO);
+
+	    // 제공된 사용자 이름을 기반으로 회원 정보 가져오기
+	    MemberDTO memberDTO2 = memberService.memberFindPassInstructorPhone(memberDTO);
+
+	    System.out.println(memberDTO2);
+
+	    String result = "";
+
+	    if (memberDTO2 != null) {
+	        result = memberDTO2.getId();  
+//	        result = memberDTO2.getId();
+//	        session.setAttribute("id", memberDTO2.getId());
+	        
+	    } else {
+	        result = "try again"; 
+	    }
+
+	    System.out.println(result);
+
+	    return result;
+	}	
+	
+
+	//비밀번호 찾기 강사회원 사업자번호로 찾기
+	@GetMapping("/member/memberFindPassInstructorBusiness")
+	public String memberFindPassInstructorBusiness(MemberDTO memberDTO, HttpSession session) {
+		System.out.println("AjaxController memberFindPassInstructorBusiness()");
+	    System.out.println(memberDTO);
+
+	    // 제공된 사용자 이름을 기반으로 회원 정보 가져오기
+	    MemberDTO memberDTO2 = memberService.memberFindPassInstructorBusiness(memberDTO);
+
+	    System.out.println(memberDTO2);
+
+	    String result = "";
+
+	    if (memberDTO2 != null) {
+	        result = memberDTO2.getId();  
+//	        result = memberDTO2.getId();
+//	        session.setAttribute("id", memberDTO2.getId());
+	        
+	    } else {
+	        result = "try again"; 
+	    }
+
+	    System.out.println(result);
+
+	    return result;
+	}	
 	
 	
 	// -------------------------------- wish toggle ----------------------------------------------

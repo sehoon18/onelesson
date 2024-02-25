@@ -91,14 +91,34 @@ public class MemberService {
 		return memberDAO.getMemberFindIdInstructorBusiness(memberDTO);
 	}
 
-	public MemberDTO memberFIndPassEmailVersion(MemberDTO memberDTO) {
-		System.out.println("MemberService memberFIndPassEmailVersion()");
-		return memberDAO.memberFIndPassEmailVersion(memberDTO);
+	public MemberDTO memberFindPassEmailVersion(MemberDTO memberDTO) {
+		System.out.println("MemberService memberFindPassEmailVersion()");
+		return memberDAO.memberFindPassEmailVersion(memberDTO);
 	}
 
-	public MemberDTO memberFIndPassPhoneVersion(MemberDTO memberDTO) {
-		System.out.println("MemberService memberFIndPassPhoneVersion()");
-		return memberDAO.memberFIndPassPhoneVersion(memberDTO);
+	public MemberDTO memberFindPassPhoneVersion(MemberDTO memberDTO) {
+		System.out.println("MemberService memberFindPassPhoneVersion()");
+		return memberDAO.memberFindPassPhoneVersion(memberDTO);
+	}
+
+	public MemberDTO foundUserIdSession(MemberDTO memberDTO) {
+		System.out.println("MemberService foundUserIdSession()");
+		return memberDAO.foundUserIdSession(memberDTO);
+	}
+
+	public MemberDTO memberFindPassInstructorEmail(MemberDTO memberDTO) {
+		System.out.println("MemberService memberFindPassInstructorEmail()");
+		return memberDAO.memberFindPassInstructorEmail(memberDTO);
+	}
+
+	public MemberDTO memberFindPassInstructorPhone(MemberDTO memberDTO) {
+		System.out.println("MemberService memberFindPassInstructorPhone()");
+		return memberDAO.memberFindPassInstructorPhone(memberDTO);
+	}
+
+	public MemberDTO memberFindPassInstructorBusiness(MemberDTO memberDTO) {
+		System.out.println("MemberService memberFindPassInstructorBusiness()");
+		return memberDAO.memberFindPassInstructorBusiness(memberDTO);
 	}
 	
 	

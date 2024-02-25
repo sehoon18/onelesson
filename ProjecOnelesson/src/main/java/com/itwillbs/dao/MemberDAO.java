@@ -93,15 +93,35 @@ public class MemberDAO {
 		System.out.println(memberDTO);
 		return sqlSession.selectOne(namespace+".getMemberFindIdInstructorBusiness",memberDTO);
 	}
-	public MemberDTO memberFIndPassEmailVersion(MemberDTO memberDTO) {
-		System.out.println("MemberDAO memberFIndPassEmailVersion()");
+	public MemberDTO memberFindPassEmailVersion(MemberDTO memberDTO) {
+		System.out.println("MemberDAO memberFindPassEmailVersion()");
 		System.out.println(memberDTO);
-		return sqlSession.selectOne(namespace+".memberFIndPassEmailVersion",memberDTO);
+		return sqlSession.selectOne(namespace+".memberFindPassEmailVersion",memberDTO);
 	}
-	public MemberDTO memberFIndPassPhoneVersion(MemberDTO memberDTO) {
-		System.out.println("MemberDAO memberFIndPassPhoneVersion()");
+	public MemberDTO memberFindPassPhoneVersion(MemberDTO memberDTO) {
+		System.out.println("MemberDAO memberFindPassPhoneVersion()");
 		System.out.println(memberDTO);
-		return sqlSession.selectOne(namespace+".memberFIndPassPhoneVersion",memberDTO);
+		return sqlSession.selectOne(namespace+".memberFindPassPhoneVersion",memberDTO);
+	}
+	public MemberDTO foundUserIdSession(MemberDTO memberDTO) {
+		System.out.println("MemberDAO foundUserIdSession()");
+		System.out.println(memberDTO);
+		return sqlSession.selectOne(namespace+".foundUserIdSession",memberDTO);
+	}
+	public MemberDTO memberFindPassInstructorEmail(MemberDTO memberDTO) {
+		System.out.println("MemberDAO memberFindPassInstructorEmail()");
+		System.out.println(memberDTO);
+		return sqlSession.selectOne(namespace+".memberFindPassInstructorEmail",memberDTO);
+	}
+	public MemberDTO memberFindPassInstructorPhone(MemberDTO memberDTO) {
+		System.out.println("MemberDAO memberFindPassInstructorPhone()");
+		System.out.println(memberDTO);
+		return sqlSession.selectOne(namespace+".memberFindPassInstructorPhone",memberDTO);
+	}
+	public MemberDTO memberFindPassInstructorBusiness(MemberDTO memberDTO) {
+		System.out.println("MemberDAO memberFindPassInstructorBusiness()");
+		System.out.println(memberDTO);
+		return sqlSession.selectOne(namespace+".memberFindPassInstructorBusiness",memberDTO);
 	}
 
 
