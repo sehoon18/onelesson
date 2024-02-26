@@ -108,5 +108,14 @@ public class LessonService {
 		return lessonDAO.getWishCount(pageDTO);
 
 	}
+
+	public LessonDTO getLesNum(String id) {
+		System.out.println("LessonService getLesNum");
+		return lessonDAO.getLesNum(id);
+	}
+
+
+
+	
 	
 }

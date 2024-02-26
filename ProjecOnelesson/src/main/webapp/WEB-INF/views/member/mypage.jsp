@@ -281,16 +281,16 @@ display: inline-block;
 	</table>
     
     <div class="btn-group" role="group" aria-label="Basic example" style="display: flex; justify-content : center;">
-    	<c:if test="${ 0 eq memberDTO.status }">
+    	<c:if test="${ 0 eq memberDTO.type }">
 	  <button type="button" class="btn btn-outline-success btn-lg" onclick="location.href='${pageContext.request.contextPath}/member/mypage'">내 정보</button>
 	  		</c:if>
-	  	<c:if test="${ 1 eq memberDTO.status }">
+	  	<c:if test="${ 1 eq memberDTO.type }">
 	  <button type="button" class="btn btn-outline-success btn-lg" onclick="location.href='${pageContext.request.contextPath}/member/mypage'">내 정보(강사)</button>		
 	  		</c:if>
-	  	<c:if test="${ 0 eq memberDTO.status }">
+	  	<c:if test="${ 0 eq memberDTO.type }">
 	  <button type="button" class="btn btn-outline-success btn-lg" onclick="location.href='${pageContext.request.contextPath}/member/myPayment'">결제내역</button>
 	  		</c:if>
-	  	<c:if test="${ 1 eq memberDTO.status }">
+	  	<c:if test="${ 1 eq memberDTO.type }">
 	  	<button type="button" class="btn btn-outline-success btn-lg" onclick="location.href='${pageContext.request.contextPath}/member/myPayment'">정산내역</button>
 	  		</c:if>
 	  <button type="button" class="btn btn-outline-success btn-lg" onclick="location.href='${pageContext.request.contextPath}/board/reviewList'">후기</button>
@@ -308,10 +308,10 @@ display: inline-block;
 	 						<span class="UserProfil">전화 번호 : ${memberDTO.phone }</span><br>
 	 						<span class="UserProfil">email : ${memberDTO.email }</span><br>
 	 						<span class="UserProfil">주소 : ${memberDTO.address }</span><br>
-	 						<c:if test="${ 0 eq memberDTO.status }">	 							
+	 						<c:if test="${ 0 eq memberDTO.type }">	 							
 	 							<span class="UserProfil1">회원 속성 : 학생</span><br>
 	 							</c:if>
-	 						<c:if test="${ 1 eq memberDTO.status }">	 							
+	 						<c:if test="${ 1 eq memberDTO.type }">	 							
 	 							<span class="UserProfil1">회원 속성 : 강사</span><br>
 	 							</c:if>	
 	 				</div>

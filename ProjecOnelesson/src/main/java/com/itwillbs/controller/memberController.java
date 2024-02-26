@@ -254,17 +254,16 @@ public class memberController {
 		return "member/myLessonList";
 	}
 	@GetMapping("/myPayment")
-	public String myPayment(HttpSession session, MemberDTO memberDTO, Model model, LessonDTO lessonDTO, OrderDTO orderDTO, PageDTO pageDTO ,HttpServletRequest request) {
+	public String myPayment(HttpSession session, MemberDTO memberDTO, Model model, LessonDTO lessonDTO, LessonDTO orderDTO, PageDTO pageDTO ,HttpServletRequest request) {
 		System.out.println("MemberController myPayment()");
 		System.out.println(session.getAttribute("id"));
 		
 		memberDTO = memberService.getMember((String)session.getAttribute("id"));
-		//getMember2라는 메서드를 만들어서 getMember하면서 LES_NUM값을 가져오게 하라.
+	
 		System.out.println(memberDTO);
 		model.addAttribute("memberDTO", memberDTO);
 		
-		
-		System.out.println(lessonDTO);
+		System.out.println(orderDTO);
 		
 		model.addAttribute("lessonDTO", lessonDTO);
 		int pageSize = 2;
@@ -305,6 +304,12 @@ public class memberController {
 		model.addAttribute("orderList2" , orderList2);
 		model.addAttribute("pageDTO", pageDTO);
 		
+		if (orderList.isEmpty()) {
+			if(orderList2.isEmpty()) {
+			model.addAttribute("orderError", "데이터가 없습니다.");
+			return "member/orderErrorPage";
+		}
+		}
 		System.out.println(lessonDTO);
 		System.out.println(memberDTO);
 		System.out.println(orderList.size());

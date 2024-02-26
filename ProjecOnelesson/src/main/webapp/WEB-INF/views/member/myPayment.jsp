@@ -287,7 +287,22 @@ display: inline-block;
 	float: left;
 	margin-left: 40px;
 	text-align: center;
-	}	
+	}
+.payment-text8{
+	position : static;
+	width: 80px;
+	float: left;
+	margin-left: 20px;
+	text-align: center;
+	}
+.payment-text9{
+	position : static;
+	width: 80px;
+	float: left;
+	margin-left: 30px;
+	text-align: center;
+	}
+
 .payment-inBox7{
 	width: 1500px;
 	border-bottom: 3px solid;
@@ -367,6 +382,27 @@ display: inline-block;
 	text-align: center;
 	margin-left: 10px;
 }
+.paymentIn-text8{
+	width: 80px;
+	height: 30px;
+	border-bottom: 2px solid;
+	border-bottom-color: black;
+	position: static;
+	display: inline-block;
+	text-align: center;
+	margin-left: 10px;
+}
+.paymentIn-text9{
+	width: 100px;
+	height: 30px;
+	border-bottom: 2px solid;
+	border-bottom-color: black;
+	position: static;
+	display: inline-block;
+	text-align: center;
+	margin-left: 10px;
+}
+
 </style>
 </head>
 <!-- 헤더 넣는 곳 -->
@@ -389,16 +425,16 @@ display: inline-block;
 	</table>
     
      <div class="btn-group" role="group" aria-label="Basic example" style="display: flex; justify-content : center;">
-    	<c:if test="${ 0 eq memberDTO.status }">
+    	<c:if test="${ 0 eq memberDTO.type }">
 	  <button type="button" class="btn btn-outline-success btn-lg" onclick="location.href='${pageContext.request.contextPath}/member/mypage'">내 정보</button>
 	  		</c:if>
-	  	<c:if test="${ 1 eq memberDTO.status }">
+	  	<c:if test="${ 1 eq memberDTO.type }">
 	  <button type="button" class="btn btn-outline-success btn-lg" onclick="location.href='${pageContext.request.contextPath}/member/mypage'">내 정보(강사)</button>		
 	  		</c:if>
-	  	<c:if test="${ 0 eq memberDTO.status }">
+	  	<c:if test="${ 0 eq memberDTO.type }">
 	  <button type="button" class="btn btn-outline-success btn-lg" onclick="location.href='${pageContext.request.contextPath}/member/myPayment'">결제내역</button>
 	  		</c:if>
-	  	<c:if test="${ 1 eq memberDTO.status }">
+	  	<c:if test="${ 1 eq memberDTO.type }">
 	  	<button type="button" class="btn btn-outline-success btn-lg" onclick="location.href='${pageContext.request.contextPath}/member/myPayment'">정산내역</button>
 	  		</c:if>
 	  <button type="button" class="btn btn-outline-success btn-lg" onclick="location.href='${pageContext.request.contextPath}/board/reviewList'">후기</button>
@@ -408,10 +444,10 @@ display: inline-block;
 	  <button type="button" class="btn btn-outline-success btn-lg" onclick="location.href='${pageContext.request.contextPath}/board/qnaList'">관리자에게 문의</button>
 	</div>
 <div class="myPageT"></div>
-				<c:if test="${ 0 eq memberDTO.status }">
+				<c:if test="${ 0 eq memberDTO.type }">
 	 		<h4 style="text-align: center;">나의 결제 정보 내역 보기</h4>
 	 			</c:if>
-	 			<c:if test="${ 1 eq memberDTO.status }">
+	 			<c:if test="${ 1 eq memberDTO.type }">
 	 		<h4 style="text-align: center;">나의 정산 정보 내역 보기</h4>
 	 			</c:if>
 	 				</div>
@@ -424,14 +460,19 @@ display: inline-block;
 	 					<span class="payment-text1">결제 번호</span>
 	 					<span class="payment-text2">레슨 제목</span>
 	 					<span class="payment-text3">레슨 가격</span>
-	 					<span class="payment-text4">구매자 이름</span>
+	 					<span class="payment-text4">구매자 이름</span> 					
 	 					<span class="payment-text5">결제 시간</span>
 	 					<span class="payment-text6">결제 방법</span>
 	 					<span class="payment-text7">결제 상태</span>
+	 					<c:if test="${ 1 eq memberDTO.type }">
+	 					<span  class="payment-text8">수수료</span>
+	 					<span  class="payment-text9">정산금액</span>
+	 					</c:if>
 	 					</div>
- 	 						
+ 	 				
 	 			<div class="payment-inBox7">
   				<c:forEach var="orderDTO" items="${orderList }">
+  				<c:if test="${ 0 eq memberDTO.type }">
  				<span class="paymentIn-text1">${orderDTO.ORDER_NUM }</span> 
   	 				<span class="paymentIn-text2">${orderDTO.LES_SUBJECT }</span>
  	 				<span class="paymentIn-text3">${orderDTO.LES_PRICE }</span>
@@ -441,8 +482,26 @@ display: inline-block;
 	 				<span class="paymentIn-text6">kg이니시스</span> 
 	 					<c:if test="${ 0 eq orderDTO.ORDER_STATUS }">
 	 				<span class="paymentIn-text7">결제 완료</span>
-	 					</c:if><br>
+	 					</c:if><br></c:if>
 				</c:forEach>
+	 			<c:forEach var="orderDTO" items="${orderList2 }">
+  				<c:if test="${ 1 eq memberDTO.type }">
+ 				<span class="paymentIn-text1">${orderDTO.ORDER_NUM }</span> 
+  	 				<span class="paymentIn-text2">${orderDTO.LES_SUBJECT }</span>
+ 	 				<span class="paymentIn-text3">${orderDTO.LES_PRICE }</span>
+					<span class="paymentIn-text4">${orderDTO.MEM_NAME }</span>
+					<span class="paymentIn-text5">${orderDTO.ORDER_DATE }</span>
+						<c:if test="${ 'kg_inicis' eq orderDTO.ORDER_METHOD }"></c:if> 
+	 				<span class="paymentIn-text6">kg이니시스</span> 
+	 					<c:if test="${ 0 eq orderDTO.ORDER_STATUS }">
+	 				<span class="paymentIn-text7">결제 완료</span>
+	 				<span class="paymentIn-text8" id="adminPay">${orderDTO.LES_PRICE * 0.1}</span>
+	 				<span class="paymentIn-text9" id="mentoPay">${orderDTO.LES_PRICE * 0.9}</span>
+	 					</c:if>
+	 					<br></c:if>
+				</c:forEach>
+	 			
+	 			
 	 			</div>
 	 			
 	 			 <script>
@@ -485,15 +544,12 @@ display: inline-block;
 <jsp:include page="../inc/footer.jsp" />
 <!-- 푸터 넣는곳 --> 
 <script>
-var ProDisplay = true;
-function openDisplay(){
-    var onP = document.getElementById("myProfil");
-    if(onP.style.display=='none'){
-        onP.style.display = 'inline-block';
-    }else{
-        onP.style.display = 'none';
-    }
-}
+
+var oPrice = ${orderDTO.LES_PRICE };
+
+var adminPrice = oPrice * 0.1;
+document.getElementById("adminPay").textContent = adminPrice;
+
 
  </script>
 

@@ -63,6 +63,7 @@ public class MemberDAO {
 		System.out.println("MemberDAO getMemberLessonNum()");
 		return sqlSession.selectOne(namespace + ".getMemberLessonNum" , attribute);
 	}
+	
 
 
 
