@@ -11,10 +11,11 @@
     <meta name="description" content="" />
     <meta name="author" content="" />
     <title>회원 관리 - SB Admin</title>
+    <link rel="icon" href="${pageContext.request.contextPath}/resources/images/favicon_g.png"/>
+	<link rel="apple-touch-icon" href="${pageContext.request.contextPath}/resources/images/favicon_g.png"/>
     <link href="https://cdn.jsdelivr.net/npm/simple-datatables@7.1.2/dist/style.min.css" rel="stylesheet" />
     <link href="../resources/css/admin/styles.css" rel="stylesheet" />
     <script src="https://use.fontawesome.com/releases/v6.3.0/js/all.js" crossorigin="anonymous"></script>
-
 
 <style>
     .table th,
@@ -74,9 +75,9 @@
   </ul>
 </nav>
 
-<form action="${pageContext.request.contextPath}/admin/qna" method="get">
-<table style="margin-left: auto; margin-right: auto; margin-top: 3px; margin-bottom: 3px">
-	<tr>
+<%-- <form action="${pageContext.request.contextPath}/admin/qna" method="get"> --%>
+<!-- <table style="margin-left: auto; margin-right: auto; margin-top: 3px; margin-bottom: 3px"> -->
+<!-- 	<tr> -->
 <!-- 		<td style="padding-left: 5px"> -->
 <!-- 			<select class="custom-select" id="choice" name="choice"> -->
 <!-- 				<option selected>검색</option> -->
@@ -85,18 +86,18 @@
 <!-- 			</select> -->
 			
 <!-- 		</td> -->
-		<td style="padding-left: 5px" class="align-middle">
-			<input type="text" class="form-control" id="search" name="search" placeholder="검색어" value="">
-		<td style="padding-left: 5px">
-			<span>
-				<button type="button" class="btn btn-info">검색</button>
-			</span>
-		</td>
-	</tr>
-</table>
-</form>
+<!-- 		<td style="padding-left: 5px" class="align-middle"> -->
+<!-- 			<input type="text" class="form-control" id="search" name="search" placeholder="검색어" value=""> -->
+<!-- 		<td style="padding-left: 5px"> -->
+<!-- 			<span> -->
+<!-- 				<button type="button" class="btn btn-info">검색</button> -->
+<!-- 			</span> -->
+<!-- 		</td> -->
+<!-- 	</tr> -->
+<!-- </table> -->
+<!-- </form> -->
 <br>
-<button class="btn btn-info" onclick="location.href='${pageContext.request.contextPath}/admin/qnaAnswer'">답변하기</button>
+<%-- <button class="btn btn-info" onclick="location.href='${pageContext.request.contextPath}/admin/qnaAnswer'">답변하기</button> --%>
 <button class="btn btn-outline-info">돌아가기</button>
 <hr>
 </div>

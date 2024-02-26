@@ -32,6 +32,6 @@
                  </div>
         </div>
                  <div class="text-center">
-        <img src="${pageContext.request.contextPath}/resources/images/main/logo.png" alt="Logo" style="width: 240px; height: auto;">
+        <img src="${pageContext.request.contextPath}/resources/images/logo.png" alt="Logo" style="width: 240px; height: auto;">
     </div>
 </footer>

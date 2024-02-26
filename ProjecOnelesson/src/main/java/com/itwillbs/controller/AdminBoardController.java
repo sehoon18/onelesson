@@ -16,12 +16,14 @@ import com.itwillbs.domain.AdminDTO;
 import com.itwillbs.domain.AdminFaqDTO;
 import com.itwillbs.domain.AdminNoticeDTO;
 import com.itwillbs.domain.AdminQnaDTO;
+import com.itwillbs.domain.BoardDTO;
 import com.itwillbs.domain.LessonDTO;
 import com.itwillbs.domain.MemberDTO;
 import com.itwillbs.domain.PageDTO;
 import com.itwillbs.service.AdminFaqService;
 import com.itwillbs.service.AdminNoticeService;
 import com.itwillbs.service.AdminQnaService;
+import com.itwillbs.service.BoardService;
 import com.itwillbs.service.LessonService;
 import com.itwillbs.service.MemberService;
 
@@ -38,6 +40,8 @@ public class AdminBoardController {
 	private LessonService lessonService;
 	@Inject
 	private MemberService memberService;
+	@Inject
+	private BoardService boardService;
 	
 	
 	@GetMapping("/memberAdmin")
@@ -354,38 +358,40 @@ public class AdminBoardController {
 	}
 	
 	@GetMapping("/qnaContent")
-	public String qnaContent(AdminQnaDTO adminQnaDTO, Model model) {
+	public String qnaContent(BoardDTO boardDTO, AdminQnaDTO adminQnaDTO, Model model) {
 		System.out.println("AdminBoardController qnaContent()");
 		System.out.println(adminQnaDTO);
 		
 		adminQnaDTO = adminQnaService.getQna(adminQnaDTO);
-		
-		model.addAttribute("adminQnaDTO", adminQnaDTO);
+		boardDTO = boardService.getQna(boardDTO);
+	    
+	    model.addAttribute("adminQnaDTO", adminQnaDTO);
+	    model.addAttribute("boardDTO", boardDTO);
 		
 		return "admin/qnaContent";
 	}
 	
-	@GetMapping("/qnaAnswer")
-	public String qnaAnswer(AdminQnaDTO adminQnaDTO, Model model) {
-		System.out.println("AdminBoardController qnaAnswer()");
-		System.out.println(adminQnaDTO);
-		
-		adminQnaDTO = adminQnaService.getQna(adminQnaDTO);
-		
-		model.addAttribute("adminQnaDTO", adminQnaDTO);
-		
-		return "admin/qnaAnswer";
-	}
-	
-	@PostMapping("/qnaAnswerPro")
-	public String qnaAnswerPro(AdminQnaDTO adminQnaDTO) {
-		System.out.println("AdminBoardController qnaAnswerPro()");
+//	@GetMapping("/qnaAnswer")
+//	public String qnaAnswer(AdminQnaDTO adminQnaDTO, Model model) {
+//		System.out.println("AdminBoardController qnaAnswer()");
 //		System.out.println(adminQnaDTO);
 //		
-//		adminFaqService.qnaAnswer(adminQnaDTO);
-		
-		return "redirect:/admin/qna";
-	}
+//		adminQnaDTO = adminQnaService.getQna(adminQnaDTO);
+//		
+//		model.addAttribute("adminQnaDTO", adminQnaDTO);
+//		
+//		return "admin/qnaAnswer";
+//	}
+//	
+//	@PostMapping("/qnaAnswerPro")
+//	public String qnaAnswerPro(AdminQnaDTO adminQnaDTO) {
+//		System.out.println("AdminBoardController qnaAnswerPro()");
+//		System.out.println(adminQnaDTO);
+//		
+//		adminQnaService.qnaAnswer(adminQnaDTO);
+//		
+//		return "redirect:/admin/qna";
+//	}
 	
 	
 	

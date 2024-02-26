@@ -11,6 +11,8 @@
     <meta name="description" content="" />
     <meta name="author" content="" />
     <title>회원 관리 - SB Admin</title>
+    <link rel="icon" href="${pageContext.request.contextPath}/resources/images/favicon_g.png"/>
+	<link rel="apple-touch-icon" href="${pageContext.request.contextPath}/resources/images/favicon_g.png"/>
     <link href="https://cdn.jsdelivr.net/npm/simple-datatables@7.1.2/dist/style.min.css" rel="stylesheet" />
     <link href="../resources/css/admin/styles.css" rel="stylesheet" />
     <script src="https://use.fontawesome.com/releases/v6.3.0/js/all.js" crossorigin="anonymous"></script>
@@ -32,9 +34,9 @@
         <div id="layoutSidenav_content">
             <main>
                 <div class="container-fluid px-4">
-                    <h1 class="mt-4">공지 / 이벤트</h1>
+                    <h1 class="mt-4">Q&A</h1>
                     <ol class="breadcrumb mb-4">
-                        <li class="breadcrumb-item active">공지 / 이벤트 관리 목록입니다.</li>
+                        <li class="breadcrumb-item active">Q&A 관리 목록입니다.</li>
                     </ol>
 
 <h3 style="margin-bottom: 30px;">👮‍♂️‍관리자에게 문의하기</h3>

@@ -11,7 +11,8 @@
     <meta name="description" content="">
     <meta name="author" content="Mark Otto, Jacob Thornton, and Bootstrap contributors">
     <meta name="generator" content="Hugo 0.115.4">
-
+	<link rel="icon" href="${pageContext.request.contextPath}/resources/images/favicon_g.png"/>
+	<link rel="apple-touch-icon" href="${pageContext.request.contextPath}/resources/images/favicon_g.png"/>
 <!-- css 필수 -->
 <link href="https://cdn.jsdelivr.net/npm/bootstrap@5.3.1/dist/css/bootstrap.min.css" rel="stylesheet">
     
@@ -127,7 +128,7 @@
 <!--     1번째 이미지  -->
       <div class="carousel-item active">
       <a href="${pageContext.request.contextPath}/lesson/lessonList" target="_blank"></a>
-      	<img src="${pageContext.request.contextPath}/resources/images/main/top3.png" width="100%" height="100%" class="d-block w-100" alt="First slide" >
+      	<img src="${pageContext.request.contextPath}/resources/images/main/main_banner.png" width="100%" height="100%" class="d-block w-100" alt="First slide" >
     </div>
       	
       <!--     2번째 이미지  -->
@@ -148,11 +149,6 @@
   </div>
 </div>
 
-<div class="position-absolute bottom-50 start-0 w-100 d-flex justify-content">
-            <button class="btn btn-primary" style="margin-left: 300px;"  onclick="location.href='${pageContext.request.contextPath}/lesson/lessonList'">GO</button>
-            <button class="btn btn-primary" style="margin-left: 340px;"  onclick="location.href='${pageContext.request.contextPath}/lesson/lessonList'">GO</button>
-            <button class="btn btn-primary " style="margin-left: 400px;" onclick="location.href='${pageContext.request.contextPath}/lesson/lessonList'">GO</button>
-        </div>
 
 
       <!-- 카테고리 -->
@@ -217,7 +213,7 @@
   </div>
   <!-- 리뷰 이미지 -->
   <div class="col-md-5 text-center" style="width: 2000px"> 
-    <img src="${pageContext.request.contextPath}/resources/images/main/review.png" class="img-fluid" alt="Responsive image" style=" width: 100%" height="100%">
+    <img src="${pageContext.request.contextPath}/resources/images/main/main_3.png" class="img-fluid" alt="Responsive image" style=" width: 100%" height="100%">
   </div>
 </div>
 
@@ -227,7 +223,7 @@
 </div>
     <div class="row featurette">
       <div class="col-md-5 text-center" style="width: 2000px"> <!-- 이미지 -->
-    <img src="${pageContext.request.contextPath}/resources/images/main/guide1.png" class="img-fluid" alt="Responsive image" style=" width: 100%" height="100%">
+    <img src="${pageContext.request.contextPath}/resources/images/main/main_1.png" class="img-fluid" alt="Responsive image" style=" width: 100%" height="100%">
       </div>
       <div class="col-md-7 order-md-2" style="width: 2000px"><br><br><br><br><br>	<!-- 텍스트 -->
         <h1><span class=blue>01</span></h1>
@@ -248,7 +244,7 @@
 
     <div class="row featurette">
       <div class="col-md-5" style="width: 2000px"> <!-- 이미지 -->
-       <img src="${pageContext.request.contextPath}/resources/images/main/guide2.png" class="img-fluid" alt="Responsive image" style=" width: 100%" height="100%">
+       <img src="${pageContext.request.contextPath}/resources/images/main/main_2.png" class="img-fluid" alt="Responsive image" style=" width: 100%" height="100%">
       </div>
       <div class="col-md-7" style="width: 2000px" ><br><br><br><br><br> <!-- 텍스트 -->
         <h1><span class=orange>01</span></h1>

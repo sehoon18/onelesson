@@ -1,6 +1,7 @@
 <%@ page language="java" contentType="text/html; charset=UTF-8"
     pageEncoding="UTF-8"%>
 <%@ taglib prefix="c" uri="http://java.sun.com/jsp/jstl/core"%>
+<%@ taglib prefix="fmt" uri="http://java.sun.com/jsp/jstl/fmt" %>
 <!DOCTYPE html>
 <html>
 <head>
@@ -8,6 +9,8 @@
 <title>관리자문의 목록</title>
 
 <meta name="viewport" content="width=device-width, initial-scale=1">
+<link rel="icon" href="${pageContext.request.contextPath}/resources/images/favicon_g.png"/>
+<link rel="apple-touch-icon" href="${pageContext.request.contextPath}/resources/images/favicon_g.png"/>
 <link rel="stylesheet" href="https://cdn.jsdelivr.net/npm/bootstrap@4.6.2/dist/css/bootstrap.min.css">
 <script src="https://cdn.jsdelivr.net/npm/jquery@3.6.3/dist/jquery.slim.min.js"></script>
 <script src="https://cdn.jsdelivr.net/npm/popper.js@1.16.1/dist/umd/popper.min.js"></script>
@@ -61,12 +64,13 @@
 <col width="70"><col width="600"><col width="200">
 <thead>
 <tr class="bg-primary" style="color: white;">
-	<th>번호</th><th>제목</th><th>작성일</th>
+	<th>번호</th><th>제목</th><th>아이디</th><th>작성일</th>
 </tr>
 <c:forEach var="boardDTO" items="${boardList}">
 	<tr><td>${boardDTO.num}</td>
 	<td><a href="${pageContext.request.contextPath}/board/qnaContent?num=${boardDTO.num}">${boardDTO.subject}</a></td>
-	<td>${boardDTO.update}</td></tr>
+	<td>${boardDTO.id}</td>
+	<td><fmt:formatDate value="${boardDTO.update}" pattern="yyyy-MM-dd"/></td></tr>
 </c:forEach>
 </thead>
 </table>

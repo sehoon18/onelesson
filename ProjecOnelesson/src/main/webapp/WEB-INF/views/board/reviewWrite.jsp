@@ -5,6 +5,8 @@
 <head>
 <meta charset="UTF-8">
 <title>리뷰 작성</title>
+	<link rel="icon" href="${pageContext.request.contextPath}/resources/images/favicon_g.png"/>
+	<link rel="apple-touch-icon" href="${pageContext.request.contextPath}/resources/images/favicon_g.png"/>
     <link href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/5.15.3/css/all.min.css" rel="stylesheet">
 	<meta name="viewport" content="width=device-width, initial-scale=1">
 	<link rel="stylesheet" href="https://cdn.jsdelivr.net/npm/bootstrap@4.6.2/dist/css/bootstrap.min.css">
