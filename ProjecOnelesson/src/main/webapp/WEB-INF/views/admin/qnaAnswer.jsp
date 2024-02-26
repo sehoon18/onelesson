@@ -42,7 +42,7 @@
         <div id="layoutSidenav_content">
             <main>
                 <div class="container-fluid px-4">
-                    <h3 class="mt-4">👮‍♂️‍관리자가 답변하기</h1>
+                    <h3 class="mt-4">👮‍♂️‍관리자가 답변하기</h3>
 <hr>
 <form action="${pageContext.request.contextPath}/admin/qnaAnswerPro" method="post">
 <input type="hidden" name="name" value="${adminDTO.id}"> 

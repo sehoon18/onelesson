@@ -43,13 +43,18 @@
 	border-left : inherit;
 	border-right: inherit;
 	}
+	
+	a.title-link {
+    text-decoration: none;
+    color: black;
+    }
 </style>
 
 </head>
 <body bgcolor="#e9e9e9">
 	<jsp:include page="../inc/header.jsp" />
 <div style="background-size: cover; background-position: center; background-image: url('${pageContext.request.contextPath}/resources/images/qnaimage.jpg');">
-  <section class="py-5 text-center container" style="height: 300px;">
+  <section class="py-5 text-center container" style="height: 400px;">
     <div class="row py-lg-5">
       <div class="col-lg-6 col-md-8 mx-auto">
         <h1 class="fw-light" style="color: white;">Q&A</h1>
@@ -64,18 +69,18 @@
 <col width="70"><col width="600"><col width="100"><col width="150">
 <thead>
 <tr class="bg-primary" style="color: white;">
-	<th>번호</th><th>제목</th><th>아이디</th><th>작성일</th>
+	<th class="table-success">번호</th><th class="table-success">제목</th><th class="table-success">아이디</th><th class="table-success">작성일</th>
 </tr>
 <c:forEach var="boardDTO" items="${boardList}">
 	<tr><td>${boardDTO.num}</td>
-	<td><a href="${pageContext.request.contextPath}/board/qnaContent?num=${boardDTO.num}">${boardDTO.subject}</a></td>
+	<td><a class="title-link" href="${pageContext.request.contextPath}/board/qnaContent?num=${boardDTO.num}">${boardDTO.subject}</a></td>
 	<td>${boardDTO.id}</td>
 	<td><fmt:formatDate value="${boardDTO.update}" pattern="yyyy-MM-dd"/></td></tr>
 </c:forEach>
 </thead>
 </table>
-<nav aria-label="Page navigation example" style="margin-top: 10px">
-  <ul class="pagination justify-content-end">
+<nav aria-label="Page navigation example" style="margin-top: 30px">
+  <ul class="pagination justify-content-center">
   <c:if test="${pageDTO.startPage > pageDTO.pageBlock }">
     <li class="page-item"><a class="page-link" href="${pageContext.request.contextPath}/lesson/lessonList?pageNum=${pageDTO.startPage - pageDTO.pageBlock}">Previous</a></li>
   </c:if>

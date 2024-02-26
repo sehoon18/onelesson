@@ -37,28 +37,31 @@
         
         <div id="layoutSidenav_content">
             <main>
-                <div class="container-fluid px-4">
+                <div class="container-fluid px-4" style="margin-top:50px;">
                     <h1 class="mt-4">Q&A</h1>
-                    <ol class="breadcrumb mb-4">
-                        <li class="breadcrumb-item active">Q&A 관리 목록입니다.</li>
-                    </ol>
 
-<table class="table table-hover">
+<table class="table table-hover" style="margin-top:50px;">
 <col width="70"><col width="600"><col width="100"><col width="150">
 <thead>
 <tr class="bg-primary" style="color: white;">
-	<th>번호</th><th>제목</th><th>아이디</th><th>작성일</th>
+	<th class="table-success">번호</th><th class="table-success">제목</th><th class="table-success">아이디</th><th class="table-success">작성일</th>
 </tr>
+<c:if test="${sessionScope.id == 'admin'}"> 
 <c:forEach var="adminQnaDTO" items="${qnaList}">
 	<tr><td>${adminQnaDTO.num}</td>
 	<td><a class="title-link" href="${pageContext.request.contextPath}/admin/qnaContent?num=${adminQnaDTO.num}">${adminQnaDTO.subject}</a></td>
 	<td>${adminQnaDTO.id}</td>
 	<td><fmt:formatDate value="${adminQnaDTO.update}" pattern="yyyy-MM-dd"/></td></tr>
 </c:forEach>
+</c:if>
 </thead>
 </table>
-
-<nav aria-label="Page navigation example" style="margin-top: 10px">
+<div style="text-align: right; margin-top:30px;">
+<c:if test="${sessionScope.id == 'admin'}"> 
+<button class="btn btn-outline-success" onclick="location.href='${pageContext.request.contextPath}/admin/qna'">돌아가기</button>
+</c:if>
+</div>
+<nav aria-label="Page navigation example" style="margin-top: 30px">
   <ul class="pagination justify-content-center">
   <c:if test="${pageDTO.startPage > pageDTO.pageBlock }">
     <li class="page-item"><a class="page-link" href="${pageContext.request.contextPath}/admin/qna?pageNum=${pageDTO.startPage - pageDTO.pageBlock}">Previous</a></li>
@@ -73,10 +76,8 @@
   </c:if>  
   </ul>
 </nav>
-
 <br>
-<button class="btn btn-outline-info">돌아가기</button>
-<hr>
+
 </div>
             </main>
             
@@ -84,7 +85,7 @@
             
         </div>
  	
- 	    <script src="https://cdn.jsdelivr.net/npm/bootstrap@5.2.3/dist/js/bootstrap.bundle.min.js" crossorigin="anonymous"></script>
+ 	<script src="https://cdn.jsdelivr.net/npm/bootstrap@5.2.3/dist/js/bootstrap.bundle.min.js" crossorigin="anonymous"></script>
     <script src="../resources/js/admin/scripts.js"></script>
     <script src="https://cdnjs.cloudflare.com/ajax/libs/Chart.js/2.8.0/Chart.min.js" crossorigin="anonymous"></script>
     <script src="../resources/assets/admin/demo/chart-area-demo.js"></script>

@@ -6,6 +6,7 @@ import org.apache.ibatis.session.SqlSession;
 import org.springframework.stereotype.Repository;
 
 import com.itwillbs.domain.AdminDTO;
+import com.itwillbs.domain.AdminQnaDTO;
 
 @Repository
 public class AdminDAO {
@@ -47,5 +48,17 @@ public class AdminDAO {
 		System.out.println("AdminDAO getAdminByEmail()");
 		
 		return sqlSession.selectOne(namespace + ".getAdminByEmail", email);
+	}
+
+	public AdminQnaDTO adminCheck(AdminQnaDTO adminQnaDTO) {
+		System.out.println("AdminDAO adminCheck()");
+		
+		return sqlSession.selectOne(namespace + ".adminCheck", adminQnaDTO);
+	}
+
+	public void updateQna(AdminQnaDTO adminQnaDTO) {
+		System.out.println("AdminDAO updateQna()");
+		
+		sqlSession.update(namespace + ".updateQna", adminQnaDTO);
 	}
 }
