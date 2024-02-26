@@ -33,14 +33,12 @@
         
         <div id="layoutSidenav_content">
             <main>
-                <div class="container-fluid px-4">
+                <div class="container-fluid px-4" style="margin-top:50px;">
                     <h1 class="mt-4">Q&A</h1>
-                    <ol class="breadcrumb mb-4">
-                        <li class="breadcrumb-item active">Q&A 관리 목록입니다.</li>
-                    </ol>
 
-<h3 style="margin-bottom: 30px;">👮‍♂️‍관리자에게 문의하기</h3>
-<table class="table table-bordered">
+<h4 style="margin-bottom: 30px;">👮‍♂️‍관리자에게 문의하기</h4>
+<hr>
+<table class="table table-bordered" style="margin-top:50px;">
 <tr><td style="width: 100px;">제목</td><td style="width: 800px;"><div>
   <label>${boardDTO.subject}</label>
 </div></td></tr>
@@ -56,19 +54,28 @@
 <!-- </div></td></tr> -->
 
 </table>
-
-<br>
+<hr>
+<div style="text-align: right; margin-top:30px;">
 <c:if test="${! empty sessionScope.id}">
-	<c:if test="${sessionScope.id eq adminQnaDTO.id}">
-		<input type="button" value="답변하기" class="btn btn-primary" onclick="location.href='${pageContext.request.contextPath}/admin/qnaAnswer?num=${adminQnaDTO.num}'">
+	<c:if test="${sessionScope.id eq 'admin' }">
+		<input type="button" value="답변하기" class="btn btn-success" onclick="location.href='${pageContext.request.contextPath}/admin/qnaAnswer?num=${adminQnaDTO.num}'">
 	</c:if>
 </c:if>
-<input type="button" value="목록" class="btn btn-primary" onclick="location.href='${pageContext.request.contextPath}/admin/qna'">
+<input type="button" value="목록" class="btn btn-outline-success" onclick="location.href='${pageContext.request.contextPath}/admin/qna'">
+</div>
 </div>
  	            </main>
             
             <jsp:include page="inc/bottom.jsp" />
             
         </div>
+        
+    <script src="https://cdn.jsdelivr.net/npm/bootstrap@5.2.3/dist/js/bootstrap.bundle.min.js" crossorigin="anonymous"></script>
+    <script src="../resources/js/admin/scripts.js"></script>
+    <script src="https://cdnjs.cloudflare.com/ajax/libs/Chart.js/2.8.0/Chart.min.js" crossorigin="anonymous"></script>
+    <script src="../resources/assets/admin/demo/chart-area-demo.js"></script>
+    <script src="../resources/assets/admin/demo/chart-bar-demo.js"></script>
+    <script src="https://cdn.jsdelivr.net/npm/simple-datatables@7.1.2/dist/umd/simple-datatables.min.js" crossorigin="anonymous"></script>
+    <script src="../resources/js/admin/datatables-simple-demo.js"></script>
 </body>
 </html>

@@ -34,6 +34,7 @@
                             정산 목록
                         </div>
                         <div class="card-body">
+                        	<c:if test="${sessionScope.id eq 'admin'}">
                             <table id="datatablesSimple">
                                 <thead>
                                         <tr>
@@ -276,6 +277,7 @@
                                         </tr>
                                     </tbody>
                                 </table>
+                                </c:if>
                             </div>
                         </div>
                     </div>

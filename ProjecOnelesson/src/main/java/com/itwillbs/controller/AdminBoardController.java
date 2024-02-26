@@ -1,5 +1,6 @@
 package com.itwillbs.controller;
 
+import java.sql.Timestamp;
 import java.util.List;
 
 import javax.inject.Inject;
@@ -22,6 +23,7 @@ import com.itwillbs.domain.PageDTO;
 import com.itwillbs.service.AdminFaqService;
 import com.itwillbs.service.AdminNoticeService;
 import com.itwillbs.service.AdminQnaService;
+import com.itwillbs.service.AdminService;
 import com.itwillbs.service.BoardService;
 import com.itwillbs.service.LessonService;
 import com.itwillbs.service.MemberService;
@@ -41,6 +43,8 @@ public class AdminBoardController {
 	private MemberService memberService;
 	@Inject
 	private BoardService boardService;
+	@Inject
+	private AdminService adminService;
 	
 	
 	@GetMapping("/memberAdmin")
@@ -144,19 +148,31 @@ public class AdminBoardController {
 	}
 	
 	@GetMapping("/paymentAdmin")
-	public String paymentAdmin() {
+	public String paymentAdmin(HttpServletRequest request,HttpSession session) {
 		System.out.println("AdminBoardController paymentAdmin()");
+		String user_id = (String) session.getAttribute("id");
+		
+		System.out.println(user_id);
+		if(user_id == null || !user_id.equals("admin")) {
+			   return "admin/paymentAdmin";
+		   }
 		
 		return "admin/paymentAdmin";
 	}
 	
 	@GetMapping("/notice")
-	public String noticeList(HttpServletRequest request, PageDTO pageDTO, Model model) {
+	public String noticeList(HttpServletRequest request, PageDTO pageDTO, Model model, HttpSession session) {
 		System.out.println("AdminBoardController notice()");
+		String user_id = (String) session.getAttribute("id");
+		
+		System.out.println(user_id);
+		if(user_id == null || !user_id.equals("admin")) {
+			   return "admin/noticeList";
+		   }
 		
 		String search = request.getParameter("search");
 		
-		int pageSize = 5;
+		int pageSize = 10;
 		String pageNum = request.getParameter("pageNum");
 		
 		if(pageNum == null) {
@@ -217,8 +233,6 @@ public class AdminBoardController {
 		System.out.println("AdminBoardController noticeContent()");
 		System.out.println(adminNoticeDTO);
 		
-		adminNoticeService.updateNoticeReadcount(adminNoticeDTO);
-		
 		adminNoticeDTO = adminNoticeService.getNotice(adminNoticeDTO);
 		
 		model.addAttribute("adminNoticeDTO", adminNoticeDTO);
@@ -259,12 +273,18 @@ public class AdminBoardController {
 	}
 	
 	@GetMapping("/faq")
-	public String faqList(HttpServletRequest request, PageDTO pageDTO, Model model) {
+	public String faqList(HttpServletRequest request, PageDTO pageDTO, Model model, HttpSession session) {
 		System.out.println("AdminBoardController faq()");
+		String user_id = (String) session.getAttribute("id");
+		
+		System.out.println(user_id);
+		if(user_id == null || !user_id.equals("admin")) {
+			   return "admin/faqList";
+		   }
 		
 		String search = request.getParameter("search");
 		
-		int pageSize = 5;
+		int pageSize = 10;
 		String pageNum = request.getParameter("pageNum");
 		
 		if(pageNum == null) {
@@ -363,12 +383,16 @@ public class AdminBoardController {
 	}
 	
 	@GetMapping("/qna")
-	public String qna(HttpServletRequest request, PageDTO pageDTO, Model model) {
+	public String qna(HttpServletRequest request, PageDTO pageDTO, Model model, HttpSession session) {
 		System.out.println("AdminBoardController qna()");
+		String user_id = (String) session.getAttribute("id");
 		
-		String search = request.getParameter("search");
+		System.out.println(user_id);
+		if(user_id == null || !user_id.equals("admin")) {
+			   return "admin/qnaList";
+		   }
 		
-		int pageSize = 5;
+		int pageSize = 10;
 		String pageNum = request.getParameter("pageNum");
 		
 		if(pageNum == null) {
@@ -379,7 +403,6 @@ public class AdminBoardController {
 		pageDTO.setPageSize(pageSize);
 		pageDTO.setPageNum(pageNum);
 		pageDTO.setCurrentPage(currentPage);
-		pageDTO.setSearch(search);
 		
 		List<AdminQnaDTO> qnaList = adminQnaService.getQnaList(pageDTO);
 		
@@ -420,25 +443,32 @@ public class AdminBoardController {
 	}
 	
 //	@GetMapping("/qnaAnswer")
-//	public String qnaAnswer(AdminQnaDTO adminQnaDTO, Model model) {
+//	public String qnaAnswer(HttpSession session, AdminQnaDTO adminQnaDTO, Model model) {
 //		System.out.println("AdminBoardController qnaAnswer()");
-//		System.out.println(adminQnaDTO);
 //		
-//		adminQnaDTO = adminQnaService.getQna(adminQnaDTO);
-//		
-//		model.addAttribute("adminQnaDTO", adminQnaDTO);
-//		
-//		return "admin/qnaAnswer";
+//		String admin_id = (String) session.getAttribute("id");
+//	    if(admin_id != null && admin_id.equals("admin")) {
+//	        return "admin/qnaAnswer";
+//	    } else {
+//	        return "redirect:/admin/qna";
+//	    }
 //	}
-//	
+	
 //	@PostMapping("/qnaAnswerPro")
-//	public String qnaAnswerPro(AdminQnaDTO adminQnaDTO) {
+//	public String qnaAnswerPro(HttpSession session, AdminQnaDTO adminQnaDTO, Model model, AdminDTO adminDTO) {
 //		System.out.println("AdminBoardController qnaAnswerPro()");
-//		System.out.println(adminQnaDTO);
 //		
-//		adminQnaService.qnaAnswer(adminQnaDTO);
-//		
-//		return "redirect:/admin/qna";
+//		 adminQnaDTO.setId((String)session.getAttribute("id"));
+//		    System.out.println(adminQnaDTO);
+//		    adminQnaDTO = adminService.adminCheck(adminQnaDTO);
+//
+//		    if (adminQnaDTO != null) {
+//		        adminQnaDTO.setUpdate(new Timestamp(System.currentTimeMillis()));
+//		        adminService.updateQna(adminQnaDTO);
+//		        return "redirect:/admin/qnaList";
+//		    } else {
+//		        return "redirect:/admin/qnaList";
+//		    }
 //	}
 	
 	
