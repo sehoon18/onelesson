@@ -489,7 +489,7 @@ display: inline-block;
 	 				<span class="paymentIn-text7">결제 완료</span>
 	 					</c:if><br></c:if>
 				</c:forEach>
-	 			<c:forEach var="orderDTO" items="${orderList2 }">
+	 			<c:forEach var="orderDTO" items="${orderList }">
   				<c:if test="${ 1 eq memberDTO.type }">
  				<span class="paymentIn-text1">${orderDTO.ORDER_NUM }</span> 
   	 				<span class="paymentIn-text2">${orderDTO.LES_SUBJECT }</span>
