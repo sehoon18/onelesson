@@ -34,13 +34,10 @@
         
         <div id="layoutSidenav_content">
             <main>
-                <div class="container-fluid px-4">
-                    <h1 class="mt-4">공지 / 이벤트</h1>
-                    <ol class="breadcrumb mb-4">
-                        <li class="breadcrumb-item active">공지 / 이벤트 관리 목록입니다.</li>
-                    </ol>
-                    
-<table class="table table-bordered">
+                <div class="container-fluid px-4" style="margin-top:50px;">
+                    <h1 class="mt-4">공지사항/이벤트</h1>
+<hr>                    
+<table class="table table-bordered" style="margin-top:50px;">
 <tr><td style="width: 150px;">번호</td><td><div>
   <label>${adminNoticeDTO.num}</label>
 </div></td></tr>
@@ -66,15 +63,19 @@
 </div></td></tr>
 </table>
 
-<br>
+<hr>
+<div style="text-align: right; margin-top:30px;">
 <c:if test="${! empty sessionScope.id}">
 <%-- 	<c:if test="${sessionScope.id eq adminNoticeDTO.id}"> --%>
 <c:if test="${sessionScope.id eq 'admin' }">
-		<input type="button" value="수정" class="btn btn-primary" onclick="location.href='${pageContext.request.contextPath}/admin/noticeUpdate?num=${adminNoticeDTO.num}'">
-		<input type="button" value="삭제" class="btn btn-primary" onclick="location.href='${pageContext.request.contextPath}/admin/noticeDelete?num=${adminNoticeDTO.num}'">
+		
+		<input type="button" value="수정" class="btn btn-success" onclick="location.href='${pageContext.request.contextPath}/admin/noticeUpdate?num=${adminNoticeDTO.num}'">
+		<input type="button" value="삭제" class="btn btn-success" onclick="location.href='${pageContext.request.contextPath}/admin/noticeDelete?num=${adminNoticeDTO.num}'">
+		
 	</c:if>
 </c:if>
-<input type="button" value="목록" class="btn btn-primary" onclick="location.href='${pageContext.request.contextPath}/admin/notice'">
+<input type="button" value="목록" class="btn btn-outline-success" onclick="location.href='${pageContext.request.contextPath}/admin/notice'">
+</div>
 </div>
             </main>
             

@@ -43,14 +43,11 @@
         
         <div id="layoutSidenav_content">
             <main>
-                <div class="container-fluid px-4">
-                    <h1 class="mt-4">공지 / 이벤트</h1>
-                    <ol class="breadcrumb mb-4">
-                        <li class="breadcrumb-item active">공지 / 이벤트 관리 목록입니다.</li>
-                    </ol>
+                <div class="container-fluid px-4" style="margin-top:50px;">
+                    <h1 class="mt-4">공지사항/이벤트</h1>
 <hr>
         <form action="${pageContext.request.contextPath}/admin/noticeUpdatePro" method="post"
-              enctype="multipart/form-data">
+              enctype="multipart/form-data" style="margin-top:50px;">
             <input type="hidden" name="id" value="${adminNoticeDTO.id}">
 <!-- 			<input type="hidden" name="id" value="admin"> -->
             <input type="hidden" name="num" value="${adminNoticeDTO.num}">
@@ -73,8 +70,10 @@
                 </div>
             </div>
             <hr>
-            <input type="submit" value="수정" class="btn btn-primary">
-            <input type="button" value="목록" class="btn btn-primary" onclick="location.href='${pageContext.request.contextPath}/admin/notice'">
+            <div style="text-align: right; margin-top:30px;">
+            <input type="submit" value="수정" class="btn btn-success">
+            <input type="button" value="목록" class="btn btn-outline-success" onclick="location.href='${pageContext.request.contextPath}/admin/notice'">
+        	</div>
         </form>
     </div>
 </main>

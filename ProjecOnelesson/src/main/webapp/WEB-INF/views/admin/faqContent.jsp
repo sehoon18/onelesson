@@ -34,13 +34,10 @@
         
         <div id="layoutSidenav_content">
             <main>
-                <div class="container-fluid px-4">
+                <div class="container-fluid px-4" style="margin-top:50px;">
                     <h1 class="mt-4">자주 묻는 질문</h1>
-                    <ol class="breadcrumb mb-4">
-                        <li class="breadcrumb-item active">자주 묻는 질문 관리 목록입니다.</li>
-                    </ol>
-                    
-<table class="table table-bordered">
+<hr>                    
+<table class="table table-bordered" style="margin-top:50px;">
 <tr><td style="width: 150px;">번호</td><td><div>
   <label>${adminFaqDTO.num}</label>
 </div></td></tr>
@@ -52,14 +49,16 @@
 </div></td></tr>
 </table>
 
-<br>
+<hr>
+<div style="text-align: right; margin-top:30px;">
 <c:if test="${! empty sessionScope.id}">
 	<c:if test="${sessionScope.id eq adminFaqDTO.id}">
-		<input type="button" value="수정" class="btn btn-primary" onclick="location.href='${pageContext.request.contextPath}/admin/faqUpdate?num=${adminFaqDTO.num}'">
-		<input type="button" value="삭제" class="btn btn-primary" onclick="location.href='${pageContext.request.contextPath}/admin/faqDelete?num=${adminFaqDTO.num}'">
+		<input type="button" value="수정" class="btn btn-success" onclick="location.href='${pageContext.request.contextPath}/admin/faqUpdate?num=${adminFaqDTO.num}'">
+		<input type="button" value="삭제" class="btn btn-success" onclick="location.href='${pageContext.request.contextPath}/admin/faqDelete?num=${adminFaqDTO.num}'">
 	</c:if>
 </c:if>
-<input type="button" value="목록" class="btn btn-primary" onclick="location.href='${pageContext.request.contextPath}/admin/faq'">
+<input type="button" value="목록" class="btn btn-outline-success" onclick="location.href='${pageContext.request.contextPath}/admin/faq'">
+</div>
 </div>
             </main>
             

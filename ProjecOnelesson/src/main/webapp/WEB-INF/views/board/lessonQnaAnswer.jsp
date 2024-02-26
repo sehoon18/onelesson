@@ -81,7 +81,7 @@
       <input type="password" name="pass" class="form-control" id="inputPassword">
     </div>
     <div class="col-sm-3">
-      <input type="submit" class="btn btn-info w-100" value="답변하기">
+      <input type="submit" class="btn btn-success w-100" value="답변하기">
     </div>
 </div>
 </td></tr>

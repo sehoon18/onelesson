@@ -35,12 +35,6 @@
 		where NOTICE_NUM = #{num}
 	</select>
 	
-	<update id="updateNoticeReadcount">
-		update NOTICE
-		set NOTICE_READCOUNT = NOTICE_READCOUNT + 1
-		where NOTICE_NUM = #{num}
-	</update>
-	
 	<update id="noticeUpdate">
 		update NOTICE
 		set NOTICE_SUBJECT = #{subject}, NOTICE_CONTENT = #{content}, NOTICE_TYPE = #{type}

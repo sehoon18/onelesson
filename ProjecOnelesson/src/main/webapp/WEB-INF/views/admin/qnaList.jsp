@@ -56,6 +56,7 @@
 </c:if>
 </thead>
 </table>
+<hr>
 <div style="text-align: right; margin-top:30px;">
 <c:if test="${sessionScope.id == 'admin'}"> 
 <button class="btn btn-outline-success" onclick="location.href='${pageContext.request.contextPath}/admin/qna'">돌아가기</button>

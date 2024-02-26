@@ -41,13 +41,18 @@
 	border-left : inherit;
 	border-right: inherit;
 	}
+	
+	a.title-link {
+    text-decoration: none;
+    color: black;
+    }
 </style>
 
 </head>
 <body bgcolor="#e9e9e9">
 	<jsp:include page="../inc/header.jsp" />
 <div style="background-size: cover; background-position: center; background-image: url('${pageContext.request.contextPath}/resources/images/qnaimage.jpg');">
-  <section class="py-5 text-center container" style="height: 300px;">
+  <section class="py-5 text-center container" style="height: 400px;">
     <div class="row py-lg-5">
       <div class="col-lg-6 col-md-8 mx-auto">
         <h1 class="fw-light" style="color: white;">레슨 문의</h1>
@@ -58,34 +63,44 @@
 
 <div align="center" style="margin-top: 50px;">
 <div style="margin: 0px auto; width: 1000px">
-<table class="table table-hover table-sm" style="width: 1000px">
+<table class="table table-hover" style="width: 1000px">
 <col width="70"><col width="250"><col width="400"><col width="200"><c:if test="${memberDTO.type == 1 }"><col width="100"></c:if>
 <thead>
 <tr class="bg-primary" style="color: white;">
-	<th>번호</th>
-	<th><c:if test="${memberDTO.type == 1 }">문의받은 레슨</c:if><c:if test="${memberDTO.type == 0 }">문의한 레슨</c:if></th>
-	<th>제목</th>
-	<th>작성일</th>
-	<c:if test="${memberDTO.type == 1 }"><th>답변</th></c:if>
+	<th class="table-success">번호</th>
+	<th class="table-success"><c:if test="${memberDTO.type == 1 }">문의받은 레슨</c:if><c:if test="${memberDTO.type == 0 }">문의한 레슨</c:if></th>
+	<th class="table-success">제목</th>
+	<th class="table-success">작성일</th>
+	<th class="table-success">비고</th>
 </tr>
 <c:forEach var="boardDTO" items="${boardList}">
 	<tr><td>${boardDTO.num }</td>
 	<td>${boardDTO.image}</td>
-	<td><a href="${pageContext.request.contextPath}/board/lessonQnaContent?num=${boardDTO.num}">${boardDTO.subject}</a></td>
+	<td><a class="title-link" href="${pageContext.request.contextPath}/board/lessonQnaContent?num=${boardDTO.num}">${boardDTO.subject}</a></td>
 	<td>${boardDTO.update}</td>
-	<c:if test="${memberDTO.type == 1 }">
+	<td>
+	<c:if test="${memberDTO.type == 0 }">
 		<c:if test="${empty boardDTO.answer }">
-		<td><button class="btn btn-info btn-sm" onclick="location.href='${pageContext.request.contextPath}/board/lessonQnaAnswer?num=${boardDTO.num}'">답변하기</button></td>
+			대기중
 		</c:if>
 		<c:if test="${not empty boardDTO.answer }">
-		<td><button class="btn btn-outline-info btn-sm disabled">답변완료</button></td>
+			답변완료
 		</c:if>
-	</c:if></tr>
+	</c:if>
+	<c:if test="${memberDTO.type == 1 }">
+		<c:if test="${empty boardDTO.answer }">
+		<button class="btn btn-success btn-sm" onclick="location.href='${pageContext.request.contextPath}/board/lessonQnaAnswer?num=${boardDTO.num}'">답변하기</button>
+		</c:if>
+		<c:if test="${not empty boardDTO.answer }">
+		<button class="btn btn-success btn-sm disabled">답변완료</button>
+		</c:if>
+	</c:if>
+	</td></tr>
 </c:forEach>
 </thead>
 </table>
 
-<nav aria-label="Page navigation example" style="margin-top: 10px">
+<nav aria-label="Page navigation example" style="margin-top: 30px">
   <ul class="pagination justify-content-end">
   <c:if test="${pageDTO.startPage > pageDTO.pageBlock }">
     <li class="page-item"><a class="page-link" href="${pageContext.request.contextPath}/lesson/lessonList?pageNum=${pageDTO.startPage - pageDTO.pageBlock}">Previous</a></li>
@@ -123,7 +138,7 @@
 <!-- </table> -->
 <br>
 <%-- <button class="btn btn-info" onclick="location.href='${pageContext.request.contextPath}/board/lessonQnaWrite'">글쓰기</button> --%>
-<button class="btn btn-outline-info" onclick="location.href='${pageContext.request.contextPath}/member/mypage'">돌아가기</button>
+<button class="btn btn-outline-success" onclick="location.href='${pageContext.request.contextPath}/member/mypage'">돌아가기</button>
 <hr>
 </div>
  	<jsp:include page="../inc/footer.jsp" />

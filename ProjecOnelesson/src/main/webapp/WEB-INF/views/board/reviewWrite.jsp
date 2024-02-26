@@ -114,7 +114,7 @@
 	placeholder="좋은 수강평을 남겨주시면 강사에게 큰 힘이 됩니다!"></textarea>
 	</div>
    </td></tr>
-   <tr><td></td><td style="text-align: right;"><input type="submit" class="btn btn-outline-info" value="등록"></td></tr>
+   <tr><td></td><td style="text-align: right;"><input type="submit" class="btn btn-outline-success" value="등록"></td></tr>
    </Table>
     </form>		
 </div>

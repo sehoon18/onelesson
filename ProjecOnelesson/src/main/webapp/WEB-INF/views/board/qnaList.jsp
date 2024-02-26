@@ -69,12 +69,12 @@
 <col width="70"><col width="600"><col width="100"><col width="150">
 <thead>
 <tr class="bg-primary" style="color: white;">
-	<th class="table-success">번호</th><th class="table-success">제목</th><th class="table-success">아이디</th><th class="table-success">작성일</th>
+	<th class="table-success">번호</th><th class="table-success">제목</th><th class="table-success">진행상황</th><th class="table-success">작성일</th>
 </tr>
 <c:forEach var="boardDTO" items="${boardList}">
 	<tr><td>${boardDTO.num}</td>
 	<td><a class="title-link" href="${pageContext.request.contextPath}/board/qnaContent?num=${boardDTO.num}">${boardDTO.subject}</a></td>
-	<td>${boardDTO.id}</td>
+	<td><c:if test="${empty boardDTO.answer }">대기중</c:if><c:if test="${not empty boardDTO.answer }">답변완료</c:if></td>
 	<td><fmt:formatDate value="${boardDTO.update}" pattern="yyyy-MM-dd"/></td></tr>
 </c:forEach>
 </thead>
@@ -96,8 +96,8 @@
 </nav>
 
 <br>
-<button class="btn btn-info" onclick="location.href='${pageContext.request.contextPath}/board/qnaWrite'">글쓰기</button>
-<button class="btn btn-outline-info" onclick="location.href='${pageContext.request.contextPath}/member/mypage'">돌아가기</button>
+<button class="btn btn-success" onclick="location.href='${pageContext.request.contextPath}/board/qnaWrite'">글쓰기</button>
+<button class="btn btn-outline-success" onclick="location.href='${pageContext.request.contextPath}/member/mypage'">돌아가기</button>
 <hr>
 </div>
  	<jsp:include page="../inc/footer.jsp" />

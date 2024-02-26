@@ -41,7 +41,7 @@
         <hr>
         <form action="${pageContext.request.contextPath}/admin/noticeInsertPro" method="post"
               enctype="multipart/form-data">
-            <input type="hidden" name="id" value="${sessionScope.id}">
+            <input type="hidden" name="id" value="${adminNoticeDTO.id}">
             <div class="row">
                 <div class="col-md-2">
                     <label for="category" class="form-label">타입</label>
@@ -61,8 +61,10 @@
                 </div>
             </div>
             <hr>
-            <input type="submit" value="등록" class="btn btn-primary">
-            <input type="button" value="목록" class="btn btn-primary" onclick="location.href='${pageContext.request.contextPath}/admin/noticeList'">
+            <div style="text-align: right; margin-top:30px;">
+            <input type="submit" value="등록" class="btn btn-success">
+            <input type="button" value="목록" class="btn btn-outline-success" onclick="location.href='${pageContext.request.contextPath}/admin/notice'">
+        	</div>
         </form>
     </div>
 </main>

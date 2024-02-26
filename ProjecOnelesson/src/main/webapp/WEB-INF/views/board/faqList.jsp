@@ -51,7 +51,7 @@
 <body bgcolor="#e9e9e9">
 	<jsp:include page="../inc/header.jsp" />
 <div style="background-size: cover; background-position: center; background-image: url('${pageContext.request.contextPath}/resources/images/qnaimage.jpg');">
-  <section class="py-5 text-center container" style="height: 500px;">
+  <section class="py-5 text-center container" style="height: 400px;">
     <div class="row py-lg-5">
       <div class="col-lg-6 col-md-8 mx-auto">
         <h1 class="fw-light" style="color: white;">FAQ</h1>
@@ -66,7 +66,7 @@
 <col width="70"><col width="600">
 <thead>
 <tr class="bg-primary" style="color: white;">
-	<th>번호</th><th>제목</th>
+	<th class="table-success">번호</th><th class="table-success">제목</th>
 </tr>
 <c:forEach var="boardDTO" items="${faqList}">
 	<tr><td>${boardDTO.num}</td>
@@ -93,25 +93,18 @@
 <form action="${pageContext.request.contextPath}/board/faq" method="get">
 <table style="margin-left: auto; margin-right: auto; margin-top: 3px; margin-bottom: 3px">
 	<tr>
-<!-- 		<td style="padding-left: 5px"> -->
-<!-- 			<select class="custom-select" id="choice" name="choice"> -->
-<!-- 				<option selected>검색</option> -->
-<!-- 				<option value="subject">제목</option> -->
-<!-- 				<option value="content">내용</option> -->
-<!-- 			</select> -->
-<!-- 		</td> -->
 		<td style="padding-left: 5px" class="align-middle">
 			<input type="text" class="form-control" id="search" name="search" placeholder="검색어" value="">
 		<td style="padding-left: 5px">
 			<span>
-				<button type="submit" class="btn btn-info">검색</button>
+				<button type="submit" class="btn btn-success">검색</button>
 			</span>
 		</td>
 	</tr>
 </table>
 </form>
 <br>
-<button class="btn btn-outline-info">돌아가기</button>
+<button class="btn btn-outline-success" onclick="location.href='${pageContext.request.contextPath}/board/faq'">돌아가기</button>
 <hr>
 </div>
  	<jsp:include page="../inc/footer.jsp" />

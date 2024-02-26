@@ -88,7 +88,7 @@
 	</select>
 	
 	<select id="getQnaList" resultType="com.itwillbs.domain.BoardDTO">
-		select QNA_SUBJECT as "subject", QNA_QUESTION as "question", QNA_NUM as "num", QNA_UPDATE as "update"
+		select QNA_SUBJECT as "subject", QNA_QUESTION as "question", QNA_ANSWER as "answer", QNA_NUM as "num", QNA_UPDATE as "update"
 		from QNA
 		WHERE MEM_ID = #{id}
 		order by QNA_NUM desc

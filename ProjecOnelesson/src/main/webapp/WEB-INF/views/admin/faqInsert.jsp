@@ -32,14 +32,11 @@
 
         <div id="layoutSidenav_content">
             <main>
-                <div class="container-fluid px-4">
+                <div class="container-fluid px-4" style="margin-top:50px;">
                     <h1 class="mt-4">자주 묻는 질문</h1>
-                    <ol class="breadcrumb mb-4">
-                        <li class="breadcrumb-item active">자주 묻는 질문 등록 페이지입니다.</li>
-                    </ol>
         <hr>
         <form action="${pageContext.request.contextPath}/admin/faqInsertPro" method="post"
-              enctype="multipart/form-data">
+              enctype="multipart/form-data" style="margin-top:50px;">
             <input type="hidden" name="id" value="${sessionScope.id}">
             <div class="row">
                 <div class="col">
@@ -52,8 +49,10 @@
                 </div>
             </div>
             <hr>
-            <input type="submit" value="등록" class="btn btn-primary">
-            <input type="button" value="목록" class="btn btn-primary" onclick="location.href='${pageContext.request.contextPath}/admin/faq'">
+            <div style="text-align: right; margin-top:30px;">
+            <input type="submit" value="등록" class="btn btn-success">
+            <input type="button" value="목록" class="btn btn-outline-success" onclick="location.href='${pageContext.request.contextPath}/admin/faq'">
+        	</div>
         </form>
     </div>
 </main>
