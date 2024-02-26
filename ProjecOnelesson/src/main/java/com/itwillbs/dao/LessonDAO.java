@@ -1,17 +1,14 @@
 package com.itwillbs.dao;
 
-import java.sql.Date;
 import java.util.List;
 
 import javax.inject.Inject;
 
 import org.apache.ibatis.session.SqlSession;
 import org.springframework.stereotype.Repository;
-import org.springframework.transaction.annotation.Transactional;
 
 import com.itwillbs.domain.BoardDTO;
 import com.itwillbs.domain.LessonDTO;
-import com.itwillbs.domain.MemberDTO;
 import com.itwillbs.domain.PageDTO;
 
 @Repository

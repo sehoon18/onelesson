@@ -195,9 +195,9 @@
 	
 	<div class="form-group">
 	<div style="width: 1080px; word-wrap: break-word; padding: 10px;">${lessonDTO.content }</div>
-<!-- 	<svg width="1100" height="auto"> -->
-<!-- 	</svg> -->
+	<c:if test="${not empty lessonDTO.detail }">
 	<img src="${pageContext.request.contextPath}/resources/upload/${lessonDTO.detail}" style="width: 100%; height: auto;">
+	</c:if>
 	<hr>
 <!-- 	<h4 style="margin: 0px 30px;">리뷰</h4> -->
 	<c:if test="${not empty boardList }">
