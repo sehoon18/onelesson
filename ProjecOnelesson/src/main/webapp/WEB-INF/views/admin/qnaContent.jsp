@@ -58,7 +58,12 @@
 <div style="text-align: right; margin-top:30px;">
 <c:if test="${! empty sessionScope.id}">
 	<c:if test="${sessionScope.id eq 'admin' }">
-		<input type="button" value="답변하기" class="btn btn-success" onclick="location.href='${pageContext.request.contextPath}/admin/qnaAnswer?num=${adminQnaDTO.num}'">
+		<c:if test="${empty boardDTO.answer }">
+			<input type="button" value="답변하기" class="btn btn-success" onclick="location.href='${pageContext.request.contextPath}/admin/qnaAnswer?num=${adminQnaDTO.num}'">
+		</c:if>
+		<c:if test="${not empty boardDTO.answer }">
+			<input type="button" class="btn btn-success disabled" value="답변완료">
+		</c:if>
 	</c:if>
 </c:if>
 <input type="button" value="목록" class="btn btn-outline-success" onclick="location.href='${pageContext.request.contextPath}/admin/qna'">

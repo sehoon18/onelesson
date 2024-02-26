@@ -36,10 +36,16 @@ public class AdminQnaDAO {
 		return sqlSession.selectOne(namespace + ".getQna", adminQnaDTO);
 	}
 
-//	public void qnaAnswer(AdminQnaDTO adminQnaDTO) {
-//		System.out.println("AdminQnaDAO qnaAnswer()");
-//		
-//		sqlSession.selectOne(namespace + ".qnaAnswer", adminQnaDTO);
-//	}
+	public void qnaAnswer(AdminQnaDTO adminQnaDTO) {
+		System.out.println("AdminQnaDAO qnaAnswer()");
+		
+		sqlSession.selectOne(namespace + ".qnaAnswer", adminQnaDTO);
+	}
+
+	public void updateQna(AdminQnaDTO adminQnaDTO) {
+		System.out.println("AdminQnaDAO updateQna()");
+		
+		sqlSession.selectOne(namespace + ".updateQna", adminQnaDTO);
+	}
 
 }

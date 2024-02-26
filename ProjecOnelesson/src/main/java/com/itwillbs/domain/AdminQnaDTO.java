@@ -6,6 +6,7 @@ public class AdminQnaDTO {
 	
 	private int num;
 	private String id;
+	private String pass;
 	private String subject; //글 제목
 	private String question; //문의/신고 내용
 	private String answer; //문의/신고 답변
@@ -31,6 +32,14 @@ public class AdminQnaDTO {
 
 	public void setId(String id) {
 		this.id = id;
+	}
+
+	public String getPass() {
+		return pass;
+	}
+
+	public void setPass(String pass) {
+		this.pass = pass;
 	}
 
 	public String getSubject() {

@@ -7,12 +7,6 @@
 
 	<select id="getQnaList" resultType="com.itwillbs.domain.AdminQnaDTO">
 		select QNA_NUM as "num", MEM_ID as "id", QNA_SUBJECT as "subject", QNA_QUESTION as "question", QNA_ANSWER as "answer", QNA_UPDATE as "update" from QNA
-		
-		<if test="search != null">
-        where QNA_SUBJECT like CONCAT('%', #{search}, '%')
-         or QNA_QUESTION like CONCAT('%', #{search}, '%')
-         or QNA_ANSWER like CONCAT('%', #{search}, '%')
-    	</if>
     	
 		order by QNA_NUM desc
 		limit #{startRow}, #{pageSize}
@@ -20,11 +14,6 @@
 	
 	<select id="getQnaCount" resultType="java.lang.Integer">
 		select count(*) from QNA
-		<if test="search != null">
-		where QNA_SUBJECT like CONCAT('%', #{search}, '%')
-         or QNA_QUESTION like CONCAT('%', #{search}, '%')
-         or QNA_ANSWER like CONCAT('%', #{search}, '%')
-		</if>
 	</select>
 	
 	<select id="getQna" resultType="com.itwillbs.domain.AdminQnaDTO">
@@ -39,5 +28,10 @@
 
 <!-- 	</select> -->
 	
+	<update id="updateQna">
+		update QNA
+		SET QNA_ANSWER = #{answer}
+		where QNA_NUM = #{num}
+	</update>
 
 </mapper>

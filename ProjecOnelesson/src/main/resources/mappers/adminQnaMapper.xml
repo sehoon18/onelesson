@@ -28,5 +28,10 @@
 
 <!-- 	</select> -->
 	
+	<update id="updateQna">
+		update QNA
+		SET QNA_ANSWER = #{answer}
+		where QNA_NUM = #{num}
+	</update>
 
 </mapper>

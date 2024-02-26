@@ -50,7 +50,7 @@ public class AdminDAO {
 		return sqlSession.selectOne(namespace + ".getAdminByEmail", email);
 	}
 
-	public AdminQnaDTO adminCheck(AdminQnaDTO adminQnaDTO) {
+	public AdminDTO adminCheck(AdminQnaDTO adminQnaDTO) {
 		System.out.println("AdminDAO adminCheck()");
 		
 		return sqlSession.selectOne(namespace + ".adminCheck", adminQnaDTO);

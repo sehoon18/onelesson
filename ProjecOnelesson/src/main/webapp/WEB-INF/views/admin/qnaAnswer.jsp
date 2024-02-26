@@ -45,25 +45,26 @@
                     <h3 class="mt-4">👮‍♂️‍관리자가 답변하기</h3>
 <hr>
 <form action="${pageContext.request.contextPath}/admin/qnaAnswerPro" method="post">
-<input type="hidden" name="name" value="${adminDTO.id}"> 
+<%-- <input type="hidden" name="name" value="${adminDTO.id}">  --%>
+<input type="hidden" name="num" value="${boardDTO.num}"> 
 <table id="listTable">
 <tr><td style="width: 100px;">제목</td><td style="width: 800px;"><div>
-  <input type="text" class="form-control" id="floatingInput" placeholder="name@example.com" value="${boardDTO.subject}" readonly>
   <label>SUBJECT</label>
+  <input type="text" class="form-control" id="floatingInput" placeholder="" value="${boardDTO.subject}" >
 </div></td></tr>
 <tr><td>내용</td><td><div>
-  <textarea class="form-control" placeholder="Leave a comment here" id="floatingTextarea2" style="height: 200px" readonly>${boardDTO.content}</textarea>
   <label>QUESTION</label>
+  <textarea class="form-control" placeholder="" id="floatingTextarea2" style="height: 200px" readonly>${boardDTO.question}</textarea>
 </div></td></tr>
 <tr><td>답변</td><td><div>
-  <textarea name="content" class="form-control" placeholder="Leave a comment here" id="floatingTextarea2" style="height: 200px">${adminQnaDTO.answer}</textarea>
   <label>ANSWER</label>
+  <textarea name="answer" class="form-control" placeholder="" id="floatingTextarea2" style="height: 200px"></textarea>
 </div></td></tr>
 <tr><td></td><td style="text-align: center;">
 <div class="mb-3 row">
     <label for="inputPassword" class="col-sm-2 col-form-label">Password</label>
     <div class="col-sm-8">
-      <input type="password" class="form-control" id="inputPassword">
+      <input type="password" name="pass" class="form-control" id="inputPassword">
     </div>
     <div class="col-sm-2">
         <input type="submit" class="btn btn-info w-100" value="답변하기">

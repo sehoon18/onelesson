@@ -13,6 +13,7 @@ import org.springframework.web.bind.annotation.GetMapping;
 import org.springframework.web.bind.annotation.PostMapping;
 import org.springframework.web.bind.annotation.RequestMapping;
 
+import com.itwillbs.domain.AdminDTO;
 import com.itwillbs.domain.AdminFaqDTO;
 import com.itwillbs.domain.AdminNoticeDTO;
 import com.itwillbs.domain.AdminQnaDTO;
@@ -442,34 +443,41 @@ public class AdminBoardController {
 		return "admin/qnaContent";
 	}
 	
-//	@GetMapping("/qnaAnswer")
-//	public String qnaAnswer(HttpSession session, AdminQnaDTO adminQnaDTO, Model model) {
-//		System.out.println("AdminBoardController qnaAnswer()");
-//		
-//		String admin_id = (String) session.getAttribute("id");
-//	    if(admin_id != null && admin_id.equals("admin")) {
-//	        return "admin/qnaAnswer";
-//	    } else {
-//	        return "redirect:/admin/qna";
-//	    }
-//	}
+	@GetMapping("/qnaAnswer")
+	public String qnaAnswer(HttpSession session, AdminQnaDTO adminQnaDTO, Model model, BoardDTO boardDTO) {
+		System.out.println("AdminBoardController qnaAnswer()");
+		
+		String admin_id = (String) session.getAttribute("id");
+	    if(admin_id != null) {
+	    	if(admin_id.equals("admin")) {
+	    		boardDTO.setNum(adminQnaDTO.getNum());
+	    		boardDTO = boardService.getQna(boardDTO);
+	    		model.addAttribute("boardDTO", boardDTO);
+	    		return "admin/qnaAnswer";
+		    } else {
+		    	return "redirect:/admin/adminLogin";
+		    }
+	    } else {
+	    	return "redirect:/admin/adminLogin";
+	    }
+	}
 	
-//	@PostMapping("/qnaAnswerPro")
-//	public String qnaAnswerPro(HttpSession session, AdminQnaDTO adminQnaDTO, Model model, AdminDTO adminDTO) {
-//		System.out.println("AdminBoardController qnaAnswerPro()");
-//		
-//		 adminQnaDTO.setId((String)session.getAttribute("id"));
-//		    System.out.println(adminQnaDTO);
-//		    adminQnaDTO = adminService.adminCheck(adminQnaDTO);
-//
-//		    if (adminQnaDTO != null) {
-//		        adminQnaDTO.setUpdate(new Timestamp(System.currentTimeMillis()));
-//		        adminService.updateQna(adminQnaDTO);
-//		        return "redirect:/admin/qnaList";
-//		    } else {
-//		        return "redirect:/admin/qnaList";
-//		    }
-//	}
+	@PostMapping("/qnaAnswerPro")
+	public String qnaAnswerPro(HttpSession session, AdminQnaDTO adminQnaDTO, Model model, AdminDTO adminDTO) {
+		System.out.println("AdminBoardController qnaAnswerPro()");
+		
+		 adminQnaDTO.setId((String)session.getAttribute("id"));
+		    System.out.println(adminQnaDTO);
+		    adminDTO = adminService.adminCheck(adminQnaDTO);
+
+		    if (adminDTO != null) {
+		        adminQnaDTO.setUpdate(new Timestamp(System.currentTimeMillis()));
+		        adminQnaService.updateQna(adminQnaDTO);
+		        return "redirect:/admin/qnaContent?num=" + adminQnaDTO.getNum();
+		    } else {
+		        return "redirect:/admin/qnaContent?num=" + adminQnaDTO.getNum();
+		    }
+	}
 	
 	
 	

@@ -35,5 +35,16 @@
 		select ADMIN_ID as "id", ADMIN_PASS as "pass", ADMIN_NAME as "name", ADMIN_PHONE as "phone" from ADMIN
 		where ADMIN_EMAIL = #{email}
 	</select>
+	
+<!-- 	<select id="adminCheck" resultType="com.itwillbs.domain.AdminQnaDTO"> -->
+<!-- 		select QNA_NUM as "num", MEM_ID as "id", QNA_SUBJECT as "subject", QNA_QUESTION as "question", QNA_ANSWER as "answer", QNA_UPDATE as "update" from QNA -->
+<!--         where MEM_ID = #{id} -->
+<!-- 	</select> -->
+	
+<!-- 	<update id="updateQna"> -->
+<!-- 		update QNA -->
+<!-- 		set QNA_ANSWER = #{answer} -->
+<!-- 		where QNA_NUM = #{num} -->
+<!-- 	</update> -->
 
 </mapper>

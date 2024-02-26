@@ -51,11 +51,11 @@ public class AdminService {
 		return adminDAO.getAdminByEmail(email);
 	}
 
-//	public AdminQnaDTO adminCheck(AdminQnaDTO adminQnaDTO) {
-//		System.out.println("AdminService adminCheck()");
-//		
-//		return adminDAO.adminCheck(adminQnaDTO);
-//	}
+	public AdminDTO adminCheck(AdminQnaDTO adminQnaDTO) {
+		System.out.println("AdminService adminCheck()");
+		
+		return adminDAO.adminCheck(adminQnaDTO);
+	}
 
 //	public void updateQna(AdminQnaDTO adminQnaDTO) {
 //		System.out.println("AdminService updateQna()");

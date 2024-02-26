@@ -41,9 +41,15 @@ public class AdminQnaService {
 		return adminQnaDAO.getQna(adminQnaDTO);
 	}
 
-//	public void qnaAnswer(AdminQnaDTO adminQnaDTO) {
-//		System.out.println("AdminQnaService qnaAnswer()");
-//		
-//		adminQnaDAO.qnaAnswer(adminQnaDTO);
-//	}
+	public void qnaAnswer(AdminQnaDTO adminQnaDTO) {
+		System.out.println("AdminQnaService qnaAnswer()");
+		
+		adminQnaDAO.qnaAnswer(adminQnaDTO);
+	}
+
+	public void updateQna(AdminQnaDTO adminQnaDTO) {
+		System.out.println("AdminQnaService updateQna()");
+		
+		adminQnaDAO.updateQna(adminQnaDTO);
+	}
 }
