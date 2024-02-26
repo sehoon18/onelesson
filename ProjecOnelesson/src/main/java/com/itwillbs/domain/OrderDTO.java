@@ -13,12 +13,19 @@ public class OrderDTO {
 	private String MEM_NAME;
 	private String LES_SUBJECT;
 	private String LES_PRICE;
+	private String LES_NUM;
 	
+	public String getLES_NUM() {
+		return LES_NUM;
+	}
+	public void setLES_NUM(String lES_NUM) {
+		LES_NUM = lES_NUM;
+	}
 	@Override
 	public String toString() {
 		return "OrderDTO [ORDER_NUM=" + ORDER_NUM + ", ORDER_METHOD=" + ORDER_METHOD + ", ORDER_DATE=" + ORDER_DATE
 				+ ", ORDER_STATUS=" + ORDER_STATUS + ", MEM_ID=" + MEM_ID + ", MEM_NAME=" + MEM_NAME + ", LES_SUBJECT="
-				+ LES_SUBJECT + ", LES_PRICE=" + LES_PRICE + "]";
+				+ LES_SUBJECT + ", LES_PRICE=" + LES_PRICE + ", LES_NUM=" + LES_NUM + "]";
 	}
 	public String getMEM_ID() {
 		return MEM_ID;

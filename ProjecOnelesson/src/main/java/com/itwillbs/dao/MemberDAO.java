@@ -90,6 +90,15 @@ public class MemberDAO {
 		System.out.println("MemberDAO getMyOrder()");
 		return sqlSession.selectList(namespace + ".getMyOrder" , memberDTO);
 	}
+	public List<OrderDTO> getMyOrder2(MemberDTO memberDTO) {
+		System.out.println("MemberDAO getMyOrder2()");
+		return sqlSession.selectList(namespace + ".getMyOrder2" , memberDTO);
+	}
+	public MemberDTO getMemberLessonNum(Object attribute) {
+		System.out.println("MemberDAO getMemberLessonNum()");
+		return sqlSession.selectOne(namespace + ".getMemberLessonNum" , attribute);
+	}
+	
 
 	public MemberDTO getMemberByLogin(MemberDTO memberDTO) {
 		System.out.println("MemberDAO getMemberByLogin()");

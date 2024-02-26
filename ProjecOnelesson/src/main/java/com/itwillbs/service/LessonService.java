@@ -110,5 +110,9 @@ public class LessonService {
 		return lessonDAO.infoCheck(lessonDTO);
 	}
 
+	public LessonDTO getLesNum(String id) {
+		System.out.println("LessonService getLesNum");
+		return lessonDAO.getLesNum(id);
+	}
 
 }

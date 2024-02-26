@@ -94,6 +94,15 @@ public class MemberService{
 		System.out.println("MemberService getMemberByLogin()");
 		return memberDAO.getMemberByLogin(memberDTO);
 	}
+	public List<OrderDTO> getMyOrder2(MemberDTO memberDTO) {
+		System.out.println("MemberService getMyOrder2()");
+		return memberDAO.getMyOrder2(memberDTO);
+	}
+
+	public MemberDTO getMemberLessonNum(Object attribute) {
+		System.out.println("MemberService getMemberLessonNum()");
+		return memberDAO.getMemberLessonNum(attribute);
+	}
 
 	public MemberDTO getMemberFindIdPhoneVersion(MemberDTO memberDTO) {
 		System.out.println("MemberService getMemberFindIdPhoneVersion()");

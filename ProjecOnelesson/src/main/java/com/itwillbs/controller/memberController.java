@@ -367,15 +367,18 @@ public class memberController {
 		return "member/myLessonList";
 	}
 	@GetMapping("/myPayment")
-	public String myPayment(HttpSession session, MemberDTO memberDTO, Model model, LessonDTO lessonDTO, PageDTO pageDTO ,HttpServletRequest request) {
+	public String myPayment(HttpSession session, MemberDTO memberDTO, Model model, LessonDTO lessonDTO, LessonDTO orderDTO, PageDTO pageDTO ,HttpServletRequest request) {
 		System.out.println("MemberController myPayment()");
 		System.out.println(session.getAttribute("id"));
 		
 		memberDTO = memberService.getMember((String)session.getAttribute("id"));
+	
 		System.out.println(memberDTO);
-		
 		model.addAttribute("memberDTO", memberDTO);
 		
+		System.out.println(orderDTO);
+		
+		model.addAttribute("lessonDTO", lessonDTO);
 		int pageSize = 2;
 		
 		String pageNum = request.getParameter("pageNum");
@@ -408,13 +411,26 @@ public class memberController {
 		pageDTO.setPageCount(pageCount);
 
 		List<OrderDTO> orderList = memberService.getMyOrder(memberDTO);
-		model.addAttribute("orderList" , orderList);	
+		List<OrderDTO> orderList2 = memberService.getMyOrder2(memberDTO);
+		
+		model.addAttribute("orderList" , orderList);
+		model.addAttribute("orderList2" , orderList2);
 		model.addAttribute("pageDTO", pageDTO);
 		
+		if (orderList.isEmpty()) {
+			if(orderList2.isEmpty()) {
+			model.addAttribute("orderError", "데이터가 없습니다.");
+			return "member/orderErrorPage";
+		}
+		}
 		System.out.println(lessonDTO);
 		System.out.println(memberDTO);
 		System.out.println(orderList.size());
 		System.out.println(orderList.get(0).getLES_SUBJECT());
+		
+		System.out.println(orderList2.size());
+		System.out.println(orderList2.get(0).getLES_SUBJECT());
+		
 		return "member/myPayment";
 	}
 // ----------------- TEST ------------------------------

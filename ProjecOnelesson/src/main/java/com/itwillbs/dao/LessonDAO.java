@@ -80,4 +80,10 @@ public class LessonDAO {
 		return sqlSession.selectOne(namespace + ".infoCheck", lessonDTO);
 	}
 
+	public LessonDTO getLesNum(String id) {
+		System.out.println("LessonDAO getLessonNum");
+		return sqlSession.selectOne(namespace+".getLesNum", id);
+	}
+
+
 }

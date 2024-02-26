@@ -74,6 +74,7 @@ select MEM_ID as "id" from MEMBER where MEM_ID = #{id} AND MEM_PHONE = #{phone}
        o.ORDER_STATUS AS "ORDER_STATUS",
        l.LES_SUBJECT AS "LES_SUBJECT",
        l.LES_PRICE AS "LES_PRICE",
+       l.LES_NUM AS "LES_NUM",
        m.MEM_NAME AS "MEM_NAME"
 FROM ORDERS o
 INNER JOIN LESSON l ON o.LES_NUM = l.LES_NUM
@@ -86,6 +87,21 @@ WHERE o.ORDER_NUM IN (
     )
 ORDER BY o.ORDER_NUM DESC;
 </select>
+ <select id="getMyOrder2" resultType="com.itwillbs.domain.OrderDTO">
+	select  o.ORDER_NUM as "ORDER_NUM" ,o.ORDER_DATE as "ORDER_DATE" ,
+        o.ORDER_METHOD as "ORDER_METHOD" , o.ORDER_STATUS as "ORDER_STATUS",
+        l.LES_SUBJECT as "LES_SUBJECT" , l.LES_PRICE as "LES_PRICE",
+        m.MEM_NAME as "MEM_NAME" , l.LES_NUM as "LES_NUM"
+	from ORDERS o
+    INNER JOIN LESSON l ON o.LES_NUM = l.LES_NUM
+    INNER JOIN MEMBER m on o.MEM_ID = m.MEM_ID
+	where  l.LES_NUM in (select LES_NUM
+						  from LESSON
+						  where MEM_ID = #{id}
+							group by LES_NUM)
+	order by LES_NUM desc;
+</select>
+
 
 <select id="userCheck" resultType="com.itwillbs.domain.MemberDTO"> select MEM_ID as "id", MEM_PASS as "pass", MEM_STATUS as "status" from MEMBER where MEM_ID = #{id} and MEM_PASS = #{pass} </select>
 <select id="getMember" resultType="com.itwillbs.domain.MemberDTO"> select MEM_ID as "id", MEM_NAME as "name", MEM_NICK as "nick", MEM_EMAIL as "email", MEM_PHONE as "phone", MEM_ADDRESS as "address", MEM_TYPE as "type" from MEMBER where MEM_ID = #{id} </select>
