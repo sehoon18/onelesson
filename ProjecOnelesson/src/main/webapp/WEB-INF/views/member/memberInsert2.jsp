@@ -406,22 +406,24 @@ style="right: 9px; margin-top: 2px"></font>
   
 </script>	
 	
-<!-- Ajax(Asynchronous JavaScript and XML, 에이잭스)
- 비동기적인 웹 애플리케이션의 제작을 위해 아래와 같은 조합을 이용하는 웹 개발 기법이다. -->
-   <!-- ... 기존의 HTML 코드 ... -->
-
 <script type="text/javascript">
     $(function () {
         // 아이디 입력란에 변화가 생길 때마다 실행
-        $(".form-control.input-cc.inputId").on('input', function () {
+        $(".form-control.input-cc.inputId").on('blur', function () {
             // 입력된 아이디 가져오기
             var username = $(this).val().toLowerCase(); // 대소문자 구분 없이 체크하기 위해 소문자로 변환
 
-            if((username) == "admin" || (/admin/.test(username) || /[a-zA-Z0-9]+admin/.test(username) || /admin[a-zA-Z0-9]+$/.test(username))){
-            	alert("admin은 입력되지 않습니다.")
+            if((username) == "admin" 
+            		|| username.includes("admin")
+            		/*
+            		|| (/admin/.test(username) 
+            		|| /[a-zA-Z0-9]+admin/.test(username) 
+            		|| /admin[a-zA-Z0-9]+$/.test(username)) 베
+            		*/
+            		){
             	$('#checkId').css('color', 'red');
                 $('#checkId').text('"admin"은 사용할 수 없는 아이디입니다.');
-            	return false;
+                $(".form-control.input-cc.inputId").focus();
             //}
       
             // 아이디에 "admin"이 포함되어 있는지 확인
@@ -463,70 +465,82 @@ style="right: 9px; margin-top: 2px"></font>
 
 
 <script>
-//비밀번호 입력 요소 가져오기
+// 비밀번호 입력 요소와 확인 비밀번호 입력 요소 가져오기
 const passwordInput = document.querySelector('input[name="pass"]');
+const confirmPasswordInput = document.querySelector('input[name="pass2"]');
+const signUpButton = document.getElementById('signUpButton');
 
-//비밀번호 입력 필드에 이벤트 리스너 추가
+// 비밀번호 입력 필드에 이벤트 리스너 추가
 passwordInput.addEventListener('input', function () {
-// 입력된 값을 가져오기
-const passwordValue = this.value;
+    // 입력된 값을 가져오기
+    const passwordValue = this.value;
 
-// 입력된 값이 빈 칸인지 확인
-if (!passwordValue.trim()) {
-  // 빈 칸일 경우 메시지 표시
-  displayPasswordMessage('비밀번호를 입력해주세요', 'red');
-  return;
-}
+    // 입력된 값이 빈 칸인지 확인
+    if (!passwordValue.trim()) {
+        // 빈 칸일 경우 메시지 표시
+        displayPasswordMessage('비밀번호를 입력해주세요', 'red');
+        confirmPasswordInput.disabled = true; // 다음 입력 칸 비활성화
+        signUpButton.disabled = true; // 가입 버튼 비활성화
+        return;
+    }
 
-// 입력된 값이 기준을 충족하는지 확인
-const isValidFormat = /^(?=.*[a-zA-Z])(?=.*\d)(?=.*[@$!%*?&])[A-Za-z\d@$!%*?&]{8,16}$/.test(passwordValue);
+    // 입력된 값이 기준을 충족하는지 확인
+    const isValidFormat = /^(?=.*[a-zA-Z])(?=.*\d)(?=.*[@$!%*?&])[A-Za-z\d@$!%*?&]{8,16}$/.test(passwordValue);
 
-if (isValidFormat) {
-  // 유효한 형식인 경우 메시지 표시
-  displayPasswordMessage('사용 가능한 비밀번호입니다', 'green');
-} else {
-  // 유효하지 않은 형식인 경우 메시지 표시
-  displayPasswordMessage('영문, 숫자, 특수문자 포함(공백제외) 8~16자 이하 입력해주세요', 'red');
-}
+    if (isValidFormat) {
+        // 유효한 형식인 경우 메시지 표시
+        displayPasswordMessage('사용 가능한 비밀번호입니다', 'green');
+        confirmPasswordInput.disabled = false; // 다음 입력 칸 활성화
+        signUpButton.disabled = true; // 가입 버튼 비활성화
+    } else {
+        // 유효하지 않은 형식인 경우 메시지 표시
+        displayPasswordMessage('영문, 숫자, 특수문자 포함(공백제외) 8~16자 이하 입력해주세요', 'red');
+        confirmPasswordInput.disabled = true; // 다음 입력 칸 비활성화
+        signUpButton.disabled = true; // 가입 버튼 비활성화
+    }
 });
 
-//메시지 표시 함수
+// 확인 비밀번호 입력 필드에 이벤트 리스너 추가
+confirmPasswordInput.addEventListener('input', function () {
+    // 입력된 비밀번호와 확인 비밀번호 가져오기
+    const passwordValue = passwordInput.value;
+    const confirmPasswordValue = this.value;
+
+    // 확인 비밀번호가 빈 칸인지 확인
+    if (!confirmPasswordValue.trim()) {
+        // 빈 칸일 경우 메시지 표시
+        displayConfirmPasswordMessage('비밀번호를 다시 입력해주세요', 'red');
+        signUpButton.disabled = true; // 가입 버튼 비활성화
+        return;
+    }
+
+    // 비밀번호와 확인 비밀번호 일치 여부 확인
+    if (passwordValue === confirmPasswordValue) {
+        // 일치하는 경우 메시지 표시
+        displayConfirmPasswordMessage('비밀번호가 일치합니다', 'green');
+        signUpButton.disabled = false; // 가입 버튼 활성화
+    } else {
+        // 불일치하는 경우 메시지 표시
+        displayConfirmPasswordMessage('비밀번호가 일치하지 않습니다', 'red');
+        signUpButton.disabled = true; // 가입 버튼 비활성화
+    }
+});
+
+// 메시지 표시 함수 (비밀번호)
 function displayPasswordMessage(message, color) {
-const pwMessageElement = document.getElementById('pwCheck');
-pwMessageElement.innerText = message;
-pwMessageElement.style.color = color;
+    const pwMessageElement = document.getElementById('pwCheck');
+    pwMessageElement.innerText = message;
+    pwMessageElement.style.color = color;
+}
+
+// 메시지 표시 함수 (확인 비밀번호)
+function displayConfirmPasswordMessage(message, color) {
+    const pwMessageElement = document.getElementById('pwDoubleCheck');
+    pwMessageElement.innerText = message;
+    pwMessageElement.style.color = color;
 }
 </script>
 
-
-
-<script>
-//비밀번호 확인 입력 요소 가져오기
-const passwordConfirmInput = document.querySelector('input[name="pass2"]');
-
-//비밀번호 확인 입력 필드에 이벤트 리스너 추가
-passwordConfirmInput.addEventListener('input', function () {
-//비밀번호 입력 값과 확인 값 비교
-const passwordValue = document.querySelector('input[name="pass"]').value;
-const confirmPasswordValue = this.value;
-
-if (passwordValue !== confirmPasswordValue) {
-// 일치하지 않을 경우 메시지 표시
-displayPasswordConfirmMessage('비밀번호가 일치하지 않습니다', 'red');
-} else {
-// 일치할 경우 메시지 초기화
-displayPasswordConfirmMessage('비밀번호가 일치합니다', 'green');
-}
-});
-
-//메시지 표시 함수
-function displayPasswordConfirmMessage(message, color) {
-const pwDoubleCheckElement = document.getElementById('pwDoubleCheck');
-pwDoubleCheckElement.innerText = message;
-pwDoubleCheckElement.style.color = color;
-}
-
-</script>
 
 <script>
 $(function(){
@@ -614,7 +628,7 @@ $(function(){
             data: {'phone': phoneNumber},
             success: function(result){
                 // 서버 응답 처리
-                if(result === "phonedup"){
+                if(result == "phonedup"){
                     result = "이미 존재하는 연락처입니다.";
                     $('#checkPhone').css('color', 'red');
                 } else {
@@ -655,15 +669,13 @@ function sample5_execDaumPostcode() {
      }
  }).open();
 }
-</script>  
 
 
-<script>
-$(function(){
+$(function () {
     // 이메일 입력란에 변화가 생길 때마다 실행
-    $("#floatingMail, #domain-txt, #domain-list").on('input', function(){
-        // Get the entered email
-        var email = $("#floatingMail").val() + $("#domain-list").val();
+    $("input[name='email']").on('input', function () {
+        // 입력된 이메일 가져오기
+        var email = $(this).val();
 
         // 이메일 형식 유효성 확인
         if (!isValidEmail(email)) {
@@ -679,7 +691,7 @@ $(function(){
             data: {'email': email},
             success: function(result){
                 // 서버 응답 처리
-                if(result === "emaildup"){
+                if(result == "emaildup"){
                     result = "이미 존재하는 이메일입니다.";
                     $('#checkEmail').css('color', 'red');
                 } else {
@@ -699,10 +711,11 @@ $(function(){
 
 // 이메일 형식 검증 함수
 function isValidEmail(email) {
-    // 간단한 이메일 형식 확인 (추가적인 로직이 필요하면 수정 필요)
-    const emailRegex = /\S+@\S+\.\S+/;
+    // 간단한 이메일 형식 정규식 사용
+    const emailRegex = /^[^\s@]+@[^\s@]+\.[^\s@]+$/;
     return emailRegex.test(email);
 }
+
 </script>
 
 
