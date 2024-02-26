@@ -61,17 +61,17 @@
 </head>
 <body>
     <h1>One lesson</h1>
-    <form action="/reset-password" method="POST" id="resetPasswordForm">
+    <form action="${pageContext.request.contextPath}/member/memberResetPassPro" method="POST" id="resetPasswordForm">
         <h2>비밀번호 재설정</h2>
 
         <label for="id">아이디:</label>
         <input type="text" id="id" name="id" value="${foundUserId.id }" required readonly>
 
         <label for="new-password">새로운 비밀번호 입력:</label>
-        <input type="password" id="new-password" name="new-password" required>
+        <input type="password" id="new-password" name="pass" required>
 
         <label for="confirm-password">비밀번호 재확인:</label>
-        <input type="password" id="confirm-password" name="confirm-password" required>
+        <input type="password" id="confirm-password" name="pass1" required>
 
         <button type="submit">비밀번호 재설정</button>
     </form>
@@ -84,8 +84,8 @@
 
     <script>
         document.getElementById('resetPasswordForm').addEventListener('submit', function(event) {
-            var newPassword = document.getElementById('new-password').value;
-            var confirmPassword = document.getElementById('confirm-password').value;
+            var newPassword = document.getElementById('#new-password').value;
+            var confirmPassword = document.getElementById('#confirm-password').value;
 
             if (newPassword !== confirmPassword) {
                 alert('비밀번호와 비밀번호 확인이 일치하지 않습니다.');

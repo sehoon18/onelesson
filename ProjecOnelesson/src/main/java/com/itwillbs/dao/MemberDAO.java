@@ -171,4 +171,7 @@ public class MemberDAO {
     	System.out.println("MemberDAO searchMembers()");
         return sqlSession.selectList(namespace+".searchMembers", memberDTO);
     }
+	public void updatePass(MemberDTO memberDTO) {
+		sqlSession.update(namespace + ".updatePass", memberDTO);
+	}
 }

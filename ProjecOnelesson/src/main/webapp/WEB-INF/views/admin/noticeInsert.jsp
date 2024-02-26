@@ -41,7 +41,7 @@
         <hr>
         <form action="${pageContext.request.contextPath}/admin/noticeInsertPro" method="post"
               enctype="multipart/form-data">
-            <input type="hidden" name="id" value="${adminNoticeDTO.id}">
+            <input type="hidden" name="id" value="${sessionScope.id}">
             <div class="row">
                 <div class="col-md-2">
                     <label for="category" class="form-label">타입</label>

@@ -167,6 +167,10 @@ public class MemberService{
 		System.out.println("MemberService searchMembers()");
 		return memberDAO.searchMembers(memberDTO);
 	}
+
+	public void updatePass(MemberDTO memberDTO) {
+		memberDAO.updatePass(memberDTO);
+	}
 	
 	
 }

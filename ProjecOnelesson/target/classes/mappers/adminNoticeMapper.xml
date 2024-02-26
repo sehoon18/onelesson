@@ -6,8 +6,8 @@
 <mapper namespace="com.itwillbs.mappers.adminNoticeMapper">
 
 	<insert id="noticeInsert">
-		insert into NOTICE(NOTICE_NUM, ADMIN_ID, NOTICE_TYPE, NOTICE_SUBJECT, NOTICE_CONTENT, NOTICE_DATE, NOTICE_READCOUNT, NOTICE_IMAGE)
-		values (#{num}, #{id}, #{type}, #{subject}, #{content}, #{date}, #{readcount}, #{image})
+		insert into NOTICE(ADMIN_ID, NOTICE_TYPE, NOTICE_SUBJECT, NOTICE_CONTENT, NOTICE_DATE, NOTICE_READCOUNT, NOTICE_IMAGE)
+		values (#{id}, #{type}, #{subject}, #{content}, #{date}, #{readcount}, #{image})
 	</insert>
 	
 	<select id="getNoticeList" resultType="com.itwillbs.domain.AdminNoticeDTO">

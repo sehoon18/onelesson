@@ -248,6 +248,15 @@ public class memberController {
 	    return "member/memberResetPass";
 	}
 	
+	@PostMapping("/memberResetPassPro")
+	public String memberResetPassPro(MemberDTO memberDTO) {
+		System.out.println("MemberController memberResetPassPro()");
+	    
+		memberService.updatePass(memberDTO);
+		
+		return "redirect:/member/memberLogin";
+	}
+	
 	
 	// -----------------------[myPage]------------------------------
 	

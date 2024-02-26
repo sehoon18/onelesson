@@ -194,4 +194,11 @@ SET LES_STATUS = 1
 WHERE MEM_ID = #{id}
 </update>
 
+<update id="updatePass">
+update MEMBER
+SET MEM_PASS = #{pass}
+WHERE MEM_ID = #{id}
+</update>
+
+
 </mapper>

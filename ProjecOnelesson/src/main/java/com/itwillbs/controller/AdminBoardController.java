@@ -380,7 +380,7 @@ public class AdminBoardController {
 		
 		adminFaqService.faqDelete(adminFaqDTO);
 		
-		return "redirect:/admin/faqList";
+		return "redirect:/admin/faq";
 	}
 	
 	@GetMapping("/qna")
