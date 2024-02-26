@@ -44,6 +44,7 @@ background-color: #ccc;
 <!-- 네비바 -->
 <script src="https://cdn.jsdelivr.net/npm/bootstrap@5.3.1/dist/js/bootstrap.bundle.min.js"></script>
 
+<!-- <nav class="navbar navbar-expand-md navbar-dark fixed-top bg-white " style="height: 55px;"> -->
 <nav class="navbar navbar-expand-md navbar-dark fixed-top bg-white " style="height: 55px;">
   <div class="container-fluid">
     <a class="navbar-brand" href="${pageContext.request.contextPath}/member/main" style="color: black; margin: 0px auto;">

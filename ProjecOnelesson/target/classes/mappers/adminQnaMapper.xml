@@ -28,9 +28,16 @@
 	</select>
 	
 	<select id="getQna" resultType="com.itwillbs.domain.AdminQnaDTO">
-		select QNA_NUM as "num", MEM_ID as "id", QNA_SUBJECT as "subject", QNA_QUESTION as "question", QNA_ANSWER as "answer", QNA_UPDATE as "update" from QNA
-		where QNA_NUM = #{num}
+    	select a.QNA_NUM as num, a.MEM_ID as id, a.QNA_SUBJECT as subject, a.QNA_QUESTION as question, a.QNA_UPDATE as `update`,
+    		   b.QNA_SUBJECT as subject, b.QNA_ANSWER as answer
+    	from QNA a
+    	left join QNA b on a.QNA_NUM = b.QNA_NUM
+    	where a.QNA_NUM = #{num}
 	</select>
+	
+<!-- 	<select id="qnaAnswer" resultType=""> -->
+
+<!-- 	</select> -->
 	
 
 </mapper>
