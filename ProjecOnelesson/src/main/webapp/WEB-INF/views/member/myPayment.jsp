@@ -242,14 +242,14 @@ display: inline-block;
 }
 .payment-text1{
 	position : static;
-	width: 120px;
+	width: 110px;
 	float: left;
 	margin-left: 1px;
 	text-align: center;
 	}
 .payment-text2{
 	position : static;
-	width: 300px;
+	width: 140px;
 	float: left;
 	margin-left: 1px;
 	text-align: center;
@@ -258,14 +258,14 @@ display: inline-block;
 	position : static;
 	width: 80px;
 	float: left;
-	margin-left: 30px;
+	margin-left: 15px;
 	text-align: center;
 	}
 .payment-text4{
 	position : static;
 	width: 100px;
 	float: left;
-	margin-left: 1px;
+	margin-left: 10px;
 	text-align: center;
 	}
 .payment-text5{
@@ -325,7 +325,7 @@ display: inline-block;
 	margin-left: 30px;
 }
 .paymentIn-text2{
-	width: 330px;
+	width: 150px;
 	height: 30px;
 	border-bottom: 2px solid;
 	border-bottom-color: black;
