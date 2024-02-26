@@ -311,8 +311,10 @@ $(function(){
 				success:function(result){
 					alert("정보 일치");
 					if( result != "try again"){
+						
+						
 						// 정보 일치 시 비밀번호 재설정 페이지로 이동
-                        window.location.href = '${pageContext.request.contextPath}/member/memberResetPass';
+                        window.location.href = '${pageContext.request.contextPath}/member/memberResetPass?id='+ $('#normalId').val();
 					}else{
 						alert("비밀번호를 재설정할 수 없습니다.");
 						
@@ -337,7 +339,7 @@ $(function(){
 					alert("정보 일치");
 					if( result != "try again"){
 						// 정보 일치 시 비밀번호 재설정 페이지로 이동
-                        window.location.href = '${pageContext.request.contextPath}/member/memberResetPass';
+                        window.location.href = '${pageContext.request.contextPath}/member/memberResetPass?id='+ $('#normalId1').val();
 					}else{
 						alert("비밀번호를 재설정할 수 없습니다.");
 						
@@ -390,7 +392,7 @@ $(function(){
 						alert("정보 일치");
 						if( result != "try again"){
 							// 정보 일치 시 비밀번호 재설정 페이지로 이동
-			                window.location.href = '${pageContext.request.contextPath}/member/memberResetPass';
+			                window.location.href = '${pageContext.request.contextPath}/member/memberResetPass?id='+ $('#instructorId').val();
 							}else{
 								alert("비밀번호를 재설정할 수 없습니다.");	
 						}
@@ -417,7 +419,7 @@ $(function(){
 						alert("정보 일치");
 						if( result != "try again"){
 							// 정보 일치 시 비밀번호 재설정 페이지로 이동
-			                window.location.href = '${pageContext.request.contextPath}/member/memberResetPass';
+			                window.location.href = '${pageContext.request.contextPath}/member/memberResetPass?id='+ $('#instructorId1').val();
 							}else{
 								alert("비밀번호를 재설정할 수 없습니다.");	
 						}
@@ -445,7 +447,7 @@ $(function(){
 					alert("정보 일치");
 					if( result != "try again"){
 						// 정보 일치 시 비밀번호 재설정 페이지로 이동
-				        window.location.href = '${pageContext.request.contextPath}/member/memberResetPass';
+				        window.location.href = '${pageContext.request.contextPath}/member/memberResetPass?id='+ $('#instructorId2').val();
 					}else{
 						alert("비밀번호를 재설정할 수 없습니다.");	
 					}

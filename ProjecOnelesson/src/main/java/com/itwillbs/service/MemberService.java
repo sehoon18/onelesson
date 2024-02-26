@@ -163,7 +163,11 @@ public class MemberService{
 	public void inactiveMyLesson(MemberDTO memberDTO) {
 		memberDAO.inactiveMyLesson(memberDTO);
 	}	
-
+	public List<MemberDTO> searchMembers(MemberDTO memberDTO) {
+		System.out.println("MemberService searchMembers()");
+		return memberDAO.searchMembers(memberDTO);
+	}
+	
 	
 }
 

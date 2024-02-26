@@ -9,7 +9,6 @@ import org.springframework.stereotype.Repository;
 
 import com.itwillbs.domain.MemberDTO;
 import com.itwillbs.domain.OrderDTO;
-import com.itwillbs.domain.PageDTO;
 
 
 @Repository
@@ -168,4 +167,8 @@ public class MemberDAO {
 	public void inactiveMyLesson(MemberDTO memberDTO) {
 		sqlSession.update(namespace + ".inactiveMyLesson", memberDTO);
 	}
+	public List<MemberDTO> searchMembers(MemberDTO memberDTO) {
+    	System.out.println("MemberDAO searchMembers()");
+        return sqlSession.selectList(namespace+".searchMembers", memberDTO);
+    }
 }

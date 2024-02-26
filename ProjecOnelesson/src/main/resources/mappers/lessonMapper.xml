@@ -74,11 +74,33 @@
     </select>
     
 	<select id="getLessonListAll" resultType="com.itwillbs.domain.LessonDTO">
-    	select LES_SUBJECT as "subject", LES_UPDATE as "update", LES_NUM as "num", LES_STATUS as "status", LES_PREVIEW as "preview", LES_PRICE as "price",LES_SUBCATEGORY as "subCategory" , LES_DATE as "date" , MEM_ID as "id"
+    	select LES_SUBJECT as "subject", LES_UPDATE as "update", LES_NUM as "num", LES_STATUS as "status", LES_PREVIEW as "preview", LES_PRICE as "price",LES_SUBCATEGORY as "subCategory" , LES_DATE as "date", LES_LOCATION as "location", MEM_ID as "id"
     	from LESSON
     	order by LES_NUM desc
-    	limit #{startRow}, #{pageSize}
     </select>
+    
+    <select id="searchLessons" resultType="com.itwillbs.domain.LessonDTO">
+    	select LES_SUBJECT as "subject", LES_UPDATE as "update", LES_NUM as "num", LES_STATUS as "status", LES_PREVIEW as "preview", LES_PRICE as "price",LES_SUBCATEGORY as "subCategory" , LES_DATE as "date" , LES_LOCATION as "location" , MEM_ID as "id" from LESSON
+    <where>
+    <if test="category != 'all'">
+        LES_CATEGORY = #{category}
+    </if>
+    <if test="status != '100'">
+        AND LES_STATUS = #{status}
+    </if>
+    <if test="keyword != null">
+    <choose>
+    <when test="field == 'id'">
+        AND MEM_ID like concat('%', #{keyword},'%')
+    </when>
+    <when test="field == 'subject'">
+    	AND LES_SUBJECT like concat('%', #{keyword},'%')
+    </when>
+    </choose>
+    </if>
+    </where>
+    	order by LES_NUM desc
+	</select>
     
     <select id="getMyinsertLessonList" resultType="com.itwillbs.domain.LessonDTO">
     	select LES_SUBJECT as "subject", LES_UPDATE as "update", LES_NUM as "num", LES_STATUS as "status", LES_PREVIEW as "preview", LES_PRICE as "price",LES_SUBCATEGORY as "subCategory" , LES_DATE as "date" , MEM_ID as "id"

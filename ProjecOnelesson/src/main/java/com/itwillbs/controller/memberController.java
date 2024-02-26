@@ -242,7 +242,6 @@ public class memberController {
 		// 세션에서 아이디를 읽어옴
 	    MemberDTO memberDTO2 = memberService.foundUserIdSession(memberDTO);
 
-
 	    // 아이디를 모델에 추가하여 뷰로 전달
 	    model.addAttribute("foundUserId", memberDTO2);
 

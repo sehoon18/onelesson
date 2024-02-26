@@ -12,7 +12,6 @@ import org.springframework.web.bind.annotation.GetMapping;
 import org.springframework.web.bind.annotation.PostMapping;
 import org.springframework.web.bind.annotation.RequestMapping;
 
-import com.itwillbs.domain.AdminDTO;
 import com.itwillbs.domain.AdminFaqDTO;
 import com.itwillbs.domain.AdminNoticeDTO;
 import com.itwillbs.domain.AdminQnaDTO;
@@ -49,8 +48,8 @@ public class AdminBoardController {
 		System.out.println("AdminBoardController memberAdmin()");
 		
 		String user_id = (String) session.getAttribute("id");
-	    
 	    System.out.println(user_id);
+	    
 	   if(user_id == null || !user_id.equals("admin")) {
 		   return "admin/memberAdmin";
 	   }
@@ -66,8 +65,33 @@ public class AdminBoardController {
 		pageDTO.setCurrentPage(currentPage);
 		
 		MemberDTO memberDTO = new MemberDTO();
-		List<MemberDTO> memberList = memberService.getMemberList(memberDTO);
+		
+		String keyword = request.getParameter("keyword");
+	    memberDTO.setKeyword(keyword);
+	    
+	    String field = request.getParameter("field");
+	    memberDTO.setField(field);
+	    
+	    String type =request.getParameter("type");
+	   
+	    try {
+	        memberDTO.setType(type != null ? Integer.parseInt(type) : 100 );
+	    } catch (NumberFormatException e) {
+	    	memberDTO.setType(100);
+	    }
+	    
+	    	
+	    System.out.println(memberDTO);
+		List<MemberDTO> memberList;
+		
+		if((type != null && !type.equals("100") ||  keyword != null && !keyword.isEmpty() )) {
+			memberList = memberService.searchMembers(memberDTO);
+		}
+		else {
+	        memberList = memberService.getMemberList(memberDTO);
+	    }
 		model.addAttribute("memberList", memberList);
+		
 		return "admin/memberAdmin";
 	}
 	
@@ -80,17 +104,41 @@ public class AdminBoardController {
 	   if(user_id == null || !user_id.equals("admin")) {
 		   return "admin/lessonAdmin";
 	   }
-	    int pageSize = 10;
+	    int pageSize = 20;
 		String pageNum = request.getParameter("pageNum");
 		if(pageNum == null) {
 			pageNum="1";
-		}
+		}	
 		int currentPage = Integer.parseInt(pageNum);
+//		
 		PageDTO pageDTO = new PageDTO();
 		pageDTO.setPageSize(pageSize);
 		pageDTO.setPageNum(pageNum);
 		pageDTO.setCurrentPage(currentPage);
-	    List<LessonDTO> lessonList = lessonService.getLessonListAll(pageDTO);
+		
+		LessonDTO lessonDTO = new LessonDTO();
+		
+		String category = request.getParameter("category");
+		lessonDTO.setCategory(category);
+		String keyword = request.getParameter("keyword");
+		lessonDTO.setKeyword(keyword);
+		String field = request.getParameter("field");
+		lessonDTO.setField(field);
+		String status = request.getParameter("status");
+		try {
+			lessonDTO.setStatus(status != null ? Integer.parseInt(status) : 100);
+		}catch(NumberFormatException e){
+			lessonDTO.setStatus(100);
+		}
+		
+		
+		List<LessonDTO> lessonList;
+		if ((category == null || category.equals("all")) && (status == null || status.equals("100")) && (keyword == null || keyword.isEmpty())){
+			lessonList = lessonService.getLessonListAll(pageDTO);
+		} else {
+			lessonList = lessonService.searchLessons(lessonDTO);
+		}
+		
 	    model.addAttribute("lessonList", lessonList);
 	    return "admin/lessonAdmin";
 	}

@@ -54,7 +54,9 @@ public class LessonDAO {
 	public List<LessonDTO> getLessonListAll(PageDTO pageDTO) {
 		return sqlSession.selectList(namespace + ".getLessonListAll", pageDTO);
 	}
-
+	public List<LessonDTO> searchLessons(LessonDTO lessonDTO) {
+		return sqlSession.selectList(namespace + ".searchLessons", lessonDTO);
+	}
 	public List<LessonDTO> getMyinsertLessonList(PageDTO pageDTO) {
 		return sqlSession.selectList(namespace + ".getMyinsertLessonList", pageDTO);
 	}

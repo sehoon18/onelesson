@@ -65,7 +65,7 @@
         <h2>비밀번호 재설정</h2>
 
         <label for="id">아이디:</label>
-        <input type="text" id="id" name="id" required readonly>
+        <input type="text" id="id" name="id" value="${foundUserId.id }" required readonly>
 
         <label for="new-password">새로운 비밀번호 입력:</label>
         <input type="password" id="new-password" name="new-password" required>
@@ -77,9 +77,9 @@
     </form>
     
     <script>
-        // 세션에서 저장된 id 값을 가져와서 아이디 입력란에 설정.
-        var sessionId = '<%= session.getAttribute("foundUserId") %>';
-        document.getElementById('id').value = sessionId;
+//         세션에서 저장된 id 값을 가져와서 아이디 입력란에 설정.
+<%--         var sessionId = '<%= session.getAttribute("foundUserId") %>'; --%>
+//         document.getElementById('id').value = sessionId;
     </script>
 
     <script>

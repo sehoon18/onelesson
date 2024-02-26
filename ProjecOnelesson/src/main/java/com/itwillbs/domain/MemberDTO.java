@@ -20,19 +20,23 @@ public class MemberDTO {
 	private int type;
 	private int status;
 	private int num;
+	private String field;
+	private String keyword;
+	
+	@Override
+	public String toString() {
+		return "MemberDTO [id=" + id + ", pass=" + pass + ", nick=" + nick + ", name=" + name + ", gender=" + gender
+				+ ", birth=" + birth + ", phone=" + phone + ", address=" + address + ", email=" + email + ", point="
+				+ point + ", businessNum=" + businessNum + ", mailOrderNum=" + mailOrderNum + ", image=" + image
+				+ ", join=" + join + ", type=" + type + ", status=" + status + ", num=" + num + ", field=" + field
+				+ ", keyword=" + keyword + "]";
+	}
 	
 	public int getNum() {
 		return num;
 	}
 	public void setNum(int num) {
 		this.num = num;
-	}
-	@Override
-	public String toString() {
-		return "MemberDTO [id=" + id + ", pass=" + pass + ", nick=" + nick + ", name=" + name + ", gender=" + gender
-				+ ", birth=" + birth + ", phone=" + phone + ", address=" + address + ", email=" + email + ", point="
-				+ point + ", businessNum=" + businessNum + ", mailOrderNum=" + mailOrderNum + ", image=" + image
-				+ ", join=" + join + ", type=" + type + ", status=" + status + ", num=" + num + "]";
 	}
 	public String getId() {
 		return id;
@@ -130,5 +134,17 @@ public class MemberDTO {
 	public void setNick(String nick) {
 		this.nick = nick;
 	}
-	
+	public String getField() {
+		return field;
+	}
+	public void setField(String field) {
+		this.field = field;
+	}
+	public String getKeyword() {
+		return keyword;
+	}
+	public void setKeyword(String keyword) {
+		this.keyword = keyword;
+	}
+
 }
