@@ -156,4 +156,8 @@ public class MemberDAO {
 		System.out.println(memberDTO);
 		return sqlSession.selectOne(namespace+".foundUserIdSession",memberDTO);
 	}
+	public List<MemberDTO> searchMembers(MemberDTO memberDTO) {
+    	System.out.println("MemberDAO searchMembers()");
+        return sqlSession.selectList(namespace+".searchMembers", memberDTO);
+    }
 }

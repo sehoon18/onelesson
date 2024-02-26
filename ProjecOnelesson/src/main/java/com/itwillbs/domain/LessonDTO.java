@@ -18,14 +18,15 @@ public class LessonDTO {
 	private int status;
 	private String id;
 	private String method;
-		
+	private String keyword;	
+	private String field;	
 	
 	@Override
 	public String toString() {
 		return "LessonDTO [num=" + num + ", subject=" + subject + ", content=" + content + ", preview=" + preview
-				+ ", date=" + date + ", price=" + price + ", location=" + location + ", update=" + update
-				+ ", subCategory=" + subCategory + ", category=" + category + ", status=" + status + ", id=" + id
-				+ ", method=" + method + "]";
+				+ ", detail=" + detail + ", date=" + date + ", price=" + price + ", location=" + location + ", update="
+				+ update + ", subCategory=" + subCategory + ", category=" + category + ", status=" + status + ", id="
+				+ id + ", method=" + method + ", keyword=" + keyword + ", field=" + field + "]";
 	}
 
 	public LessonDTO() {}
@@ -122,6 +123,21 @@ public class LessonDTO {
 	public void setMethod(String method) {
 		this.method = method;
 	}
-	
+	public String getKeyword() {
+		return keyword;
+	}
+
+	public void setKeyword(String keyword) {
+		this.keyword = keyword;
+	}
+
+	public String getField() {
+		return field;
+	}
+
+	public void setField(String field) {
+		this.field = field;
+	}
+
 	
 }

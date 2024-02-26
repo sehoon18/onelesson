@@ -19,13 +19,16 @@ public class MemberDTO {
 	private Timestamp join;
 	private int type;
 	private int status;
+	private String field;
+	private String keyword;
 	
 	@Override
 	public String toString() {
-		return "MemberDTO [id=" + id + ", pass=" + pass + ", nick=" + nick + ", name=" + name + ", birth=" + birth
-				+ ", phone=" + phone + ", address=" + address + ", email=" + email + ", gender=" + gender + ", point="
+		return "MemberDTO [id=" + id + ", pass=" + pass + ", nick=" + nick + ", name=" + name + ", gender=" + gender
+				+ ", birth=" + birth + ", phone=" + phone + ", address=" + address + ", email=" + email + ", point="
 				+ point + ", businessNum=" + businessNum + ", mailOrderNum=" + mailOrderNum + ", image=" + image
-				+ ", join=" + join + ", type=" + type + ", status=" + status + "]";
+				+ ", join=" + join + ", type=" + type + ", status=" + status + ", field=" + field + ", keyword="
+				+ keyword + "]";
 	}
 	public String getId() {
 		return id;
@@ -123,5 +126,17 @@ public class MemberDTO {
 	public void setNick(String nick) {
 		this.nick = nick;
 	}
-	
+	public String getField() {
+		return field;
+	}
+	public void setField(String field) {
+		this.field = field;
+	}
+	public String getKeyword() {
+		return keyword;
+	}
+	public void setKeyword(String keyword) {
+		this.keyword = keyword;
+	}
+
 }

@@ -150,7 +150,11 @@ public class MemberService{
 		System.out.println("MemberService foundUserIdSession()");
 		return memberDAO.foundUserIdSession(memberDTO);
 	}	
-
+	public List<MemberDTO> searchMembers(MemberDTO memberDTO) {
+		System.out.println("MemberService searchMembers()");
+		return memberDAO.searchMembers(memberDTO);
+	}
+	
 	
 }
 

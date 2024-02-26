@@ -69,16 +69,14 @@ public class LessonService {
 
 	public List<LessonDTO> getLessonListAll(PageDTO pageDTO) {
 		System.out.println("LessonService getLessonListAll()");
-		
-		int startRow = (pageDTO.getCurrentPage() - 1) * pageDTO.getPageSize() + 1;
-		int EndRow = startRow + pageDTO.getPageSize() - 1;
-		
-		pageDTO.setStartRow(startRow -1);
-		pageDTO.setEndRow(EndRow);
-		
 		return lessonDAO.getLessonListAll(pageDTO);
 	}
 
+	public List<LessonDTO> searchLessons(LessonDTO lessonDTO) {
+		System.out.println("LessonService searchLessons()");
+		
+		return lessonDAO.searchLessons(lessonDTO);
+	}
 	public List<LessonDTO> getMyinsertLessonList(PageDTO pageDTO) {
 		System.out.println("LessonService getMyinsertLessonList()");
 		
@@ -90,7 +88,7 @@ public class LessonService {
 		
 		return lessonDAO.getMyinsertLessonList(pageDTO);
 		}
-
+	
 	public int getMyinsertLessonCount(PageDTO pageDTO) {
 		return lessonDAO.getMyinsertLessonCount(pageDTO);
 	}

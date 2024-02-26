@@ -27,8 +27,8 @@ select MEM_ID as "id", MEM_PASS as "pass", MEM_STATUS as "status" from MEMBER wh
 <!-- </select> -->
 
 <select id="getMemberList" resultType="com.itwillbs.domain.MemberDTO">
- select  MEM_ID as "id" ,  MEM_NAME as "name", MEM_NICK as "nick", MEM_BIRTH as "birth", MEM_PHONE as "phone", MEM_EMAIL as "email" , MEM_TYPE as "type" , MEM_STATUS as "status" from MEMBER 
- 
+ select  MEM_ID as "id" ,  MEM_NAME as "name", MEM_NICK as "nick", MEM_BIRTH as "birth", MEM_PHONE as "phone", MEM_EMAIL as "email" ,MEM_GENDER as "gender",MEM_POINT as "point",MEM_JOIN as "join",MEM_BUSINESS_NUM as "businessNum" ,MEM_MAIL_ORDER_NUM as "mailOrderNum" ,MEM_TYPE as "type" , MEM_STATUS as "status" from MEMBER 
+ order by MEM_JOIN desc;
  </select>
 
 <update id="updateMember"> 
@@ -38,6 +38,29 @@ update MEMBER set MEM_NAME = #{name} where MEM_ID = #{id}
 <update id="deleteMember"> 
 update MEMBER SET MEM_STATUS = 1 where MEM_ID = #{id} 
 </update>
+
+<select id="searchMembers" resultType="com.itwillbs.domain.MemberDTO"> 
+select  MEM_ID as "id" ,  MEM_NAME as "name", MEM_NICK as "nick", MEM_BIRTH as "birth", MEM_PHONE as "phone", MEM_EMAIL as "email" , MEM_GENDER as "gender",MEM_POINT as "point",MEM_JOIN as "join",MEM_TYPE as "type" , MEM_STATUS as "status",MEM_BUSINESS_NUM as "businessNum" ,MEM_MAIL_ORDER_NUM as "mailOrderNum" from MEMBER
+	<where>
+	<if test ="type != '100'">
+	MEM_TYPE = #{type}
+	</if>
+	<if test="keyword != null">
+		<choose>
+		<when test="field == 'id'">
+		AND MEM_ID like concat('%', #{keyword},'%')
+		</when>
+		<when test="field == 'name'">
+		AND  MEM_NAME like concat('%', #{keyword},'%')
+		</when>
+		<when test="field == 'nick'">
+		AND  MEM_NICK like concat('%', #{keyword},'%')
+		</when>
+		</choose>
+	</if>
+	</where>
+order by MEM_JOIN desc
+</select>
 
 <select id="getMemberByNick" resultType="com.itwillbs.domain.MemberDTO"> 
 select MEM_NAME as "name", MEM_ID as "id", MEM_EMAIL as "email", MEM_PHONE as "phone", MEM_ADDRESS as "address", MEM_TYPE as "type" from MEMBER where MEM_NICK = #{nick} 
