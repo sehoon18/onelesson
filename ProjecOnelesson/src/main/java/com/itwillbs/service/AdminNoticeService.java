@@ -50,12 +50,6 @@ public class AdminNoticeService {
 		
 		return adminNoticeDAO.getNotice(adminNoticeDTO);
 	}
-
-	public void updateNoticeReadcount(AdminNoticeDTO adminNoticeDTO) {
-		System.out.println("AdminNoticeService updateNoticeReadcount()");
-		
-		adminNoticeDAO.updateNoticeReadcount(adminNoticeDTO);
-	}
 	
 	public void noticeUpdate(AdminNoticeDTO adminNoticeDTO) {
 		System.out.println("AdminNoticeService noticeUpdate()");

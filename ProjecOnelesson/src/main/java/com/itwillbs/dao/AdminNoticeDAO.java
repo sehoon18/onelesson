@@ -41,12 +41,6 @@ public class AdminNoticeDAO {
 		
 		return sqlSession.selectOne(namespace + ".getNotice", adminNoticeDTO);
 	}
-
-	public void updateNoticeReadcount(AdminNoticeDTO adminNoticeDTO) {
-		System.out.println("AdminNoticeDAO updateNoticeReadcount()");
-		
-		sqlSession.update(namespace + ".updateNoticeReadcount", adminNoticeDTO);
-	}
 	
 	public void noticeUpdate(AdminNoticeDTO adminNoticeDTO) {
 		System.out.println("AdminNoticeDAO updateNotice()");

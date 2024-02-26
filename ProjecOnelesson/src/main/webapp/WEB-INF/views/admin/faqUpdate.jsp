@@ -43,13 +43,10 @@
         
         <div id="layoutSidenav_content">
             <main>
-                <div class="container-fluid px-4">
+                <div class="container-fluid px-4" style="margin-top:50px;">
                     <h1 class="mt-4">자주 묻는 질문</h1>
-                    <ol class="breadcrumb mb-4">
-                        <li class="breadcrumb-item active">자주 묻는 질문 관리 목록입니다.</li>
-                    </ol>
 <hr>
-        <form action="${pageContext.request.contextPath}/admin/faqUpdatePro" method="post">
+        <form action="${pageContext.request.contextPath}/admin/faqUpdatePro" method="post" style="margin-top:50px;">
             <input type="hidden" name="id" value="${adminFaqDTO.id}">
 <!-- 			<input type="hidden" name="id" value="admin"> -->
             <input type="hidden" name="num" value="${adminFaqDTO.num}">
@@ -64,8 +61,10 @@
                 </div>
             </div>
             <hr>
-            <input type="submit" value="수정" class="btn btn-primary">
-            <input type="button" value="목록" class="btn btn-primary" onclick="location.href='${pageContext.request.contextPath}/admin/faq'">
+            <div style="text-align: right; margin-top:30px;">
+            <input type="submit" value="수정" class="btn btn-success">
+            <input type="button" value="목록" class="btn btn-outline-success" onclick="location.href='${pageContext.request.contextPath}/admin/faq'">
+        	</div>
         </form>
     </div>
 </main>

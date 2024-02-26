@@ -39,25 +39,31 @@
         
         <div id="layoutSidenav_content">
             <main>
-                <div class="container-fluid px-4">
-                    <h1 class="mt-4">자주 묻는 질문</h1>
-                    <ol class="breadcrumb mb-4">
-                        <li class="breadcrumb-item active">자주 묻는 질문 관리 목록입니다.</li>
-                    </ol>
-                    
-<table class="table table-hover table-sm" >
+                <div class="container-fluid px-4" style="margin-top:50px;">
+                    <h1 class="mt-4">FAQ</h1>
+<hr>                    
+<table class="table table-hover" style="margin-top:50px;">
 <col width="70"><col width="600">
 <thead>
 <tr class="bg-primary" style="color: white;">
-	<th style="text-align: center;">번호</th><th style="text-align: center;">제목</th>
+	<th class="table-success" style="text-align: center;">번호</th><th class="table-success" style="text-align: center;">제목</th>
 </tr>
+<c:if test="${sessionScope.id == 'admin'}">  
 <c:forEach var="adminFaqDTO" items="${faqList}">
 	<tr><td>${adminFaqDTO.num}</td>
 	<td><a class="title-link" href="${pageContext.request.contextPath}/admin/faqContent?num=${adminFaqDTO.num}">${adminFaqDTO.subject}</a></td>
 </c:forEach>
+</c:if>
 </thead>
 </table>
-<nav aria-label="Page navigation example" style="margin-top: 10px;">
+<hr>
+<div style="text-align: right; margin-top:30px;">
+<c:if test="${sessionScope.id == 'admin'}">
+<button class="btn btn-success" onclick="location.href='${pageContext.request.contextPath}/admin/faqInsert'">글쓰기</button>
+<button class="btn btn-outline-success" onclick="location.href='${pageContext.request.contextPath}/admin/faq'">돌아가기</button>
+</c:if>
+</div>
+<nav aria-label="Page navigation example" style="margin-top: 30px;">
   <ul class="pagination justify-content-center">
   <c:if test="${pageDTO.startPage > pageDTO.pageBlock }">
     <li class="page-item"><a class="page-link" href="${pageContext.request.contextPath}/admin/faq?pageNum=${pageDTO.startPage - pageDTO.pageBlock}">Previous</a></li>
@@ -76,27 +82,19 @@
 <form action="${pageContext.request.contextPath}/admin/faq" method="get">
 <table style="margin-left: auto; margin-right: auto; margin-top: 3px; margin-bottom: 3px">
 	<tr>
-<!-- 		<td style="padding-left: 5px"> -->
-<!-- 			<select class="custom-select" id="choice" name="choice"> -->
-<!-- 				<option selected>검색</option> -->
-<!-- 				<option value="subject">제목</option> -->
-<!-- 				<option value="content">내용</option> -->
-<!-- 			</select> -->
-<!-- 		</td> -->
 		<td style="padding-left: 5px" class="align-middle">
 			<input type="text" class="form-control" id="search" name="search" placeholder="검색어" value="">
 		<td style="padding-left: 5px">
 			<span>
-				<button type="button" class="btn btn-info">검색</button>
+				<button type="button" class="btn btn-success">검색</button>
 			</span>
 		</td>
 	</tr>
 </table>
+
 </form>
 <br>
-<button class="btn btn-info" onclick="location.href='${pageContext.request.contextPath}/admin/faqInsert'">글쓰기</button>
-<button class="btn btn-outline-info">돌아가기</button>
-<hr>
+
 </div>
             </main>
             

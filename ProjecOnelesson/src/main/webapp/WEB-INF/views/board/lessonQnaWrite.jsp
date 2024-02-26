@@ -77,7 +77,7 @@
   <label for="floatingTextarea2">QUESTION</label>
 </div></td></tr>
 <tr><td></td><td style="text-align: center;">
-<input type="submit" class="btn btn-info" value="글쓰기">
+<input type="submit" class="btn btn-success" value="글쓰기">
 </td></tr>
 </table>
 </form>

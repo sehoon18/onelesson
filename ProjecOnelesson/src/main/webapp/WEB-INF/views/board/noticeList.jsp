@@ -69,7 +69,7 @@
 <col width="70"><col width="70"><col width="600"><col width="300"><col width="70">
 <thead>
 <tr class="bg-primary" style="color: white;">
-	<th>번호</th><th>타입</th><th>제목</th><th>작성일</th><th>조회수</th>
+	<th class="table-success">번호</th><th class="table-success">타입</th><th class="table-success">제목</th><th class="table-success">작성일</th><th class="table-success">조회수</th>
 </tr>
 <c:forEach var="boardDTO" items="${noticeList}">
 	<tr><td>${boardDTO.num}</td>
@@ -105,25 +105,18 @@
 <form action="${pageContext.request.contextPath}/board/notice" method="get">
 <table style="margin-left: auto; margin-right: auto; margin-top: 3px; margin-bottom: 3px">
 	<tr>
-<!-- 		<td style="padding-left: 5px"> -->
-<!-- 			<select class="custom-select" id="choice" name="choice"> -->
-<!-- 				<option selected>검색</option> -->
-<!-- 				<option value="subject">제목</option> -->
-<!-- 				<option value="content">내용</option> -->
-<!-- 			</select> -->
-<!-- 		</td> -->
 		<td style="padding-left: 5px" class="align-middle">
 			<input type="text" class="form-control" id="search" name="search" placeholder="검색어" value="">
 		<td style="padding-left: 5px">
 			<span>
-				<button type="submit" class="btn btn-info">검색</button>
+				<button type="submit" class="btn btn-success">검색</button>
 			</span>
 		</td>
 	</tr>
 </table>
 </form>
 <br>
-<button class="btn btn-outline-info">돌아가기</button>
+<button class="btn btn-outline-success"  onclick="location.href='${pageContext.request.contextPath}/board/notice'">돌아가기</button>
 </div>
 <hr>
  	<jsp:include page="../inc/footer.jsp" />

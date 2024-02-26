@@ -39,7 +39,7 @@
                             </div>
                             
                             <a class="nav-link" href="${pageContext.request.contextPath}/admin/paymentAdmin">
-                                <div class="sb-nav-link-icon"><i class="fas fa-calculator"></i></div>
+                                <div class="sb-nav-link-icon"><i class="fas fa-columns"></i></div>
                                 정산 관리
                             </a>
                         </div>

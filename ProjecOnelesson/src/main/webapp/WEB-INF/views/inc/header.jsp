@@ -76,7 +76,7 @@ background-color: #ccc;
 <!--         </li> -->
       </ul>
       <form class="d-flex me-auto" action="${pageContext.request.contextPath}/lesson/lessonList" method="get" style="margin: 0px auto;">
-        <input class="form-control me-2" type="text" name="search" placeholder="검색어를 입력하세요" aria-label="Search" style="width: 300px; background-color: #eee; color: #000;">
+        <input class="form-control me-2" type="text" name="search" placeholder="검색어를 입력하세요" aria-label="Search" style="width: 300px; background-color: #fff; color: #000;">
         <button class="btn btn-outline-success" type="submit">검색</button>
       </form>
 
