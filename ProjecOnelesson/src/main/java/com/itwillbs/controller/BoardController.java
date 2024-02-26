@@ -483,7 +483,7 @@ public class BoardController {
 		memberDTO = memberService.getMember(id);
 		model.addAttribute("memberDTO", memberDTO);
 		
-		int pageSize = 3;
+		int pageSize = 6;
 		String pageNum = request.getParameter("pageNum");
 		if(pageNum == null) {
 			pageNum="1";
@@ -526,6 +526,15 @@ public class BoardController {
 		System.out.println("BoardController wishToggle()");
 		
 		return "board/wishToggle";
+	}
+	
+	@GetMapping("/deleteWish")
+	public String deleteWish(BoardDTO boardDTO) {
+		System.out.println("BoardController deleteWish()");
+		
+		boardService.deleteWish(boardDTO);
+		
+		return "redirect:/board/wish";
 	}
 	
 }

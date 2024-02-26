@@ -239,4 +239,8 @@ public class BoardService {
 		return boardDAO.getwishList(id);
 	}
 
+	public void deleteWish(BoardDTO boardDTO) {
+		boardDAO.deleteWish(boardDTO);
+	}
+
 }

@@ -350,7 +350,7 @@ display: inline-block;
 	                  </c:if>
                   </c:if>
                 </div>
-                <small class="text-body-secondary"><fmt:formatDate value="${lessonDTO.update }" pattern="yyyy.MM.dd"/></small>
+                <small class="text-body-secondary">${lessonDTO.date }</small>
               </div>
             </div>
           </div>

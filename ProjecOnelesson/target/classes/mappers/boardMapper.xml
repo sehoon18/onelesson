@@ -160,7 +160,7 @@
 	</select>
 	
 	<select id="getWishList" resultType="com.itwillbs.domain.LessonDTO">
-    	SELECT LES_SUBJECT as "subject", LES_PREVIEW as "preview", LES_CATEGORY as "category", LES_SUBCATEGORY as "subCategory", LES_PRICE as "price", LES_LOCATION as "location", LES_DATE as "date"
+    	SELECT LES_NUM as "num", LES_SUBJECT as "subject", LES_PREVIEW as "preview", LES_CATEGORY as "category", LES_SUBCATEGORY as "subCategory", LES_PRICE as "price", LES_LOCATION as "location", LES_DATE as "date"
 		from LESSON
 		where LES_NUM IN (SELECT LES_NUM
 							from WISH
@@ -214,7 +214,7 @@
 	</select>
 	
 	<select id="getLessonReview" resultType="com.itwillbs.domain.BoardDTO">
-		select REVIEW_NUM as "num", REVIEW_CONTENT as "content", REVIEW_UPDATE as "update", REVIEW_RATING as "rating"
+		select REVIEW_NUM as "num", REVIEW_CONTENT as "content", REVIEW_UPDATE as "update", REVIEW_RATING as "rating", REVIEW_IMAGE as "image"
 		from REVIEW
 		where LES_NUM = #{type}
 		order by REVIEW_NUM desc
@@ -242,5 +242,10 @@
 		where MEM_ID = #{id}
 	</select>
 	
+	<delete id="deleteWish">
+		delete
+		from WISH
+		WHERE LES_NUM = #{num}
+	</delete>
 	
 </mapper>

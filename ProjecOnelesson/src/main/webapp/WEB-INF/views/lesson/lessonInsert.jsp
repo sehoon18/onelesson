@@ -133,6 +133,10 @@
 		.ck-editor__editable {
         	min-height: 500px;
     	}
+		#detail_container img {
+            max-width: 100%;
+            max-height: 100%;
+        }
     </style>
 
     <!-- Custom styles for this template -->
@@ -226,10 +230,13 @@ window.location.href = "${pageContext.request.contextPath}/member/memberLogin";
 <!-- 	  <input type="hidden" id="contentInput" name="content"> -->
 		<div class="col-12">
 		    <label for="myEditor" class="form-label">상세 설명</label>
-		    <textarea id="myEditor" name="content" class="form-control mb-3"></textarea>
+		    <textarea id="myEditor" name="content" class="form-control mb-3">${lessonDTO.content }</textarea>
 		</div>
-<%--  	<textarea id="myEditor" name="content">${lessonDTO.content }</textarea> --%>
-    </div>	
+    </div>
+    <div class="detailspace">
+	<div id="detail_container" style="width: 1090px; margin: 5px 5px;"></div>
+	<input type="file" name="detail" id="image" accept="image/*" onchange="setThumbnail2(event);" style="padding-top: 10px;" required>
+	</div>
 	<hr>
 	<div class="mb-3 row">
 	  <div class="col-sm-1">
@@ -309,7 +316,20 @@ window.location.href = "${pageContext.request.contextPath}/member/memberLogin";
             reader.readAsDataURL(event.target.files[0]);
         }
     </script>
-    
+    <script>
+        function setThumbnail2(event) {
+            var reader = new FileReader();
+            reader.onload = function(event) {
+                var img = document.createElement("img");
+                img.setAttribute("src", event.target.result);
+                document.querySelector("div#detail_container").appendChild(img);
+                var imgContainer = document.querySelector("div#detail_container");
+                imgContainer.innerHTML = ''; // 기존에 있던 이미지를 제거합니다.
+                imgContainer.appendChild(img); // 새 이미지를 추가합니다.
+            };
+            reader.readAsDataURL(event.target.files[0]);
+        }
+    </script>    
 <!--     카카오api -->
 	<script src="//t1.daumcdn.net/mapjsapi/bundle/postcode/prod/postcode.v2.js"></script>
 	<script>

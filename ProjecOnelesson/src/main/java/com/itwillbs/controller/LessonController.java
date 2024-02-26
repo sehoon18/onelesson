@@ -138,7 +138,7 @@ public class LessonController {
 	}
 	
 	@PostMapping("/lessonInsertPro")
-	public String lessonInsertPro(MultipartFile preview, HttpServletRequest request, Model model, MemberDTO memberDTO) throws Exception{
+	public String lessonInsertPro(MultipartFile preview, MultipartFile detail, HttpServletRequest request, Model model, MemberDTO memberDTO) throws Exception{
 		System.out.println("LessonController lessonInsertPro()");
 		
 		boolean userCheck = false;
@@ -149,10 +149,12 @@ public class LessonController {
 		}
 		
 		UUID uuid = UUID.randomUUID();
-		String filename = uuid.toString() + "_" + preview.getOriginalFilename();
-		System.out.println(filename);
+		String filename1 = uuid.toString() + "_" + preview.getOriginalFilename();
+		String filename2 = uuid.toString() + "_" + detail.getOriginalFilename();
+		System.out.println(filename1);
 		System.out.println(uploadPath);
-		FileCopyUtils.copy(preview.getBytes(), new File(uploadPath, filename));
+		FileCopyUtils.copy(preview.getBytes(), new File(uploadPath, filename1));
+		FileCopyUtils.copy(detail.getBytes(), new File(uploadPath, filename2));
 		
 		LessonDTO lessonDTO = new LessonDTO();
 		lessonDTO.setCategory(request.getParameter("category"));
@@ -163,7 +165,8 @@ public class LessonController {
 		lessonDTO.setDate(request.getParameter("date"));
 		lessonDTO.setPrice(Integer.parseInt(request.getParameter("price")));
 		lessonDTO.setUpdate(new Timestamp(System.currentTimeMillis()));
-		lessonDTO.setPreview(filename);
+		lessonDTO.setPreview(filename1);
+		lessonDTO.setDetail(filename2);
 		lessonDTO.setId(request.getParameter("id"));
 		
 		if(userCheck == false) {
@@ -225,7 +228,6 @@ public class LessonController {
 		System.out.println("LessonController lessonInfo()");
 		
 		lessonDTO = lessonService.getLesson(lessonDTO);
-		model.addAttribute("lessonDTO", lessonDTO);
 
 		int pageSize = 3;
 		String pageNum = request.getParameter("pageNum");
@@ -261,6 +263,7 @@ public class LessonController {
 		
 		model.addAttribute("wishList", wishList);
 		model.addAttribute("boardList", boardList);
+		model.addAttribute("lessonDTO", lessonDTO);
 		model.addAttribute("pageDTO", pageDTO);
 		return "lesson/lessonInfo";
 	}
@@ -271,6 +274,11 @@ public class LessonController {
 		
 		String id = (String)session.getAttribute("id");
 		if(id != null) {
+			memberDTO = memberService.getMember(id);
+			if(memberDTO.getType() == 1) {
+				 redirectAttributes.addFlashAttribute("message", "강사회원은 사용할 수 없는 기능입니다.");
+					return "redirect:/lesson/lessonInfo?num=" + lessonDTO.getNum();
+			}
 			lessonDTO = lessonService.getLesson(lessonDTO);
 			
 			LocalDate today = LocalDate.now();
@@ -280,19 +288,16 @@ public class LessonController {
 			if(lessonDate.isAfter(today)) {
 				// 레슨 날짜 남음
 				model.addAttribute("lessonDTO", lessonDTO);
-				
-				memberDTO = memberService.getMember(id);
 				model.addAttribute("memberDTO", memberDTO);
-				System.out.println("a");
 				return "lesson/payment";
 			} else {
 				// 레슨 날짜 지남
-				 redirectAttributes.addFlashAttribute("message", "이미 종료된 레슨입니다.");
-				 System.out.println("b");
+				redirectAttributes.addFlashAttribute("message", "이미 종료된 레슨입니다.");
 				return "redirect:/lesson/lessonInfo?num=" + lessonDTO.getNum();
 			}
 			
 		} else {
+			redirectAttributes.addFlashAttribute("message", "로그인이 필요합니다.");
 			return "redirect:/member/memberLogin";
 		}
 	}

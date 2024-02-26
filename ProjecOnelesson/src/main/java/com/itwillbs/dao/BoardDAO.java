@@ -168,6 +168,10 @@ public class BoardDAO {
 		return sqlSession.selectList(namespace + ".getwishList", id);
 	}
 
+	public void deleteWish(BoardDTO boardDTO) {
+		sqlSession.delete(namespace + ".deleteWish", boardDTO);
+	}
+
 
 
 }

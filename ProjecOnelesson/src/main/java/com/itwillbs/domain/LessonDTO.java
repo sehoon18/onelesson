@@ -8,6 +8,7 @@ public class LessonDTO {
 	private String subject;
 	private String content;
 	private String preview;
+	private String detail;
 	private String date;
 	private int price;
 	private String location;
@@ -53,6 +54,14 @@ public class LessonDTO {
 	public void setPreview(String preview) {
 		this.preview = preview;
 	}
+	public String getDetail() {
+		return detail;
+	}
+
+	public void setDetail(String detail) {
+		this.detail = detail;
+	}
+
 	public String getDate() {
 		return date;
 	}

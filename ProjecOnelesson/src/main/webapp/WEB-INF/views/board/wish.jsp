@@ -8,6 +8,9 @@
 	<link rel="canonical" href="https://getbootstrap.com/docs/5.3/examples/album/">
 	<link rel="stylesheet" href="https://cdn.jsdelivr.net/npm/@docsearch/css@3">
 	<link href="https://cdn.jsdelivr.net/npm/bootstrap@5.3.1/dist/css/bootstrap.min.css" rel="stylesheet">
+
+	<script src="https://ajax.googleapis.com/ajax/libs/jquery/3.5.1/jquery.min.js"></script>
+	
 <style>
       .b-example-divider {
         width: 100%;
@@ -277,25 +280,27 @@ display: inline-block;
 	<div class="row row-cols-1 row-cols-sm-2 row-cols-md-3 g-3">
 <c:forEach var="boardDTO" items="${boardList }">
 	<div class="col">
-	<div class="card shadow-sm">
-    <div class="d-flex text-body-secondary pt-3">
-      <svg class="bd-placeholder-img flex-shrink-0 me-2 rounded" width="160" height="100" xmlns="http://www.w3.org/2000/svg" role="img" aria-label="Placeholder: 32x32" preserveAspectRatio="xMidYMid slice" focusable="false"><title>Placeholder</title><image xlink:href="${pageContext.request.contextPath}/resources/upload/${boardDTO.preview}" x="0" y="0" width="100%" height="100%"></svg>
-      <p class="pb-3 mb-0 small lh-sm border-bottom">
-        <strong class="d-block text-gray-dark">${boardDTO.subject }</strong>
-        카테고리 : ${boardDTO.category } / ${boardDTO.subCategory }<br>
-        날짜 : ${boardDTO.date}<br>
-        위치 : ${boardDTO.location }<br>
-        가격 : ${boardDTO.price }<br>
-      </p>
-    </div>
-    </div>
+		<div class="card shadow-sm">
+		<div style="border-bottom: 0.5px solid #ccc;">
+		<button type="button" class="btn-close" style="float: right;" onclick="location.href='${pageContext.request.contextPath}/board/deleteWish?num=${boardDTO.num }'"></button>
+		</div>
+	    <div class="d-flex text-body-secondary pt-3">
+	      <svg class="bd-placeholder-img flex-shrink-0 me-2 rounded" width="160" height="100" xmlns="http://www.w3.org/2000/svg" role="img" aria-label="Placeholder: 32x32" preserveAspectRatio="xMidYMid slice" focusable="false"><a href="${pageContext.request.contextPath}/lesson/lessonInfo?num=${boardDTO.num }"><image xlink:href="${pageContext.request.contextPath}/resources/upload/${boardDTO.preview}" x="0" y="0" width="100%" height="100%"></a></svg>
+	      <p class="pb-3 mb-0 small lh-sm border-bottom">
+	        <strong class="d-block text-gray-dark"><a href="${pageContext.request.contextPath}/lesson/lessonInfo?num=${boardDTO.num }">${boardDTO.subject }</a></strong>
+	        카테고리 : ${boardDTO.category } / ${boardDTO.subCategory }<br>
+	        날짜 : ${boardDTO.date}<br>
+	        위치 : ${boardDTO.location }<br>
+	        가격 : ${boardDTO.price }<br>
+	      </p>
+	    </div>
+	    </div>
     </div>
 </c:forEach>
     </div>
 
   </div>
 	</div>
-	 		
 	 		
 </main>
 <jsp:include page="../inc/footer.jsp" />

@@ -173,6 +173,7 @@
     	<div class="btn-group-vertical" role="group" aria-label="Vertical button group">
  			<button type="button" class="btn btn-success"  onclick="location.href='${pageContext.request.contextPath}/lesson/payment?num=${lessonDTO.num}'">예약하기</button>
 			<button type="button" class="btn btn-success"  onclick="location.href='${pageContext.request.contextPath}/board/lessonQnaWrite?num=${lessonDTO.num}'">문의</button>
+			<c:set var="isFilled" value="${wishList.contains(lessonDTO.num) ? 'filled' : ''}" />
 			<button type="button" class="btn btn-outline-success" onclick="toggleHeart(this)" name="num" value="${lessonDTO.num }"><i class="${isFilled == 'filled' ? 'fas' : 'far'} fa-heart heart"></i></button>
 		</div>
     	</td></tr>
@@ -193,14 +194,19 @@
     <hr>
 	
 	<div class="form-group">
-	<div style="width: 1080px; height: 1000px; word-wrap: break-word; padding: 10px;">${lessonDTO.content }</div>
+	<div style="width: 1080px; word-wrap: break-word; padding: 10px;">${lessonDTO.content }</div>
+<!-- 	<svg width="1100" height="auto"> -->
+<!-- 	</svg> -->
+	<img src="${pageContext.request.contextPath}/resources/upload/${lessonDTO.detail}" style="width: 100%; height: auto;">
 	<hr>
 <!-- 	<h4 style="margin: 0px 30px;">리뷰</h4> -->
 	<c:if test="${not empty boardList }">
 	<table class="table" >
 		<tr style="text-align: center;"><th style="width: 100px;">리뷰번호</th><th style="width: 200px;">이미지</th><th style="width: 400px;">내용</th><th style="width: 180px;">별점</th><th style="width: 100px;">등록일</th></tr>
      	<c:forEach var="boardDTO" items="${boardList }">
-		<tr style="height: 120px;"><td style="text-align: center;">${boardDTO.num }</td><td>${boardDTO.image}</td><td>${boardDTO.content }</td>
+		<tr style="height: 120px;"><td style="text-align: center;">${boardDTO.num }</td>
+		<td><svg class="bd-placeholder-img flex-shrink-0 me-2 rounded" width="240" height="100" xmlns="http://www.w3.org/2000/svg" role="img" aria-label="Placeholder: 32x32" preserveAspectRatio="xMidYMid slice" focusable="false"><image xlink:href="${pageContext.request.contextPath}/resources/upload/${boardDTO.image}" x="0" y="0" width="100%"/></svg></td>
+		<td>${boardDTO.content }</td>
 		<td style="text-align: center;">
 		<script>
 			var rating = ${boardDTO.rating};
