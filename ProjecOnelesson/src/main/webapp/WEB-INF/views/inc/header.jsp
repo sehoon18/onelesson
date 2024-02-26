@@ -77,7 +77,7 @@ background-color: #ccc;
 <!--         </li> -->
       </ul>
       <form class="d-flex me-auto" action="${pageContext.request.contextPath}/lesson/lessonList" method="get" style="margin: 0px auto;">
-        <input class="form-control me-2" type="text" name="search" placeholder="검색어를 입력하세요" aria-label="Search" style="width: 300px; background-color: #eee;">
+        <input class="form-control me-2" type="text" name="search" placeholder="검색어를 입력하세요" aria-label="Search" style="width: 300px; background-color: #eee; color: #000;">
         <button class="btn btn-outline-success" type="submit">검색</button>
       </form>
 
@@ -94,8 +94,13 @@ background-color: #ccc;
         <div class="login">
           ${sessionScope.id }님
           <button type="button" class="btn btn-outline-success me-2" onclick="location.href='${pageContext.request.contextPath}/member/logout'">로그아웃</button>
-          <button type="button" class="btn btn-outline-success" onclick="location.href='${pageContext.request.contextPath}/member/mypage'">마이페이지</button>
-        </div>
+          <c:if test="${sessionScope.id ne 'admin'}">
+          	<button type="button" class="btn btn-outline-success" onclick="location.href='${pageContext.request.contextPath}/member/mypage'">마이페이지</button>
+          </c:if>
+          <c:if test="${sessionScope.id eq 'admin'}">
+      		<button type="button" class="btn btn-outline-success" onclick="location.href='${pageContext.request.contextPath}/admin/adminMain'">관리자페이지</button>
+    	  </c:if>
+        </div> 
       </c:if>
 
     </div>

@@ -43,11 +43,7 @@
             <main>
                 <div class="container-fluid px-4">
                     <h3 class="mt-4">👮‍♂️‍관리자가 답변하기</h1>
-<!--                     <ol class="breadcrumb mb-4"> -->
-<!--                         <li class="breadcrumb-item active">자주 묻는 질문 관리 목록입니다.</li> -->
-<!--                     </ol> -->
 <hr>
-<!-- <h3 style="margin-bottom: 30px;">👮‍♂️‍관리자가 답변하기</h3> -->
 <form action="${pageContext.request.contextPath}/admin/qnaAnswerPro" method="post">
 <input type="hidden" name="name" value="${adminDTO.id}"> 
 <table id="listTable">
