@@ -352,6 +352,7 @@ public class memberController {
 		memberDTO = memberService.userCheck(memberDTO);
 		System.out.println(memberDTO);
 		if(memberDTO != null) {
+			memberService.inactiveMyLesson(memberDTO);
 			memberService.deleteMember(memberDTO);
 			session.invalidate();
 	        redirectAttributes.addFlashAttribute("message", "회원탈퇴가 완료되었습니다.");

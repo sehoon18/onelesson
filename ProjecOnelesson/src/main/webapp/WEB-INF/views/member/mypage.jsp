@@ -268,8 +268,14 @@ display: inline-block;
     <div id="container" style="width: 1100px; margin: 0px auto;">
     <table>
 	<tr><td style="width: 300px;"></td><td style="width: 500px; text-align: center;"><h2 class="topView">마이페이지</h2></td><td style="width: 300px;">
-	<span class="head-Box-right" style="text-align: center;">
-	<img src="${pageContext.request.contextPath}/resources/images/default.png" class="myProImg" style="width: 80px; height: 80px; margin: 0px auto;"><br>
+	<span class="head-Box-right" style="text-align: center;" onclick="location.href='${pageContext.request.contextPath}/member/myInfo'">
+	<c:if test="${empty memberDTO.image }">
+	<img src="${pageContext.request.contextPath}/resources/images/default.png" class="myProImg" style="width: 80px; height: 80px; margin: 0px auto;">
+	</c:if>
+	<c:if test="${not empty memberDTO.image }">
+	<img src="${pageContext.request.contextPath}/resources/upload/${memberDTO.image}" class="myProImg" style="width: 80px; height: 80px; margin: 0px auto;">
+	</c:if>
+	<br>
     <span class="myName">${memberDTO.name } 회원</span>           
     </span>
 	</td></tr>

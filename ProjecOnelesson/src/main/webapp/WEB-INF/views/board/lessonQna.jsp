@@ -73,7 +73,14 @@
 	<td>${boardDTO.image}</td>
 	<td><a href="${pageContext.request.contextPath}/board/lessonQnaContent?num=${boardDTO.num}">${boardDTO.subject}</a></td>
 	<td>${boardDTO.update}</td>
-	<c:if test="${memberDTO.type == 1 }"><td><button class="btn btn-info btn-sm" onclick="location.href='${pageContext.request.contextPath}/board/lessonQnaAnswer?num=${boardDTO.num}'">답변하기</button></td></c:if></tr>
+	<c:if test="${memberDTO.type == 1 }">
+		<c:if test="${empty boardDTO.answer }">
+		<td><button class="btn btn-info btn-sm" onclick="location.href='${pageContext.request.contextPath}/board/lessonQnaAnswer?num=${boardDTO.num}'">답변하기</button></td>
+		</c:if>
+		<c:if test="${not empty boardDTO.answer }">
+		<td><button class="btn btn-outline-info btn-sm disabled">답변완료</button></td>
+		</c:if>
+	</c:if></tr>
 </c:forEach>
 </thead>
 </table>

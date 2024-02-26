@@ -158,6 +158,10 @@ public class MemberService{
 	public MemberDTO foundUserIdSession(MemberDTO memberDTO) {
 		System.out.println("MemberService foundUserIdSession()");
 		return memberDAO.foundUserIdSession(memberDTO);
+	}
+
+	public void inactiveMyLesson(MemberDTO memberDTO) {
+		memberDAO.inactiveMyLesson(memberDTO);
 	}	
 
 	

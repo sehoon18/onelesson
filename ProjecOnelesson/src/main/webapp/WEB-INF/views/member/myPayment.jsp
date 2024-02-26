@@ -451,7 +451,7 @@ display: inline-block;
 	</div>
     </c:if>
 	</div>
-<div class="myPageT"></div>
+	<div class="myPageT"></div>
 	</div>
 				<c:if test="${ 0 eq memberDTO.type }">
 	 		<h4 style="text-align: center;">나의 결제 정보 내역 보기</h4>

@@ -165,4 +165,7 @@ public class MemberDAO {
 		System.out.println(memberDTO);
 		return sqlSession.selectOne(namespace+".foundUserIdSession",memberDTO);
 	}
+	public void inactiveMyLesson(MemberDTO memberDTO) {
+		sqlSession.update(namespace + ".inactiveMyLesson", memberDTO);
+	}
 }
