@@ -4,8 +4,10 @@
 <html>
 <head>
 <meta charset="UTF-8">
-<title>나의 레슨 목록</title>
-  <link rel="canonical" href="https://getbootstrap.com/docs/5.3/examples/album/">
+<title>나의 레슨 목록</title>.
+	<link rel="icon" href="${pageContext.request.contextPath}/resources/images/favicon_g.png"/>
+	<link rel="apple-touch-icon" href="${pageContext.request.contextPath}/resources/images/favicon_g.png"/>
+  	<link rel="canonical" href="https://getbootstrap.com/docs/5.3/examples/album/">
 
     
 

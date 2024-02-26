@@ -5,6 +5,8 @@
 <head>
 <meta charset="UTF-8">
 <title>회원 정보 수정 걔량</title>
+	<link rel="icon" href="${pageContext.request.contextPath}/resources/images/favicon_g.png"/>
+	<link rel="apple-touch-icon" href="${pageContext.request.contextPath}/resources/images/favicon_g.png"/>
 <style>
 body {
     font-family: Arial, sans-serif;

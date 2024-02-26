@@ -8,7 +8,8 @@
     <meta charset="UTF-8">
 
     <title>비활성계정 안내</title>
-    
+    <link rel="icon" href="${pageContext.request.contextPath}/resources/images/favicon_g.png"/>
+	<link rel="apple-touch-icon" href="${pageContext.request.contextPath}/resources/images/favicon_g.png"/>
     <style>
     h1{
     	text-align:center;

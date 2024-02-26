@@ -5,6 +5,8 @@
 <head>
 <meta charset="UTF-8">
 <title>admin/msg.jsp</title>
+<link rel="icon" href="${pageContext.request.contextPath}/resources/images/favicon_g.png"/>
+<link rel="apple-touch-icon" href="${pageContext.request.contextPath}/resources/images/favicon_g.png"/>
 </head>
 <body>
 <script type="text/javascript">

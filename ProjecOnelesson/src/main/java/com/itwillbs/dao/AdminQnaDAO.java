@@ -8,6 +8,7 @@ import org.apache.ibatis.session.SqlSession;
 import org.springframework.stereotype.Repository;
 
 import com.itwillbs.domain.AdminQnaDTO;
+import com.itwillbs.domain.BoardDTO;
 import com.itwillbs.domain.PageDTO;
 
 @Repository
@@ -31,8 +32,14 @@ public class AdminQnaDAO {
 
 	public AdminQnaDTO getQna(AdminQnaDTO adminQnaDTO) {
 		System.out.println("AdminQnaDAO getQna()");
-		
+	    
 		return sqlSession.selectOne(namespace + ".getQna", adminQnaDTO);
 	}
+
+//	public void qnaAnswer(AdminQnaDTO adminQnaDTO) {
+//		System.out.println("AdminQnaDAO qnaAnswer()");
+//		
+//		sqlSession.selectOne(namespace + ".qnaAnswer", adminQnaDTO);
+//	}
 
 }

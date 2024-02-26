@@ -12,6 +12,8 @@
     <meta name="description" content="" />
     <meta name="author" content="" />
     <title>회원 관리 - SB Admin</title>
+    <link rel="icon" href="${pageContext.request.contextPath}/resources/images/favicon_g.png"/>
+	<link rel="apple-touch-icon" href="${pageContext.request.contextPath}/resources/images/favicon_g.png"/>
     <link href="https://cdn.jsdelivr.net/npm/simple-datatables@7.1.2/dist/style.min.css" rel="stylesheet" />
     <link href="../resources/css/admin/styles.css" rel="stylesheet" />
     <script src="https://use.fontawesome.com/releases/v6.3.0/js/all.js" crossorigin="anonymous"></script>
@@ -66,7 +68,8 @@
 
 <br>
 <c:if test="${! empty sessionScope.id}">
-	<c:if test="${sessionScope.id eq adminNoticeDTO.id}">
+<%-- 	<c:if test="${sessionScope.id eq adminNoticeDTO.id}"> --%>
+<c:if test="${sessionScope.id eq 'admin' }">
 		<input type="button" value="수정" class="btn btn-primary" onclick="location.href='${pageContext.request.contextPath}/admin/noticeUpdate?num=${adminNoticeDTO.num}'">
 		<input type="button" value="삭제" class="btn btn-primary" onclick="location.href='${pageContext.request.contextPath}/admin/noticeDelete?num=${adminNoticeDTO.num}'">
 	</c:if>

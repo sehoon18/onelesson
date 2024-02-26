@@ -3,6 +3,8 @@
 <%@taglib prefix="c" uri="http://java.sun.com/jsp/jstl/core"%>
 <html>
 <head>
+<link rel="icon" href="${pageContext.request.contextPath}/resources/images/favicon_g.png"/>
+<link rel="apple-touch-icon" href="${pageContext.request.contextPath}/resources/images/favicon_g.png"/>
 <link href="/ProjecOnelesson/src/main/webapp/resources/bscss/css">
 <style>
 </style>
