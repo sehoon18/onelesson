@@ -297,26 +297,28 @@ public class memberController {
 		pageDTO.setEndPage(endPage);
 		pageDTO.setPageCount(pageCount);
 
-		List<OrderDTO> orderList = memberService.getMyOrder(memberDTO);
-		List<OrderDTO> orderList2 = memberService.getMyOrder2(memberDTO);
+		List<OrderDTO> orderList;
+		if (memberDTO.getType() == 0 ) {
+			orderList = memberService.getMyOrder(memberDTO);
+		} else if (memberDTO.getType() == 1) {
+			orderList = memberService.getMyOrder2(memberDTO);
+		} else { model.addAttribute("orderError", "데이터가 없습니다.");
+		return "member/orderErrorPage";
+		}
 		
 		model.addAttribute("orderList" , orderList);
-		model.addAttribute("orderList2" , orderList2);
 		model.addAttribute("pageDTO", pageDTO);
 		
 		if (orderList.isEmpty()) {
-			if(orderList2.isEmpty()) {
 			model.addAttribute("orderError", "데이터가 없습니다.");
 			return "member/orderErrorPage";
 		}
-		}
+		
 		System.out.println(lessonDTO);
 		System.out.println(memberDTO);
 		System.out.println(orderList.size());
 		System.out.println(orderList.get(0).getLES_SUBJECT());
 		
-		System.out.println(orderList2.size());
-		System.out.println(orderList2.get(0).getLES_SUBJECT());
 		
 		return "member/myPayment";
 	}
