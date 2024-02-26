@@ -42,13 +42,13 @@
 <h3 style="margin-bottom: 30px;">👮‍♂️‍관리자에게 문의하기</h3>
 <table class="table table-bordered">
 <tr><td style="width: 100px;">제목</td><td style="width: 800px;"><div>
-  <label>{boardDTO.subject}</label>
+  <label>${boardDTO.subject}</label>
 </div></td></tr>
 <tr><td>내용</td><td><div>
-  <label>{boardDTO.question}</label>
+  <label>${boardDTO.question}</label>
 </div></td></tr>
 <tr><td>답변</td><td><div>
-  <label>{adminQnaDTO.answer}</label>
+  <label>${adminQnaDTO.answer}</label>
 </div></td></tr>
 <!-- <tr><td>답변</td><td><div class="form-floating"> -->
 <!--   <textarea class="form-control" placeholder="Leave a comment here" id="floatingTextarea2" style="height: 100px"></textarea> -->
