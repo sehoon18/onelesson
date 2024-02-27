@@ -42,14 +42,7 @@
 </head>
 <body bgcolor="#e9e9e9">
 	<jsp:include page="../inc/header.jsp" />
-<div style="background-size: cover; background-position: center; background-image: url('${pageContext.request.contextPath}/resources/images/qnaimage.jpg');">
-  <section class="py-5 text-center container" style="height: 300px;">
-    <div class="row py-lg-5">
-      <div class="col-lg-6 col-md-8 mx-auto">
-<!--         <h1 class="fw-light" style="color: white;">Q&A</h1> -->
-      </div>
-    </div>
-  </section>
+<div style="background-size: cover; background-position: center;"> <img src="${pageContext.request.contextPath}/resources/images/b_1.png" width="100%"/>
 </div>
 
 <div align="center" style="margin-top: 50px;">
