@@ -92,11 +92,13 @@
 
 <!-- 본문내용 -->
 <section class="joinpage">
+<a class="navbar-brand" href="${pageContext.request.contextPath}/member/main">
+<img alt="Brand" src="${pageContext.request.contextPath}/resources/images/logo.png" style="width: 300px; height: auto; ">
+</a>
+<br><br>
 <article>
-<h1>One lesson</h1>
-
 <div class="joinpage-container">
-				<h1 class="h3 mb-3 fw-normal">회원가입</h1>
+
 <form>
 					
 					<div class="d-grid gap-2">

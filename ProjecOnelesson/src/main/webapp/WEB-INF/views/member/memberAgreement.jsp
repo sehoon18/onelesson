@@ -40,8 +40,11 @@
 <body>    
 
 <form>
-<h1>One lesson 이용약관</h1>
-<br><br>
+<a class="navbar-brand" href="${pageContext.request.contextPath}/member/main">
+<img alt="Brand" src="${pageContext.request.contextPath}/resources/images/logo.png" style="width: 300px; height: auto; margin-left:200px;">
+</a>
+<br><br><br>
+<h2>이용약관</h2>
 One lesson은 회원에게 콘텐츠, 상품 등을 제공하는 서비스 플랫폼입니다. 회원은 컴퓨터, 휴대전화 등 정보통신기기를 사용하여 One lesson이 회원에게 제공하는 서비스(이하 “서비스”)를 이용할 수 있으며, 서비스의 구체적인 내용과 이용 조건을 이용약관 및 정책, 서비스 페이지 등에서 확인할 수 있습니다.
 
 이용약관(이하 ”이 약관”)은 서비스 이용과 관련하여 One lesson과 회원 간의 권리와 의무에 대한 내용을 담고 있습니다.

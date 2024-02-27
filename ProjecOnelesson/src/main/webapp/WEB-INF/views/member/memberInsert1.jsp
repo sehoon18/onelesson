@@ -123,7 +123,11 @@ option {
 
 
     <form action="${pageContext.request.contextPath}/member/memberInsertPro1" method="POST">
-    <h1 class="h3 mb-3 fw-normal" style="text-align: left;">회원가입</h1>
+<a class="navbar-brand" href="${pageContext.request.contextPath}/member/main">
+<img alt="Brand" src="${pageContext.request.contextPath}/resources/images/logo.png" style="width: 300px; height: auto; margin-left:170px;">
+</a>
+<br><br><br>
+
        
     <div class="col">
     <label for="id ">아이디*</label>
