@@ -45,9 +45,9 @@
 <div style="background-size: cover; background-position: center;"> <img src="${pageContext.request.contextPath}/resources/images/b_7.png" width="100%"/>
 </div>
 
-<div align="center" style="margin-top: 50px;">
+<div align="center" style="margin-top: 50px; margin-bottom: 50px;">
 
-<div style="width: 1000px;">
+<div style="width: 1000px; margin-bottom: 50px;">
 <div id="listDiv">
 <form action="${pageContext.request.contextPath}/board/qnaWritePro" method="post">
 <input type="hidden" name="name" value="${sessionScope.id }"> 
@@ -64,8 +64,8 @@
 <!--   <textarea class="form-control" placeholder="Leave a comment here" id="floatingTextarea2" style="height: 100px"></textarea> -->
 <!--   <label for="floatingTextarea2">ANWSER</label> -->
 <!-- </div></td></tr> -->
-<tr><td></td><td style="text-align: center">
-<input type="submit" class="btn btn-success" value="글쓰기">
+<tr><td></td><td style="text-align: center;">
+<input type="submit" class="btn btn-success" value="글쓰기" style="margin-top:50px;">
 <%-- <button class="btn btn-outline-info" onclick="location.href='${pageContext.request.contextPath}/board/qnaList'">돌아가기</button> --%>
 </td></tr>
 </table>
@@ -73,7 +73,6 @@
 
 </div>
 </div>
-<br>
 <hr>
 </div>
  	<jsp:include page="../inc/footer.jsp" />

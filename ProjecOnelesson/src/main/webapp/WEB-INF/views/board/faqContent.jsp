@@ -44,9 +44,9 @@
 <div style="background-size: cover; background-position: center;"> <img src="${pageContext.request.contextPath}/resources/images/b_3.png" width="100%"/>
 </div>
 
-<div align="center" style="margin-top: 50px;">
+<div align="center" style="margin-top: 100px; margin-bottom: 50px;">
 
-<div style="width: 1000px;">
+<div style="width: 1000px; margin-top: 30px; margin-bottom: 50px;">
 <div id="listDiv">
 <table id="listTable" class="table table-bordered">
 <tr><td style="width: 100px;">번호</td><td style="width: 800px;"><div>
@@ -63,7 +63,7 @@
 </div>
 </div>
 <br>
-<button class="btn btn-outline-success" onclick="location.href='${pageContext.request.contextPath}/board/faq'">돌아가기</button>
+<button class="btn btn-outline-success" onclick="location.href='${pageContext.request.contextPath}/board/faq'" style="margin-bottom: 50px;">돌아가기</button>
 <hr>
 </div>
  	<jsp:include page="../inc/footer.jsp" />
