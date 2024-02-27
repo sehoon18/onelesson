@@ -68,7 +68,6 @@
                             <div class="card-body"><table id="noticeTable" class="table table-bordered">
                                 <thead>
                                     <tr>
-                                        <th style="width: 7%; text-align: center;">번호</th>
                                         <th style="width: 15%; text-align: center;">타입</th>
                                         <th style="width: 35%; text-align: center;">제목</th>
                                         <th style="width: 8%; text-align: center;">조회수</th>
@@ -78,7 +77,6 @@
                                 <tbody>
                                     <c:forEach var="notice" items="${noticeList}">
                                         <tr style="text-align: center;">
-                                            <td>${notice.num}</td> 
                                             <c:choose>
                                             <c:when test="${notice.type == 0}">
                                             <td>공지사항</td>
@@ -110,7 +108,6 @@
                             <div class="card-body"> <table id="noticeTable" class="table table-bordered">
                                 <thead>
                                     <tr>
-                                        <th style="width: 5%; ">번호</th>
                                         <th style="width: 8%; ">아이디</th>
                                         <th style="width: 25%; text-align: center;">내용</th>
                                         <th style="width: 20%; text-align: center;">답변</th>
@@ -120,7 +117,6 @@
                                 <tbody>
                                     <c:forEach var="qna" items="${qnaList}">
                                           <tr style="text-align: center;">                                            
-                                            <td>${qna.num}</td> 
                                             <td>${qna.id}</td>
                                             <td><a class="link" href="${pageContext.request.contextPath}/admin/qnaContent?num=${qna.num}">${qna.question}</a></td>
                                             <td>${qna.answer}</td>
