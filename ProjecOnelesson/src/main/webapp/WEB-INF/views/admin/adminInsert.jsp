@@ -124,8 +124,10 @@ option {
 
 
     <form action="${pageContext.request.contextPath}/member/memberInsertPro1" method="POST">
-    <h1 class="h1" style="text-align:center; font-size:50px;">One lesson</h1>
-    <h3  style="text-align: center;">관리자 회원가입</h3><br><br>
+<a class="navbar-brand" href="${pageContext.request.contextPath}/admin/adminMain">
+<img alt="Brand" src="${pageContext.request.contextPath}/resources/images/logo.png" style="width: 300px; height: auto; margin-left:160px;">
+</a>
+<br><br><br>
        
     <div class="col">
     <label for="id ">아이디*</label>

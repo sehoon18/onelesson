@@ -60,10 +60,12 @@
     </style>
 </head>
 <body>
-    <h1>One lesson</h1>
+<a class="navbar-brand" href="${pageContext.request.contextPath}/admin/adminMain">
+<img alt="Brand" src="${pageContext.request.contextPath}/resources/images/logo.png" style="width: 300px; height: auto; ">
+</a>
+<br>
     <form action="/reset-password" method="POST">
         <h2>관리자 비밀번호 재설정</h2>
-
         <label for="id">아이디:</label>
         <input type="text" id="id" name="id" required>
 
@@ -73,7 +75,7 @@
         <label for="confirm-password">비밀번호 재확인:</label>
         <input type="password" id="confirm-password" name="confirm-password" required>
 
-        <button type="submit" style="with:100%">비밀번호 재설정</button>
+        <button type="submit" style="with:100%">비밀번호 재설정</button><br><br>
     </form>
 </body>
 </html>
