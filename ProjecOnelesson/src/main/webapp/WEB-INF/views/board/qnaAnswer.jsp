@@ -56,7 +56,6 @@
 
 <div style="width: 1000px;">
 <div id="listDiv">
-<h3 style="margin-bottom: 30px;">👮‍♂️‍관리자가 답변하기</h3>
 <form action="${pageContext.request.contextPath}/board/qnaAnswerPro" method="post">
 <input type="hidden" name="num" value="${boardDTO.num }"> 
 <table id="listTable">

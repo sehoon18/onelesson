@@ -68,6 +68,13 @@
                     <label for="myEditor" class="form-label">상세 설명</label>
                     <textarea id="myEditor" name="content" class="form-control mb-3">${adminNoticeDTO.content}</textarea>
                 </div>
+                <div class="col-12">
+                    <label for="image" class="form-label"></label>
+                    <input type="file" name="image" class="form-control mb-3">${adminNoticeDTO.image}
+                    <c:if test="${adminNoticeDTO.image != null}">
+                    	<input type="hidden" name="oldfile" value="${adminNoticeDTO.image}">
+                    </c:if>
+                </div>
             </div>
             <hr>
             <div style="text-align: right; margin-top:30px;">

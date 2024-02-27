@@ -41,14 +41,16 @@
                     <h1 class="mt-4">공지사항/이벤트</h1>
 <hr>                 
 <table class="table table-hover" style="margin-top:50px;">
-<col width="70"><col width="70"><col width="600"><col width="300"><col width="70">
+<col width="70"><col width="600"><col width="300"><col width="70">
 <thead>
 <tr class="bg-primary" style="color: white;">
-	<th class="table-success">번호</th><th class="table-success">타입</th><th class="table-success">제목</th><th class="table-success">작성일</th><th class="table-success">조회수</th>
+<!-- 	<th class="table-success">번호</th> -->
+	<th class="table-success">타입</th><th class="table-success">제목</th><th class="table-success">작성일</th><th class="table-success">조회수</th>
 </tr>
 <c:if test="${sessionScope.id == 'admin'}">   
 <c:forEach var="adminNoticeDTO" items="${noticeList}">
-	<tr><td>${adminNoticeDTO.num}</td>
+	<tr>
+<%-- 	<td>${adminNoticeDTO.num}</td> --%>
 	<c:if test="${adminNoticeDTO.type == 0}">
 	<td>공지</td>
 	</c:if>

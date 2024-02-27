@@ -1,17 +1,22 @@
 package com.itwillbs.controller;
 
+import java.io.File;
 import java.sql.Timestamp;
 import java.util.List;
+import java.util.UUID;
 
+import javax.annotation.Resource;
 import javax.inject.Inject;
 import javax.servlet.http.HttpServletRequest;
 import javax.servlet.http.HttpSession;
 
 import org.springframework.stereotype.Controller;
 import org.springframework.ui.Model;
+import org.springframework.util.FileCopyUtils;
 import org.springframework.web.bind.annotation.GetMapping;
 import org.springframework.web.bind.annotation.PostMapping;
 import org.springframework.web.bind.annotation.RequestMapping;
+import org.springframework.web.multipart.MultipartFile;
 
 import com.itwillbs.domain.AdminDTO;
 import com.itwillbs.domain.AdminFaqDTO;
@@ -46,6 +51,9 @@ public class AdminBoardController {
 	private BoardService boardService;
 	@Inject
 	private AdminService adminService;
+	
+	@Resource(name = "uploadPath")
+	private String uploadPath;
 	
 	
 	@GetMapping("/memberAdmin")
@@ -220,8 +228,30 @@ public class AdminBoardController {
 	}
 
 	@PostMapping("/noticeInsertPro")
-	public String noticeInsertPro(AdminNoticeDTO adminNoticeDTO) {
+	public String noticeInsertPro(HttpServletRequest request, MultipartFile image) throws Exception  {
 		System.out.println("AdminBoardController noticeInsertPro()");
+		
+		AdminNoticeDTO adminNoticeDTO = new AdminNoticeDTO();
+		
+		if(image.isEmpty()) {
+			
+		} else {
+			
+			UUID uuid = UUID.randomUUID();
+			String filename = uuid.toString() + "_" + image.getOriginalFilename();
+			System.out.println(filename);
+			
+			System.out.println(uploadPath);
+			FileCopyUtils.copy(image.getBytes(), new File(uploadPath, filename));
+			
+			adminNoticeDTO.setImage(filename);
+		}
+		
+		adminNoticeDTO.setId(request.getParameter("id"));
+		adminNoticeDTO.setType(Integer.parseInt(request.getParameter("type")));
+		adminNoticeDTO.setSubject(request.getParameter("subject"));
+		adminNoticeDTO.setContent(request.getParameter("content"));
+		
 		System.out.println(adminNoticeDTO);
 		
 		adminNoticeService.noticeInsert(adminNoticeDTO);
@@ -254,8 +284,36 @@ public class AdminBoardController {
 	}
 	
 	@PostMapping("/noticeUpdatePro")
-	public String noticeUpdatePro(AdminNoticeDTO adminNoticeDTO) {
+	public String noticeUpdatePro(HttpServletRequest request, MultipartFile image) throws Exception {
 		System.out.println("AdminBoardController noticeUpdatePro()");
+		
+		AdminNoticeDTO adminNoticeDTO = new AdminNoticeDTO();
+		adminNoticeDTO.setNum(Integer.parseInt(request.getParameter("num")));
+		adminNoticeDTO.setId(request.getParameter("id"));
+		adminNoticeDTO.setType(Integer.parseInt(request.getParameter("type")));
+		adminNoticeDTO.setSubject(request.getParameter("subject"));
+		adminNoticeDTO.setContent(request.getParameter("content"));
+		
+		if(image.isEmpty()) {
+			System.out.println("첨부파일 없음");
+			if(request.getParameter("oldfile") == null) {
+			
+			}else {
+				adminNoticeDTO.setImage(request.getParameter("oldfile"));
+			}
+		}else {
+			System.out.println("첨부파일 있음");
+			
+			UUID uuid = UUID.randomUUID();
+			String filename = uuid.toString() + "_" + image.getOriginalFilename();
+			System.out.println(filename);
+			
+			System.out.println(uploadPath);
+			FileCopyUtils.copy(image.getBytes(), new File(uploadPath, filename));
+			
+			adminNoticeDTO.setImage(filename);
+		}
+		
 		System.out.println(adminNoticeDTO);
 		
 		adminNoticeService.noticeUpdate(adminNoticeDTO);

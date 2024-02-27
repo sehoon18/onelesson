@@ -56,7 +56,6 @@
 
 <div style="width: 1000px;">
 <div id="listDiv">
-<h3 style="margin-bottom: 30px;">👨‍🏫강사에게 문의하기</h3>
 
 <form action="${pageContext.request.contextPath}/board/lessonQnaWritePro" method="post">
 <input type="hidden" name="name" value="${sessionScope.id }">

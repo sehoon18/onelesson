@@ -37,15 +37,15 @@
                 <div class="container-fluid px-4" style="margin-top:50px;">
                     <h1 class="mt-4">자주 묻는 질문</h1>
 <hr>                    
-<table class="table table-bordered" style="margin-top:50px;">
+<table id="listTable" class="table table-bordered" style="margin-top:50px;">
 <tr><td style="width: 150px;">번호</td><td><div>
-  <label>${adminFaqDTO.num}</label>
+  ${adminFaqDTO.num}
 </div></td></tr>
 <tr><td style="width: 150px;">제목</td><td><div>
-  <label>${adminFaqDTO.subject}</label>
+  ${adminFaqDTO.subject}
 </div></td></tr>
-<tr><td style="height: 200px;">내용</td><td><div>
-  <label>${adminFaqDTO.content}</label>
+<tr><td style="height: 200px;" valign="middle">내용</td><td valign="middle"><div>
+  ${adminFaqDTO.content}
 </div></td></tr>
 </table>
 

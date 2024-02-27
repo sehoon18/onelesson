@@ -59,6 +59,10 @@
                     <label for="myEditor" class="form-label">상세 설명</label>
                     <textarea id="myEditor" name="content" class="form-control mb-3"></textarea>
                 </div>
+                <div>
+                	<label for="file" class="form-label"></label>
+                	<input type="file" name="image" class="form-control mb-3">
+                </div>
             </div>
             <hr>
             <div style="text-align: right; margin-top:30px;">

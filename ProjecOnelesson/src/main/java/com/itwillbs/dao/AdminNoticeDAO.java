@@ -44,7 +44,7 @@ public class AdminNoticeDAO {
 	
 	public void noticeUpdate(AdminNoticeDTO adminNoticeDTO) {
 		System.out.println("AdminNoticeDAO updateNotice()");
-		
+		System.out.println(adminNoticeDTO);
 		sqlSession.update(namespace + ".noticeUpdate", adminNoticeDTO);
 	}
 	

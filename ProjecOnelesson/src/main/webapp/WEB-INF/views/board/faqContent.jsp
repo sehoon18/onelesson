@@ -54,16 +54,15 @@
 
 <div style="width: 1000px;">
 <div id="listDiv">
-<h3 style="margin-bottom: 30px;">👮‍♂️‍자주 묻는 질문</h3>
 <table id="listTable" class="table table-bordered">
 <tr><td style="width: 100px;">번호</td><td style="width: 800px;"><div>
-  <label>${boardDTO.num}</label>
+  ${boardDTO.num}
 </div></td></tr>
 <tr><td style="width: 100px;">제목</td><td style="width: 800px;"><div>
-  <label>${boardDTO.subject}</label>
+  ${boardDTO.subject}
 </div></td></tr>
-<tr><td style="height: 200px;">내용</td><td><div>
-  <label>${boardDTO.content}</label>
+<tr><td style="height: 200px;">내용</td><td valign="middle"><div>
+  ${boardDTO.content}
 </div></td></tr>
 </table>
 

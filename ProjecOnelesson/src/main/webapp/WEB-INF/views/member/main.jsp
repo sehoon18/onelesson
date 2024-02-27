@@ -128,13 +128,13 @@
 <!--     1번째 이미지  -->
       <div class="carousel-item active">
       <a href="${pageContext.request.contextPath}/lesson/lessonList" target="_blank"></a>
-      	<img src="${pageContext.request.contextPath}/resources/images/main/main_banner.png" width="100%" height="100%" class="d-block w-100" alt="First slide" >
+      	<img src="${pageContext.request.contextPath}/resources/images/main/main_5.png" width="100%" height="100%" class="d-block w-100" alt="First slide" >
     </div>
       	
       <!--     2번째 이미지  -->
       <div class="carousel-item"> 
       <a href="${pageContext.request.contextPath}/member/notice">
-      <img src="${pageContext.request.contextPath}/resources/images/main/event.png"  width="100%" height="100%"> </a>
+      <img src="${pageContext.request.contextPath}/resources/images/main/main_6.png"  width="100%" height="100%"> </a>
       </div>
       
     
@@ -213,7 +213,7 @@
   </div>
   <!-- 리뷰 이미지 -->
   <div class="col-md-5 text-center" style="width: 2000px"> 
-    <img src="${pageContext.request.contextPath}/resources/images/main/main_3.png" class="img-fluid" alt="Responsive image" style=" width: 100%" height="100%">
+    <img src="${pageContext.request.contextPath}/resources/images/main/main_9.png" class="img-fluid" alt="Responsive image" style=" width: 100%" height="100%">
   </div>
 </div>
 
@@ -223,20 +223,23 @@
 </div>
     <div class="row featurette">
       <div class="col-md-5 text-center" style="width: 2000px"> <!-- 이미지 -->
-    <img src="${pageContext.request.contextPath}/resources/images/main/main_1.png" class="img-fluid" alt="Responsive image" style=" width: 100%" height="100%">
+      <img src="${pageContext.request.contextPath}/resources/images/main/main_7.png" class="img-fluid" alt="Responsive image" style=" width: 100%" height="100%">
       </div>
       <div class="col-md-7 order-md-2" style="width: 2000px"><br><br><br><br><br>	<!-- 텍스트 -->
-        <h1><span class=blue>01</span></h1>
-        <h2>'<span class="orange">원레슨</span>' 서비스 어떻게 시작되었나요?</h2><br>
-        <p>오늘날 빠르게 변화하는 세상에서 많은 사람들은 바쁜 일정으로 인해 장기 수업이나 강좌에 참여하기가 어렵다고 생각합니다. 그래서 1일 수업을 제공하면 개인이 부담 없이 참여할 수 있고
-           장기 프로그램 또는 진로에 확신이 없는 사람들이 다양한 경험을 통해 나아가야 할 방향을 결정하기 전 여러 분야에 대해 활동을 해볼 수 있는 곳이 필요하다고 생각해서 시작했습니다.</p><br><br>
-         <h1><span class=blue>02</span></h1>
-        <h2>'<span class="orange">원레슨</span>' 서비스는 무엇인가요?</h2><br>
-        <p>회원은 원하는 분야의 조건에 맞는 원데이 레슨을 찾아 신청할 수 있고, 강사는 원하는 조건에 맞게 원데이 레슨을 등록할 수 있는 서비스입니다. </p><br><br>
-         <h1><span class=blue>03</span></h1>
-        <h2>'<span class="orange">원레슨</span>' 은 회원과 강사 모두 안전하게 이용할 수 있습니다. </h2><br>
-        <b>원레슨에 등록된 강사는 신뢰성과 안전성을 보장하기 위해 엄격한 심사 절차를 거칩니다. 각 강사의 학력, 경력 등 자격에 대한 철저한 검증을 거칩니다.</b><br>
-        <b>마찬가지로 모든 회원에 대해서도 본인인증을 통해 신원 확인을 실시합니다.</b>
+      <img src="${pageContext.request.contextPath}/resources/images/main/main_1.png" class="img-fluid" alt="Responsive image" style=" width: 100%" height="100%">
+      <img src="${pageContext.request.contextPath}/resources/images/main/main_2.png" class="img-fluid" alt="Responsive image" style=" width: 100%" height="100%">
+      
+<!--         <h1><span class=blue>01</span></h1> -->
+<!--         <h2>'<span class="orange">원레슨</span>' 서비스 어떻게 시작되었나요?</h2><br> -->
+<!--         <p>오늘날 빠르게 변화하는 세상에서 많은 사람들은 바쁜 일정으로 인해 장기 수업이나 강좌에 참여하기가 어렵다고 생각합니다. 그래서 1일 수업을 제공하면 개인이 부담 없이 참여할 수 있고 -->
+<!--            장기 프로그램 또는 진로에 확신이 없는 사람들이 다양한 경험을 통해 나아가야 할 방향을 결정하기 전 여러 분야에 대해 활동을 해볼 수 있는 곳이 필요하다고 생각해서 시작했습니다.</p><br><br> -->
+<!--          <h1><span class=blue>02</span></h1> -->
+<!--         <h2>'<span class="orange">원레슨</span>' 서비스는 무엇인가요?</h2><br> -->
+<!--         <p>회원은 원하는 분야의 조건에 맞는 원데이 레슨을 찾아 신청할 수 있고, 강사는 원하는 조건에 맞게 원데이 레슨을 등록할 수 있는 서비스입니다. </p><br><br> -->
+<!--          <h1><span class=blue>03</span></h1> -->
+<!--         <h2>'<span class="orange">원레슨</span>' 은 회원과 강사 모두 안전하게 이용할 수 있습니다. </h2><br> -->
+<!--         <b>원레슨에 등록된 강사는 신뢰성과 안전성을 보장하기 위해 엄격한 심사 절차를 거칩니다. 각 강사의 학력, 경력 등 자격에 대한 철저한 검증을 거칩니다.</b><br> -->
+<!--         <b>마찬가지로 모든 회원에 대해서도 본인인증을 통해 신원 확인을 실시합니다.</b> -->
       </div>
     </div>
 
@@ -244,20 +247,22 @@
 
     <div class="row featurette">
       <div class="col-md-5" style="width: 2000px"> <!-- 이미지 -->
-       <img src="${pageContext.request.contextPath}/resources/images/main/main_2.png" class="img-fluid" alt="Responsive image" style=" width: 100%" height="100%">
+      <img src="${pageContext.request.contextPath}/resources/images/main/main_8.png" class="img-fluid" alt="Responsive image" style=" width: 100%" height="100%">
       </div>
       <div class="col-md-7" style="width: 2000px" ><br><br><br><br><br> <!-- 텍스트 -->
-        <h1><span class=orange>01</span></h1>
-        <h3><b>강사,일반 회원으로 가입해주세요.</b></h3><br>
-        <p>강사 회원은 독점적으로 레슨 등록 및 수업 제공 자격을 가지고 있고, 일반 회원은 이용 가능한 레슨에 신청할 수 있습니다.</p><br><br>
-        <h1><span class=orange>02</span></h1>
-        <h3><b>레슨을 시작하세요.</b></h3><br>
-        <p>강사 회원이 레슨을 등록할 때 원레슨의 등록 승인 절차를 거쳐 레슨을 시작하게 됩니다.</p><br>
-        <p>일반 회원은 레슨을 신청할 날짜를 정하고 예약합니다. 레슨 하루 전 변경이나 취소는 불가합니다.</p><br><br>
-        <h1><span class=orange>03</span></h1>
-        <h3><b>이제 원하는 강사님과 만나보세요.</b></h3><br>
-        <p>레슨 일정을 잡으셨다면 원레슨에서 제공하는 문의/답변 시스템을 통해 강사님과 회원님이 소통할 수 있습니다.</p>
-        <p>레슨에 대해 궁금한 점이나 레슨 방향에 관해 충분히 얘기를 나누는 시간을 갖습니다. 모두 유익한 시간을 보내셨나요? 이제 행복한 원데이 레슨을 시작하세요!</p>
+      <img src="${pageContext.request.contextPath}/resources/images/main/main_3.png" class="img-fluid" alt="Responsive image" style=" width: 100%" height="100%">
+      <img src="${pageContext.request.contextPath}/resources/images/main/main_4.png" class="img-fluid" alt="Responsive image" style=" width: 100%" height="100%">
+<!--         <h1><span class=orange>01</span></h1> -->
+<!--         <h3><b>강사,일반 회원으로 가입해주세요.</b></h3><br> -->
+<!--         <p>강사 회원은 독점적으로 레슨 등록 및 수업 제공 자격을 가지고 있고, 일반 회원은 이용 가능한 레슨에 신청할 수 있습니다.</p><br><br> -->
+<!--         <h1><span class=orange>02</span></h1> -->
+<!--         <h3><b>레슨을 시작하세요.</b></h3><br> -->
+<!--         <p>강사 회원이 레슨을 등록할 때 원레슨의 등록 승인 절차를 거쳐 레슨을 시작하게 됩니다.</p><br> -->
+<!--         <p>일반 회원은 레슨을 신청할 날짜를 정하고 예약합니다. 레슨 하루 전 변경이나 취소는 불가합니다.</p><br><br> -->
+<!--         <h1><span class=orange>03</span></h1> -->
+<!--         <h3><b>이제 원하는 강사님과 만나보세요.</b></h3><br> -->
+<!--         <p>레슨 일정을 잡으셨다면 원레슨에서 제공하는 문의/답변 시스템을 통해 강사님과 회원님이 소통할 수 있습니다.</p> -->
+<!--         <p>레슨에 대해 궁금한 점이나 레슨 방향에 관해 충분히 얘기를 나누는 시간을 갖습니다. 모두 유익한 시간을 보내셨나요? 이제 행복한 원데이 레슨을 시작하세요!</p> -->
       </div>
     </div>
 <br><br><br><br><br><br><br><br><br>

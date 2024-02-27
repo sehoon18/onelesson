@@ -39,27 +39,35 @@
 <hr>                    
 <table class="table table-bordered" style="margin-top:50px;">
 <tr><td style="width: 150px;">번호</td><td><div>
-  <label>${adminNoticeDTO.num}</label>
+  ${adminNoticeDTO.num}
 </div></td></tr>
 <tr><td style="width: 150px;">타입</td><td><div>
   <c:if test="${adminNoticeDTO.type == 0}">
-  <label>공지</label>
+  공지
   </c:if>
   <c:if test="${adminNoticeDTO.type == 1}">
-  <label>이벤트</label>
+  이벤트
   </c:if>
 </div></td></tr>
-<tr><td style="width: 150px;">조회수</td><td><div>
-  <label>${adminNoticeDTO.readcount}</label>
+<tr><td style="width: 100px;">조회수</td><td><div>
+  ${adminNoticeDTO.readcount}
 </div></td></tr>
-<tr><td style="width: 150px;">작성일</td><td><div>
-  <label>${adminNoticeDTO.date}</label>
+<tr><td style="width: 100px;">작성일</td><td><div>
+  <fmt:formatDate value="${adminNoticeDTO.date}" pattern="yyyy-MM-dd"/>
 </div></td></tr>
-<tr><td style="width: 150px;">제목</td><td><div>
-  <label>${adminNoticeDTO.subject}</label>
+<tr><td style="width: 100px;">제목</td><td><div>
+  ${adminNoticeDTO.subject}
 </div></td></tr>
-<tr><td style="height: 200px;">내용</td><td><div>
-  <label>${adminNoticeDTO.content}</label>
+<tr><td style="height: 200px;" valign="middle">내용</td><td valign="middle"><div>
+  ${adminNoticeDTO.content}
+  <c:if test="${adminNoticeDTO.image != null}">
+  	<img src="${pageContext.request.contextPath}/resources/upload/${adminNoticeDTO.image }">
+  </c:if>
+</div></td></tr>
+<tr><td style="width: 100px;">첨부파일</td><td><div>
+  <c:if test="${adminNoticeDTO.image == null}">
+  		첨부된 파일이 없습니다.
+  </c:if> 
 </div></td></tr>
 </table>
 

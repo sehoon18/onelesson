@@ -12,11 +12,13 @@ public class AdminNoticeDTO {
 	private Timestamp date;
 	private int readcount;
 	private String image;
+	private String oldfile;
 	
 	@Override
 	public String toString() {
 		return "AdminNoticeDTO [num=" + num + ", id=" + id + ", type=" + type + ", subject=" + subject + ", content="
-				+ content + ", date=" + date + ", readcount=" + readcount + ", image=" + image + "]";
+				+ content + ", date=" + date + ", readcount=" + readcount + ", image=" + image + ", oldfile=" + oldfile
+				+ "]";
 	}
 
 	public int getNum() {
@@ -82,5 +84,14 @@ public class AdminNoticeDTO {
 	public void setImage(String image) {
 		this.image = image;
 	}
+
+	public String getOldfile() {
+		return oldfile;
+	}
+
+	public void setOldfile(String oldfile) {
+		this.oldfile = oldfile;
+	}
+	
 	
 }
