@@ -60,7 +60,9 @@
     </style>
 </head>
 <body>
-    <h1>One lesson</h1>
+    <a class="navbar-brand" href="${pageContext.request.contextPath}/member/main">
+	<img alt="Brand" src="${pageContext.request.contextPath}/resources/images/logo.png" style="width: 300px; height: auto; ">
+	</a><br><br>
     <form action="${pageContext.request.contextPath}/member/memberResetPassPro" method="POST" id="resetPasswordForm">
         <h2>비밀번호 재설정</h2>
 

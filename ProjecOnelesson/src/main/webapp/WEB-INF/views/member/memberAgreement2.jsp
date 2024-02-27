@@ -145,7 +145,9 @@ label.required::after {
 <body>
 <div class="wrap">
       <div class="logo">
-        <h1>One lesson</h1>
+<a class="navbar-brand" href="${pageContext.request.contextPath}/member/main">
+<img alt="Brand" src="${pageContext.request.contextPath}/resources/images/logo.png" style="width: 300px; height: auto;">
+</a>
       </div>
       <div class="contents">
         <form action="/" method="POST" id="form__wrap">

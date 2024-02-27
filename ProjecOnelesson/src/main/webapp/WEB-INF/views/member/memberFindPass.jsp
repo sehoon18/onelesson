@@ -20,7 +20,7 @@
         padding: 0;
         }
         
-        h2{
+        h3{
             text-align: center;
         }
         
@@ -37,7 +37,7 @@
             display: flex;
             justify-content: center;
             align-items: center;
-            height: auto;
+            height: 30vh;
         }
 
         .container {
@@ -105,8 +105,11 @@
 
 
     <div class="container">
-        <h2>비밀번호 찾기</h2>
+    <a class="navbar-brand" href="${pageContext.request.contextPath}/member/main">
+	<img alt="Brand" src="${pageContext.request.contextPath}/resources/images/logo.png" style="width: 300px; height: auto; margin-left:130px;">
+	</a><br><br>
         <form id="findPasswordForm">
+        <h3>비밀번호 찾기</h3><br>
             <label for="userType">회원 유형:</label>
             <select id="userType" onchange="updateFields()">
                 <option value="normal">일반회원</option>

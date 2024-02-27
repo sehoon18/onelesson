@@ -90,9 +90,11 @@
 
 <!-- 본문내용 -->
 <section class="login">
+<a class="navbar-brand" href="${pageContext.request.contextPath}/member/main">
+<img alt="Brand" src="${pageContext.request.contextPath}/resources/images/logo.png" style="width: 300px; height: auto; margin-left:30px;">
+</a>
+<br><br>
 <article>
-<h1>One lesson</h1>
-
 <div class="login-container">
 				<form action="${pageContext.request.contextPath}/member/memberLoginPro"  method="POST">
 				<h1 class="h3 mb-3 fw-normal">로그인</h1>

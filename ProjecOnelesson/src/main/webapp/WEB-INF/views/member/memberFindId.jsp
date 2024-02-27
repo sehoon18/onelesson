@@ -22,7 +22,7 @@ integrity="sha384-4bw+/aepP/YC94hEpVNVgiZdgIC5+VKNBQNGCHeKRQN+PtmoHDEXuppvnDJzQI
         padding: 0;
         	}
         	
-       	h2{
+       	h3{
 
 		text-align: center;
         
@@ -55,7 +55,7 @@ integrity="sha384-4bw+/aepP/YC94hEpVNVgiZdgIC5+VKNBQNGCHeKRQN+PtmoHDEXuppvnDJzQI
             display: flex;
             align-items: center;
             justify-content: center;
-            height: 100vh;
+            height: 30vh;
             margin: 0;
         }
 
@@ -128,8 +128,12 @@ integrity="sha384-4bw+/aepP/YC94hEpVNVgiZdgIC5+VKNBQNGCHeKRQN+PtmoHDEXuppvnDJzQI
 
  
     <div class="container">
-        <h2>아이디 찾기</h2>
+    <a class="navbar-brand" href="${pageContext.request.contextPath}/member/main">
+	<img alt="Brand" src="${pageContext.request.contextPath}/resources/images/logo.png" style="width: 300px; height: auto; margin-left:130px;">
+	</a><br><br>
+        
         <form id="findUsernameForm">
+        <h3>아이디 찾기</h3><br>
             <label for="userType">회원 유형:</label>
             <select id="userType" onchange="updateFields()">
                 <option value="normal">일반회원</option>
