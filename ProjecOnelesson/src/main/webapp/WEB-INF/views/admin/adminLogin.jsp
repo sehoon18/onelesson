@@ -91,11 +91,14 @@
 <!-- 본문내용 -->
 <section class="login">
 <article>
-<h1>One lesson</h1>
 
 <%-- <form action="${pageContext.request.contextPath}/lesson/loginPro" id="join" method="post"> --%>
 <div class="login-container">
-				<h1 class="h3 mb-3 fw-normal">관리자 로그인</h1>
+	
+	<a class="navbar-brand" href="${pageContext.request.contextPath}/admin/adminMain">
+	<img alt="Brand" src="${pageContext.request.contextPath}/resources/images/logo.png" style="width: 300px; height: auto; ">
+	</a>
+	<br><br>
 				<form action="${pageContext.request.contextPath}/admin/adminLoginPro" method="POST">
 					<div class="form-floating">
 						<input type="text" class="form-control" id="floatingInput"
