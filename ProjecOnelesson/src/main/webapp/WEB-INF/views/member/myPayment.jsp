@@ -249,23 +249,23 @@ display: inline-block;
 	}
 .payment-text2{
 	position : static;
-	width: 140px;
+	width: 120px;
 	float: left;
-	margin-left: 1px;
+	margin-left: 20px;
 	text-align: center;
 	}
 .payment-text3{
 	position : static;
 	width: 80px;
 	float: left;
-	margin-left: 15px;
+	margin-left: 40px;
 	text-align: center;
 	}
 .payment-text4{
 	position : static;
 	width: 100px;
 	float: left;
-	margin-left: 10px;
+	margin-left: 20px;
 	text-align: center;
 	}
 .payment-text5{
@@ -287,7 +287,7 @@ display: inline-block;
 	position : static;
 	width: 80px;
 	float: left;
-	margin-left: 40px;
+	margin-left: 20px;
 	text-align: center;
 	}
 .payment-text8{
@@ -301,7 +301,7 @@ display: inline-block;
 	position : static;
 	width: 80px;
 	float: left;
-	margin-left: 30px;
+	margin-left: 20px;
 	text-align: center;
 	}
 
@@ -322,27 +322,27 @@ display: inline-block;
 	position: static;
 	display: inline-block;
 	text-align: center;
-	margin-left: 30px;
-}
-.paymentIn-text2{
-	width: 150px;
-	height: 30px;
-	border-bottom: 2px solid;
-	border-bottom-color: black;
-	position: static;
-	display: inline-block;
-	text-align: center;
 	margin-left: 20px;
 }
-.paymentIn-text3{
-	width: 70px;
+.paymentIn-text2{
+	width: 200px;
 	height: 30px;
 	border-bottom: 2px solid;
 	border-bottom-color: black;
 	position: static;
 	display: inline-block;
 	text-align: center;
-	margin-left: 10px;
+	margin-left: 5px;
+}
+.paymentIn-text3{
+	width: 90px;
+	height: 30px;
+	border-bottom: 2px solid;
+	border-bottom-color: black;
+	position: static;
+	display: inline-block;
+	text-align: center;
+	margin-left: 5px;
 }
 .paymentIn-text4{
 	width: 90px;
@@ -352,7 +352,7 @@ display: inline-block;
 	position: static;
 	display: inline-block;
 	text-align: center;
-	margin-left: 10px;
+	margin-left: 5px;
 }
 .paymentIn-text5{
 	width: 170px;
@@ -362,7 +362,7 @@ display: inline-block;
 	position: static;
 	display: inline-block;
 	text-align: center;
-	margin-left: 10px;
+	margin-left: 5px;
 }
 .paymentIn-text6{
 	width: 100px;
@@ -372,7 +372,7 @@ display: inline-block;
 	position: static;
 	display: inline-block;
 	text-align: center;
-	margin-left: 10px;
+	margin-left: 5px;
 }
 .paymentIn-text7{
 	width: 100px;
@@ -382,7 +382,7 @@ display: inline-block;
 	position: static;
 	display: inline-block;
 	text-align: center;
-	margin-left: 10px;
+	margin-left: 5px;
 }
 .paymentIn-text8{
 	width: 80px;
@@ -392,7 +392,7 @@ display: inline-block;
 	position: static;
 	display: inline-block;
 	text-align: center;
-	margin-left: 10px;
+	margin-left: 5px;
 }
 .paymentIn-text9{
 	width: 100px;
@@ -402,7 +402,7 @@ display: inline-block;
 	position: static;
 	display: inline-block;
 	text-align: center;
-	margin-left: 10px;
+	margin-left: 5px;
 }
 
 </style>
@@ -462,7 +462,7 @@ display: inline-block;
 </main>
 <div style="width: 1100px; margin: 50px auto;">
 					<div class="myPayment">
-	 					<span class="payment-text1">결제 번호</span>
+	 					<span class="payment-text1">결제번호</span>
 	 					<span class="payment-text2">레슨 제목</span>
 	 					<span class="payment-text3">레슨 가격</span>
 	 					<span class="payment-text4">구매자 이름</span> 					

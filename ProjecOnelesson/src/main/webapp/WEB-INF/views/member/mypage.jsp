@@ -317,7 +317,12 @@ display: inline-block;
 	<div id="MyControll_Box" class="MyControll_Box">
 	<div class="container" style="width: 1120px;">
 <div class="myPageT"></div>
+<!-- <<<<<<< HEAD -->
 	 		<h4 style="text-align: center;"><a href="javascript:openDisplay();" class="mySimpleInfo">나의 회원 정보 간단히 보기/닫기</a></h4>	
+<!-- ======= -->
+<!-- 	 		<h4 style="text-align: center;"><a href="javascript:openDisplay();">나의 회원 정보 간단히 보기/닫기</a></h4>	 -->
+<%-- 	 			 <button type="button" class="btn btn-outline-success btn-lg" onclick="location.href='${pageContext.request.contextPath}/member/myInfo'">내 정보 수정</button> --%>
+<!-- >>>>>>> refs/remotes/origin/myPageTest7 -->
 					<div id="myProfil" class="myProfil">
 							
 	 						<span class="UserProfil">${memberDTO.nick } 회원님</span><br>
