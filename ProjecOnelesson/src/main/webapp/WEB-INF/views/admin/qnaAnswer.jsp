@@ -48,24 +48,26 @@
 <%-- <input type="hidden" name="name" value="${adminDTO.id}">  --%>
 <input type="hidden" name="num" value="${boardDTO.num}"> 
 <table id="listTable">
-<tr><td style="width: 100px;">제목</td><td style="width: 800px;"><div>
-  <label>SUBJECT</label>
+<tr><td style="width: 100px;">질문자</td><td style="width: 800px;">
+<div>
+<!--   <label>MEMBER</label> -->
+  <input type="text" class="form-control" id="floatingInput" placeholder="" value="${boardDTO.id}" readonly>
+</div></td></tr>
+<tr><td>제목</td><td>
+<div>
+<!--   <label>SUBJECT</label> -->
   <input type="text" class="form-control" id="floatingInput" placeholder="" value="${boardDTO.subject}" >
 </div></td></tr>
 <tr><td>내용</td><td><div>
-  <label>QUESTION</label>
+<!--   <label>QUESTION</label> -->
   <textarea class="form-control" placeholder="" id="floatingTextarea2" style="height: 200px" readonly>${boardDTO.question}</textarea>
 </div></td></tr>
 <tr><td>답변</td><td><div>
-  <label>ANSWER</label>
+<!--   <label>ANSWER</label> -->
   <textarea name="answer" class="form-control" placeholder="" id="floatingTextarea2" style="height: 200px"></textarea>
 </div></td></tr>
 <tr><td></td><td style="text-align: center;">
 <div class="mb-3 row">
-    <label for="inputPassword" class="col-sm-2 col-form-label">Password</label>
-    <div class="col-sm-8">
-      <input type="password" name="pass" class="form-control" id="inputPassword">
-    </div>
     <div class="col-sm-2">
         <input type="submit" class="btn btn-info w-100" value="답변하기">
     </div>

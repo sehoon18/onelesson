@@ -42,6 +42,9 @@
 <tr><td style="width: 100px;">제목</td><td style="width: 800px;"><div>
   <label>${boardDTO.subject}</label>
 </div></td></tr>
+<tr><td>질문자</td><td><div>
+  <label>${boardDTO.id}</label>
+</div></td></tr>
 <tr><td>내용</td><td><div>
   <label>${boardDTO.question}</label>
 </div></td></tr>
