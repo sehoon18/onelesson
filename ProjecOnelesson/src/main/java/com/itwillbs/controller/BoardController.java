@@ -13,6 +13,7 @@ import javax.servlet.http.HttpSession;
 import org.springframework.stereotype.Controller;
 import org.springframework.ui.Model;
 import org.springframework.util.FileCopyUtils;
+import org.springframework.validation.BindingResult;
 import org.springframework.web.bind.annotation.GetMapping;
 import org.springframework.web.bind.annotation.PostMapping;
 import org.springframework.web.bind.annotation.RequestMapping;
@@ -434,9 +435,12 @@ public class BoardController {
 	}
 	
 	@GetMapping("/lessonQnaContent")
-	public String lessonQnaContent(BoardDTO boardDTO, Model model) {
+	public String lessonQnaContent(BoardDTO boardDTO, Model model,HttpSession session, MemberDTO memberDTO) {
 		System.out.println("BoardController lessonQnaContent()");
-			
+		
+		memberDTO = memberService.getMember((String)session.getAttribute("id"));
+		model.addAttribute("memberDTO", memberDTO);
+		
 		boardDTO = boardService.getLqna(boardDTO);
 		model.addAttribute("boardDTO", boardDTO);
 		return "board/lessonQnaContent";

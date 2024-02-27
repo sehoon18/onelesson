@@ -60,7 +60,7 @@
 </div>
 </c:if>
 
-<div align="center" style="margin-top: 50px;">
+<div align="center" style="margin-top: 100px; margin-bottom: 50px;">
 <div style="margin: 0px auto; width: 1000px">
 <table class="table table-hover" style="width: 1000px">
 <col width="70"><col width="250"><col width="400"><col width="200"><c:if test="${memberDTO.type == 1 }"><col width="100"></c:if>
@@ -99,7 +99,7 @@
 </thead>
 </table>
 
-<nav aria-label="Page navigation example" style="margin-top: 30px">
+<nav aria-label="Page navigation example" style="margin-top: 60px; margin-bottom: 60px;">
   <ul class="pagination justify-content-end">
   <c:if test="${pageDTO.startPage > pageDTO.pageBlock }">
     <li class="page-item"><a class="page-link" href="${pageContext.request.contextPath}/lesson/lessonList?pageNum=${pageDTO.startPage - pageDTO.pageBlock}">Previous</a></li>
@@ -138,6 +138,9 @@
 <br>
 <%-- <button class="btn btn-info" onclick="location.href='${pageContext.request.contextPath}/board/lessonQnaWrite'">글쓰기</button> --%>
 <button class="btn btn-outline-success" onclick="location.href='${pageContext.request.contextPath}/member/mypage'">돌아가기</button>
+<br>
+<br>
+<br>
 <hr>
 </div>
  	<jsp:include page="../inc/footer.jsp" />

@@ -51,9 +51,9 @@
 </div>
 </c:if>
 
-<div align="center" style="margin-top: 50px;">
+<div align="center" style="margin-top: 100px; margin-bottom: 50px;">
 
-<div style="width: 1000px;">
+<div style="width: 1000px; ">
 <div id="listDiv">
 <table id="listTable">
 <tr><td style="width: 100px;">제목</td><td style="width: 800px;"><div class="form-floating mb-3">
