@@ -65,13 +65,13 @@
 </thead>
 </table>
 <hr>
-<div style="text-align: right; margin-top:30px;">
+<div style="text-align: right; margin-top:10px;">
 <c:if test="${sessionScope.id == 'admin'}">   
 <button class="btn btn-success" onclick="location.href='${pageContext.request.contextPath}/admin/noticeInsert'">글쓰기</button>
 <button class="btn btn-outline-success" onclick="location.href='${pageContext.request.contextPath}/admin/notice'">돌아가기</button>
 </c:if>
 </div>
-<nav aria-label="Page navigation example" style="margin-top: 30px">
+<nav aria-label="Page navigation example" style="margin-top: 10px">
   <ul class="pagination justify-content-center">
   <c:if test="${pageDTO.startPage > pageDTO.pageBlock }">
     <li class="page-item"><a class="page-link" href="${pageContext.request.contextPath}/admin/notice?pageNum=${pageDTO.startPage - pageDTO.pageBlock}">Previous</a></li>
