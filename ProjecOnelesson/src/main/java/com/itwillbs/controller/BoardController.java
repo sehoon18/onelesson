@@ -13,7 +13,6 @@ import javax.servlet.http.HttpSession;
 import org.springframework.stereotype.Controller;
 import org.springframework.ui.Model;
 import org.springframework.util.FileCopyUtils;
-import org.springframework.validation.BindingResult;
 import org.springframework.web.bind.annotation.GetMapping;
 import org.springframework.web.bind.annotation.PostMapping;
 import org.springframework.web.bind.annotation.RequestMapping;
@@ -302,10 +301,17 @@ public class BoardController {
 	}
 	
 	@GetMapping("/qnaWrite")
-	public String qnaWrite() {
+	public String qnaWrite(HttpSession session, RedirectAttributes redirectAttributes) {
 		System.out.println("BoardController qnaWrite()");
 		
-		return "board/qnaWrite";
+		String id = (String)session.getAttribute("id");
+		
+		if(id!=null) {
+			return "board/qnaWrite";
+		}else {
+			redirectAttributes.addFlashAttribute("message", "로그인이 필요합니다.");
+			return "redirect:/member/memberLogin";
+		}
 	}
 	
 	@PostMapping("/qnaWritePro")

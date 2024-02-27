@@ -27,7 +27,7 @@
                 <li class="nav-item"><a href="${pageContext.request.contextPath}/member/memberAgreement" class="nav-link text-body-secondary">이용약관</a></li>
                 <li class="nav-item"><a href="${pageContext.request.contextPath}/board/notice" class="nav-link text-body-secondary">공지사항/이벤트</a></li>
                 <li class="nav-item"><a href="${pageContext.request.contextPath}/board/faq" class="nav-link text-body-secondary">자주묻는질문</a></li>
-                <li class="nav-item"><a href="#" class="nav-link text-body-secondary">문의</a></li>
+                <li class="nav-item"><a href="${pageContext.request.contextPath}/board/qnaWrite" class="nav-link text-body-secondary">문의</a></li>
             </ul>
                  </div>
         </div>

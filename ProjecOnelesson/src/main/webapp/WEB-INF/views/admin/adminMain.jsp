@@ -29,7 +29,15 @@
         padding-left: 15px;
         margin-right: auto;
         margin-left: auto;
-   
+   }
+  	  .link {
+	  color:black;
+	  text-decoration:none;
+	  }
+	  .link:hover {
+		color: red;
+		text-decoration:underline;
+	}
     </style>
     
 </head>
@@ -62,7 +70,6 @@
                             <div class="card-body"><table id="noticeTable" class="table table-bordered">
                                 <thead>
                                     <tr>
-                                        <th style="width: 7%; text-align: center;">번호</th>
                                         <th style="width: 15%; text-align: center;">타입</th>
                                         <th style="width: 35%; text-align: center;">제목</th>
                                         <th style="width: 8%; text-align: center;">조회수</th>
@@ -72,7 +79,6 @@
                                 <tbody>
                                     <c:forEach var="notice" items="${noticeList}">
                                         <tr style="text-align: center;">
-                                            <td>${notice.num}</td> 
                                             <c:choose>
                                             <c:when test="${notice.type == 0}">
                                             <td>공지사항</td>
@@ -84,13 +90,13 @@
                                             알 수 없는 타입
                                             </c:otherwise>
                                             </c:choose>
-                                            <td><a href="${pageContext.request.contextPath}/admin/noticeContent?num=${notice.num}">${notice.subject}</a></td>
+                                            <td><a class="link" href="${pageContext.request.contextPath}/admin/noticeContent?num=${notice.num}">${notice.subject}</a></td>
                                             <td>${notice.readcount}</td>
                                             <td><fmt:formatDate value = "${notice.date}" pattern="yyyy-MM-dd"/></td>
                                         </tr>
                                     </c:forEach>
                                 </tbody>
-                                           </table></div>
+                          </table></div>
                     </div>
                 </div>
                 
@@ -104,7 +110,6 @@
                             <div class="card-body"> <table id="noticeTable" class="table table-bordered">
                                 <thead>
                                     <tr>
-                                        <th style="width: 5%; ">번호</th>
                                         <th style="width: 8%; ">아이디</th>
                                         <th style="width: 25%; text-align: center;">내용</th>
                                         <th style="width: 20%; text-align: center;">답변</th>
@@ -114,9 +119,8 @@
                                 <tbody>
                                     <c:forEach var="qna" items="${qnaList}">
                                           <tr style="text-align: center;">                                            
-                                            <td>${qna.num}</td> 
                                             <td>${qna.id}</td>
-                                            <td><a href="${pageContext.request.contextPath}/admin/qnaContent?num=${qna.num}">${qna.question}</a></td>
+                                            <td><a class="link" href="${pageContext.request.contextPath}/admin/qnaContent?num=${qna.num}">${qna.question}</a></td>
                                             <td>${qna.answer}</td>
                                             <td><fmt:formatDate value = "${qna.update}" pattern="yyyy-MM-dd"/></td>
                                         </tr>
