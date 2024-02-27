@@ -47,7 +47,7 @@
                     
 						<div class="sb-sidenav-footer">
 							<c:if test="${!empty sessionScope.id}">
-        						<div class="login">관리자 ${sessionScope.id}님</div>
+        						<div class="login">관리자 ${sessionScope.id}님 로그인</div>
         					</c:if>
 						</div>
 					

@@ -16,12 +16,12 @@
                 <a class="nav-link dropdown-toggle" id="navbarDropdown" href="#" role="button" data-bs-toggle="dropdown" aria-expanded="false"><i class="fas fa-user fa-fw"></i></a>
                 <ul class="dropdown-menu dropdown-menu-end" aria-labelledby="navbarDropdown">
                     <c:if test="${!empty sessionScope.id}">
-                        <li><a class="dropdown-item" href="${pageContext.request.contextPath}/admin/adminFindPass">Settings</a></li>
+                        <li><a class="dropdown-item" href="${pageContext.request.contextPath}/admin/adminFindPass">비밀번호 재설정</a></li>
                         <li><hr class="dropdown-divider" /></li>
-                        <li><a class="dropdown-item" href="${pageContext.request.contextPath}/admin/adminLogout">Logout</a></li>
+                        <li><a class="dropdown-item" href="${pageContext.request.contextPath}/admin/adminLogout">로그아웃</a></li>
                     </c:if>
                     <c:if test="${empty sessionScope.id}">
-                        <li><a class="dropdown-item" href="${pageContext.request.contextPath}/admin/adminLogin">Login</a></li>
+                        <li><a class="dropdown-item" href="${pageContext.request.contextPath}/admin/adminLogin">로그인</a></li>
                     </c:if>
                 </ul>
             </li>
