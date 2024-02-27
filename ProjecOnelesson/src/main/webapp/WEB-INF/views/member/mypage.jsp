@@ -256,6 +256,16 @@ display: inline-block;
 	text-align: center;
 	display : none;
 }
+
+.mySimpleInfo{
+	text-decoration: none;
+	color:black;
+}
+
+.mySimpleInfo:hover {
+	text-decoration:underline;
+	color:red;
+}
 </style>
 </head>
 
@@ -307,7 +317,7 @@ display: inline-block;
 	<div id="MyControll_Box" class="MyControll_Box">
 	<div class="container" style="width: 1120px;">
 <div class="myPageT"></div>
-	 		<h4 style="text-align: center;"><a href="javascript:openDisplay();">나의 회원 정보 간단히 보기/닫기</a></h4>	
+	 		<h4 style="text-align: center;"><a href="javascript:openDisplay();" class="mySimpleInfo">나의 회원 정보 간단히 보기/닫기</a></h4>	
 					<div id="myProfil" class="myProfil">
 							
 	 						<span class="UserProfil">${memberDTO.nick } 회원님</span><br>

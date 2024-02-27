@@ -84,7 +84,7 @@ public class AdminController {
 	    
 	    System.out.println(user_id);
 	   if(user_id == null || !user_id.equals("admin")) {
-		   return "admin/adminMain";
+		   return "admin/adminLogin";
 	   }
 		int pageSize = 10;
 		String pageNum = request.getParameter("pageNum");
