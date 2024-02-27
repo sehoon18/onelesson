@@ -133,7 +133,7 @@
       	
       <!--     2번째 이미지  -->
       <div class="carousel-item"> 
-      <a href="${pageContext.request.contextPath}/member/notice">
+      <a href="${pageContext.request.contextPath}/board/noticeContent?num=2">
       <img src="${pageContext.request.contextPath}/resources/images/main/event.png"  width="100%" height="100%"> </a>
       </div>
       

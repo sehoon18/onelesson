@@ -27,7 +27,15 @@
         padding-left: 15px;
         margin-right: auto;
         margin-left: auto;
-   
+   }
+  	  .link {
+	  color:black;
+	  text-decoration:none;
+	  }
+	  .link:hover {
+		color: red;
+		text-decoration:underline;
+	}
     </style>
     
 </head>
@@ -82,7 +90,7 @@
                                             알 수 없는 타입
                                             </c:otherwise>
                                             </c:choose>
-                                            <td><a href="${pageContext.request.contextPath}/admin/noticeContent?num=${notice.num}">${notice.subject}</a></td>
+                                            <td><a class="link" href="${pageContext.request.contextPath}/admin/noticeContent?num=${notice.num}">${notice.subject}</a></td>
                                             <td>${notice.readcount}</td>
                                             <td><fmt:formatDate value = "${notice.date}" pattern="yyyy-MM-dd"/></td>
                                         </tr>
@@ -114,7 +122,7 @@
                                           <tr style="text-align: center;">                                            
                                             <td>${qna.num}</td> 
                                             <td>${qna.id}</td>
-                                            <td><a href="${pageContext.request.contextPath}/admin/qnaContent?num=${qna.num}">${qna.question}</a></td>
+                                            <td><a class="link" href="${pageContext.request.contextPath}/admin/qnaContent?num=${qna.num}">${qna.question}</a></td>
                                             <td>${qna.answer}</td>
                                             <td><fmt:formatDate value = "${qna.update}" pattern="yyyy-MM-dd"/></td>
                                         </tr>
