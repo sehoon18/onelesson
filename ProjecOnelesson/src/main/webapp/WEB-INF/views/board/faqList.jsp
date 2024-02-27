@@ -97,7 +97,7 @@
 </table>
 </form>
 <br>
-<button class="btn btn-outline-success" onclick="location.href='${pageContext.request.contextPath}/board/faq'">돌아가기</button>
+<button class="btn btn-outline-success" onclick="location.href='${pageContext.request.contextPath}/member/main'">돌아가기</button>
 <hr>
 </div>
  	<jsp:include page="../inc/footer.jsp" />
