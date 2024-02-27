@@ -60,7 +60,6 @@
 <div style="text-align: right; margin-top:10px;">
 <c:if test="${sessionScope.id == 'admin'}">
 <button class="btn btn-success" onclick="location.href='${pageContext.request.contextPath}/admin/faqInsert'">글쓰기</button>
-<button class="btn btn-outline-success" onclick="location.href='${pageContext.request.contextPath}/admin/faq'">돌아가기</button>
 </c:if>
 </div>
 <nav aria-label="Page navigation example" style="margin-top: 10px;">

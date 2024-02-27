@@ -58,9 +58,7 @@
 </table>
 <hr>
 <div style="text-align: right; margin-top:30px;">
-<c:if test="${sessionScope.id == 'admin'}"> 
-<button class="btn btn-outline-success" onclick="location.href='${pageContext.request.contextPath}/admin/qna'">돌아가기</button>
-</c:if>
+
 </div>
 <nav aria-label="Page navigation example" style="margin-top: 30px">
   <ul class="pagination justify-content-center">
