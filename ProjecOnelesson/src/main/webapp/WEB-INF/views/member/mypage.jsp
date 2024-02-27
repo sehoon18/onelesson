@@ -6,7 +6,7 @@
 <html xmlns:th="http://www.thymeleaf.org">
 <head >
 <meta charset="UTF-8">
-<title>마이페이지</title>
+<title>OneLesson</title>
 	<link rel="icon" href="${pageContext.request.contextPath}/resources/images/favicon_g.png"/>
 	<link rel="apple-touch-icon" href="${pageContext.request.contextPath}/resources/images/favicon_g.png"/>
 	<link rel="canonical" href="https://getbootstrap.com/docs/5.3/examples/album/">

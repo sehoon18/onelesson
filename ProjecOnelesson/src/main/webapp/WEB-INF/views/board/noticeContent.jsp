@@ -1,11 +1,12 @@
 <%@ page language="java" contentType="text/html; charset=UTF-8"
     pageEncoding="UTF-8"%>
 <%@ taglib prefix="c" uri="http://java.sun.com/jsp/jstl/core"%>
+<%@ taglib prefix="fmt" uri="http://java.sun.com/jsp/jstl/fmt" %>
 <!DOCTYPE html>
 <html>
 <head>
 <meta charset="UTF-8">
-<title>NOTICE</title>
+<title>OneLesson</title>
 
 <meta name="viewport" content="width=device-width, initial-scale=1">
 <link rel="icon" href="${pageContext.request.contextPath}/resources/images/favicon_g.png"/>
@@ -55,30 +56,37 @@
 
 <div style="width: 1000px;">
 <div id="listDiv">
-<h3 style="margin-bottom: 30px;">👮‍♂️‍공지/이벤트</h3>
 <table id="listTable" class="table table-bordered">
 <tr><td style="width: 100px;">번호</td><td style="width: 800px;"><div>
-  <label>${boardDTO.num}</label>
+  ${boardDTO.num}
 </div></td></tr>
 <tr><td style="width: 100px;">타입</td><td style="width: 800px;"><div>
   <c:if test="${boardDTO.type == 0}">
-  <label>공지</label>
+  공지
   </c:if>
   <c:if test="${boardDTO.type == 1}">
-  <label>이벤트</label>
+  이벤트
   </c:if>
 </div></td></tr>
 <tr><td style="width: 100px;">조회수</td><td style="width: 800px;"><div>
-  <label>${boardDTO.readcount}</label>
+  ${boardDTO.readcount}
 </div></td></tr>
 <tr><td style="width: 100px;">작성일</td><td style="width: 800px;"><div>
-  <label>${boardDTO.date}</label>
+  <fmt:formatDate value="${boardDTO.date}" pattern="yyyy-MM-dd"/>
 </div></td></tr>
 <tr><td style="width: 100px;">제목</td><td style="width: 800px;"><div>
-  <label>${boardDTO.subject}</label>
+  ${boardDTO.subject}
 </div></td></tr>
-<tr><td style="height: 200px;">내용</td><td><div>
-  <label>${boardDTO.content}</label>
+<tr><td style="height: 200px;">내용</td><td valign="middle"><div>
+  ${boardDTO.content}
+  <c:if test="${boardDTO.image != null }">
+  	<img src="${pageContext.request.contextPath}/resources/upload/${boardDTO.image }">
+  </c:if>
+</div></td></tr>
+<tr><td style="width: 100px;">첨부파일</td><td><div>
+  <c:if test="${boardDTO.image == null }">
+  		첨부된 파일이 없습니다.
+  </c:if>
 </div></td></tr>
 </table>
 

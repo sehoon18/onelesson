@@ -6,7 +6,7 @@
 <head>
 <meta charset="UTF-8">
 <meta name="viewport" content="width=device-width, initial-scale=1">
-<title>FAQ</title>
+<title>OneLesson</title>
 <link rel="icon" href="${pageContext.request.contextPath}/resources/images/favicon_g.png"/>
 <link rel="apple-touch-icon" href="${pageContext.request.contextPath}/resources/images/favicon_g.png"/>
 <link rel="stylesheet" href="https://cdn.jsdelivr.net/npm/bootstrap@4.6.2/dist/css/bootstrap.min.css">
@@ -50,17 +50,10 @@
 </head>
 <body bgcolor="#e9e9e9">
 	<jsp:include page="../inc/header.jsp" />
-<div style="background-size: cover; background-position: center; background-image: url('${pageContext.request.contextPath}/resources/images/qnaimage.jpg');">
-  <section class="py-5 text-center container" style="height: 400px;">
-    <div class="row py-lg-5">
-      <div class="col-lg-6 col-md-8 mx-auto">
-        <h1 class="fw-light" style="color: white;">FAQ</h1>
-      </div>
-    </div>
-  </section>
+<div style="background-size: cover; background-position: center;"> <img src="${pageContext.request.contextPath}/resources/images/b_3.png" width="100%"/>
 </div>
 
-<div align="center" style="margin-top: 100px; margin-bottom: 50px">
+<div align="center" style="margin-top: 100px; margin-bottom: 50px;">
 
 <table class="table table-hover" style="width: 1000px">
 <col width="70"><col width="600">
@@ -74,7 +67,7 @@
 </c:forEach>
 </thead>
 </table>
-<nav aria-label="Page navigation example" style="margin-top: 30px">
+<nav aria-label="Page navigation example" style="margin-top: 30px;">
   <ul class="pagination justify-content-center">
   <c:if test="${pageDTO.startPage > pageDTO.pageBlock }">
     <li class="page-item"><a class="page-link" href="${pageContext.request.contextPath}/board/faq?pageNum=${pageDTO.startPage - pageDTO.pageBlock}">Previous</a></li>

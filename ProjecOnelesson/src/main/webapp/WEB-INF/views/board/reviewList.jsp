@@ -5,7 +5,7 @@
 <html>
 <head>
 <meta charset="UTF-8">
-<title>리뷰 목록</title>
+<title>OneLesson</title>
 
 <meta name="viewport" content="width=device-width, initial-scale=1">
 <link rel="icon" href="${pageContext.request.contextPath}/resources/images/favicon_g.png"/>
@@ -81,7 +81,7 @@
     <div id="container" style="width: 1100px; margin: 0px auto;">
     	<table>
 	<tr><td style="width: 300px;"></td><td style="width: 500px; text-align: center;"><h2 class="topView">마이페이지</h2></td><td style="width: 300px;">
-	<span class="head-Box-right" style="text-align: center;">
+	<span class="head-Box-right" style="text-align: center;" onclick="location.href='${pageContext.request.contextPath}/member/myInfo'">
 	<img src="${pageContext.request.contextPath}/resources/images/default.png" class="myProImg" style="width: 80px; height: 80px; margin: 0px auto;"><br>
     <span class="myName">${memberDTO.name } 회원</span>           
     </span>

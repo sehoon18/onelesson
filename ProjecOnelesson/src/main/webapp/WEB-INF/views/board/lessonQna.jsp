@@ -5,7 +5,7 @@
 <html>
 <head>
 <meta charset="UTF-8">
-<title>레슨문의 목록</title>
+<title>OneLesson</title>
 <meta name="viewport" content="width=device-width, initial-scale=1">
 <link rel="icon" href="${pageContext.request.contextPath}/resources/images/favicon_g.png"/>
 <link rel="apple-touch-icon" href="${pageContext.request.contextPath}/resources/images/favicon_g.png"/>
@@ -51,15 +51,14 @@
 </head>
 <body bgcolor="#e9e9e9">
 	<jsp:include page="../inc/header.jsp" />
-<div style="background-size: cover; background-position: center; background-image: url('${pageContext.request.contextPath}/resources/images/qnaimage.jpg');">
-  <section class="py-5 text-center container" style="height: 400px;">
-    <div class="row py-lg-5">
-      <div class="col-lg-6 col-md-8 mx-auto">
-        <h1 class="fw-light" style="color: white;">레슨 문의</h1>
-      </div>
-    </div>
-  </section>
+<c:if test="${memberDTO.type == 1 }">
+<div style="background-size: cover; background-position: center;"> <img src="${pageContext.request.contextPath}/resources/images/b_2.png" width="100%"/>
 </div>
+</c:if>
+<c:if test="${memberDTO.type == 0 }">
+<div style="background-size: cover; background-position: center;"> <img src="${pageContext.request.contextPath}/resources/images/b_1.png" width="100%"/>
+</div>
+</c:if>
 
 <div align="center" style="margin-top: 50px;">
 <div style="margin: 0px auto; width: 1000px">

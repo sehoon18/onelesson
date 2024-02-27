@@ -5,7 +5,7 @@
 <html>
 <head>
 <meta charset="UTF-8">
-<title>강사 답변</title>
+<title>OneLesson</title>
 
 <meta name="viewport" content="width=device-width, initial-scale=1">
 <link rel="icon" href="${pageContext.request.contextPath}/resources/images/favicon_g.png"/>
@@ -56,7 +56,6 @@
 
 <div style="width: 1000px;">
 <div id="listDiv">
-<h3 style="margin-bottom: 30px;">👨‍🏫강사에게 문의하기</h3>
 <form action="${pageContext.request.contextPath}/board/lessonQnaAnswerPro" method="post">
 <input type="hidden" name="num" value="${boardDTO.num }"> 
 <table id="listTable">

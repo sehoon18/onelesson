@@ -4,7 +4,7 @@
 <html>
 <head>
 <meta charset="UTF-8">
-<title>에러 곧바로 이동하는 페이지</title>
+<title>OneLesson</title>
 <script type="text/javascript">
 		alert("결제하신 레슨이 없습니다!!");
 	window.location.href ="${pageContext.request.contextPath}/member/mypage";

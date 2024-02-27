@@ -4,7 +4,7 @@
 <!doctype html>
 <html lang="ko" class="h-100" data-bs-theme="auto">
   <head>
-    <title>레슨 등록</title>
+    <title>OneLesson</title>
 	<script src="/docs/5.3/assets/js/color-modes.js"></script>
 	<script src="https://code.jquery.com/jquery-3.3.1.slim.min.js"></script>
 	<script src="https://cdn.jsdelivr.net/simplemde/latest/simplemde.min.js"></script>

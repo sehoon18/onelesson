@@ -24,10 +24,6 @@
     	where a.QNA_NUM = #{num}
 	</select>
 	
-<!-- 	<select id="qnaAnswer" resultType=""> -->
-
-<!-- 	</select> -->
-	
 	<update id="updateQna">
 		update QNA
 		SET QNA_ANSWER = #{answer}

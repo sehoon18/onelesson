@@ -5,8 +5,7 @@
 <html>
 <head>
 <meta charset="UTF-8">
-<title>관리자 문의</title>
-<title>Q&A</title>
+<title>OneLesson</title>
 
 <meta name="viewport" content="width=device-width, initial-scale=1">
 <link rel="icon" href="${pageContext.request.contextPath}/resources/images/favicon_g.png"/>
@@ -43,20 +42,13 @@
 </head>
 <body bgcolor="#e9e9e9">
 	<jsp:include page="../inc/header.jsp" />
-<div style="background-size: cover; background-position: center; background-image: url('${pageContext.request.contextPath}/resources/images/qnaimage.jpg');">
-  <section class="py-5 text-center container" style="height: 300px;">
-    <div class="row py-lg-5">
-      <div class="col-lg-6 col-md-8 mx-auto">
-      </div>
-    </div>
-  </section>
+<div style="background-size: cover; background-position: center;"> <img src="${pageContext.request.contextPath}/resources/images/b_7.png" width="100%"/>
 </div>
 
 <div align="center" style="margin-top: 50px;">
 
 <div style="width: 1000px;">
 <div id="listDiv">
-<h3 style="margin-bottom: 30px;">👮‍♂️‍관리자에게 문의하기</h3>
 <table id="listTable">
 <tr><td style="width: 100px;">제목</td><td style="width: 800px;"><div class="form-floating mb-3">
   <input type="text" class="form-control" id="floatingInput" placeholder="name@example.com" value="${boardDTO.subject }" readonly>

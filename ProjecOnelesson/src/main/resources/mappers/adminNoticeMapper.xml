@@ -37,7 +37,7 @@
 	
 	<update id="noticeUpdate">
 		update NOTICE
-		set NOTICE_SUBJECT = #{subject}, NOTICE_CONTENT = #{content}, NOTICE_TYPE = #{type}
+		set NOTICE_SUBJECT = #{subject}, NOTICE_CONTENT = #{content}, NOTICE_TYPE = #{type}, NOTICE_IMAGE = #{image}
 		where NOTICE_NUM = #{num}
 	</update>
 	

@@ -6,7 +6,7 @@
 <html>
 <head>
 <meta charset="UTF-8">
-<title>관리자문의 목록</title>
+<title>OneLesson</title>
 
 <meta name="viewport" content="width=device-width, initial-scale=1">
 <link rel="icon" href="${pageContext.request.contextPath}/resources/images/favicon_g.png"/>
@@ -53,17 +53,10 @@
 </head>
 <body bgcolor="#e9e9e9">
 	<jsp:include page="../inc/header.jsp" />
-<div style="background-size: cover; background-position: center; background-image: url('${pageContext.request.contextPath}/resources/images/qnaimage.jpg');">
-  <section class="py-5 text-center container" style="height: 400px;">
-    <div class="row py-lg-5">
-      <div class="col-lg-6 col-md-8 mx-auto">
-        <h1 class="fw-light" style="color: white;">Q&A</h1>
-      </div>
-    </div>
-  </section>
+<div style="background-size: cover; background-position: center;"> <img src="${pageContext.request.contextPath}/resources/images/b_7.png" width="100%"/>
 </div>
 
-<div align="center" style="margin-top: 50px;">
+<div align="center" style="margin-top: 100px; margin-bottom: 50px;">
 
 <table class="table table-hover" style="width: 1000px">
 <col width="70"><col width="600"><col width="100"><col width="150">
@@ -79,7 +72,7 @@
 </c:forEach>
 </thead>
 </table>
-<nav aria-label="Page navigation example" style="margin-top: 30px">
+<nav aria-label="Page navigation example" style="margin-top: 60px; margin-bottom: 60px;">
   <ul class="pagination justify-content-center">
   <c:if test="${pageDTO.startPage > pageDTO.pageBlock }">
     <li class="page-item"><a class="page-link" href="${pageContext.request.contextPath}/lesson/lessonList?pageNum=${pageDTO.startPage - pageDTO.pageBlock}">Previous</a></li>
@@ -95,9 +88,11 @@
   </ul>
 </nav>
 
-<br>
 <button class="btn btn-success" onclick="location.href='${pageContext.request.contextPath}/board/qnaWrite'">글쓰기</button>
 <button class="btn btn-outline-success" onclick="location.href='${pageContext.request.contextPath}/member/mypage'">돌아가기</button>
+<br>
+<br>
+<br>
 <hr>
 </div>
  	<jsp:include page="../inc/footer.jsp" />

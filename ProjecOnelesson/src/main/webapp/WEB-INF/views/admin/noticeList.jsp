@@ -10,7 +10,7 @@
     <meta name="viewport" content="width=device-width, initial-scale=1, shrink-to-fit=no" />
     <meta name="description" content="" />
     <meta name="author" content="" />
-    <title>회원 관리 - SB Admin</title>
+    <title>OneLesson</title>
     <link rel="icon" href="${pageContext.request.contextPath}/resources/images/favicon_g.png"/>
 	<link rel="apple-touch-icon" href="${pageContext.request.contextPath}/resources/images/favicon_g.png"/>
     <link href="https://cdn.jsdelivr.net/npm/simple-datatables@7.1.2/dist/style.min.css" rel="stylesheet" />
@@ -41,14 +41,16 @@
                     <h1 class="mt-4">공지사항/이벤트</h1>
 <hr>                 
 <table class="table table-hover" style="margin-top:50px;">
-<col width="70"><col width="70"><col width="600"><col width="300"><col width="70">
+<col width="70"><col width="600"><col width="300"><col width="70">
 <thead>
 <tr class="bg-primary" style="color: white;">
-	<th class="table-success">번호</th><th class="table-success">타입</th><th class="table-success">제목</th><th class="table-success">작성일</th><th class="table-success">조회수</th>
+<!-- 	<th class="table-success">번호</th> -->
+	<th class="table-success">타입</th><th class="table-success">제목</th><th class="table-success">작성일</th><th class="table-success">조회수</th>
 </tr>
 <c:if test="${sessionScope.id == 'admin'}">   
 <c:forEach var="adminNoticeDTO" items="${noticeList}">
-	<tr><td>${adminNoticeDTO.num}</td>
+	<tr>
+<%-- 	<td>${adminNoticeDTO.num}</td> --%>
 	<c:if test="${adminNoticeDTO.type == 0}">
 	<td>공지</td>
 	</c:if>

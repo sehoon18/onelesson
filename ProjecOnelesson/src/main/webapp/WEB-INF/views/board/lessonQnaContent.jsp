@@ -5,7 +5,7 @@
 <html>
 <head>
 <meta charset="UTF-8">
-<title>레슨 문의</title>
+<title>OneLesson</title>
 
 <meta name="viewport" content="width=device-width, initial-scale=1">
 <link rel="icon" href="${pageContext.request.contextPath}/resources/images/favicon_g.png"/>
@@ -56,7 +56,6 @@
 
 <div style="width: 1000px;">
 <div id="listDiv">
-<h3 style="margin-bottom: 30px;">👨‍🏫강사에게 문의하기</h3>
 <table id="listTable">
 <tr><td style="width: 100px;">제목</td><td style="width: 800px;"><div class="form-floating mb-3">
   <input type="email" class="form-control" id="floatingInput" placeholder="name@example.com" value="${boardDTO.subject }" readonly>
