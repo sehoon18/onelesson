@@ -30,10 +30,10 @@ public class AdminNoticeDAO {
 		return sqlSession.selectList(namespace + ".getNoticeList", pageDTO);
 	}
 
-	public int getNoticeCount() {
+	public int getNoticeCount(PageDTO pageDTO) {
 		System.out.println("AdminNoticeDAO getNoticeCount()");
 		
-		return sqlSession.selectOne(namespace + ".getNoticeCount");
+		return sqlSession.selectOne(namespace + ".getNoticeCount", pageDTO);
 	}
 
 	public AdminNoticeDTO getNotice(AdminNoticeDTO adminNoticeDTO) {

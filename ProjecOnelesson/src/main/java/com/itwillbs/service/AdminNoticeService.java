@@ -39,10 +39,10 @@ public class AdminNoticeService {
 		return adminNoticeDAO.getNoticeList(pageDTO);
 	}
 
-	public int getNoticeCount() {
+	public int getNoticeCount(PageDTO pageDTO) {
 		System.out.println("AdminNoticeService getNoticeCount()");
 		
-		return adminNoticeDAO.getNoticeCount();
+		return adminNoticeDAO.getNoticeCount(pageDTO);
 	}
 	
 	public AdminNoticeDTO getNotice(AdminNoticeDTO adminNoticeDTO) {

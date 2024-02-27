@@ -30,10 +30,10 @@ public class BoardService {
 		return boardDAO.getNoticeList(pageDTO);
 	}
 
-	public int getNoticeCount() {
+	public int getNoticeCount(PageDTO pageDTO) {
 		System.out.println("BoardService getNoticeCount()");
 		
-		return boardDAO.getNoticeCount();
+		return boardDAO.getNoticeCount(pageDTO);
 	}
 	
 	public BoardDTO getNotice(BoardDTO boardDTO) {
@@ -62,10 +62,10 @@ public class BoardService {
 		return boardDAO.getFaqList(pageDTO);
 	}
 
-	public int getFaqCount() {
+	public int getFaqCount(PageDTO pageDTO) {
 		System.out.println("BoardService getFaqCount()");
 		
-		return boardDAO.getFaqCount();
+		return boardDAO.getFaqCount(pageDTO);
 	}
 
 	public BoardDTO getFaq(BoardDTO boardDTO) {

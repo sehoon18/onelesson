@@ -198,7 +198,7 @@ public class AdminBoardController {
 		
 		List<AdminNoticeDTO> noticeList = adminNoticeService.getNoticeList(pageDTO);
 		
-		int count = adminNoticeService.getNoticeCount();
+		int count = adminNoticeService.getNoticeCount(pageDTO);
 		int pageBlock = 5;
 		int startPage = (currentPage - 1)/pageBlock * pageBlock + 1;
 		int endPage = startPage + pageBlock - 1;
@@ -358,7 +358,7 @@ public class AdminBoardController {
 		
 		List<AdminFaqDTO> faqList = adminFaqService.getFaqList(pageDTO);
 		
-		int count = adminFaqService.getFaqCount();
+		int count = adminFaqService.getFaqCount(pageDTO);
 		int pageBlock = 5;
 		int startPage = (currentPage - 1)/pageBlock * pageBlock + 1;
 		int endPage = startPage + pageBlock - 1;

@@ -30,10 +30,10 @@ public class AdminFaqDAO {
 		return sqlSession.selectList(namespace + ".getFaqList", pageDTO);
 	}
 
-	public int getFaqCount() {
+	public int getFaqCount(PageDTO pageDTO) {
 		System.out.println("AdminFaqDAO getFaqCount()");
 		
-		return sqlSession.selectOne(namespace + ".getFaqCount");
+		return sqlSession.selectOne(namespace + ".getFaqCount", pageDTO);
 	}
 
 	public AdminFaqDTO getFaq(AdminFaqDTO adminFaqDTO) {

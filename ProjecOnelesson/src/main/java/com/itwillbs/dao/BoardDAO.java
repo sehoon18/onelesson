@@ -24,10 +24,10 @@ public class BoardDAO {
 		return sqlSession.selectList(namespace + ".getNoticeList", pageDTO);
 	}
 
-	public int getNoticeCount() {
+	public int getNoticeCount(PageDTO pageDTO) {
 		System.out.println("BoardDAO getNoticeCount()");
 		
-		return sqlSession.selectOne(namespace + ".getNoticeCount");
+		return sqlSession.selectOne(namespace + ".getNoticeCount", pageDTO);
 	}
 
 	public BoardDTO getNotice(BoardDTO boardDTO) {
@@ -49,10 +49,10 @@ public class BoardDAO {
 		return sqlSession.selectList(namespace + ".getFaqList", pageDTO);
 	}
 
-	public int getFaqCount() {
+	public int getFaqCount(PageDTO pageDTO) {
 		System.out.println("BoardDAO getFaqCount()");
 		
-		return sqlSession.selectOne(namespace + ".getFaqCount");
+		return sqlSession.selectOne(namespace + ".getFaqCount", pageDTO);
 	}
 
 	public BoardDTO getFaq(BoardDTO boardDTO) {

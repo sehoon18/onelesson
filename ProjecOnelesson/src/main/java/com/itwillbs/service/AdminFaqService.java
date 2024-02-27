@@ -35,10 +35,10 @@ public class AdminFaqService {
 		return adminFaqDAO.getFaqList(pageDTO);
 	}
 
-	public int getFaqCount() {
+	public int getFaqCount(PageDTO pageDTO) {
 		System.out.println("AdminFaqService getFaqCount()");
 		
-		return adminFaqDAO.getFaqCount();
+		return adminFaqDAO.getFaqCount(pageDTO);
 	}
 
 	public AdminFaqDTO getFaq(AdminFaqDTO adminFaqDTO) {

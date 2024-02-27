@@ -164,7 +164,7 @@ public class BoardController {
 		
 		List<BoardDTO> noticeList = boardService.getNoticeList(pageDTO);
 		
-		int count = boardService.getNoticeCount();
+		int count = boardService.getNoticeCount(pageDTO);
 		int pageBlock = 5;
 		int startPage = (currentPage - 1)/pageBlock * pageBlock + 1;
 		int endPage = startPage + pageBlock - 1;
@@ -221,7 +221,7 @@ public class BoardController {
 		
 		List<BoardDTO> faqList = boardService.getFaqList(pageDTO);
 		
-		int count = boardService.getFaqCount();
+		int count = boardService.getFaqCount(pageDTO);
 		int pageBlock = 5;
 		int startPage = (currentPage - 1)/pageBlock * pageBlock + 1;
 		int endPage = startPage + pageBlock - 1;
