@@ -15,7 +15,6 @@
 		
 		<if test="search != null">
         where NOTICE_SUBJECT like CONCAT('%', #{search}, '%')
-         or NOTICE_CONTENT like CONCAT('%', #{search}, '%')
     	</if>
     	
 		order by NOTICE_NUM desc
@@ -26,7 +25,6 @@
 		select count(*) from NOTICE
 		<if test="search != null">
 			where NOTICE_SUBJECT like CONCAT('%',#{search},'%')
-			or NOTICE_CONTENT like CONCAT('%', #{search}, '%')
 		</if>
 	</select>
 	

@@ -309,7 +309,6 @@ public class memberController {
 		pageDTO.setCurrentPage(currentPage);
 		pageDTO.setId((String)session.getAttribute("id"));
 		
-		
 		int count = 0;
 		if(memberDTO.getType() == 0) {
 			List<LessonDTO> lessonList = lessonService.getMyLessonList(pageDTO); // 일반회원

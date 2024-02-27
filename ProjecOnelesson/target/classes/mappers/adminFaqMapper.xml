@@ -14,7 +14,6 @@
 		select count(*) from FAQ
 		<if test="search != null">
        		where FAQ_SUBJECT LIKE CONCAT('%', #{search}, '%')
-         	or FAQ_CONTENT LIKE CONCAT('%', #{search}, '%')
     	</if>
 	</select>
 	
@@ -22,7 +21,6 @@
 		select FAQ_NUM as "num", ADMIN_ID as "id", FAQ_SUBJECT as "subject", FAQ_CONTENT as "content" from FAQ
 		<if test="search != null">
        		where FAQ_SUBJECT LIKE CONCAT('%', #{search}, '%')
-         	or FAQ_CONTENT LIKE CONCAT('%', #{search}, '%')
     	</if>
 		order by FAQ_NUM desc
 		limit #{startRow}, #{pageSize}
