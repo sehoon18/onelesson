@@ -84,15 +84,15 @@
 <nav aria-label="Page navigation example" style="margin-top: 30px">
   <ul class="pagination justify-content-center">
   <c:if test="${pageDTO.startPage > pageDTO.pageBlock }">
-    <li class="page-item"><a class="page-link" href="${pageContext.request.contextPath}/board/notice?pageNum=${pageDTO.startPage - pageDTO.pageBlock}">Previous</a></li>
+    <li class="page-item"><a class="page-link" href="${pageContext.request.contextPath}/board/notice?pageNum=${pageDTO.startPage - pageDTO.pageBlock}&search=${pageDTO.search}">Previous</a></li>
   </c:if>
   
   <c:forEach var="i" begin="${pageDTO.startPage }" end="${pageDTO.endPage }" step="1">
-    <li class="page-item"><a class="page-link" href="${pageContext.request.contextPath}/board/notice?pageNum=${i}">${i }</a></li>
+    <li class="page-item"><a class="page-link" href="${pageContext.request.contextPath}/board/notice?pageNum=${i}&search=${pageDTO.search}">${i}</a></li>
   </c:forEach>
   
   <c:if test="${pageDTO.endPage < pageDTO.pageCount }">
-    <li class="page-item"><a class="page-link" href="${pageContext.request.contextPath}/board/notice?pageNum=${pageDTO.startPage + pageDTO.pageBlock}">Next</a></li>
+    <li class="page-item"><a class="page-link" href="${pageContext.request.contextPath}/board/notice?pageNum=${pageDTO.startPage + pageDTO.pageBlock}&search=${pageDTO.search}">Next</a></li>
   </c:if>  
   </ul>
 </nav>
