@@ -132,10 +132,10 @@ public class AdminController {
 		System.out.println("AdminController adminFindPassPro()");
 		System.out.println(adminDTO);
 		
-		AdminDTO adminDTO2 = adminService.adminCheck(adminDTO);
+		AdminDTO adminDTO2 = adminService.adminCheck2(adminDTO);
 		
 		if(adminDTO2 != null) {
-			adminService.updateAdmin(adminDTO);
+			adminService.updateAdmin2(adminDTO);
 			return "redirect:/admin/adminLogin";
 		}else {
 			return "admin/msg";

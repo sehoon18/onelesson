@@ -61,4 +61,12 @@ public class AdminDAO {
 		
 		sqlSession.update(namespace + ".updateQna", adminQnaDTO);
 	}
+
+	public AdminDTO adminCheck2(AdminDTO adminDTO) {
+		return sqlSession.selectOne(namespace + ".adminCheck2", adminDTO);
+	}
+
+	public void updateAdmin2(AdminDTO adminDTO) {
+		sqlSession.update(namespace + ".updateAdmin2", adminDTO);
+	}
 }

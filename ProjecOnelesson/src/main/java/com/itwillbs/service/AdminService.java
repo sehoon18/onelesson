@@ -57,6 +57,14 @@ public class AdminService {
 		return adminDAO.adminCheck(adminQnaDTO);
 	}
 
+	public AdminDTO adminCheck2(AdminDTO adminDTO) {
+		return adminDAO.adminCheck2(adminDTO);
+	}
+
+	public void updateAdmin2(AdminDTO adminDTO) {
+		adminDAO.updateAdmin2(adminDTO);
+	}
+
 //	public void updateQna(AdminQnaDTO adminQnaDTO) {
 //		System.out.println("AdminService updateQna()");
 //		

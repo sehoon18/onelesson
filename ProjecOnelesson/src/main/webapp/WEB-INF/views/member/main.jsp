@@ -127,13 +127,13 @@
     <div class="carousel-inner">
 <!--     1번째 이미지  -->
       <div class="carousel-item active">
-      <a href="${pageContext.request.contextPath}/lesson/lessonList" target="_blank"></a>
-      	<img src="${pageContext.request.contextPath}/resources/images/main/main_5.png" width="100%" height="100%" class="d-block w-100" alt="First slide" >
+      <a href="${pageContext.request.contextPath}/lesson/lessonList">
+      	<img src="${pageContext.request.contextPath}/resources/images/main/main_5.png" width="100%" height="100%" class="d-block w-100" alt="First slide" ></a>
     </div>
       	
       <!--     2번째 이미지  -->
       <div class="carousel-item"> 
-      <a href="${pageContext.request.contextPath}/member/notice">
+      <a href="${pageContext.request.contextPath}/board/noticeContent?num=2">
       <img src="${pageContext.request.contextPath}/resources/images/main/main_6.png"  width="100%" height="100%"> </a>
       </div>
       
