@@ -136,7 +136,7 @@ option {
 <!-- 										memberDTO 값이랑 name이 같아야함  -->
 								<input type="text" name="id"  
 									class="form-control input-cc inputId" id="floatingId"
-									maxlength="40" placeholder=""> <label for="floatingId">아이디(필수)</label>
+									maxlength="40" placeholder="" required> <label for="floatingId" >아이디(필수)</label>
 								<font id="checkId" size="2"
 									class="position-absolute top-50 start-20 translate-middle-y"
 									style="right: 9px; margin-top: 2px"></font>
@@ -153,7 +153,7 @@ option {
 							<div class="form-floating">
 								<input type="password" name="pass"
 									class="form-control input-cc inputPw" 
-									id="floatingPassword" maxlength="40" placeholder=""> 
+									id="floatingPassword" maxlength="40" placeholder="" required> 
 								<label for="floatingPassword">비밀번호(필수)</label>
 								<font id="pwCheck" size="2" color="red"
 									class="position-absolute top-50 start-20 translate-middle-y"
@@ -170,7 +170,7 @@ option {
 							<div class="form-floating">
 								<input type="password" name="pass2"
 									class="form-control input-cc inputPw2"
-									id="floatingCheckPassword" maxlength="40" placeholder="">
+									id="floatingCheckPassword" maxlength="40" placeholder="" required>
 								<label for="floatinCheckPassword">비밀번호 확인(필수)</label> <font
 									id="pwDoubleCheck" size="2" color="red"
 									class="position-absolute top-50 start-20 translate-middle-y"
@@ -186,7 +186,7 @@ option {
 							<div class="form-floating">
 								<input type="text" name="nick"
 									class="form-control input-cc inputNick" id="floatingNick"
-									maxlength="40" placeholder=""> <label for="floatingNick">닉네임(필수)</label>
+									maxlength="40" placeholder="" required> <label for="floatingNick">닉네임(필수)</label>
 								<font id="nickCheck" size="2"
 									class="position-absolute top-50 start-20 translate-middle-y"
 									style="right: 9px; margin-top: 2px"></font>
@@ -198,7 +198,7 @@ option {
 				<label for="name ">이름*</label>
 					<div class="form-floating d-flex mt-2">
 						<input type="text" name="name"
-							class="form-control input-cc inputName" id="floatingName" placeholder="">
+							class="form-control input-cc inputName" id="floatingName" placeholder="" required>
 						<label for="floatingName">이름(필수)</label>
 						<font id="nameError" size="2" 
 						class="position-absolute top-50 start-20 translate-middle-y" 
@@ -250,7 +250,7 @@ option {
         			<label for="phone">연락처*</label>
         			<div class="input-group">
 							<div class="form-floating">
-    <input type="text" name="phone" class="form-control input-cc inputPhone" id="floatingTel" placeholder="">
+    <input type="text" name="phone" class="form-control input-cc inputPhone" id="floatingTel" placeholder="" required>
     <label for="floatingTel"><span>연락처 '-' 제외 입력(필수)</span></label>
 <font id="checkPhone" size="2" 
 class="position-absolute top-50 start-20 translate-middle-y" 
@@ -266,7 +266,7 @@ style="right: 9px; margin-top: 2px"></font>
 <label for="address">주소*</label>
          <div class="form-floating d-flex">
                   <input type="text" name="address"
-                     class="form-control input-cc" id="floatingAddress" placeholder="" onclick="sample5_execDaumPostcode()" >
+                     class="form-control input-cc" id="floatingAddress" placeholder="" onclick="sample5_execDaumPostcode()" required>
                   <label for="floatingAddress"><span>주소 입력(필수)</span></label>
                </div>             
              
@@ -274,7 +274,7 @@ style="right: 9px; margin-top: 2px"></font>
 
 <label for="email">이메일*</label>
 <div class="form-floating d-flex" style="display: flex; align-items: center;">
-    <input type="text" name="email" class="form-control" id="floatingMail" placeholder="" style="flex: 1;">
+    <input type="text" name="email" class="form-control" id="floatingMail" placeholder="" style="flex: 1;" required>
     <label for="floatingMail"><span>이메일 입력(필수)</span></label>
     <font id="checkEmail" size="2" class="position-absolute top-50 start-20 translate-middle-y" 
     style="right: 9px; margin-top: 2px"></font>
