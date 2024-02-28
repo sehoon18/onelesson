@@ -312,7 +312,7 @@ $(function(){
 					   'name' : $('#normalName').val() ,
 					  'email' : $('#normalEmail').val() },
 				success:function(result){
-					alert("정보 일치");
+					//alert("정보 일치");
 					if( result != "try again"){
 						
 						
@@ -339,7 +339,7 @@ $(function(){
 					   'name' : $('#normalName1').val(),
 					  'phone' : $('#normalPhone').val() },
 				success:function(result){
-					alert("정보 일치");
+					//alert("정보 일치");
 					if( result != "try again"){
 						// 정보 일치 시 비밀번호 재설정 페이지로 이동
                         window.location.href = '${pageContext.request.contextPath}/member/memberResetPass?id='+ $('#normalId1').val();
@@ -392,7 +392,7 @@ $(function(){
 						  'email' : $('#instructorEmail').val() ,
 						  'businessNum' : $('#instructorBusinessNumber').val()},
 					success:function(result){
-						alert("정보 일치");
+						//alert("정보 일치");
 						if( result != "try again"){
 							// 정보 일치 시 비밀번호 재설정 페이지로 이동
 			                window.location.href = '${pageContext.request.contextPath}/member/memberResetPass?id='+ $('#instructorId').val();
@@ -419,7 +419,7 @@ $(function(){
 	                 'businessNum': $('#instructorBusinessNumber').val()
 	             },
 	             success:function(result){
-						alert("정보 일치");
+						//alert("정보 일치");
 						if( result != "try again"){
 							// 정보 일치 시 비밀번호 재설정 페이지로 이동
 			                window.location.href = '${pageContext.request.contextPath}/member/memberResetPass?id='+ $('#instructorId1').val();
@@ -447,7 +447,7 @@ $(function(){
 	                 'businessNum': $('#instructorBusinessNumber').val()
 	             },
 	             success:function(result){
-					alert("정보 일치");
+					//alert("정보 일치");
 					if( result != "try again"){
 						// 정보 일치 시 비밀번호 재설정 페이지로 이동
 				        window.location.href = '${pageContext.request.contextPath}/member/memberResetPass?id='+ $('#instructorId2').val();
