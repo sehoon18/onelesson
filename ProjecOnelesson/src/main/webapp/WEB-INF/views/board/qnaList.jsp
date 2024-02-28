@@ -3,7 +3,7 @@
 <%@ taglib prefix="c" uri="http://java.sun.com/jsp/jstl/core"%>
 <%@ taglib prefix="fmt" uri="http://java.sun.com/jsp/jstl/fmt" %>
 <!DOCTYPE html>
-<html>
+<html xmlns:th="http://www.thymeleaf.org">
 <head>
 <meta charset="UTF-8">
 <title>OneLesson</title>
@@ -96,5 +96,12 @@
 <hr>
 </div>
  	<jsp:include page="../inc/footer.jsp" />
+<script th:inline="javascript">
+    var message = '${message}';
+    
+    if (message) {
+        alert(message);
+    }
+</script> 
 </body>
 </html>

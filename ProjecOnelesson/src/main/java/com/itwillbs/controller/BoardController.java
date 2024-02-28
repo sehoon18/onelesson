@@ -307,7 +307,11 @@ public class BoardController {
 		String id = (String)session.getAttribute("id");
 		
 		if(id!=null) {
-			return "board/qnaWrite";
+			if(id.equals("admin")) {
+				return "redirect:/admin/qna";
+			} else {
+				return "board/qnaWrite";
+			}
 		}else {
 			redirectAttributes.addFlashAttribute("message", "로그인이 필요합니다.");
 			return "redirect:/member/memberLogin";
@@ -418,11 +422,14 @@ public class BoardController {
 	}	
 	
 	@GetMapping("/lessonQnaWrite")
-	public String lessonQnaWrite(HttpSession session, Model model, BoardDTO boardDTO) {
+	public String lessonQnaWrite(HttpSession session, Model model, BoardDTO boardDTO, RedirectAttributes redirectAttributes) {
 		System.out.println("BoardController lessonQnaWrite()");
 		String id = (String)session.getAttribute("id");
 		if(id == null) {
 			return "redirect:/member/memberLogin";
+		} else if (id.equals("admin")) {
+			redirectAttributes.addFlashAttribute("message", "괸리자계정은 사용할 수 없는 기능입니다.");
+			return "redirect:/member/main";
 		}
 		
 		boardDTO.setId(id);

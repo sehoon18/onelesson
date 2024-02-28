@@ -272,8 +272,14 @@ public class LessonController {
 	public String payment(LessonDTO lessonDTO, Model model, MemberDTO memberDTO, HttpSession session, RedirectAttributes redirectAttributes) {
 		System.out.println("LessonController payment()");
 		
+		
+		
 		String id = (String)session.getAttribute("id");
 		if(id != null) {
+			if(id.equals("admin")) {
+				redirectAttributes.addFlashAttribute("message", "괸리자계정은 사용할 수 없는 기능입니다.");
+				return "redirect:/lesson/lessonInfo?num=" + lessonDTO.getNum();
+			}
 			memberDTO = memberService.getMember(id);
 			if(memberDTO.getType() == 1) {
 				 redirectAttributes.addFlashAttribute("message", "강사회원은 사용할 수 없는 기능입니다.");

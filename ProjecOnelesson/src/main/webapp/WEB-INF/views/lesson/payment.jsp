@@ -1,8 +1,8 @@
 <%@ page language="java" contentType="text/html; charset=UTF-8"
     pageEncoding="UTF-8"%>
 <%@ taglib prefix="fmt" uri="http://java.sun.com/jsp/jstl/fmt"%>
-<!doctype html>
-<html lang="en" class="h-100" data-bs-theme="auto">
+<!doctype html >
+<html lang="en" class="h-100" data-bs-theme="auto" xmlns:th="http://www.thymeleaf.org">
   <head>
   <script src="/docs/5.3/assets/js/color-modes.js"></script>
   <script src="https://code.jquery.com/jquery-3.3.1.slim.min.js"></script>
@@ -212,7 +212,7 @@
     </td></tr>
     
     <tr><td style="height: 50px;"><div style="text-align: right;"><button id="payment-button" class="btn btn-success">결제하기</button>
-		<button class="btn btn-outline-success" onclick="location.href=">뒤로가기</button></div></td>
+		<button class="btn btn-outline-success" onclick="location.href='${pageContext.request.contextPath}/lesson/lessonList'">뒤로가기</button></div></td>
     </tr>
     </table>
     <hr>
@@ -263,7 +263,13 @@
 </script>
 
     </div>
-
+<script th:inline="javascript">
+    var message = '${message}';
+    
+    if (message) {
+        alert(message);
+    }
+</script> 
 </main>
 
 <jsp:include page="../inc/footer.jsp" />
