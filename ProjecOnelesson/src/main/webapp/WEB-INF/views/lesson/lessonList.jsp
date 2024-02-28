@@ -124,9 +124,9 @@
    		<div class="col">
           <div class="card shadow-sm">
 <%--           <fmt:formatDate value="${lessonDTO.update }" pattern="yyyy.MM.dd"/> --%>
-            <svg class="bd-placeholder-img card-img-top" width="100%" height="225" xmlns="http://www.w3.org/2000/svg" preserveAspectRatio="xMidYMid slice" role="img" aria-label="Placeholder: Thumbnail" focusable="false">
+            <a href="${pageContext.request.contextPath}/lesson/lessonInfo?num=${lessonDTO.num}"><svg class="bd-placeholder-img card-img-top" width="100%" height="225" xmlns="http://www.w3.org/2000/svg" preserveAspectRatio="xMidYMid slice" role="img" aria-label="Placeholder: Thumbnail" focusable="false">
 			    <image xlink:href="${pageContext.request.contextPath}/resources/upload/${lessonDTO.preview}" x="0" y="0" width="100%" height="225"/>
-			</svg>
+			</svg></a>
             <div class="card-body">
             <div class="d-flex justify-content-between align-items-center" style="margin: 5px;">
               <div>${lessonDTO.subject }</div>
