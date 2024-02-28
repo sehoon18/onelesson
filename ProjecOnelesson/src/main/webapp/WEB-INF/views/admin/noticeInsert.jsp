@@ -35,9 +35,6 @@
             <main>
                 <div class="container-fluid px-4">
                     <h1 class="mt-4">공지/이벤트</h1>
-<!--                     <ol class="breadcrumb mb-4"> -->
-<!--                         <li class="breadcrumb-item active">공지/이벤트 작성 페이지입니다.</li> -->
-<!--                     </ol> -->
         <hr>
         <form action="${pageContext.request.contextPath}/admin/noticeInsertPro" method="post"
               enctype="multipart/form-data">

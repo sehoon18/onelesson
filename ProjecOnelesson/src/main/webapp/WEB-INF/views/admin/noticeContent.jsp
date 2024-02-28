@@ -38,9 +38,6 @@
                     <h1 class="mt-4">공지사항/이벤트</h1>
 <hr>                    
 <table class="table table-bordered" style="margin-top:50px;">
-<tr><td style="width: 150px;">번호</td><td><div>
-  ${adminNoticeDTO.num}
-</div></td></tr>
 <tr><td style="width: 150px;">타입</td><td><div>
   <c:if test="${adminNoticeDTO.type == 0}">
   공지
