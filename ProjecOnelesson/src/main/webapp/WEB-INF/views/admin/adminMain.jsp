@@ -69,16 +69,16 @@
                             </div>
                             <div class="card-body"><table id="noticeTable" class="table table-bordered">
                                 <thead>
-                                    <tr>
-                                        <th style="width: 15%; text-align: center;">타입</th>
-                                        <th style="width: 35%; text-align: center;">제목</th>
-                                        <th style="width: 8%; text-align: center;">조회수</th>
-                                        <th style="width: 15%; text-align: center;">작성일</th>
+                                   <tr style="text-align: center; vertical-align: middle;">
+                                        <th style="width: 15%;">타입</th>
+                                        <th style="width: 35%;">제목</th>
+                                        <th style="width: 8%;">조회수</th>
+                                        <th style="width: 15%;">작성일</th>
                                     </tr>
                                 </thead>   
                                 <tbody>
                                     <c:forEach var="notice" items="${noticeList}">
-                                        <tr style="text-align: center;">
+                                       <tr style="text-align: center; vertical-align: middle;">
                                             <c:choose>
                                             <c:when test="${notice.type == 0}">
                                             <td>공지사항</td>
@@ -109,16 +109,16 @@
                             </div>
                             <div class="card-body"> <table id="noticeTable" class="table table-bordered">
                                 <thead>
-                                    <tr>
-                                        <th style="width: 8%; ">아이디</th>
-                                        <th style="width: 25%; text-align: center;">제목</th>
-                                        <th style="width: 20%; text-align: center;">답변여부</th>
-                                        <th style="width: 15%; text-align: center;">작성일</th>
+                                    <tr style="text-align: center; vertical-align: middle;">
+                                        <th style="width: 8%;">아이디</th>
+                                        <th style="width: 40%;">제목</th>
+                                        <th style="width: 10%;">답변여부</th>
+                                        <th style="width: 15%;">작성일</th>
                                     </tr>
                                 </thead>   
                                 <tbody>
                                     <c:forEach var="qna" items="${qnaList}">
-                                          <tr style="text-align: center;">                                            
+                                          <tr style="text-align: center; vertical-align: middle;">                                      
                                             <td>${qna.id}</td>
                                             <td><a class="link" href="${pageContext.request.contextPath}/admin/qnaContent?num=${qna.num}">${qna.subject}</a></td>
                                             <td>
@@ -155,10 +155,10 @@
     <script>
     // 그래프 데이터
     var visitorData = {
-        labels: ["9월", "10월", "11월", "12월", "1월", "2월"],
+        labels: ["1월 31일", "2월 7일", "2월 14일", "2월 21일", "2월 28일", "3월 6일"],
         datasets: [{
             label: '방문자 수',
-            data: [500, 600, 700, 1000, 1200, 1000 , 2000], // 최대치 2000
+            data: [200, 300 , 400 , 500 , 800 , 600 , 1000], // 최대치 2000
             backgroundColor: 'rgba(255, 99, 132, 0.2)',
             borderColor: 'rgba(255, 99, 132, 1)',
             borderWidth: 1
