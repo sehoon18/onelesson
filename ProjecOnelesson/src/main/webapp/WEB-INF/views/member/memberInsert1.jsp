@@ -480,7 +480,7 @@ passwordInput.addEventListener('input', function () {
         signUpButton.disabled = true; // 가입 버튼 비활성화
     } else {
         // 유효하지 않은 형식인 경우 메시지 표시
-        displayPasswordMessage('영문, 숫자, 특수문자 포함(공백제외) 8~16자 이하 입력해주세요', 'red');
+        displayPasswordMessage('영문, 숫자, 특수문자 포함(@$!%*?&만 가능)(공백제외) 8~16자 이하 입력해주세요', 'red');
         confirmPasswordInput.disabled = true; // 다음 입력 칸 비활성화
         signUpButton.disabled = true; // 가입 버튼 비활성화
     }
@@ -540,7 +540,12 @@ $(function(){
             // Display error message for invalid length
             $('#nickCheck').css('color', 'red');
             $('#nickCheck').text('닉네임은 2~15자로 입력해주세요.');
+            // 추가된 부분: 가입 불가능하도록 설정
+            $('#signUpButton').prop('disabled', true);
             return;
+        } else {
+            // 닉네임 조건이 만족하면 가입 가능하도록 설정
+            $('#signUpButton').prop('disabled', false);
         }
 
         // Perform AJAX request for duplication check
@@ -552,9 +557,13 @@ $(function(){
                 if(result == "nickdup"){
                     result = "이미 존재하는 닉네임입니다.";
                     $('#nickCheck').css('color', 'red');
+                    // 추가된 부분: 가입 불가능하도록 설정
+                    $('#signUpButton').prop('disabled', true);
                 } else {
                     result = "사용 가능한 닉네임입니다.";
                     $('#nickCheck').css('color', 'green');
+                    // 추가된 부분: 가입 가능하도록 설정
+                    $('#signUpButton').prop('disabled', false);
                 }
                 // 결과를 해당 위치에 동적으로 표시
                 $('#nickCheck').html(result);
@@ -562,11 +571,64 @@ $(function(){
             error: function(){
                 // AJAX 요청 중 에러 발생 시 처리
                 $('#nickCheck').text("서버 오류가 발생했습니다.");
+                // 추가된 부분: 가입 불가능하도록 설정
+                $('#signUpButton').prop('disabled', true);
             }
         });
     });
 });
 </script>
+<script>
+$(function(){
+    // 닉네임 입력란에 변화가 생길 때마다 실행
+    $(".form-control.input-cc.inputNick").on('input', function(){
+        // Get the entered nickname
+        var nickname = $(this).val();
+        
+        // Check the nickname length validity
+        if (nickname.length < 2 || nickname.length > 15) {
+            // Display error message for invalid length
+            $('#nickCheck').css('color', 'red');
+            $('#nickCheck').text('닉네임은 2~15자로 입력해주세요.');
+            // 추가된 부분: 가입 불가능하도록 설정
+            $('#signUpButton').prop('disabled', true);
+            return;
+        } else {
+            // 닉네임 조건이 만족하면 가입 가능하도록 설정
+            $('#signUpButton').prop('disabled', false);
+        }
+
+        // Perform AJAX request for duplication check
+        $.ajax({
+            url: "${pageContext.request.contextPath}/member/checkNick",
+            data: {'nick': nickname},
+            success: function(result){
+                // 서버에서의 응답 처리
+                if(result == "nickdup"){
+                    result = "이미 존재하는 닉네임입니다.";
+                    $('#nickCheck').css('color', 'red');
+                    // 추가된 부분: 가입 불가능하도록 설정
+                    $('#signUpButton').prop('disabled', true);
+                } else {
+                    result = "사용 가능한 닉네임입니다.";
+                    $('#nickCheck').css('color', 'green');
+                    // 추가된 부분: 가입 가능하도록 설정
+                    $('#signUpButton').prop('disabled', false);
+                }
+                // 결과를 해당 위치에 동적으로 표시
+                $('#nickCheck').html(result);
+            },
+            error: function(){
+                // AJAX 요청 중 에러 발생 시 처리
+                $('#nickCheck').text("서버 오류가 발생했습니다.");
+                // 추가된 부분: 가입 불가능하도록 설정
+                $('#signUpButton').prop('disabled', true);
+            }
+        });
+    });
+});
+</script>
+
 
 
 <script>
@@ -581,17 +643,24 @@ $(function () {
             // 빈 문자열일 경우 에러 메시지 표시
             $('#nameError').css('color', 'red');
             $('#nameError').text('이름은 필수입니다.');
+            // 추가된 부분: 가입 불가능하도록 설정
+            $('#signUpButton').prop('disabled', true);
         } else if (!/^[가-힣]+$/.test(name)) {
             // 이름이 한글이 아닌 경우 에러 메시지 표시
             $('#nameError').css('color', 'red');
             $('#nameError').text('이름은 한글만 입력 가능합니다.');
+            // 추가된 부분: 가입 불가능하도록 설정
+            $('#signUpButton').prop('disabled', true);
         } else {
             // 이름이 입력되었을 경우 에러 메시지 초기화
             $('#nameError').text('');
+            // 추가된 부분: 가입 가능하도록 설정
+            $('#signUpButton').prop('disabled', false);
         }
     });
 });
 </script>
+
 
 <script>
 $(function(){
@@ -605,6 +674,8 @@ $(function(){
             // 유효하지 않은 형식에 대한 오류 메시지 표시
             $('#checkPhone').css('color', 'red');
             $('#checkPhone').text('올바른 전화번호 형식이 아닙니다.');
+            // 추가된 부분: 가입 불가능하도록 설정
+            $('#signUpButton').prop('disabled', true);
             return;
         }
 
@@ -617,9 +688,13 @@ $(function(){
                 if(result == "phonedup"){
                     result = "이미 존재하는 연락처입니다.";
                     $('#checkPhone').css('color', 'red');
+                    // 추가된 부분: 가입 불가능하도록 설정
+                    $('#signUpButton').prop('disabled', true);
                 } else {
                     result = "사용 가능한 연락처입니다.";
                     $('#checkPhone').css('color', 'green');
+                    // 추가된 부분: 가입 가능하도록 설정
+                    $('#signUpButton').prop('disabled', false);
                 }
                 // 결과를 해당 위치에 동적으로 표시
                 $('#checkPhone').html(result);
@@ -630,33 +705,53 @@ $(function(){
             }
         });
     });
-});
 
-// 전화번호 형식 검증 함수
-function isValidPhoneNumber(phoneNumber) {
-    // 예시: 숫자 10자리 또는 11자리
-    const phoneRegex = /^\d{10,11}$/;
-    return phoneRegex.test(phoneNumber);
-}
+    // 전화번호 형식 검증 함수
+    function isValidPhoneNumber(phoneNumber) {
+        // 예시: 숫자 10자리 또는 11자리
+        const phoneRegex = /^\d{10,11}$/;
+        return phoneRegex.test(phoneNumber);
+    }
+});
 </script>
+
 
 
 <script src="//t1.daumcdn.net/mapjsapi/bundle/postcode/prod/postcode.v2.js"></script>
 <script>
 
 function sample5_execDaumPostcode() {
- new daum.Postcode({
-     oncomplete: function(data) {
-         var addr = data.address; // 최종 주소 변수
+    new daum.Postcode({
+        oncomplete: function(data) {
+            var addr = data.address; // 최종 주소 변수
 
-         // 주소 정보를 해당 필드에 넣는다.
-         document.getElementById("floatingAddress").value = addr;
-      
-     }
- }).open();
+            // 주소 정보를 해당 필드에 넣는다.
+            document.getElementById("floatingAddress").value = addr;
+
+            // 주소 입력 여부 확인 및 가입 불가능 여부 체크
+            checkAddressInput(addr);
+        }
+    }).open();
 }
 
+// 주소 입력 여부 확인 함수
+function checkAddressInput(address) {
+    // 예시: 주소가 비어있는지 확인
+    if (address.trim() === "") {
+        // 주소가 비어있으면 에러 메시지 표시 및 가입 불가능하도록 설정
+        $('#addressError').css('color', 'red');
+        $('#addressError').text('주소를 입력해주세요.');
+        $('#signUpButton').prop('disabled', true);
+    } else {
+        // 주소가 입력되었으면 에러 메시지 초기화 및 가입 가능하도록 설정
+        $('#addressError').text('');
+        $('#signUpButton').prop('disabled', false);
+    }
+}
+</script>
 
+
+<script>
 $(function () {
     // 이메일 입력란에 변화가 생길 때마다 실행
     $("input[name='email']").on('input', function () {
@@ -668,6 +763,9 @@ $(function () {
             // 유효하지 않은 형식에 대한 오류 메시지 표시
             $('#checkEmail').css('color', 'red');
             $('#checkEmail').text('올바른 이메일 형식이 아닙니다.');
+            
+            // 가입 버튼 비활성화
+            $('#signUpButton').prop('disabled', true);
             return;
         }
 
@@ -680,9 +778,13 @@ $(function () {
                 if(result == "emaildup"){
                     result = "이미 존재하는 이메일입니다.";
                     $('#checkEmail').css('color', 'red');
+                    // 가입 버튼 비활성화
+                    $('#signUpButton').prop('disabled', true);
                 } else {
                     result = "사용 가능한 이메일입니다.";
                     $('#checkEmail').css('color', 'green');
+                    // 가입 버튼 활성화
+                    $('#signUpButton').prop('disabled', false);
                 }
                 // 결과를 해당 위치에 동적으로 표시
                 $('#checkEmail').html(result);
@@ -701,8 +803,11 @@ function isValidEmail(email) {
     const emailRegex = /^[^\s@]+@[^\s@]+\.[^\s@]+$/;
     return emailRegex.test(email);
 }
+</script>
+      
 
-</script>      
+
+
 
 </body>
 </html>

@@ -495,7 +495,7 @@ passwordInput.addEventListener('input', function () {
         signUpButton.disabled = true; // 가입 버튼 비활성화
     } else {
         // 유효하지 않은 형식인 경우 메시지 표시
-        displayPasswordMessage('영문, 숫자, 특수문자 포함(공백제외) 8~16자 이하 입력해주세요', 'red');
+        displayPasswordMessage('영문, 숫자, 특수문자 포함(@$!%*?&만 가능)(공백제외) 8~16자 이하 입력해주세요', 'red');
         confirmPasswordInput.disabled = true; // 다음 입력 칸 비활성화
         signUpButton.disabled = true; // 가입 버튼 비활성화
     }
