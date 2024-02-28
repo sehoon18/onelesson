@@ -51,9 +51,6 @@
 <div style="width: 1000px;">
 <div id="listDiv">
 <table id="listTable" class="table table-bordered">
-<tr><td style="width: 100px;">번호</td><td style="width: 800px;"><div>
-  ${boardDTO.num}
-</div></td></tr>
 <tr><td style="width: 100px;">타입</td><td style="width: 800px;"><div>
   <c:if test="${boardDTO.type == 0}">
   공지
