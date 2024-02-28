@@ -524,10 +524,10 @@ public class AdminBoardController {
 	public String qnaAnswerPro(HttpSession session, AdminQnaDTO adminQnaDTO, Model model, AdminDTO adminDTO) {
 		System.out.println("AdminBoardController qnaAnswerPro()");
 		
-		 adminQnaDTO.setId((String)session.getAttribute("id"));
+		 adminDTO.setId((String)session.getAttribute("id"));
 		    System.out.println(adminQnaDTO);
-		    adminDTO = adminService.adminCheck(adminQnaDTO);
-
+		    adminDTO = adminService.adminCheck2(adminDTO);
+		    
 		    if (adminDTO != null) {
 		        adminQnaDTO.setUpdate(new Timestamp(System.currentTimeMillis()));
 		        adminQnaService.updateQna(adminQnaDTO);

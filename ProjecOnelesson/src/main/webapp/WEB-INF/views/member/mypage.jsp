@@ -326,7 +326,7 @@ display: inline-block;
 					<div id="myProfil" class="myProfil">
 							
 	 						<span class="UserProfil">${memberDTO.nick } 회원님</span><br>
-	 						<span class="UserProImg"><img src="${pageContext.request.contextPath}/resources/upload/${memberDTO.image }" width="100px" height="100px"></span><br>
+	 						<span class="UserProImg"><img src="${pageContext.request.contextPath}/resources/images/default.png" width="100px" height="100px"></span><br>
 	 						<span class="UserProfil">회원 이름 : ${memberDTO.name }</span><br>
 	 						<span class="UserProfil">전화 번호 : ${memberDTO.phone }</span><br>
 	 						<span class="UserProfil">email : ${memberDTO.email }</span><br>

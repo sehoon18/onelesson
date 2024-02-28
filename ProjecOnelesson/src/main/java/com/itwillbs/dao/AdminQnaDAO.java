@@ -45,7 +45,7 @@ public class AdminQnaDAO {
 	public void updateQna(AdminQnaDTO adminQnaDTO) {
 		System.out.println("AdminQnaDAO updateQna()");
 		
-		sqlSession.selectOne(namespace + ".updateQna", adminQnaDTO);
+		sqlSession.update(namespace + ".updateQna", adminQnaDTO);
 	}
 
 }

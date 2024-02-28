@@ -103,7 +103,7 @@
 					
 					<div class="d-grid gap-2">
 						<button class="login-button-custom" type="button"  
-						onclick= "location.href='${pageContext.request.contextPath}/member/memberAgreement1'">일반회원가입</button>
+						onclick= "location.href='${pageContext.request.contextPath}/member/memberAgreement1'">학생회원가입</button>
 					</div>
 					
 					

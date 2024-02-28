@@ -199,7 +199,7 @@ option {
 					<div class="form-floating d-flex mt-2">
 						<input type="text" name="name"
 							class="form-control input-cc inputName" id="floatingName" placeholder="">
-						<label for="floatingName">이름</label>
+						<label for="floatingName">이름(필수)</label>
 						<font id="nameError" size="2" 
 						class="position-absolute top-50 start-20 translate-middle-y" 
 						style="right: 9px; margin-top: 2px"></font>
@@ -251,7 +251,7 @@ option {
         			<div class="input-group">
 							<div class="form-floating">
     <input type="text" name="phone" class="form-control input-cc inputPhone" id="floatingTel" placeholder="">
-    <label for="floatingTel"><span>연락처 '-' 제외 입력</span></label>
+    <label for="floatingTel"><span>연락처 '-' 제외 입력(필수)</span></label>
 <font id="checkPhone" size="2" 
 class="position-absolute top-50 start-20 translate-middle-y" 
 style="right: 9px; margin-top: 2px"></font>
@@ -275,7 +275,7 @@ style="right: 9px; margin-top: 2px"></font>
 <label for="email">이메일*</label>
 <div class="form-floating d-flex" style="display: flex; align-items: center;">
     <input type="text" name="email" class="form-control" id="floatingMail" placeholder="" style="flex: 1;">
-    <label for="floatingMail"><span>이메일 입력</span></label>
+    <label for="floatingMail"><span>이메일 입력(필수)</span></label>
     <font id="checkEmail" size="2" class="position-absolute top-50 start-20 translate-middle-y" 
     style="right: 9px; margin-top: 2px"></font>
 </div>
