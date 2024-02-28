@@ -420,8 +420,12 @@ public class BoardController {
 	@GetMapping("/lessonQnaWrite")
 	public String lessonQnaWrite(HttpSession session, Model model, BoardDTO boardDTO) {
 		System.out.println("BoardController lessonQnaWrite()");
+		String id = (String)session.getAttribute("id");
+		if(id == null) {
+			return "redirect:/member/memberLogin";
+		}
 		
-		boardDTO.setId((String)session.getAttribute("id"));
+		boardDTO.setId(id);
 		
 		List<LessonDTO> lessonList = lessonService.getSubject(boardDTO);
 		
