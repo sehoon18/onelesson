@@ -89,7 +89,7 @@
 						                <th style="width: 70px;">이메일</th>
 						                <th style="width: 80px;">성별</th>
 						                <th style="width: 150px;">사업자등록번호</th>
-						                <th style="width: 150px;">통신판매번호</th>
+						                <th style="width: 300px;">통신판매번호</th>
 						                <th style="width: 150px;">포인트</th>
 						                <th style="width: 120px;">가입일</th>
 						                <th style="width: 100px;">상태</th>
@@ -131,7 +131,14 @@
 											<td>X</td>                                           
                                             </c:when>
                                             </c:choose>
+                                            <c:choose>
+                                            <c:when test="${member.type == 0}">
                                             <td><fmt:formatNumber value="${member.point}" pattern="#,###" />P</td>
+                                            </c:when>
+                                            <c:when test="${member.type == 1}">
+                                            <td>X</td>
+                                            </c:when>
+                                            </c:choose>
                                             <td><fmt:formatDate value ="${member.join}" pattern="yyyy-MM-dd"/></td>
                                             <c:choose>
                                             <c:when test="${member.status == 0}">
