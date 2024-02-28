@@ -51,8 +51,11 @@ public class LessonController {
 	}
 	
 	@GetMapping("/lessonList")
-	public String lessonList(HttpSession session, HttpServletRequest request, PageDTO pageDTO, Model model, BoardDTO boardDTO) {
+	public String lessonList(HttpSession session, HttpServletRequest request, PageDTO pageDTO, Model model, BoardDTO boardDTO, MemberDTO memberDTO) {
 		System.out.println("LessonController lessonList()");
+		
+		memberDTO = memberService.getMember((String)session.getAttribute("id"));
+		model.addAttribute("memberDTO", memberDTO);
 		
 		String search = request.getParameter("search");
 		String category = request.getParameter("category");

@@ -426,6 +426,7 @@ public class BoardController {
 		System.out.println("BoardController lessonQnaWrite()");
 		String id = (String)session.getAttribute("id");
 		if(id == null) {
+			redirectAttributes.addFlashAttribute("message", "로그인이 필요합니다.");
 			return "redirect:/member/memberLogin";
 		} else if (id.equals("admin")) {
 			redirectAttributes.addFlashAttribute("message", "괸리자계정은 사용할 수 없는 기능입니다.");
