@@ -227,8 +227,11 @@ public class LessonController {
 	}	
 	
 	@GetMapping("/lessonInfo")
-	public String lessonInfo(HttpSession session, LessonDTO lessonDTO, Model model, BoardDTO boardDTO, HttpServletRequest request, PageDTO pageDTO) {
+	public String lessonInfo(HttpSession session, LessonDTO lessonDTO, Model model, BoardDTO boardDTO, HttpServletRequest request, PageDTO pageDTO, MemberDTO memberDTO) {
 		System.out.println("LessonController lessonInfo()");
+		
+		memberDTO = memberService.getMember((String)session.getAttribute("id"));
+		model.addAttribute("memberDTO", memberDTO);
 		
 		lessonDTO = lessonService.getLesson(lessonDTO);
 

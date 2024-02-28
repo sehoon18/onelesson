@@ -175,8 +175,12 @@
     	<div class="btn-group-vertical" role="group" aria-label="Vertical button group">
  			<button type="button" class="btn btn-success"  onclick="location.href='${pageContext.request.contextPath}/lesson/payment?num=${lessonDTO.num}'">예약하기</button>
 			<button type="button" class="btn btn-success"  onclick="location.href='${pageContext.request.contextPath}/board/lessonQnaWrite?num=${lessonDTO.num}'">문의</button>
+			<c:if test="${not empty memberDTO.type }">
+			<c:if test="${memberDTO.type == 0 }">
 			<c:set var="isFilled" value="${wishList.contains(lessonDTO.num) ? 'filled' : ''}" />
 			<button type="button" class="btn btn-outline-success" onclick="toggleHeart(this)" name="num" value="${lessonDTO.num }"><i class="${isFilled == 'filled' ? 'fas' : 'far'} fa-heart heart"></i></button>
+			</c:if>
+			</c:if>
 		</div>
     	</td></tr>
     	<tr><td>

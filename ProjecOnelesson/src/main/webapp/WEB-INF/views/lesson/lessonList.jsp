@@ -129,7 +129,7 @@
 			</svg></a>
             <div class="card-body">
             <div class="d-flex justify-content-between align-items-center" style="margin: 5px;">
-              <div>${lessonDTO.subject }</div>
+              <a href="${pageContext.request.contextPath}/lesson/lessonInfo?num=${lessonDTO.num}" style="text-decoration: none; color: black;"><div>${lessonDTO.subject }</div></a>
                 <small class="text-body-secondary">레슨일 : ${lessonDTO.date }</small>
             </div>
               <div class="d-flex justify-content-between align-items-center">
