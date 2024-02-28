@@ -178,7 +178,7 @@ public class LessonController {
 	}
 	
 	@PostMapping("/lessonUpdatePro")
-	public String lessonUpdatePro(MultipartFile preview, HttpServletRequest request, Model model, MemberDTO memberDTO) throws Exception{
+	public String lessonUpdatePro(MultipartFile preview, MultipartFile detail, HttpServletRequest request, Model model, MemberDTO memberDTO) throws Exception{
 		System.out.println("LessonController lessonUpdatePro()");
         
 		boolean userCheck = false;
@@ -189,10 +189,12 @@ public class LessonController {
 		}
 		
 		UUID uuid = UUID.randomUUID();
-		String filename = uuid.toString() + "_" + preview.getOriginalFilename();
-		System.out.println(filename);
+		String filename1 = uuid.toString() + "_" + preview.getOriginalFilename();
+		String filename2 = uuid.toString() + "_" + detail.getOriginalFilename();
+		System.out.println(filename1);
 		System.out.println(uploadPath);
-		FileCopyUtils.copy(preview.getBytes(), new File(uploadPath, filename));
+		FileCopyUtils.copy(preview.getBytes(), new File(uploadPath, filename1));
+		FileCopyUtils.copy(detail.getBytes(), new File(uploadPath, filename2));
 		
 		LessonDTO lessonDTO = new LessonDTO();
 		lessonDTO.setNum(Integer.parseInt(request.getParameter("num")));
@@ -204,7 +206,8 @@ public class LessonController {
 		lessonDTO.setDate(request.getParameter("date"));
 		lessonDTO.setPrice(Integer.parseInt(request.getParameter("price")));
 		lessonDTO.setUpdate(new Timestamp(System.currentTimeMillis()));
-		lessonDTO.setPreview(filename);
+		lessonDTO.setPreview(filename1);
+		lessonDTO.setDetail(filename2);
 		lessonDTO.setId(request.getParameter("id"));
 		System.out.println(lessonDTO);
 		if(userCheck == false) {
