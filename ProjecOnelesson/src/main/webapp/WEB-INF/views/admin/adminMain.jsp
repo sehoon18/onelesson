@@ -111,17 +111,26 @@
                                 <thead>
                                     <tr>
                                         <th style="width: 8%; ">아이디</th>
-                                        <th style="width: 25%; text-align: center;">내용</th>
-                                        <th style="width: 20%; text-align: center;">답변</th>
-                                        <th style="width: 15%; text-align: center;">답변일</th>
+                                        <th style="width: 25%; text-align: center;">제목</th>
+                                        <th style="width: 20%; text-align: center;">답변여부</th>
+                                        <th style="width: 15%; text-align: center;">작성일</th>
                                     </tr>
                                 </thead>   
                                 <tbody>
                                     <c:forEach var="qna" items="${qnaList}">
                                           <tr style="text-align: center;">                                            
                                             <td>${qna.id}</td>
-                                            <td><a class="link" href="${pageContext.request.contextPath}/admin/qnaContent?num=${qna.num}">${qna.question}</a></td>
-                                            <td>${qna.answer}</td>
+                                            <td><a class="link" href="${pageContext.request.contextPath}/admin/qnaContent?num=${qna.num}">${qna.subject}</a></td>
+                                            <td>
+                                            <c:choose>
+                                            <c:when test="${qna.answered}">
+                                           		 O
+                                            </c:when>
+                                            <c:otherwise>
+                                          		 X
+                                            </c:otherwise>
+                                            </c:choose>
+                                            </td>
                                             <td><fmt:formatDate value = "${qna.update}" pattern="yyyy-MM-dd"/></td>
                                         </tr>
                                     </c:forEach>

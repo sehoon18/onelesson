@@ -26,7 +26,14 @@ public class AdminQnaService {
 		pageDTO.setStartRow(startRow - 1);
 		pageDTO.setEndRow(endRow);
 		
-		return adminQnaDAO.getQnaList(pageDTO);
+		List<AdminQnaDTO> qnaList = adminQnaDAO.getQnaList(pageDTO);
+		
+		for(AdminQnaDTO qna : qnaList) {
+			if (qna.getAnswer() != null) {
+	            qna.setAnswered(true);
+	        }
+		}
+		return qnaList;
 	}
 
 	public int getQnaCount() {
