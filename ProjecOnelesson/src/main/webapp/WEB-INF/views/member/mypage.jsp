@@ -286,7 +286,7 @@ display: inline-block;
 	<img src="${pageContext.request.contextPath}/resources/upload/${memberDTO.image}" class="myProImg" style="width: 80px; height: 80px; margin: 0px auto;">
 	</c:if>
 	<br>
-    <span class="myName">${memberDTO.name } 회원</span>           
+    <span class="myName">${memberDTO.nick } 회원</span>           
     </span>
 	</td></tr>
 	</table>
